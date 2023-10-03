@@ -3,11 +3,11 @@ import React from 'react'
 
 const AboutCard = () => {
   return (
-    <div className="cursor-pointer my-10 transition-transform duration-300 ease-in-out hover:scale-105">
+    <div className="cursor-pointer my-10 transition-transform duration-300 ease-in-out ">
       <Link to="/about">
         <div className="mt-15 mb-15">
           <div className="flex w-full justify-center mt-3 ">
-            <div className="w-4/5 bg-violet-300 rounded-md ">
+            <div className="w-full bg-violet-300 rounded-md hover:opacity-90 ">
               <h1 className="text-primary text-3xl text-center uppercase font-bold cursor-pointer my-10 transition-transform duration-300 ease-in-out hover:scale-125">
                 Sobre Nosotros
               </h1>

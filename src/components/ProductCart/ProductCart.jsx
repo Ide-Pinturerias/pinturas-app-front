@@ -7,7 +7,7 @@ import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { putCart } from '@redux/actions/Cart/putCart'
 import Swal from 'sweetalert2'
 
-const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => {
+const ProductCart = ({ id, name, quantity, image, price, stock }) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const cart = useSelector(state => state.cart)
@@ -19,7 +19,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
 
   const calcPrice = (quant, pric) => {
     const sum = Number(quant) * Number(pric)
-    calcTotal(sum)
     return sum.toFixed(2)
   }
   const moreOrLessQuantity = (algo) => {

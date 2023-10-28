@@ -9,7 +9,7 @@ export const putCart = (data) => {
       console.log('response cart', response)
       dispatch({ type: PUT_CART, payload: response })
     } catch (error) {
-      console.log('error putCart', error)
+      console.log('error putCart: ', error.message)
     }
   }
 }

@@ -72,6 +72,18 @@ const Cart = () => {
     }
   }
 
+  // const prices = []
+
+  // const calcTotal = () => {
+  //   let sum = 0
+  //   for (let i = 0; i < prices.length; i++) {
+  //     const calc = Number(prices[i].quantity)
+  //     sum += Number(calc)
+  //   }
+  //   console.log('sum', sum)
+  //   return sum.toFixed(2)
+  // }
+
   return (
     <div className="my-10 w-full">
       <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">

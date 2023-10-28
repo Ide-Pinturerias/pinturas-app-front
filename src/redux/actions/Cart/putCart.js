@@ -6,7 +6,7 @@ export const putCart = (data) => {
     try {
       const response = (await axios.put(`${BASE_URL}carts`, data)).data
 
-      console.log('response cart', response)
+      console.log('response putCart', response)
       dispatch({ type: PUT_CART, payload: response })
     } catch (error) {
       console.log('error putCart: ', error.message)

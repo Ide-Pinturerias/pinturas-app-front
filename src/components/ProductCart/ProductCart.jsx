@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
+import { useNavigate } from 'react-router-dom'
 
 // import { useCart } from '@hooks/useCart'
 
@@ -9,6 +10,7 @@ import Swal from 'sweetalert2'
 
 const ProductCart = ({ id, name, quantity, image, price, stock }) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const user = useSelector(state => state.user)
   const cart = useSelector(state => state.cart)
   const cartID = useSelector(state => state.cartID)
@@ -36,11 +38,12 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
         if (cart.length === 1) {
           dispatch(putCart({
 
-            idUser: user.id,
+            userId: user.id,
             idCart: cartID,
             products: []
           })).then((response) => {
-            if (response) window.location.reload()
+            console.log('response 1:', response)
+            if (response) navigate('/cart')
           })
 
           // removeFromCart(id)
@@ -50,11 +53,12 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
           // removeFromCart(id)
 
           dispatch(putCart({
-            idUser: user.id,
+            userId: user.id,
             idCart: cartID,
             products: copyCart
           })).then((response) => {
-            if (response) window.location.reload()
+            console.log('response cart:', response)
+            if (response) navigate('/cart')
           })
         }
       } else {

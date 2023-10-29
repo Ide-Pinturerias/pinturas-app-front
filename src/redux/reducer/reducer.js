@@ -229,6 +229,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_CART:
       return { ...state, cart: payload }
     case PUT_CART:
+
       return { ...state, cart: payload }
     case ADD_CART:
       return { ...state, cart: [...state.cart, ...payload] }

@@ -43,7 +43,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
             products: []
           })).then((response) => {
             console.log('response 1:', response)
-            if (response) window.location.reload()
+            if (response) return navigate('/cart')
           })
 
           // removeFromCart(id)
@@ -58,12 +58,12 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
             products: copyCart
           })).then((response) => {
             console.log('response cart:', response)
-            if (response) return navigate('/cart')
+            if (response.products) return navigate('/cart')
           })
         }
       } else {
         // removeFromCart(id)
-        window.location.reload()
+        return navigate('/cart')
       }
       setIsRemove(false)
     }

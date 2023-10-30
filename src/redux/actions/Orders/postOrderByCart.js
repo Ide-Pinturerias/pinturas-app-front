@@ -10,7 +10,7 @@ export const postOrderByCart = (order) => {
 
       return response
     } catch (error) {
-      console.log('postOrderByCart error:', error)
+      // console.log('postOrderByCart error:', error)
     }
   }
 }

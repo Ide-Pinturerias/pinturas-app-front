@@ -6,13 +6,13 @@ export const putCart = (data) => {
     try {
       const response = (await axios.put(`${BASE_URL}carts`, data)).data
 
-      console.log('response putCart', response)
+      // console.log('response putCart', response)
       const products = response.products.map(product => JSON.parse(product))
       dispatch({ type: PUT_CART, payload: products })
 
       return response
     } catch (error) {
-      console.log('error putCart: ', error.message)
+      console.error(error)
     }
   }
 }

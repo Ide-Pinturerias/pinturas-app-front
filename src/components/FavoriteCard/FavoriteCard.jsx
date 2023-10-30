@@ -15,7 +15,9 @@ const FavoriteCard = ({ id, image, name, stock, active, price }) => {
       if (response) {
         Swal.fire({ icon: 'success', text: 'Favorito eliminado' })
       }
-    }).catch((error) => console.log('error', error))
+    }).catch((error) => {
+      console.error(error)
+    })
   }
 
   return (

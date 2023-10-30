@@ -10,7 +10,6 @@ const CompletedButton = ({ idOrder }) => {
     const edition = { state: 'completed' }
     try {
       putOrder(idOrder, edition)(dispatch).then(response => {
-        console.log('response en el submit', response)
         Swal.fire({
           icon: 'success',
           text: 'Estado modificado con éxito'

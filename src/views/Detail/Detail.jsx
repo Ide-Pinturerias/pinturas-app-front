@@ -80,7 +80,8 @@ const Detail = () => {
           }
         })
         .catch((error) => {
-          console.log('error productCart', error)
+          // console.log('error productCart', error)
+          console.error(error)
         })
     } else {
       Swal.fire({

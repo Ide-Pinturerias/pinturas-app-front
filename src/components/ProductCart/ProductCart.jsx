@@ -42,7 +42,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
             idCart: cartID,
             products: []
           })).then((response) => {
-            console.log('response 1:', response)
+            // console.log('response 1:', response)
             if (response) return navigate('/cart')
           })
 
@@ -57,7 +57,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
             idCart: cartID,
             products: copyCart
           })).then((response) => {
-            console.log('response cart:', response)
             if (response.products) return navigate('/cart')
           })
         }
@@ -87,7 +86,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock }) => {
           })
         }
       }).catch((error) => {
-        console.log('error productCart', error)
+        console.error('Error:', error)
       })
     } else {
       Swal.fire('Debes estar logeado para agregar favoritos')

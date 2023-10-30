@@ -61,8 +61,8 @@ const Cart = () => {
                     })
                 }
               })
-              .catch((err) => {
-                console.log('err postOrderByCart', err)
+              .catch((error) => {
+                console.error(error)
               })
           }
         })
@@ -111,7 +111,7 @@ const Cart = () => {
           <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
             {cart?.length > 0 && (
               <div>
-                {console.log('cart', cart)}
+                {/* {console.log('cart', cart)} */}
                 <div className="w-full flex justify-between px-4">
                   <h1 className="text-lg font-semibold"> Detalle </h1>
                   <h1 className="text-lg font-semibold text-right"> Precio </h1>

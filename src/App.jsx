@@ -21,12 +21,10 @@ import FailurePayment from './views/Payment/FaillurePayment'
 import PendingPayment from './views/Payment/PendingPayment'
 import Login from './views/Login/Login'
 import ReviewsPage from './views/ReviewsPage/ReviewsPage'
-import { useCart } from './hooks/useCart'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
 import { allProducts } from './redux/actions/Products/allProducts'
 import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
-import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
 import Dashboard from './views/Dashboard/Dashboard'
 import BlogCreate from './views/Blog/BlogCreate'
@@ -34,7 +32,6 @@ import EditBlog from './views/Blog/EditBlog'
 import BlogDetail from './views/Blog/BlogDetail'
 import UserOrderDetail from './views/UserOrderDetail/UserOrderDetail'
 import ChatBotApp from './components/ChatBot/ChatBotApp'
-import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
@@ -43,27 +40,16 @@ import ScrollToTop from './hooks/ScrollToTop'
 function App () {
   const dispatch = useDispatch()
 
-  const userDb = useSelector((state) => state.user)
-  const { addAllToCart } = useCart()
+  // const userDb = useSelector((state) => state.user)
   const user = localStorage.getItem('user')
-  const cartLocalS = localStorage.getItem('cart')
 
   useEffect(() => {
-    if (cartLocalS) dispatch(addCart(JSON.parse(cartLocalS)))
-
     if (user) dispatch(setUser(JSON.parse(user)))
 
     dispatch(allProducts())
   }, [])
 
   useEffect(() => {
-    if (Object.keys(userDb).length !== 0) {
-      dispatch(getCart(JSON.parse(user)?.id)).then((response) => {
-        if (response) {
-          addAllToCart(response)
-        }
-      })
-    }
     process.env.NODE_ENV === 'development' && (
       document.body.classList.add('debug-screens')
     )
@@ -81,7 +67,7 @@ function App () {
 
               <Route path="/products" element={<Products />} />
               <Route path="/products/:idProduct" element={<Detail />} />
-              <Route path="/products/edit/:idProduct" element={<UpdateProduct/>}
+              <Route path="/products/edit/:idProduct" element={<UpdateProduct />}
               />
 
               <Route path="/login" element={<Login />} />

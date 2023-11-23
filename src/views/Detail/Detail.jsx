@@ -6,8 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { productById } from '@redux/actions/Products/productById'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import { bestSellers } from '@redux/actions/Products/bestSellers'
-import { useCart } from '@hooks/useCart'
-import { setCart } from '@redux/actions/Cart/setCart'
 import Swal from 'sweetalert2'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
@@ -19,11 +17,8 @@ const Detail = () => {
   const navigate = useNavigate()
   const { idProduct } = useParams()
   const product = useSelector((state) => state.detail)
-  const { addToCart } = useCart()
   const [isValidQuantity, setIsValidQuantity] = useState(true)
   const [error, setError] = useState('')
-  const [added, setAdded] = useState(false)
-  const [addedBuy, setAddedBuy] = useState(false)
 
   const [addProduct, setAddProduct] = useState({
     id: idProduct,
@@ -110,71 +105,6 @@ const Detail = () => {
     }
     return <div className="inline-flex items-center">{stars}</div>
   }
-
-  const shopCart = () => {
-    if (isValidQuantity) {
-      addToCart({
-        product: {
-          id: addProduct.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          stock: product.stock
-        },
-        quantity: addProduct.quantity
-      })
-      setAddProduct({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock
-      })
-      setAddedBuy(true)
-    }
-  }
-
-  const handleAddToCart = () => {
-    if (isValidQuantity) {
-      addToCart({
-        product: {
-          id: addProduct.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          stock: product.stock
-        },
-        quantity: addProduct.quantity
-      })
-      setAddProduct({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock
-      })
-
-      setAdded(true)
-    } else {
-      Swal.fire('Ingrese una cantidad válida')
-    }
-  }
-
-  useEffect(() => {
-    if (added) {
-      dispatch(setCart(addProduct))
-      Swal.fire('Producto agregado al carrito')
-      console.log('addProduct', addProduct)
-      setAdded(false)
-    }
-    if (addedBuy) {
-      dispatch(setCart(addProduct))
-      setAddedBuy(false)
-      navigate('/cart')
-    }
-  }, [added, addedBuy])
 
   useEffect(() => {
     dispatch(productById(idProduct))
@@ -334,7 +264,7 @@ const Detail = () => {
                             ? 'hover:bg-purple-200'
                             : 'cursor-not-allowed'
                         }`}
-                        onClick={Object.keys(loggedUser).length !== 0 ? handleAddToCart : () => { navigate('/login') }}
+                        onClick={Object.keys(loggedUser).length !== 0 ? <></> : () => { navigate('/login') }}
                         >
                         Agregar al carrito
                       </button>
@@ -346,7 +276,7 @@ const Detail = () => {
                             : 'cursor-not-allowed'
                         }`}
                         onClick={Object.keys(loggedUser).length !== 0
-                          ? shopCart
+                          ? <></>
                           : () => { navigate('/login') }}
                         disabled={!isValidQuantity}
                       >

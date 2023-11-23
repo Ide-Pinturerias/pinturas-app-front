@@ -1,21 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 
-// import { useCart } from '@hooks/useCart'
-
-import { putCart } from '@redux/actions/Cart/putCart'
 import Swal from 'sweetalert2'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const cart = useSelector(state => state.cart)
-  const cartID = useSelector(state => state.cartID)
   const [count, setCount] = useState(quantity)
   // const [removeCart, setRemoveCart] = useState(false)
   // const { cartState, addToCart, removeFromCart, clearCart } = useCart()
-  const [isRemove, setIsRemove] = useState(false)
 
   const calcPrice = (quant, pric) => {
     const sum = Number(quant) * Number(pric)
@@ -26,45 +20,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
     if (algo === 'more') setCount(count + 1)
     if (algo === 'less') setCount(count - 1)
   }
-
-  const deleteProductCart = () => {
-    setIsRemove(true)
-  }
-
-  useEffect(() => {
-    if (isRemove) {
-      if (user) {
-        if (cart.length === 1) {
-          dispatch(putCart({
-
-            idUser: user.id,
-            idCart: cartID,
-            products: []
-          })).then((response) => {
-            if (response) window.location.reload()
-          })
-
-          // removeFromCart(id)
-        } else {
-          const copyCart = cart.filter((elem) => elem.id !== id)
-
-          // removeFromCart(id)
-
-          dispatch(putCart({
-            idUser: user.id,
-            idCart: cartID,
-            products: copyCart
-          })).then((response) => {
-            if (response) window.location.reload()
-          })
-        }
-      } else {
-        // removeFromCart(id)
-        window.location.reload()
-      }
-      setIsRemove(false)
-    }
-  }, [isRemove])
 
   const addFavorite = () => {
     if (user) {
@@ -101,7 +56,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
                     <div className="flex px-5 flex-col w-11/12">
                         <h1 className="text-base text-ms font-semibold">{name}</h1>
                         <div className="flex gap-5">
-                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={deleteProductCart}>Eliminar</button>
+                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => {}}>Eliminar</button>
                             <button className="mt-2 ml-auto text-xs font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110" onClick={addFavorite}>Agregar a Favoritos 🤍</button>
                         </div>
                         <div className="flex justify-between ">

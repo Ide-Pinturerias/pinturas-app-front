@@ -18,9 +18,9 @@ const SOCIAL_MEDIA = [
 
 const Contact = () => {
     return (
-        <main className="relative p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-turquoise">
-            <section className="mb-[8rem] text-white">
-                <div className="max-w-[1920px] px-[3.5%]">
+        <main className="relative flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-turquoise">
+            <section className="flex justify-center mb-[8rem] text-white w-full">
+                <div className="max-w-[1920px] w-full px-[3.5%]">
                     <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem]">Nuestra tienda</h2>
                     <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                         En nuestra tienda encontraras todos los productos que necesitas.
@@ -31,7 +31,7 @@ const Contact = () => {
                 </div>
             </section>
 
-            <section className="relative mt-[8rem] before:content-[''] before:absolute before:-z-50 before:bottom-0 before:left-0 before:h-[25%] before:w-full before:bg-orange">
+            <section className="relative flex justify-center w-full before:content-[''] before:absolute before:-z-50 before:bottom-0 before:left-0 before:h-[25%] before:w-full before:bg-orange">
                 <div className="px-[3.5%] box-border w-full max-w-[1920px]">
                     <div className="flex mb-[8rem]">
                         <img
@@ -50,8 +50,8 @@ const Contact = () => {
                 </div>
             </section>
 
-            <section className="py-[8rem] bg-orange text-white ">
-                <div className="px-[3.5%] max-w-[1920px]">
+            <section className="flex justify-center py-[8rem] w-full bg-orange text-white ">
+                <div className="px-[3.5%] max-w-[1920px] w-full">
                     <h3 className="text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase mb-12"><strong>Encuéntranos</strong></h3>
                     <div className="w-full flex justify-between items-center">
                         <div className="flex flex-col gap-8">

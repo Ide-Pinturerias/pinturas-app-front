@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '../Products/ProductCard';
 import Paginated from '../Paginated/Paginated';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { allProducts } from '@redux/actions/Products/allProducts';
 import { getProductFilter } from '@redux/actions/filters/getProductFilter';

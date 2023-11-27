@@ -1,14 +1,13 @@
-// import Featured from '../Featured/Featured';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getBestSellers } from '@redux/actions/Products/getBestSellers';
 
-import CardRegular from '../Cards/CardRegular';
+import CardRegular from '../ProductCards/CardRegular';
 import featuredBanner from '@img/featured-banner.png';
 
 
-const FeaturedContainer = () => {
+function FeaturedContainer () {
 
     const bestSellers = useSelector((state) => state.bestSell);
 

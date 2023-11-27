@@ -65,16 +65,26 @@ src
 |--|--|--FeaturedContainer.jsx
 
 -
-|--|--Featured
+|--|--Featured (CAN BE REMOVED)
 |--|--|--Featured.jsx
 -
 =>
 -
-|--|--Cards
+|--|--ProductCards
 |--|--|--CardCategory.jsx
 |--|--|--CardRegular.jsx
 -
 
+
+-
+|--|--ProductContainer
+|--|--|--ProductContainer.jsx
+-
+=>
+-
+|--|--ProductBox
+|--|--|--ProductBox.jsx
+-
 
 
 |--|--Featured --> Card

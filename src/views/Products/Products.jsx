@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { bestSellers } from '@redux/actions/Products/bestSellers'
+import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
 import { useDispatch, useSelector } from 'react-redux'
 import { allProducts } from '@redux/actions/Products/allProducts'
@@ -29,8 +29,9 @@ function ProductsPage() {
         };
     }, [dispatch, thisPage, filterCategory]);
 
+
     useEffect(() => {
-        dispatch(bestSellers());
+        dispatch(getBestSellers());
     }, [dispatch]);
 
 

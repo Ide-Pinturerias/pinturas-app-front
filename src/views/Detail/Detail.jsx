@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { productById } from '@redux/actions/Products/productById'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { bestSellers } from '@redux/actions/Products/bestSellers'
+import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import './Detail.Module.css'
 import { useCart } from '@hooks/useCart'
 import { setCart } from '@redux/actions/Cart/setCart'
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 
-const Detail = () => {
+function Detail () {
   const loggedUser = useSelector((state) => state.user)
   // const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
@@ -179,7 +179,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(productById(idProduct))
-    dispatch(bestSellers())
+    dispatch(getBestSellers())
     dispatch(cleanProductDetail())
   }, [dispatch, idProduct])
 

@@ -37,3 +37,57 @@ The application is deployed on [Vercel](https://vercel.com/).
 ## Testing Status (Estado de las Pruebas)
 
 [![eslint-check](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml)
+
+
+---
+
+# STRUCTURE
+
+```
+src
+|--assets
+
+|--components
+
+|--|--AboutCard --> AboutSection
+|--|--|--AboutCard.jsx
+
+|--|--Banner
+|--|--|--Banner.jsx
+
+|--|--BannerBlog
+|--|--|--BannerBlog.jsx
+
+|--|--CategoryContainer
+|--|--|--CategoryContainer.jsx
+
+|--|--FeaturedProContainer  --> TopSellers 
+|--|--|--FeaturedContainer.jsx
+
+-
+|--|--Featured
+|--|--|--Featured.jsx
+-
+=>
+-
+|--|--Cards
+|--|--|--CardCategory.jsx
+|--|--|--CardRegular.jsx
+-
+
+
+
+|--|--Featured --> Card
+|--|--|--Featured.jsx
+
+|--|--SVG.jsx
+
+|--context
+...
+|--views
+|--|--Home
+|--|--About
+|--|--Contact
+
+...
+```

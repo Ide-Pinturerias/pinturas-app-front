@@ -43,10 +43,15 @@ function ProductsPage() {
                     <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                         Contamos con una gran seleccion de productos. Entre ellas destacamos las pinturas Fadema.
                     </p>
-                    <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                        Filtrar
-                    </button>
-                    
+                    <div className="flex justify-between items-center">
+                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
+                            Filtrar
+                        </button>
+                        <Chevron width={"5rem"} />
+                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
+                            Ordenar
+                        </button>
+                    </div>
                 </div>
             </section>
             <section className="mb-[8rem] text-white">

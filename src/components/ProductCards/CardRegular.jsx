@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { productById } from '@redux/actions/Products/productById';
+// import { useDispatch } from 'react-redux';
+// import { productById } from '@redux/actions/Products/productById';
 
 
 function CardRegular({ id, name, image, price, prodpackage }) {
 
 
     // CONST:
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
 
 
@@ -18,7 +18,7 @@ function CardRegular({ id, name, image, price, prodpackage }) {
 
     // FUNCTIONS:
     const handleDetailClick = () => {
-        dispatch(productById(id))
+        // dispatch(productById(id))
         navigate(`/products/${id}`)
     }
 
@@ -43,8 +43,8 @@ function CardRegular({ id, name, image, price, prodpackage }) {
                 Ver producto
             </p>
         </div>
-    )
-}
+    );
+};
 
 
 export default CardRegular;

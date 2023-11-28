@@ -75,9 +75,14 @@ src
 |--|--|--CardRegular.jsx
 -
 
+|--|--Footer
+|--|--|--Footer.jsx
+
+|--|--NavBar
+|--|--|--NavBar.jsx
 
 -
-|--|--ProductContainer
+|--|--ProductContainer (CAN BE REMOVED)
 |--|--|--ProductContainer.jsx
 -
 =>
@@ -85,10 +90,6 @@ src
 |--|--ProductBox
 |--|--|--ProductBox.jsx
 -
-
-
-|--|--Featured --> Card
-|--|--|--Featured.jsx
 
 |--|--SVG.jsx
 

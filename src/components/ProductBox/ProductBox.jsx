@@ -98,7 +98,7 @@ function ProductBox() {
             {
                 filteredProducts.map((product) => (
                     <CardRegular 
-                        idProduct={product.idProduct}
+                        id={product.idProduct}
                         image={product.image}
                         name={product.name}
                         price={product.price}

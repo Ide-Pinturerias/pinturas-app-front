@@ -36,7 +36,7 @@ const Nav = () => {
 
 
     return (
-        <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-16 rounded-[50px] bg-[#FFFAED90] border-orange border backdrop-blur-md">
+        <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-[3.25rem] rounded-[16px] bg-[#FFFAED90] border-orange border backdrop-blur-md text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)]">
             {/* NAV LINKS */}
             <nav className="flex justify-evenly w-[calc((100%-5rem)/2)]">
                 <NavLink to="/products" className={linkStl}>
@@ -58,7 +58,7 @@ const Nav = () => {
                 <img
                     src={logo}
                     alt="logo Ide Pinturerias"
-                    className="my-4 w-16 object-contain cursor-pointer"
+                    className="my-4 w-[3.25rem] object-contain cursor-pointer"
                 />
             </NavLink>
 
@@ -68,7 +68,7 @@ const Nav = () => {
                 <div className="font-mono flex justify-center items-center cursor-pointer">
                     <NavLink
                         to="/cart"
-                        className="h-6 hidden sm:block"
+                        className="h-5 hidden sm:block"
                     >
                         <Cart />
                     </NavLink>
@@ -81,7 +81,7 @@ const Nav = () => {
                         (!userBd.id && !isAuthenticated) ? (
                             <NavLink
                                 // to="/account"
-                                className="h-6 hidden sm:block cursor-pointer"
+                                className="h-5 hidden sm:block cursor-pointer"
                             >
                                 <UserIcon />
                             </NavLink>
@@ -90,7 +90,7 @@ const Nav = () => {
                         ) : userBd.id ? (
                             <NavLink
                                 to="/account"
-                                className="h-6 hidden sm:block cursor-pointer"
+                                className="h-5 hidden sm:block cursor-pointer"
                             >
                                 <UserIcon />
                                 {userBd.name}
@@ -100,7 +100,7 @@ const Nav = () => {
                         ) : isAuthenticated ? (
                             <NavLink
                                 to="/account"
-                                className="h-6 hidden sm:block cursor-pointer"
+                                className="h-5 hidden sm:block cursor-pointer"
                             >
                                 <UserIcon />
                                 {user.name} {user.lastName}

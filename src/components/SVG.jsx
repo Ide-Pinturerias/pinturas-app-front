@@ -64,6 +64,40 @@ function Magnifier() {
     );
 };
 
+function Bag() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="shrink-0 mr-3 h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+            />
+        </svg>
+    );
+};
+
+function Star(index) {
+    return (
+        <svg
+            key={`star-${index}`}
+            className="star"
+            width="24"
+            height="24"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+        >
+            <path d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z" />
+        </svg>
+    )
+}
+
 function Facebook() {
     return (
         <svg
@@ -172,6 +206,8 @@ export {
     UserIcon,
     Cart,
     Magnifier,
+    Bag,
+    Star,
     Facebook,
     Instagram,
     Linkedin,

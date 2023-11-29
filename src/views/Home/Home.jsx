@@ -7,7 +7,7 @@ import BannerBlog from '@components/BannerBlog/BannerBlog'
 
 function Home () {
     return (
-        <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-warmWhite">
+        <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-softWhite">
             <Banner />
             <CategoryContainer />
             <FeaturedContainer />

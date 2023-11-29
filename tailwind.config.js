@@ -15,7 +15,9 @@ export default {
                 formBg: '#D9D9D9',
                 warning: '#ff0f0f',
                 white: '#f1f1f1',
-                warmWhite: '#FFFAED'
+                warmWhite: '#FFFAED',
+                seasalt: '#FAF8F5',
+                softWhite: '#F7F7F2'
             },
             padding: {
                 // Debe ser usado en cada component "main" para dar espacio al header principal.

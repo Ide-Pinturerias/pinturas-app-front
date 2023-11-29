@@ -36,7 +36,7 @@ const Nav = () => {
 
 
     return (
-        <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-[3.25rem] rounded-[16px] bg-[#FFFAED90] border-orange border backdrop-blur-md text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)]">
+        <header className="z-50 fixed flex justify-center items-center w-[85%] mx-[7.5%] my-4 h-[3.25rem] rounded-[16px] bg-[#F7F7F290] border-orange border backdrop-blur-md text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)]">
             {/* NAV LINKS */}
             <nav className="flex justify-evenly w-[calc((100%-5rem)/2)]">
                 <NavLink to="/products" className={linkStl}>

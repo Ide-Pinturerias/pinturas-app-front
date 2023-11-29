@@ -191,8 +191,8 @@ function Detail() {
 
     // COMPONENT:
     return (
-        <section className="flex items-center justify-center">
-            {
+        <main className="flex items-center justify-center bg-softWhite">
+                {
                 Object.keys(product).length === 0
                     ? <img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
@@ -201,6 +201,7 @@ function Detail() {
                     />
                     : <section>
                         <div className="container mx-auto px-4">
+                            {/* BREADCRUMB */}
                             <div className="flex">
                                 <ol role="list" className="flex items-center">
                                     <li className="text-left">
@@ -242,6 +243,7 @@ function Detail() {
                                     </li>
                                 </ol>
                             </div>
+                            {/* CONTENT */}
                             <div className="lg:col-gap-12 mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:mt-12 lg:grid-cols-2 lg:gap-10 xl:col-gap-16">
                                 <div className="lg:col-span-3 lg:row-end-1">
                                     <div className="lg:flex lg:items-start">
@@ -390,7 +392,7 @@ function Detail() {
                         </div>
                     </section>
             }
-        </section>
+        </main>
     );
 };
 

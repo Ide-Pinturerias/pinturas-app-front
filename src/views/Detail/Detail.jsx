@@ -9,7 +9,6 @@ import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { useCart } from '@hooks/useCart'
 
-import './Detail.Module.css'
 import Swal from 'sweetalert2'
 import { Bag, Star } from '../../components/SVG'
 import DeleteButton from '@components/DeleteButton/DeleteButton'

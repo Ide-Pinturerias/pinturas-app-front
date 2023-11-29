@@ -32,5 +32,11 @@ export default {
             primary: 'Gill Sans'
         },
     },
-    plugins: []
+    fontFamily: {
+        abc: ['Urbanist', 'sans-serif'],
+        primary: 'Gill Sans'
+    },
+    plugins: [
+        require('tailwindcss-debug-screens')
+    ]
 }

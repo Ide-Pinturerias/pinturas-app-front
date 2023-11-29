@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^7.33.2",
     "postcss": "^8.4.30",
     "tailwindcss": "^3.3.3",
+    "tailwindcss-debug-screens": "^2.2.1",
     "typescript": "^3.9.10",
     "vite": "^4.4.9",
     "vite-plugin-eslint": "^1.8.1"
@@ -54,7 +55,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --fix src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "type": "module",

@@ -16,7 +16,6 @@ import category11 from '@img/fijadores.png'
 import category13 from '@img/auxiliares.png'
 import category14 from '@img/madera.png'
 
-
 const CategoryContainer = () => {
 
     const dispatch = useDispatch();

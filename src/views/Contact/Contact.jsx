@@ -1,4 +1,4 @@
-import ContactForm from '../../components/ContactForm/ContactForm'
+// import ContactForm from '../../components/ContactForm/ContactForm'
 import { Facebook, Instagram, Linkedin, Twitter } from '../../components/SVG'
 
 import Banner5 from '@img/pet.png'

@@ -26,7 +26,7 @@ function ProductBox () {
   // CONST:
   const dispatch = useDispatch()
 
-  FUNCTIONS:
+  // FUNCTIONS:
   const handleCategory = (category) => {
     dispatch(setPage(1))
     dispatch(setCategory(category))

@@ -1,45 +1,39 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { allProducts } from '@redux/actions/Products/allProducts';
-import { allCategories } from '@redux/actions/Categories/allCategories';
-import { getProductFilter } from '@redux/actions/filters/getProductFilter';
+import { allProducts } from '@redux/actions/Products/allProducts'
+import { allCategories } from '@redux/actions/Categories/allCategories'
+import { getProductFilter } from '@redux/actions/filters/getProductFilter'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 
 // import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 // import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
-import ProductBox from '../../components/ProductBox/ProductBox';
+import ProductBox from '../../components/ProductBox/ProductBox'
 import { Chevron } from '../../components/SVG'
 
+function ProductsPage () {
+  // GLOBAL STATES:
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const thisPage = useSelector((state) => state.thisPage)
 
-function ProductsPage() {
+  const dispatch = useDispatch()
 
+  // LIFE CYCLES:
+  useEffect(() => {
+    dispatch(allProducts(thisPage))
+    if (!filterCategory) {
+      dispatch(allCategories())
+    } else {
+      dispatch(getProductFilter(thisPage, filterCategory))
+    };
+  }, [dispatch, thisPage, filterCategory])
 
-    // GLOBAL STATES:
-    const filterCategory = useSelector((state) => state.filterCategory);
-    const thisPage = useSelector((state) => state.thisPage);
+  useEffect(() => {
+    dispatch(getBestSellers())
+  }, [dispatch])
 
-    const dispatch = useDispatch();
-
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        dispatch(allProducts(thisPage));
-        if (!filterCategory) {
-            dispatch(allCategories());
-        } else {
-            dispatch(getProductFilter(thisPage, filterCategory));
-        };
-    }, [dispatch, thisPage, filterCategory]);
-
-
-    useEffect(() => {
-        dispatch(getBestSellers());
-    }, [dispatch]);
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
             <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-primary">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
@@ -53,7 +47,7 @@ function ProductsPage() {
                         <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                             Filtrar
                         </button>
-                        <Chevron width={"5rem"} />
+                        <Chevron width={'5rem'} />
                         <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                             Ordenar
                         </button>
@@ -68,8 +62,7 @@ function ProductsPage() {
                 <FeaturedContainer />
             </div> */}
         </main>
-    );
+  )
 };
 
-
-export default ProductsPage;
+export default ProductsPage

@@ -6,28 +6,26 @@ import { setPage } from '@redux/actions/Page/setPage'
 
 import { Magnifier } from '../SVG'
 
-
 function SearchBar () {
+  const thisPage = useSelector((state) => state.thisPage)
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const { high, low } = useSelector((state) => state.price)
 
-    const thisPage = useSelector((state) => state.thisPage)
-    const filterCategory = useSelector((state) => state.filterCategory)
-    const { high, low } = useSelector((state) => state.price)
+  const [search, setSearch] = useState('')
+  const [magnifierFocus, setMagnifierFocus] = useState(false)
 
-    const [search, setSearch] = useState('')
-    const [magnifierFocus, setMagnifierFocus] = useState(false)
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
+  const handleChange = (event) => {
+    dispatch(setPage(1))
+    setSearch(event.target.value)
 
-    const handleChange = (event) => {
-        dispatch(setPage(1))
-        setSearch(event.target.value)
+    event.target.value.length
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
+      : dispatch(allProducts())
+  }
 
-        event.target.value.length
-            ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
-            : dispatch(allProducts())
-    }
-
-    return (
+  return (
         <div className="flex justify-center items-center gap-2">
             <input
                 type="search"
@@ -43,12 +41,12 @@ function SearchBar () {
                 onFocus={() => setMagnifierFocus(true)}
                 onBlur={() => setMagnifierFocus(false)}
             >
-                <div className={`h-4 fill-black hover:fill-orange ${magnifierFocus ? "fill-orange" : ""}`}>
+                <div className={`h-4 fill-black hover:fill-orange ${magnifierFocus ? 'fill-orange' : ''}`}>
                     <Magnifier />
                 </div>
             </button>
         </div>
-    )
+  )
 }
 
 export default SearchBar

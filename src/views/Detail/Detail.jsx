@@ -15,190 +15,184 @@ import DeleteButton from '@components/DeleteButton/DeleteButton'
 import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 
+function Detail () {
+  // GLOBAL STATES:
+  const loggedUser = useSelector((state) => state.user)
+  const product = useSelector((state) => state.detail)
 
-function Detail() {
+  // CONST:
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { idProduct } = useParams()
+  // const cart = useSelector((state) => state.cart)
+  const { addToCart } = useCart()
 
+  // LOCAL STATES:
+  const [isValidQuantity, setIsValidQuantity] = useState(true)
+  const [error, setError] = useState('')
+  const [added, setAdded] = useState(false)
+  const [addedBuy, setAddedBuy] = useState(false)
+  const [addProduct, setAddProduct] = useState({
+    id: idProduct,
+    quantity: 1,
+    name: product.name,
+    image: product.image,
+    price: product.price,
+    stock: product.stock
+  })
 
-    // GLOBAL STATES:
-    const loggedUser = useSelector((state) => state.user);
-    const product = useSelector((state) => state.detail);
+  // FUNCTIONS:
+  const handleInputChange = (event) => {
+    const { value } = event.target
+    const parsedValue = Number(value)
 
-    // CONST:
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { idProduct } = useParams();
-    // const cart = useSelector((state) => state.cart)
-    const { addToCart } = useCart();
+    if (value === '' || isNaN(parsedValue) || parsedValue < 1) {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: ''
+      }))
+      setError('Ingrese una cantidad válida')
+      setIsValidQuantity(false)
+    } else if (parsedValue > product.stock) {
+      setError('Stock no disponible')
+      setIsValidQuantity(false)
+    } else {
+      setAddProduct((prevProduct) => ({
+        ...prevProduct,
+        quantity: parsedValue
+      }))
+      setError('')
+      setIsValidQuantity(true)
+    };
+  }
 
-    // LOCAL STATES:
-    const [isValidQuantity, setIsValidQuantity] = useState(true);
-    const [error, setError] = useState('');
-    const [added, setAdded] = useState(false);
-    const [addedBuy, setAddedBuy] = useState(false);
-    const [addProduct, setAddProduct] = useState({
+  const addFavorite = () => {
+    if (Object.keys(loggedUser).length !== 0) {
+      const data = {
+        idUser: loggedUser.id,
+        idProduct
+      }
+
+      dispatch(postFavorites(data))
+        .then((response) => {
+          if (response === 'existe') {
+            Swal.fire('Ya exite este producto en favoritos')
+          } else {
+            Swal.fire({
+              icon: 'success',
+              title: 'Producto agregado a favoritos',
+              timer: 2000,
+              showConfirmButton: false
+            })
+          };
+        })
+        .catch((error) => {
+          console.log('error productCart', error)
+        })
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Debes estar logueado para agregar favoritos'
+      })
+    };
+  }
+
+  const renderStars = (rating) => {
+    // const MAX_STARS = 5
+    const stars = []
+
+    // Generar estrellas llenas
+    for (let i = 1; i <= rating; i++) {
+      stars.push(
+                <Star index={i} />
+      )
+    };
+    return <div className="stars-container">{stars}</div>
+  }
+
+  const shopCart = () => {
+    if (isValidQuantity) {
+      addToCart({
+        product: {
+          id: addProduct.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          stock: product.stock
+        },
+        quantity: addProduct.quantity
+      })
+      setAddProduct({
         id: idProduct,
         quantity: 1,
         name: product.name,
         image: product.image,
         price: product.price,
         stock: product.stock
-    });
-
-
-    // FUNCTIONS:
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-        const parsedValue = Number(value);
-
-        if (value === '' || isNaN(parsedValue) || parsedValue < 1) {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: ''
-            }));
-            setError('Ingrese una cantidad válida');
-            setIsValidQuantity(false);
-        } else if (parsedValue > product.stock) {
-            setError('Stock no disponible');
-            setIsValidQuantity(false);
-        } else {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: parsedValue
-            }));
-            setError('');
-            setIsValidQuantity(true);
-        };
+      })
+      setAddedBuy(true)
     };
+  }
 
-    const addFavorite = () => {
-        if (Object.keys(loggedUser).length !== 0) {
-            const data = {
-                idUser: loggedUser.id,
-                idProduct
-            };
+  const handleAddToCart = () => {
+    if (isValidQuantity) {
+      addToCart({
+        product: {
+          id: addProduct.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          stock: product.stock
+        },
+        quantity: addProduct.quantity
+      })
+      setAddProduct({
+        id: idProduct,
+        quantity: 1,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        stock: product.stock
+      })
 
-            dispatch(postFavorites(data))
-                .then((response) => {
-                    if (response === 'existe') {
-                        Swal.fire('Ya exite este producto en favoritos');
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Producto agregado a favoritos',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                    };
-                })
-                .catch((error) => {
-                    console.log('error productCart', error);
-                });
-        } else {
-            Swal.fire({
-                icon: 'info',
-                title: 'Debes estar logueado para agregar favoritos'
-            });
-        };
+      setAdded(true)
+    } else {
+      Swal.fire('Ingrese una cantidad válida')
     };
+  }
 
-    const renderStars = (rating) => {
-        // const MAX_STARS = 5
-        const stars = []
-
-        // Generar estrellas llenas
-        for (let i = 1; i <= rating; i++) {
-            stars.push(
-                <Star index={i} />
-            );
-        };
-        return <div className="stars-container">{stars}</div>
+  // LIFE CYCLES:
+  useEffect(() => {
+    if (added) {
+      dispatch(setCart(addProduct))
+      Swal.fire('Producto agregado al carrito')
+      console.log('addProduct', addProduct)
+      setAdded(false)
     };
-
-    const shopCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            setAddedBuy(true);
-        };
+    if (addedBuy) {
+      dispatch(setCart(addProduct))
+      setAddedBuy(false)
+      navigate('/cart')
     };
+  }, [added, addedBuy])
 
-    const handleAddToCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
+  useEffect(() => {
+    dispatch(productById(idProduct))
+    dispatch(getBestSellers())
+    dispatch(cleanProductDetail())
+  }, [dispatch, idProduct])
 
-            setAdded(true);
-        } else {
-            Swal.fire('Ingrese una cantidad válida');
-        };
-    };
-
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        if (added) {
-            dispatch(setCart(addProduct));
-            Swal.fire('Producto agregado al carrito');
-            console.log('addProduct', addProduct);
-            setAdded(false);
-        };
-        if (addedBuy) {
-            dispatch(setCart(addProduct));
-            setAddedBuy(false);
-            navigate('/cart');
-        };
-    }, [added, addedBuy]);
-
-    useEffect(() => {
-        dispatch(productById(idProduct));
-        dispatch(getBestSellers());
-        dispatch(cleanProductDetail());
-    }, [dispatch, idProduct]);
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <main className="flex items-center justify-center bg-softWhite">
                 {
                 Object.keys(product).length === 0
-                    ? <img
+                  ? <img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                         alt="loading"
                         className="w-94 h-94 "
                     />
-                    : <section>
+                  : <section>
                         <div className="container mx-auto px-4">
                             {/* BREADCRUMB */}
                             <div className="flex">
@@ -330,7 +324,8 @@ function Detail() {
                                         </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             {
-                                                product.stock > 0 ? (
+                                                product.stock > 0
+                                                  ? (
                                                     <div className="grid grid-cols-2 gap-4">
                                                         {console.log('product.stock', product.stock)}
                                                         <button
@@ -351,17 +346,18 @@ function Detail() {
                                                                 : 'cursor-not-allowed'
                                                                 }`}
                                                             onClick={Object.keys(loggedUser).length !== 0
-                                                                ? shopCart
-                                                                : () => { navigate('/login') }}
+                                                              ? shopCart
+                                                              : () => { navigate('/login') }}
                                                             disabled={!isValidQuantity}
                                                         >
                                                             <Bag />
                                                             Comprar
                                                         </button>
                                                     </div>
-                                                ) : (
+                                                    )
+                                                  : (
                                                     <p> Producto sin Stock </p>
-                                                )
+                                                    )
                                             }
                                         </div>
                                     </div>
@@ -378,12 +374,14 @@ function Detail() {
                                 <p className="mt-2 mb-2">{product?.description}</p>
                             </div>
                             {/* RENDERIZADO CONDICIONAL BOTONES ADMIN */
-                                (loggedUser.rol === 'admin') ? (
+                                (loggedUser.rol === 'admin')
+                                  ? (
                                     <div className="flex justify-end">
                                         <DeleteButton idProduct={idProduct} />
                                         <UpdateButton idProduct={idProduct} />
                                     </div>
-                                ) : null
+                                    )
+                                  : null
                             }
                         </div>
                         <div>
@@ -392,8 +390,7 @@ function Detail() {
                     </section>
             }
         </main>
-    );
+  )
 };
 
-
-export default Detail;
+export default Detail

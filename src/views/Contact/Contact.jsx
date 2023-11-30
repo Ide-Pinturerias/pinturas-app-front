@@ -1,23 +1,21 @@
-import ContactForm from '../../components/ContactForm/ContactForm';
-import { Facebook, Instagram, Linkedin, Twitter } from '../../components/SVG';
+import ContactForm from '../../components/ContactForm/ContactForm'
+import { Facebook, Instagram, Linkedin, Twitter } from '../../components/SVG'
 
-import Banner5 from '@img/pet.png';
-import Local from '@img/location.png';
-import Map from '@img/map.png';
-import Paws from '@img/paws.png';
-import { Phone, Email } from '@mui/icons-material';
-
+import Banner5 from '@img/pet.png'
+import Local from '@img/location.png'
+import Map from '@img/map.png'
+import Paws from '@img/paws.png'
+import { Phone, Email } from '@mui/icons-material'
 
 const SOCIAL_MEDIA = [
-    { icon: Facebook, link: "https://www.facebook.com/ide.pintureria/", rotate: "-rotate-3" },
-    { icon: Instagram, link: "https://www.instagram.com/ide.pintureria.ok/", rotate: "rotate-5" },
-    { icon: Linkedin, link: "https://www.linkedin.com/ide.pintureria/", rotate: "-rotate-2" },
-    { icon: Twitter, link: "https://twitter.com/ide.pintureria/", rotate: "rotate-2" }
+  { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/', rotate: '-rotate-3' },
+  { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/', rotate: 'rotate-5' },
+  { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/', rotate: '-rotate-2' },
+  { icon: Twitter, link: 'https://twitter.com/ide.pintureria/', rotate: 'rotate-2' }
 ]
 
-
 const Contact = () => {
-    return (
+  return (
         <main className="relative flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-turquoise">
             <section className="flex justify-center mb-[8rem] text-white w-full">
                 <div className="max-w-[1920px] w-full px-[3.5%]">
@@ -115,7 +113,7 @@ const Contact = () => {
                     <div className="flex justify-between w-1/2">
                         <div className="flex flex-col items-center">
                             <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-warmWhite before:rounded-full">
-                                <Phone style={{ width: "70px", height: "auto", fill: "#000", position: "relative" }} />
+                                <Phone style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
                             </div>
                             <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
                                 Teléfono
@@ -127,7 +125,7 @@ const Contact = () => {
                         </div>
                         <div className="flex flex-col items-center">
                             <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-warmWhite before:rounded-full">
-                                <Email style={{ width: "70px", height: "auto", fill: "#000", position: "relative" }} />
+                                <Email style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
                             </div>
                             <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
                                 Correo
@@ -167,8 +165,7 @@ const Contact = () => {
                 </div>
             </section>
         </main>
-    );
-};
+  )
+}
 
-
-export default Contact;
+export default Contact

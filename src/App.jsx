@@ -40,7 +40,6 @@ import ScrollToTop from './hooks/ScrollToTop'
 function App () {
   const dispatch = useDispatch()
 
-  // const userDb = useSelector((state) => state.user)
   const user = localStorage.getItem('user')
 
   useEffect(() => {

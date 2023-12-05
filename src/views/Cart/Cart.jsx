@@ -1,7 +1,46 @@
+import { useEffect } from 'react'
+import ProductCart from '../../components/ProductCart/ProductCart'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
+
 const Cart = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllProductsNoFilter())
+  }, [])
+
+  // PRODUCTOS ESTADO GLOBAL
+  const allProducts = useSelector(state => state.allProducts)
+
+  // PRODUCTOS LOCAL STORAGE (array solo con ids y quantitys)
+  const productsLocal = JSON.parse(localStorage.getItem('productsLocal'))
+
+  // FILTRAR Y CALCULAR PRECIOS
+  const productsCart = productsLocal.map(cartItem => {
+    const productsWithQuantity = allProducts.find(product => product.idProduct === Number(cartItem.id))
+    return { ...productsWithQuantity, quantity: cartItem.quantity }
+  })
+  console.log(productsCart)
   return (
-    <main className="absolute mx-auto w-full h-full grid items-center justify-center">
-      <h1>Por implementar</h1>
+    <main className="pt-40">
+      {
+        productsCart.map(product => {
+          return (
+            <ProductCart
+            key={product.idProduct}
+            id={product.idProduct}
+            name={product.name}
+            quantity={product.quantity}
+            image={product.image}
+            price={product.price}
+            stock={product.stock}
+            subtotal={product.price * product.quantity }
+            ></ProductCart>
+          )
+        })
+      }
+
     </main>
   )
 }

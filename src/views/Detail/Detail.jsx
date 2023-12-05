@@ -11,24 +11,24 @@ import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 
 const Detail = () => {
-  const loggedUser = useSelector((state) => state.user)
-  // const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const loggedUser = useSelector((state) => state.user)
   const { idProduct } = useParams()
   const product = useSelector((state) => state.detail)
   const [isValidQuantity, setIsValidQuantity] = useState(true)
   const [error, setError] = useState('')
 
+  const productsCart = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+  const [inCart, setInCart] = useState(false)
+
+  console.log(productsCart)
   const [addProduct, setAddProduct] = useState({
     id: idProduct,
-    quantity: 1,
-    name: product.name,
-    image: product.image,
-    price: product.price,
-    stock: product.stock
+    quantity: 1
   })
-
+  console.log(addProduct)
   const handleInputChange = (event) => {
     const { value } = event.target
     const parsedValue = Number(value)
@@ -258,13 +258,17 @@ const Detail = () => {
                       {console.log('product.stock', product.stock)}
                       <button
                         type="button"
-                        disabled={!isValidQuantity}
+                        disabled={!isValidQuantity || inCart}
                         className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
                           isValidQuantity
                             ? 'hover:bg-purple-200'
                             : 'cursor-not-allowed'
                         }`}
-                        onClick={Object.keys(loggedUser).length !== 0 ? <></> : () => { navigate('/login') }}
+                        onClick={() => {
+                          productsCart.push(addProduct)
+                          localStorage.setItem('productsLocal', JSON.stringify(productsCart))
+                          setInCart(true)
+                        }}
                         >
                         Agregar al carrito
                       </button>

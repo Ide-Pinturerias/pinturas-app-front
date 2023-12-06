@@ -15,7 +15,7 @@ const Cart = () => {
   const allProducts = useSelector(state => state.allProducts)
 
   // PRODUCTOS LOCAL STORAGE (array solo con id y quantity)
-  const productsLocal = JSON.parse(localStorage.getItem('productsLocal'))
+  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
   // FILTRAR Y CALCULAR SUBTOTALES
   const productsCart = productsLocal.map(cartItem => {

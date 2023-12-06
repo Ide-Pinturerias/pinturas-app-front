@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { POST_LOGIN_USER, ACCESS_TOKEN, GET_CART_ID, BASE_URL } from '../../action-type'
+import { POST_LOGIN_USER, ACCESS_TOKEN, BASE_URL } from '../../action-type'
+import { findOrCreateCart } from '../Cart/findOrCreateCart'
 
 export const postLoginUser = (userLogin) => {
   return async (dispatch) => {
@@ -8,12 +9,11 @@ export const postLoginUser = (userLogin) => {
       if (response?.acceso?.user?.active) {
         const loginUser = response.acceso.user
         const token = response.acceso.token
-        const cartId = response.acceso.user.idCart
 
         localStorage.setItem('user', JSON.stringify(loginUser))
         localStorage.setItem('token', JSON.stringify(token))
 
-        dispatch({ type: GET_CART_ID, payload: cartId })
+        dispatch(findOrCreateCart(loginUser.id))
         dispatch({ type: ACCESS_TOKEN, payload: token })
         dispatch({ type: POST_LOGIN_USER, payload: loginUser })
       }

@@ -36,15 +36,18 @@ import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
+import { findOrCreateCart } from './redux/actions/Cart/findOrCreateCart'
 
 function App () {
   const dispatch = useDispatch()
 
-  const user = localStorage.getItem('user')
+  const user = JSON.parse(localStorage.getItem('user'))
 
   useEffect(() => {
-    if (user) dispatch(setUser(JSON.parse(user)))
-
+    if (user) {
+      dispatch(setUser(user))
+      dispatch(findOrCreateCart(user.id))
+    }
     dispatch(allProducts())
   }, [])
 

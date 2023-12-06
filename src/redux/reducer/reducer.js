@@ -32,6 +32,8 @@ import {
   SET_PAGE,
 
   // CART
+  FIND_OR_CREATE_CART,
+  PUT_CART,
 
   // ORDERS
   GET_ALL_ORDERS,
@@ -75,7 +77,7 @@ import {
 
 const initialState = {
   // CART
-
+  cart: {},
   // ORDERS
   allOrders: [],
   newOrder: {},
@@ -196,9 +198,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, thisPage: payload }
 
     // CART
-
+    case FIND_OR_CREATE_CART:
+      return { ...state, cart: payload }
     case GET_ALL_ORDERS:
       return { ...state, allOrders: payload }
+    case PUT_CART:
+      return { ...state, cart: payload }
 
     // NODE MAILER
     case POST_CONTACT_EMAIL:

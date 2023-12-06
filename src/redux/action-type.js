@@ -33,11 +33,12 @@ export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
 export const SET_PAGE = 'SET_PAGE'
 
 // CART
+export const FIND_OR_CREATE_CART = 'FIND_OR_CREATE_CART'
+export const PUT_CART = 'PUT_CART'
 export const SET_CART = 'SET_CART'
 export const POST_CART = 'POST_CART'
 export const GET_CART_ID = 'GET_CART_ID'
 export const GET_CART = 'GET_CART'
-export const PUT_CART = 'PUT_CART'
 export const ADD_CART = 'ADD_CART'
 
 // ORDERS
@@ -70,8 +71,8 @@ export const SET_USER_DATA = 'SET_USER_DATA'
 export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
-// export const BASE_URL = 'http://localhost:3000/'
-export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
+export const BASE_URL = 'http://localhost:3000/'
+// export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
 
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'

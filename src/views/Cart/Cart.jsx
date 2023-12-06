@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import ProductCart from '../../components/ProductCart/ProductCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
+import TotalCart from '../../components/ProductCart/TotalCart'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -13,10 +14,10 @@ const Cart = () => {
   // PRODUCTOS ESTADO GLOBAL
   const allProducts = useSelector(state => state.allProducts)
 
-  // PRODUCTOS LOCAL STORAGE (array solo con ids y quantitys)
+  // PRODUCTOS LOCAL STORAGE (array solo con id y quantity)
   const productsLocal = JSON.parse(localStorage.getItem('productsLocal'))
 
-  // FILTRAR Y CALCULAR PRECIOS
+  // FILTRAR Y CALCULAR SUBTOTALES
   const productsCart = productsLocal.map(cartItem => {
     const productsWithQuantity = allProducts.find(product => product.idProduct === Number(cartItem.id))
     return { ...productsWithQuantity, quantity: cartItem.quantity }
@@ -40,6 +41,9 @@ const Cart = () => {
           )
         })
       }
+      <TotalCart
+      products={productsCart}
+      />
 
     </main>
   )

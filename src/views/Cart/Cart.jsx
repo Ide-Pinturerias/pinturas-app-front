@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 import ProductCart from '../../components/ProductCart/ProductCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
@@ -29,7 +29,7 @@ const Cart = () => {
         productsCart.map(product => {
           return (
             <ProductCart
-            key={product.idProduct}
+            key={useId()}
             id={product.idProduct}
             name={product.name}
             quantity={product.quantity}
@@ -42,6 +42,7 @@ const Cart = () => {
         })
       }
       <TotalCart
+      key={useId()}
       products={productsCart}
       />
 

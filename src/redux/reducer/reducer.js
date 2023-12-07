@@ -34,6 +34,7 @@ import {
   // CART
   FIND_OR_CREATE_CART,
   ADD_PRODUCT_CART,
+  DELETE_PRODUCT_CART,
 
   // ORDERS
   GET_ALL_ORDERS,
@@ -203,6 +204,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_ORDERS:
       return { ...state, allOrders: payload }
     case ADD_PRODUCT_CART:
+      return { ...state, cart: payload }
+    case DELETE_PRODUCT_CART:
       return { ...state, cart: payload }
 
     // NODE MAILER

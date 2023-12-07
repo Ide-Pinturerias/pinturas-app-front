@@ -1,10 +1,15 @@
-import { useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { deleteProductCart } from '../../redux/actions/Cart/deleteProductCart'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
-  // const dispatch = useDispatch()
-  // const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user) || null
   const [count, setCount] = useState(quantity)
+  let productsLocal = []
+  useEffect(() => {
+    productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+  }, [productsLocal])
 
   return (
         <div className=" py-3 my-5 w-full border-t">
@@ -16,7 +21,9 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
                     <div className="flex px-5 flex-col w-11/12">
                         <h1 className="text-base text-ms font-semibold">{name}</h1>
                         <div className="flex gap-5">
-                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => {}}>Eliminar</button>
+                            <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => {
+                              dispatch(deleteProductCart(user, productsLocal, id))
+                            }}>Eliminar</button>
                         </div>
                         <div className="flex justify-between ">
                             <div className="flex items-center justify-center flex-col">

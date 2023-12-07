@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react'
 import { deleteProductCart } from '../../redux/actions/Cart/deleteProductCart'
 import { useDispatch, useSelector } from 'react-redux'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user) || null
-  const [count, setCount] = useState(quantity)
-  let productsLocal = []
-  useEffect(() => {
-    productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
-  }, [productsLocal])
+  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
   return (
         <div className=" py-3 my-5 w-full border-t">
@@ -27,27 +22,13 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
                         </div>
                         <div className="flex justify-between ">
                             <div className="flex items-center justify-center flex-col">
-                                <div className="grid grid-cols-3 w-28 h-8 border border-gray-500 rounded">
-                                    <button className={`text-2xl ${count === 1 ? 'cursor-not-allowed' : 'hover:bg-gray-100'} `}
-                                        disabled={count === 1}>
-                                        -
-                                    </button>
-                                    <h1 className="flex justify-center items-center">{count}</h1>
-                                    <button
-                                        className={`text-2xl ${count === stock ? 'cursor-not-allowed' : 'hover:bg-gray-100'} `}
-                                        disabled={count === stock}
-                                        onClick={() => {
-                                          if (count < stock) {
-                                            setCount(count + 1)
-                                          }
-                                        }}
-                                        >
-                                        +
-                                    </button>
-                                </div>{
+                                    <h1 className="flex justify-center items-center">Precio: ${price}</h1>
+                                    <h1 className="flex justify-center items-center">Cantidad: {quantity}</h1>
+                                {
                                     stock > 0
                                       ? <h1 className="text-gray-500"> {stock} disponibles </h1>
-                                      : <p className="text-red-700 font-semibold"> Producto sin stock </p>}
+                                      : <p className="text-red-700 font-semibold"> Producto sin stock </p>
+                                }
                             </div>
                             <div className="w-80 flex justify-end items-center">
                                 {stock > 0

@@ -34,7 +34,7 @@ export const SET_PAGE = 'SET_PAGE'
 
 // CART
 export const FIND_OR_CREATE_CART = 'FIND_OR_CREATE_CART'
-export const PUT_CART = 'PUT_CART'
+export const ADD_PRODUCT_CART = 'ADD_PRODUCT_CART'
 export const SET_CART = 'SET_CART'
 export const POST_CART = 'POST_CART'
 export const GET_CART_ID = 'GET_CART_ID'

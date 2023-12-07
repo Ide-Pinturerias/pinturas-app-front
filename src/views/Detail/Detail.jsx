@@ -9,7 +9,7 @@ import { bestSellers } from '@redux/actions/Products/bestSellers'
 import Swal from 'sweetalert2'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
-import { putCart } from '../../redux/actions/Cart/putCart'
+import { addProductCart } from '../../redux/actions/Cart/addProductCart'
 
 const Detail = () => {
   const dispatch = useDispatch()
@@ -266,7 +266,7 @@ const Detail = () => {
                             : 'cursor-not-allowed'
                         }`}
                         onClick={() => {
-                          dispatch(putCart(loggedUser.id, productsCart, addProduct))
+                          dispatch(addProductCart(loggedUser.id, productsCart, addProduct))
                           setInCart(true)
                         } }
                         >

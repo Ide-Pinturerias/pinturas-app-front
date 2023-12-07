@@ -22,7 +22,7 @@ const Cart = () => {
     const productsWithQuantity = allProducts.find(product => product.idProduct === Number(cartItem.id))
     return { ...productsWithQuantity, quantity: cartItem.quantity }
   })
-  console.log(productsCart)
+  // console.log(productsCart)
   return (
     <main className="pt-40">
       {
@@ -37,7 +37,7 @@ const Cart = () => {
             price={product.price}
             stock={product.stock}
             subtotal={product.price * product.quantity }
-            ></ProductCart>
+            />
           )
         })
       }

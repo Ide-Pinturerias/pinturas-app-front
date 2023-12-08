@@ -28,7 +28,7 @@ function Detail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { idProduct } = useParams();
-    // const cart = useSelector((state) => state.cart)
+    // const cart = useSelector((state) => state.cart);
     const { addToCart } = useCart();
 
 
@@ -46,7 +46,6 @@ function Detail() {
         stock: product.stock
     });
     const [numberOfItems, setNumberOfItems] = useState(0);
-
     // DEV MODE:
     const [productMock, setProductMock] = useState({});
 
@@ -142,7 +141,7 @@ function Detail() {
                     stock: product.stock
                 },
                 quantity: addProduct.quantity
-            });
+            })
             setAddProduct({
                 id: idProduct,
                 quantity: 1,
@@ -150,13 +149,13 @@ function Detail() {
                 image: product.image,
                 price: product.price,
                 stock: product.stock
-            });
+            })
 
-            setAdded(true);
+            setAdded(true)
         } else {
-            Swal.fire('Ingrese una cantidad válida');
+            Swal.fire('Ingrese una cantidad válida')
         };
-    };
+    }
 
     // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
     function formatNumberWithDots(number) {
@@ -194,6 +193,7 @@ function Detail() {
         );
     };
 
+
     // LIFE CYCLES:
     useEffect(() => {
         if (added) {
@@ -215,7 +215,6 @@ function Detail() {
         dispatch(getBestSellers());
         dispatch(cleanProductDetail());
     }, [dispatch, idProduct]);
-
 
     // DEV MODE: Solo para evitar peticiones al servidor.
     useEffect(() => {
@@ -320,4 +319,4 @@ function Detail() {
 };
 
 
-export default Detail;
+export default Detail

@@ -1,8 +1,7 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'
 
-
-function ProductCard({ idProduct, name, image, price, prodpackage }) {
-    return (
+function ProductCard ({ idProduct, name, image, price, prodpackage }) {
+  return (
         <div className="w-64 h-96 flex flex-col items-center text-secondary justify-center bg-tertiary rounded-2xl transition-transform duration-300 ease-in-out hover:scale-105 shadow-lg">
             <img src={image} alt="image" className="w-40 h-48 mx-auto object-contain" />
             <h3 className="text-center text-xl w-52 my-1 h-14 overflow-hidden">{name}</h3>
@@ -17,8 +16,7 @@ function ProductCard({ idProduct, name, image, price, prodpackage }) {
                 </button>
             </NavLink>
         </div>
-    );
+  )
 };
 
-
-export default ProductCard;
+export default ProductCard

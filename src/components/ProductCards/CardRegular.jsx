@@ -1,30 +1,24 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 // import { useDispatch } from 'react-redux';
 // import { productById } from '@redux/actions/Products/productById';
 
+function CardRegular ({ id, name, image, price, prodpackage }) {
+  // CONST:
+  // const dispatch = useDispatch();
+  const navigate = useNavigate()
 
-function CardRegular({ id, name, image, price, prodpackage }) {
+  // LOCAL STATES:
+  const [isHovered, setIsHovered] = useState(false)
 
+  // FUNCTIONS:
+  const handleDetailClick = () => {
+    // dispatch(productById(id))
+    navigate(`/products/${id}`)
+  }
 
-    // CONST:
-    // const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-
-    // LOCAL STATES:
-    const [isHovered, setIsHovered] = useState(false)
-
-
-    // FUNCTIONS:
-    const handleDetailClick = () => {
-        // dispatch(productById(id))
-        navigate(`/products/${id}`)
-    }
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <div
             className=" flex flex-col items-center justify-between min-w-full min-h-full overflow-hidden rounded-3xl bg-warmWhite text-black shadow-gray-500 transition-all hover:outline hover:outline-[3.5px] hover:outline-orange hover:cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
@@ -39,12 +33,11 @@ function CardRegular({ id, name, image, price, prodpackage }) {
                     {/* <h4 className="">{prodpackage}</h4> */}
                 </div>
             </div>
-            <p className={`relative z-20 inline-flex items-center justify-center mt-4 p-4 w-full max-h-12 h-12 overflow-hidden text-sm uppercase font-medium focus:ring-4 focus:outline-none after:-z-10 after:absolute after:content[''] after:left-0 after:bg-orange after:h-full after:w-full after:transition-all ${isHovered ? "after:top-0 text-white" : "after:top-full text-black"}`}>
+            <p className={`relative z-20 inline-flex items-center justify-center mt-4 p-4 w-full max-h-12 h-12 overflow-hidden text-sm uppercase font-medium focus:ring-4 focus:outline-none after:-z-10 after:absolute after:content[''] after:left-0 after:bg-orange after:h-full after:w-full after:transition-all ${isHovered ? 'after:top-0 text-white' : 'after:top-full text-black'}`}>
                 Ver producto
             </p>
         </div>
-    );
+  )
 };
 
-
-export default CardRegular;
+export default CardRegular

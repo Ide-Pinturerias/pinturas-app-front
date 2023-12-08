@@ -1,106 +1,98 @@
-import { useEffect, useState } from 'react';
-import ProductCard from '../Products/ProductCard';
-import Paginated from '../Paginated/Paginated';
+import { useEffect, useState } from 'react'
+import ProductCard from '../Products/ProductCard'
+import Paginated from '../Paginated/Paginated'
 // import SearchBar from '../SearchBar/SearchBar';
-import { useSelector, useDispatch } from 'react-redux';
-import { allProducts } from '@redux/actions/Products/allProducts';
-import { getProductFilter } from '@redux/actions/filters/getProductFilter';
-import { setPage } from '@redux/actions/Page/setPage';
-import { setCategory } from '@redux/actions/filters/setCategory';
-import { setLowPrice } from '@redux/actions/filters/setLowPrice';
-import { setHighPrice } from '@redux/actions/filters/setHighPrice';
-import imgNO from '@img/ProductoNo.png';
+import { useSelector, useDispatch } from 'react-redux'
+import { allProducts } from '@redux/actions/Products/allProducts'
+import { getProductFilter } from '@redux/actions/filters/getProductFilter'
+import { setPage } from '@redux/actions/Page/setPage'
+import { setCategory } from '@redux/actions/filters/setCategory'
+import { setLowPrice } from '@redux/actions/filters/setLowPrice'
+import { setHighPrice } from '@redux/actions/filters/setHighPrice'
+import imgNO from '@img/ProductoNo.png'
 
+function ProductsContainer () {
+  // GLOBAL STATES:
+  const products = useSelector((state) => state.products)
+  const categories = useSelector((state) => state.categories)
+  const totalPages = useSelector((state) => state.totalPages)
+  const thisPage = useSelector((state) => state.thisPage)
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const { high, low } = useSelector((state) => state.price)
 
-function ProductsContainer() {
+  // LOCAL STATES:
+  const [isLoading, setIsLoading] = useState(true)
+  const [filteredProducts, setFilteredProducts] = useState(products)
 
+  // CONST:
+  const dispatch = useDispatch()
 
-    // GLOBAL STATES:
-    const products = useSelector((state) => state.products);
-    const categories = useSelector((state) => state.categories);
-    const totalPages = useSelector((state) => state.totalPages);
-    const thisPage = useSelector((state) => state.thisPage);
-    const filterCategory = useSelector((state) => state.filterCategory);
-    const { high, low } = useSelector((state) => state.price);
+  // FUNCTIONS:
+  const handleCategory = (category) => {
+    dispatch(setPage(1))
+    dispatch(setCategory(category))
+  }
 
+  const handlePriceFilter = (priceFilter) => {
+    if (priceFilter === 'Hasta $10000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(10000))
+    } else if (priceFilter === '$10000 a $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(10000))
+      dispatch(setHighPrice(20000))
+    } else if (priceFilter === 'Mas de $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(20000))
+      dispatch(setHighPrice(0))
+    } else if (priceFilter === 'no price') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(0))
+    }
+  }
 
-    // LOCAL STATES:
-    const [isLoading, setIsLoading] = useState(true);
-    const [filteredProducts, setFilteredProducts] = useState(products);
+  const handlePageChange = (page) => {
+    dispatch(setPage(page))
+    if (filterCategory || low || high) {
+      dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
+        setIsLoading(false)
+      })
+    } else {
+      dispatch(allProducts(page)).then(() => {
+        setIsLoading(false)
+      })
+    }
+  }
 
+  // LIFE CYCLES:
+  useEffect(() => {
+    setFilteredProducts(products)
+  }, [products])
 
-    // CONST:
-    const dispatch = useDispatch();
-
-
-    // FUNCTIONS:
-    const handleCategory = (category) => {
-        dispatch(setPage(1))
-        dispatch(setCategory(category))
-    };
-
-    const handlePriceFilter = (priceFilter) => {
-        if (priceFilter === 'Hasta $10000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(0))
-            dispatch(setHighPrice(10000))
-        } else if (priceFilter === '$10000 a $20000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(10000))
-            dispatch(setHighPrice(20000))
-        } else if (priceFilter === 'Mas de $20000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(20000))
-            dispatch(setHighPrice(0))
-        } else if (priceFilter === 'no price') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(0))
-            dispatch(setHighPrice(0))
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth' // Agrega una transición suave al desplazamiento
+    })
+    setIsLoading(true)
+    if (filterCategory || low || high) {
+      dispatch(getProductFilter(thisPage, filterCategory, low, high)).then(
+        () => {
+          setIsLoading(false)
         }
-    };
+      )
+    } else {
+      dispatch(allProducts(thisPage)).then(() => {
+        setIsLoading(false)
+      })
+    }
+  }, [dispatch, filterCategory, low, high, thisPage])
 
-    const handlePageChange = (page) => {
-        dispatch(setPage(page))
-        if (filterCategory || low || high) {
-            dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
-                setIsLoading(false)
-            })
-        } else {
-            dispatch(allProducts(page)).then(() => {
-                setIsLoading(false)
-            })
-        }
-    };
-
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        setFilteredProducts(products)
-    }, [products]);
-
-    useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth' // Agrega una transición suave al desplazamiento
-        })
-        setIsLoading(true)
-        if (filterCategory || low || high) {
-            dispatch(getProductFilter(thisPage, filterCategory, low, high)).then(
-                () => {
-                    setIsLoading(false)
-                }
-            )
-        } else {
-            dispatch(allProducts(thisPage)).then(() => {
-                setIsLoading(false)
-            })
-        }
-    }, [dispatch, filterCategory, low, high, thisPage]);
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <div>
             <div className="flex w-full justify-center gap-16">
                 <div>
@@ -113,14 +105,14 @@ function ProductsContainer() {
                                         {/*          CLEAR FILTERS        */}
                                         {filterCategory && (
                                             <div className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-    
+
                                                 {filterCategory}
                                                 <button onClick={() => handleCategory('')}>X</button>
                                             </div>
                                         )}
                                         {high === 0 && low !== 0 && low && (
                                             <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-    
+
                                                 Desde ${low}
                                                 <button onClick={() => handlePriceFilter('no price')}>
                                                     X
@@ -129,7 +121,7 @@ function ProductsContainer() {
                                         )}
                                         {low === 0 && high !== 0 && high && (
                                             <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-    
+
                                                 Hasta ${high}
                                                 <button onClick={() => handlePriceFilter('no price')}>
                                                     X
@@ -138,7 +130,7 @@ function ProductsContainer() {
                                         )}
                                         {low !== 0 && high !== 0 && high && low && (
                                             <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-    
+
                                                 ${low} hasta ${high}
                                                 <button onClick={() => handlePriceFilter('no price')}>
                                                     X
@@ -216,17 +208,17 @@ function ProductsContainer() {
                     <div className="w-full flex m-auto flex-col justify-center">
                         <div className="flex justify-center">
                             {isLoading
-                                ? (
+                              ? (
                                     <img
                                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                                         alt="loading"
                                         className="w-11/12 flex justify-center items-center"
                                     />
                                 )
-                                : (
+                              : (
                                     <div >
                                         {filteredProducts.length > 0
-                                            ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
+                                          ? (<div className="grid grid-cols-1 gap-1 place-items-center md:gap-3 md:grid-cols-2 lg:gap-4 lg:grid-cols-3 xl:gap-5 xl:grid-col-4 2xl:grid-col-5">
                                                 {filteredProducts.map((product) => (
                                                     <div
                                                         key={product.idProduct}
@@ -244,7 +236,7 @@ function ProductsContainer() {
                                                 ))}
                                             </div>
                                             )
-                                            : (
+                                          : (
                                                 <div className=" flex justify-center flex-col items-center">
                                                     <h1 className="text-blue-400 text-2xl mb-8 text-center ">
                                                         Oops! Actualmente no tenemos el producto que estás
@@ -270,8 +262,7 @@ function ProductsContainer() {
                 </div>
             </div>
         </div>
-    );
+  )
 };
 
-
-export default ProductsContainer;
+export default ProductsContainer

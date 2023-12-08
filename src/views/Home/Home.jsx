@@ -4,9 +4,8 @@ import CategoryContainer from '@components/CategoryContainer/CategoryContainer'
 import Banner from '@components/Banner/Banner'
 import BannerBlog from '@components/BannerBlog/BannerBlog'
 
-
 function Home () {
-    return (
+  return (
         <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-softWhite">
             <Banner />
             <CategoryContainer />
@@ -14,8 +13,7 @@ function Home () {
             <AboutCard />
             <BannerBlog />
         </main>
-    );
+  )
 };
 
-
-export default Home;
+export default Home

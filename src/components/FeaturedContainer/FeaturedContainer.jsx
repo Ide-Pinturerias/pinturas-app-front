@@ -1,24 +1,21 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { getBestSellers } from '@redux/actions/Products/getBestSellers';
+import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 
-import CardRegular from '../ProductCards/CardRegular';
-import featuredBanner from '@img/featured-banner.png';
-
+import CardRegular from '../ProductCards/CardRegular'
+// import featuredBanner from '@img/featured-banner.png'
 
 function FeaturedContainer () {
+  const bestSellers = useSelector((state) => state.bestSell)
 
-    const bestSellers = useSelector((state) => state.bestSell);
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBestSellers(4))
+  }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getBestSellers(4));
-    }, [dispatch]);
-
-
-    return (
+  return (
         <section className="relative flex flex-col items-center w-full bg-turquoise text-white">
             <div className="absolute bottom-full left-0 w-full overflow-hidden leading-none">
                 <svg xmlns="http://www.w3.org/2000/svg" className="relative block w-[calc(135%+1.3px)] fill-turquoise" viewBox="0 0 1200 120">
@@ -50,7 +47,7 @@ function FeaturedContainer () {
                 {/* </div> */}
             </div>
         </section>
-    )
+  )
 }
 
 export default FeaturedContainer

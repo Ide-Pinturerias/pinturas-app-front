@@ -10,7 +10,7 @@ import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { useCart } from '@hooks/useCart'
 
 import Swal from 'sweetalert2'
-import { Bag, Star } from '../../components/SVG'
+import { Bag, Star, Plus, Minus } from '../../components/SVG'
 import DeleteButton from '@components/DeleteButton/DeleteButton'
 import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
@@ -45,6 +45,9 @@ function Detail() {
         price: product.price,
         stock: product.stock
     });
+    const [numberOfItems, setNumberOfItems] = useState(0);
+
+    // DEV MODE:
     const [productMock, setProductMock] = useState({});
 
 
@@ -104,19 +107,6 @@ function Detail() {
         };
     };
 
-    const renderStars = (rating) => {
-        // const MAX_STARS = 5
-        const stars = []
-
-        // Generar estrellas llenas
-        for (let i = 1; i <= rating; i++) {
-            stars.push(
-                <Star index={i} />
-            );
-        };
-        return <div className="stars-container">{stars}</div>
-    };
-
     const shopCart = () => {
         if (isValidQuantity) {
             addToCart({
@@ -168,6 +158,41 @@ function Detail() {
         };
     };
 
+    // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
+    function formatNumberWithDots(number) {
+        // Convierte el número a una string.
+        let numStr = number.toString();
+
+        // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
+        numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+        return numStr;
+    };
+
+    const handleNumberOfItems = (event) => {
+        const { value } = event.target;
+        if (value === '' || (!isNaN(value) && parseInt(value) >= 0 && parseInt(value) <= 999)) {
+            setNumberOfItems(value);
+        };
+        return;
+    };
+
+    // Se basa en el rating del producto para renderizar las estrellas.
+    const renderStars = (value) => {
+        const max = 5;
+        const percentage = Math.round((value / max) * 100);
+
+        return (
+            <div className="relative flex items-center gap-1 mr-2 fill-orange">
+                {
+                    Array.from(Array(max).keys()).map((_, idx) => (
+                        <Star key={idx} />
+                    ))
+                }
+                <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
+            </div>
+        );
+    };
 
     // LIFE CYCLES:
     useEffect(() => {
@@ -184,21 +209,21 @@ function Detail() {
         };
     }, [added, addedBuy]);
 
+    // PRODUCTION:
     // useEffect(() => {
     //     dispatch(productById(idProduct));
     //     dispatch(getBestSellers());
     //     dispatch(cleanProductDetail());
     // }, [dispatch, idProduct]);
 
+
+    // DEV MODE: Solo para evitar peticiones al servidor.
     useEffect(() => {
         // console.log(product);
-
         // localStorage.setItem("productMock", JSON.stringify(product));
         const product = localStorage.getItem("productMock");
-
         setProductMock(JSON.parse(product));
-
-    }, [product]);
+    }, []);
 
 
     // COMPONENT:
@@ -214,29 +239,75 @@ function Detail() {
                 ) : (
                     <div className="flex flex-col gap-8 max-w-[1920px] w-full px-[3.5%]">
                         <div>Home / products / exterior</div>
-                        <div className="flex justify-between w-full">
-                            <section className="flex border border-black gap-8 w-[70%]">
-                                <img src={productMock.image} className="w-[300px] rounded-[2rem]" />
-                                <div className="flex flex-col">
-                                    <a className="text-[14px]"><strong>{productMock.patent}</strong></a>
-                                    <a className="relative z-0 w-fit px-[3%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-[14px]">{productMock.category}</a>
-                                    <h1 className="text-4xl">{productMock.name}</h1>
-                                    <h2>Calificación: {productMock.rating}</h2>
-                                    <div>
-                                        <p>Tamaño del envase: {productMock.package}</p>
-                                        <p>Color: {productMock.color}</p>
-                                        <u>Ver más</u>
+                        <div className="flex justify-between gap-8 w-full">
+                            <section>
+                                <img src={productMock.image} className="w-[300px] rounded-[1rem]" />
+                            </section>
+
+                            <section className="flex flex-col border-black w-[calc(100%-300px)]">
+                                <div className="flex flex-col mb-4">
+                                    <a className="relative z-0 w-fit px-[1%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm">{productMock.category}</a>
+                                    <h1 className="mt-2 text-3xl font-bold uppercase">{productMock.name}</h1>
+                                    <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{productMock.patent}</u></a>
+                                </div>
+                                <div className="flex justify-between">
+                                    <div className="w-[60%]">
+                                        <div className="flex items-center mb-4">
+                                            {
+                                                renderStars(productMock.rating)
+                                            }
+                                            <span className="mr-4 leading-none font-bold">{productMock.rating}</span>
+                                            <span className="text-primary underline cursor-pointer">
+                                                {
+                                                    true ? (
+                                                        // "renderizar verdadera cantidad de reseñas"
+                                                        "1234 reseñas"
+                                                    ) : (
+                                                        "Deja la primera reseña"
+                                                    )
+                                                }
+                                            </span>
+                                        </div>
+                                        <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
+                                        <div className="p-4 bg-turquoise text-white rounded-[1rem]">
+                                            <ul className="text-lg">
+                                                <li>Tamaño del envase: {productMock.package}</li>
+                                                <li>Color: {productMock.color}</li>
+                                                <li><u className="cursor-pointer">Ver más</u></li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            Disponible en tienda
+                                        </div>
+                                        <div>
+                                            Envío a domicilio
+                                        </div>
+                                        <div>
+                                            Necesitas ayuda?
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-col items-center w-[40%]">
+                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(productMock.price)}</strong></div>
+                                        <div className="flex flex-col mb-4 border border-black rounded-lg text-lg h-fit">
+                                            <div className="flex">
+                                                <button><Minus /></button>
+                                                <input
+                                                    value={numberOfItems}
+                                                    onChange={(e) => handleNumberOfItems(e)}
+                                                    type="text"
+                                                    inputMode="numeric"
+                                                    maxLength={4}
+                                                    step={1}
+                                                    min={0} max={999}
+                                                    className="bg-transparent text-center w-14 p-3"
+                                                />
+                                                <button><Plus /></button>
+                                            </div>
+                                        </div>
+                                        <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-lg font-bold">¡Comprar ahora!</button>
+                                        <button className="w-[80%] mb-2 p-4 box-border border-[.15rem] border-primary rounded-[2rem] text-lg font-bold">Agregar al carro</button>
                                     </div>
                                 </div>
-                            </section>
-                            <section className="flex flex-col items-center border border-black w-[30%]">
-                                <div>{productMock.price}</div>
-                                <div>
-                                    <span>-</span>
-                                    <span>0</span>
-                                    <span>+</span>
-                                </div>
-                                <button>Agregar al carrito</button>
                             </section>
                         </div>
                     </div>

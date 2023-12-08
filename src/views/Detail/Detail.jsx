@@ -210,11 +210,11 @@ function Detail() {
     }, [added, addedBuy]);
 
     // PRODUCTION:
-    // useEffect(() => {
-    //     dispatch(productById(idProduct));
-    //     dispatch(getBestSellers());
-    //     dispatch(cleanProductDetail());
-    // }, [dispatch, idProduct]);
+    useEffect(() => {
+        dispatch(productById(idProduct));
+        dispatch(getBestSellers());
+        dispatch(cleanProductDetail());
+    }, [dispatch, idProduct]);
 
 
     // DEV MODE: Solo para evitar peticiones al servidor.
@@ -238,7 +238,9 @@ function Detail() {
                     />
                 ) : (
                     <div className="flex flex-col gap-8 max-w-[1920px] w-full px-[3.5%]">
+                        {/* BREADCRUMB */}
                         <div>Home / products / exterior</div>
+                        {/* END OF BREADCRUMB */}
                         <div className="flex justify-between gap-8 w-full">
                             <section>
                                 <img src={productMock.image} className="w-[300px] rounded-[1rem]" />

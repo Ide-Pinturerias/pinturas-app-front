@@ -23,12 +23,14 @@ function Detail() {
     const loggedUser = useSelector((state) => state.user);
     const product = useSelector((state) => state.detail);
 
-    // CONST:
+
+    // CONSTANTS:
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { idProduct } = useParams();
     // const cart = useSelector((state) => state.cart)
     const { addToCart } = useCart();
+
 
     // LOCAL STATES:
     const [isValidQuantity, setIsValidQuantity] = useState(true);
@@ -43,6 +45,7 @@ function Detail() {
         price: product.price,
         stock: product.stock
     });
+    const [productMock, setProductMock] = useState({});
 
 
     // FUNCTIONS:
@@ -181,14 +184,20 @@ function Detail() {
         };
     }, [added, addedBuy]);
 
-    useEffect(() => {
-        dispatch(productById(idProduct));
-        dispatch(getBestSellers());
-        dispatch(cleanProductDetail());
-    }, [dispatch, idProduct]);
+    // useEffect(() => {
+    //     dispatch(productById(idProduct));
+    //     dispatch(getBestSellers());
+    //     dispatch(cleanProductDetail());
+    // }, [dispatch, idProduct]);
 
     useEffect(() => {
-        console.log(product)
+        // console.log(product);
+
+        // localStorage.setItem("productMock", JSON.stringify(product));
+        const product = localStorage.getItem("productMock");
+
+        setProductMock(JSON.parse(product));
+
     }, [product]);
 
 
@@ -196,33 +205,32 @@ function Detail() {
     return (
         <main className="flex flex-col justify-center p-whiteSpaceTop bg-softWhite">
             {
-                Object.keys(product).length === 0 ? (
+                Object.keys(productMock).length === 0 ? (
                     <img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                         alt="cargando"
                         className="w-94 h-94 "
                     />
                 ) : (
-                    <>
-
+                    <div className="flex flex-col gap-8 max-w-[1920px] w-full px-[3.5%]">
                         <div>Home / products / exterior</div>
-                        <div className="flex w-full">
-                            <section >
-                                <img src={product.image} className="w-[300px]" />
-                            </section>
-                            <section>
-                                <a className="block">{product.patent}</a>
-                                <a className="block">{product.category}</a>
-                                <h1>{product.name}</h1>
-                                <h2>Calificación: {product.rating}</h2>
-                                <div>
-                                    <p>Tamaño del envase: {product.package}</p>
-                                    <p>Color: {product.color}</p>
-                                    <u>Ver más</u>
+                        <div className="flex justify-between w-full">
+                            <section className="flex border border-black gap-8 w-[70%]">
+                                <img src={productMock.image} className="w-[300px] rounded-[2rem]" />
+                                <div className="flex flex-col">
+                                    <a className="text-[14px]"><strong>{productMock.patent}</strong></a>
+                                    <a className="relative z-0 w-fit px-[3%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-[14px]">{productMock.category}</a>
+                                    <h1 className="text-4xl">{productMock.name}</h1>
+                                    <h2>Calificación: {productMock.rating}</h2>
+                                    <div>
+                                        <p>Tamaño del envase: {productMock.package}</p>
+                                        <p>Color: {productMock.color}</p>
+                                        <u>Ver más</u>
+                                    </div>
                                 </div>
                             </section>
-                            <section>
-                                <div>{product.price}</div>
+                            <section className="flex flex-col items-center border border-black w-[30%]">
+                                <div>{productMock.price}</div>
                                 <div>
                                     <span>-</span>
                                     <span>0</span>
@@ -231,7 +239,7 @@ function Detail() {
                                 <button>Agregar al carrito</button>
                             </section>
                         </div>
-                    </>
+                    </div>
                 )
             }
         </main>

@@ -6,7 +6,7 @@
 - [Edgar Juan](https://github.com/ejguercio)
 - [Carlos Barrera](https://github.com/CBarreraB)
 - [Basilio Romero](https://github.com/bachiromero)
-
+- [Sebastian Menacho](https://github.com/Squiffles)
 ## Description (Descripción)
 
 This is the client side of the Pinturas App project. It is a web application for
@@ -37,3 +37,68 @@ The application is deployed on [Vercel](https://vercel.com/).
 ## Testing Status (Estado de las Pruebas)
 
 [![eslint-check](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml)
+
+
+---
+
+# STRUCTURE
+
+```
+src
+|--assets
+
+|--components
+
+|--|--AboutCard --> AboutSection
+|--|--|--AboutCard.jsx
+
+|--|--Banner
+|--|--|--Banner.jsx
+
+|--|--BannerBlog
+|--|--|--BannerBlog.jsx
+
+|--|--CategoryContainer
+|--|--|--CategoryContainer.jsx
+
+|--|--FeaturedProContainer  --> TopSellers 
+|--|--|--FeaturedContainer.jsx
+
+-
+|--|--Featured (CAN BE REMOVED)
+|--|--|--Featured.jsx
+-
+=>
+-
+|--|--ProductCards
+|--|--|--CardCategory.jsx
+|--|--|--CardRegular.jsx
+-
+
+|--|--Footer
+|--|--|--Footer.jsx
+
+|--|--NavBar
+|--|--|--NavBar.jsx
+
+-
+|--|--ProductContainer (CAN BE REMOVED)
+|--|--|--ProductContainer.jsx
+-
+=>
+-
+|--|--ProductBox
+|--|--|--ProductBox.jsx
+-
+
+|--|--SVG.jsx
+
+|--context
+...
+|--views
+|--|--Home
+|--|--About
+|--|--Contact
+
+...
+```

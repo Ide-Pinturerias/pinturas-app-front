@@ -17,5 +17,6 @@
 }
 
 #root {
-    --whiteSpaceTop: 9rem
+    /* Debe coincidir con el padding top definido en tailwind.config.css */
+    --whiteSpaceTop: 7rem;
 }

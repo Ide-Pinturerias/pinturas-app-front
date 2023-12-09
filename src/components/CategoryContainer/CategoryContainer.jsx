@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setPage } from '@redux/actions/Page/setPage'
@@ -42,35 +41,38 @@ const CategoryContainer = () => {
   ]
 
   return (
-    <section className="relative z-10 grid grid-cols-2 gap-6 my-[50px] w-[93%]">
-      {
-        CATEGORIES.map((category, idx) => (
-          <Link
-            key={idx}
-            to={`/products?category=${encodeURIComponent(category.searchQuery)}`}
-            onClick={() => handleCategory(category.searchQuery)}
-          >
+        <section className="flex flex-col items-center justify-center mb-[50px] px-[3.5%] w-full bg-[#FFFAED]">
+            <h2 className="w-full text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Nuestras Líneas</h2>
+            <div className="relative z-10 grid grid-cols-2 gap-6 w-full">
+                {
+                    CATEGORIES.map((category, idx) => (
+                        <Link
+                            key={idx}
+                            to={`/products?category=${encodeURIComponent(category.searchQuery)}`}
+                            onClick={() => handleCategory(category.searchQuery)}
+                        >
+                            <img
+                                src={category.image}
+                                alt={category.searchQuery}
+                                className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange hover:opacity-90"
+                            />
+                        </Link>
+                    ))
+                }
+                {/* <Link
+            to={`/products?category=${encodeURIComponent(
+            'Linea Bases Tintometricas'
+            )}`}
+            onClick={() => handleCategory('Linea Latex')}
+        >
             <img
-              src={category.image}
-              alt={category.searchQuery}
-              className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange hover:opacity-90"
+            src={category9}
+            alt="category12"
+            className="h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
             />
-          </Link>
-        ))
-      }
-      {/* <Link
-        to={`/products?category=${encodeURIComponent(
-          'Linea Bases Tintometricas'
-        )}`}
-        onClick={() => handleCategory('Linea Latex')}
-      >
-        <img
-          src={category9}
-          alt="category12"
-          className="h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-        />
-      </Link> */}
-    </section>
+        </Link> */}
+            </div>
+        </section>
   )
 }
 

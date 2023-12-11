@@ -31,12 +31,9 @@ export default {
         },
         fontFamily: {
             abc: ['Urbanist', 'sans-serif'],
-            primary: 'Gill Sans'
+            primary: "Montserrat",
+            heading: 'Gill Sans',
         },
-    },
-    fontFamily: {
-        abc: ['Urbanist', 'sans-serif'],
-        primary: 'Gill Sans'
     },
     plugins: [
         require('tailwindcss-debug-screens')

@@ -242,14 +242,14 @@ function Detail() {
                         {/* END OF BREADCRUMB */}
                         <div className="flex justify-between gap-8 w-full">
                             <section>
-                                <img src={productMock.image} className="w-[300px] rounded-[1rem]" />
+                                <img src={productMock.image} className="w-[300px] rounded-[1rem] font-black" />
                             </section>
 
                             <section className="flex flex-col border-black w-[calc(100%-300px)]">
                                 <div className="flex justify-between">
                                     <div className="flex flex-col mb-4">
                                         {/* CATEGORY LABEL OPTION 1: */}
-                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[1px]">{productMock.category}</a>
+                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]">{productMock.category}</a>
                                         {/* CATEGORY LABEL OPTION 2: */}
                                         {/* <a className="relative z-0 w-fit px-[2%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm tracking-[2px]">{productMock.category}</a> */}
                                         <h1 className="mt-2 text-3xl font-bold uppercase">{productMock.name}</h1>

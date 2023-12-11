@@ -19,7 +19,7 @@ const Contact = () => {
         <main className="relative flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-turquoise">
             <section className="flex justify-center mb-[8rem] text-white w-full">
                 <div className="max-w-[1920px] w-full px-[3.5%]">
-                    <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem]">Nuestra tienda</h2>
+                    <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem] font-heading">Nuestra tienda</h2>
                     <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                         En nuestra tienda encontraras todos los productos que necesitas.
                     </p>
@@ -88,7 +88,7 @@ const Contact = () => {
             <section>
                 <div className="flex flex-row-reverse items-center px-[3.5%] max-w-[1920px] h-screen">
                     <div className="w-1/2">
-                        <h2 className="text-[clamp(.75vw,calc(7vw+.5rem),6rem)]"><strong>Contáctanos</strong></h2>
+                        <h2 className="text-[clamp(.75vw,calc(7vw+.5rem),6rem)]"><strong className="font-heading">Contáctanos</strong></h2>
                         <p className="text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">¡Nos encanta recibir tus mensajes! Envíanos tus consultas, sugerencias y más. Estamos aquí para escucharte y mejorar tu experiencia.</p>
                     </div>
                     <div className="mx-10 mb-5 mt-8 ">

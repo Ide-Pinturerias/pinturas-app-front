@@ -10,7 +10,7 @@ import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { useCart } from '@hooks/useCart'
 
 import Swal from 'sweetalert2'
-import { Bag, Star, Plus, Minus } from '../../components/SVG'
+import { Bag, Bookmark, Star, Plus, Minus } from '../../components/SVG'
 import DeleteButton from '@components/DeleteButton/DeleteButton'
 import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
@@ -246,10 +246,16 @@ function Detail() {
                             </section>
 
                             <section className="flex flex-col border-black w-[calc(100%-300px)]">
-                                <div className="flex flex-col mb-4">
-                                    <a className="relative z-0 w-fit px-[1%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm">{productMock.category}</a>
-                                    <h1 className="mt-2 text-3xl font-bold uppercase">{productMock.name}</h1>
-                                    <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{productMock.patent}</u></a>
+                                <div className="flex justify-between">
+                                    <div className="flex flex-col mb-4">
+                                        {/* CATEGORY LABEL OPTION 1: */}
+                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[1px]">{productMock.category}</a>
+                                        {/* CATEGORY LABEL OPTION 2: */}
+                                        {/* <a className="relative z-0 w-fit px-[2%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm tracking-[2px]">{productMock.category}</a> */}
+                                        <h1 className="mt-2 text-3xl font-bold uppercase">{productMock.name}</h1>
+                                        <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{productMock.patent}</u></a>
+                                    </div>
+                                    <Bookmark />
                                 </div>
                                 <div className="flex justify-between">
                                     <div className="w-[60%]">
@@ -270,7 +276,7 @@ function Detail() {
                                             </span>
                                         </div>
                                         <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
-                                        <div className="p-4 bg-turquoise text-white rounded-[1rem]">
+                                        <div className="p-4 bg-complementaryWhite text-black rounded-[1rem]">
                                             <ul className="text-lg">
                                                 <li>Tamaño del envase: {productMock.package}</li>
                                                 <li>Color: {productMock.color}</li>
@@ -289,24 +295,22 @@ function Detail() {
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
                                         <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(productMock.price)}</strong></div>
-                                        <div className="flex flex-col mb-4 border border-black rounded-lg text-lg h-fit">
-                                            <div className="flex">
-                                                <button><Minus /></button>
-                                                <input
-                                                    value={numberOfItems}
-                                                    onChange={(e) => handleNumberOfItems(e)}
-                                                    type="text"
-                                                    inputMode="numeric"
-                                                    maxLength={4}
-                                                    step={1}
-                                                    min={0} max={999}
-                                                    className="bg-transparent text-center w-14 p-3"
-                                                />
-                                                <button><Plus /></button>
-                                            </div>
+                                        <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
+                                            <button className="p-3"><Minus /></button>
+                                            <input
+                                                value={numberOfItems}
+                                                onChange={(e) => handleNumberOfItems(e)}
+                                                type="text"
+                                                inputMode="numeric"
+                                                maxLength={4}
+                                                step={1}
+                                                min={0} max={999}
+                                                className="bg-transparent text-center w-14 p-3"
+                                            />
+                                            <button className="p-3"><Plus /></button>
                                         </div>
-                                        <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-lg font-bold">¡Comprar ahora!</button>
-                                        <button className="w-[80%] mb-2 p-4 box-border border-[.15rem] border-primary rounded-[2rem] text-lg font-bold">Agregar al carro</button>
+                                        <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
+                                        <button className="w-[80%] mb-2 p-4 box-border border-[.15rem] border-primary rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
                                     </div>
                                 </div>
                             </section>

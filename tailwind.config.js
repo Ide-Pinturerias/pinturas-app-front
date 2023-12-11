@@ -17,7 +17,9 @@ export default {
                 white: '#f1f1f1',
                 warmWhite: '#FFFAED',
                 seasalt: '#FAF8F5',
-                softWhite: '#F7F7F2'
+                softWhite: '#F7F7F2',
+                complementaryWhite: '#EAEAE6',
+                focusedWhite: 'rgba(18,18,18,.14)'
             },
             padding: {
                 // Debe ser usado en cada component "main" para dar espacio al header principal.

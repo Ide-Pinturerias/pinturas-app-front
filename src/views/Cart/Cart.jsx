@@ -7,10 +7,6 @@ import TotalCart from '../../components/ProductCart/TotalCart'
 const Cart = () => {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getAllProductsNoFilter())
-  }, [])
-
   // PRODUCTOS ESTADO GLOBAL
   const allProducts = useSelector(state => state.allProducts)
 
@@ -22,7 +18,11 @@ const Cart = () => {
     const productsWithQuantity = allProducts.find(product => product.idProduct === Number(cartItem.id))
     return { ...productsWithQuantity, quantity: cartItem.quantity }
   })
-  // console.log(productsCart)
+
+  useEffect(() => {
+    dispatch(getAllProductsNoFilter())
+  }, [])
+
   return (
     <main className="pt-40">
       {

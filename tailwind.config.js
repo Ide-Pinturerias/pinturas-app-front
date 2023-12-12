@@ -9,6 +9,7 @@ export default {
                 turquoise: '#00A491',
                 orange: '#E96827',
                 orangeAlt: '#E7976F',
+                orangeAlt1: '#FFDDA6',
                 secondary: '#535353',
                 tertiary: 'rgba(231, 231, 231, 0.40)',
                 quaternary: '#F0CF5D',

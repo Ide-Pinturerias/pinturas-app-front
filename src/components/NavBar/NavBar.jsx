@@ -15,7 +15,7 @@ const Nav = () => {
   // Menu para las opciones: INICIAR SESION, REGISTRARSE
   const [credentialsMenu, setCredentialsMenu] = useState(false)
 
-  const linkStl = 'relative cursor-pointer hover:text-white transition-colors before:-z-10 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[calc(100%+1vw+0.25rem)] before:h-[125%] before:bg-primary before:rounded-[15px] before:opacity-0 hover:before:opacity-100 before:transition-opacity'
+  const linkStl = 'relative cursor-pointer hover:text-white transition-colors before:-z-10 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[calc(100%+1vw+0.25rem)] before:h-[125%] before:bg-orange before:rounded-[15px] before:opacity-0 hover:before:opacity-100 before:transition-opacity'
 
   // Detectar click fuera del menu.
   const credentialsMenuRef = useRef(null)

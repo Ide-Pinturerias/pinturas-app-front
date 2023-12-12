@@ -35,10 +35,10 @@ function ProductsPage () {
   // COMPONENT:
   return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
-            <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-primary">
+            <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-orange">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
                     <div>
-                        <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem]"> Todos nuestros productos </h2>
+                        <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem] font-heading"> Todos nuestros productos </h2>
                         <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                             Somos un distribuidor oficial de pinturas Fadepa. En nuestra tienda encontrarás barniz, aditivos, diluyentes, entre otros.
                         </p>
@@ -54,7 +54,7 @@ function ProductsPage () {
                     </div>
                 </div>
             </section>
-            <section className="flex justify-center w-full py-16 bg-white">
+            <section className="flex justify-center w-full py-16 bg-complementaryWhite">
                 <ProductBox />
             </section>
 

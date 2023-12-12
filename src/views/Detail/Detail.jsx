@@ -45,7 +45,7 @@ function Detail() {
         price: product.price,
         stock: product.stock
     });
-    const [numberOfItems, setNumberOfItems] = useState(0);
+    const [numberOfItems, setNumberOfItems] = useState(1);
     // DEV MODE:
     const [productMock, setProductMock] = useState({});
 
@@ -168,13 +168,25 @@ function Detail() {
         return numStr;
     };
 
+    // Controlar el <input> conectado al estado "numberOfItems".
+    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberOfItems = (event) => {
         const { value } = event.target;
-        if (value === '' || (!isNaN(value) && parseInt(value) >= 0 && parseInt(value) <= 999)) {
+        if (value === '' || (!isNaN(value) && parseInt(value) >= 0 && parseInt(value) <= productMock.stock)) {
             setNumberOfItems(value);
         };
-        return;
     };
+
+    // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
+    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+    const handleNumberChange = (parameter) => {
+        if (parameter === "add" && numberOfItems < productMock.stock) {
+            setNumberOfItems((prev) => prev + 1);
+        } else if (parameter === "remove" && numberOfItems > 0) {
+            setNumberOfItems((prev) => prev - 1);
+        };
+    };
+
 
     // Se basa en el rating del producto para renderizar las estrellas.
     const renderStars = (value) => {
@@ -296,7 +308,7 @@ function Detail() {
                                     <div className="flex flex-col items-center w-[40%]">
                                         <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(productMock.price)}</strong></div>
                                         <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
-                                            <button className="p-3"><Minus /></button>
+                                            <button className="p-3" onClick={() => handleNumberChange("remove")}><Minus /></button>
                                             <input
                                                 value={numberOfItems}
                                                 onChange={(e) => handleNumberOfItems(e)}
@@ -307,8 +319,15 @@ function Detail() {
                                                 min={0} max={999}
                                                 className="bg-transparent text-center w-14 p-3"
                                             />
-                                            <button className="p-3"><Plus /></button>
+                                            <button className="p-3" onClick={() => handleNumberChange("add")}><Plus /></button>
                                         </div>
+                                        {
+                                            productMock.stock < 50 ? (
+                                                <div className="mb-4 text-sm">
+                                                    ¡Quedan solo {productMock.stock} unidades!
+                                                </div>
+                                            ) : null
+                                        }
                                         <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
                                         <button className="w-[80%] mb-2 p-4 box-border border-[.15rem] border-primary rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
                                     </div>

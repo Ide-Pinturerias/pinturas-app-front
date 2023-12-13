@@ -6,7 +6,7 @@
 - [Edgar Juan](https://github.com/ejguercio)
 - [Carlos Barrera](https://github.com/CBarreraB)
 - [Basilio Romero](https://github.com/bachiromero)
-
+- [Sebastian Menacho](https://github.com/Squiffles)
 ## Description (Descripción)
 
 This is the client side of the Pinturas App project. It is a web application for

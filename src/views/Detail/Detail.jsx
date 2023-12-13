@@ -14,22 +14,23 @@ import { addProductCart } from '../../redux/actions/Cart/addProductCart'
 const Detail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const loggedUser = useSelector((state) => state.user)
   const { idProduct } = useParams()
+
+  // ESTADOS GLOBALES
+  const loggedUser = useSelector((state) => state.user)
   const product = useSelector((state) => state.detail)
+
+  // ESTADOS LOCALES
   const [isValidQuantity, setIsValidQuantity] = useState(true)
   const [error, setError] = useState('')
-
-  const productsCart = JSON.parse(window.localStorage.getItem('productsLocal')) || []
   const [inCart, setInCart] = useState(false)
-
-  console.log(productsCart)
   const [addProduct, setAddProduct] = useState({
     id: idProduct,
     quantity: 1
   })
-  console.log(addProduct)
+
+  const productsCart = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+
   const handleInputChange = (event) => {
     const { value } = event.target
     const parsedValue = Number(value)

@@ -55,7 +55,7 @@ function Bag() {
 
 function Bookmark() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-bookmark" viewBox="0 0 16 16"
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-bookmark" viewBox="0 0 16 16"
             width="16"
             height="16"
             fill="currentColor"
@@ -67,7 +67,7 @@ function Bookmark() {
 
 function Star() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-star-fill" viewBox="0 0 16 16"
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-star-fill" viewBox="0 0 16 16"
             width="16"
             height="16"
         >
@@ -76,9 +76,45 @@ function Star() {
     );
 };
 
+function Shop() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-shop" viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+        >
+            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z" />
+        </svg>
+    );
+};
+
+function Phone() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-telephone-fill" viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+        >
+            <path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+        </svg>
+    );
+};
+
+function ChatEmpty() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-chat-square-fill" viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+        >
+            <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+        </svg>
+    );
+};
+
 function Plus() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-plus" viewBox="0 0 16 16"
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-plus" viewBox="0 0 16 16"
             width="16"
             height="16"
         >
@@ -89,7 +125,7 @@ function Plus() {
 
 function Minus() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-dash" viewBox="0 0 16 16"
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-dash" viewBox="0 0 16 16"
             width="16"
             height="16"
             fill="currentColor"
@@ -204,6 +240,9 @@ export {
     Bag,
     Bookmark,
     Star,
+    Shop,
+    Phone,
+    ChatEmpty,
     Plus,
     Minus,
     Facebook,

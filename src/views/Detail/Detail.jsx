@@ -10,10 +10,11 @@ import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { useCart } from '@hooks/useCart'
 
 import Swal from 'sweetalert2'
-import { Bag, Bookmark, Star, Plus, Minus } from '../../components/SVG'
+import { Bag, Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
 import DeleteButton from '@components/DeleteButton/DeleteButton'
 import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import { NavLink } from 'react-router-dom'
 
 
 function Detail() {
@@ -45,7 +46,10 @@ function Detail() {
         price: product.price,
         stock: product.stock
     });
+    // Cantidad de productos que se llevan:
     const [numberOfItems, setNumberOfItems] = useState(1);
+    // Número de contacto:
+    const [showNumber, setShowNumber] = useState(false);
     // DEV MODE:
     const [productMock, setProductMock] = useState({});
 
@@ -171,20 +175,24 @@ function Detail() {
     // Controlar el <input> conectado al estado "numberOfItems".
     // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberOfItems = (event) => {
-        const { value } = event.target;
-        if (value === '' || (!isNaN(value) && parseInt(value) >= 0 && parseInt(value) <= productMock.stock)) {
-            setNumberOfItems(value);
-        };
+        if (productMock.stock !== 0) {
+            const { value } = event.target;
+            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= productMock.stock)) {
+                setNumberOfItems(value);
+            };
+        } else return;
     };
 
     // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
     // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberChange = (parameter) => {
-        if (parameter === "add" && numberOfItems < productMock.stock) {
-            setNumberOfItems((prev) => prev + 1);
-        } else if (parameter === "remove" && numberOfItems > 0) {
-            setNumberOfItems((prev) => prev - 1);
-        };
+        if (productMock.stock !== 0) {
+            if (parameter === "add" && numberOfItems < productMock.stock) {
+                setNumberOfItems((prev) => prev + 1);
+            } else if (parameter === "remove" && numberOfItems > 1) {
+                setNumberOfItems((prev) => prev - 1);
+            };
+        } else return;
     };
 
 
@@ -226,6 +234,9 @@ function Detail() {
         dispatch(productById(idProduct));
         dispatch(getBestSellers());
         dispatch(cleanProductDetail());
+        if (productMock.stock === 0) {
+            setNumberOfItems(0)
+        }
     }, [dispatch, idProduct]);
 
     // DEV MODE: Solo para evitar peticiones al servidor.
@@ -235,6 +246,20 @@ function Detail() {
         const product = localStorage.getItem("productMock");
         setProductMock(JSON.parse(product));
     }, []);
+
+
+    // Setea el elemento <title> del <head> del documento HTML.
+    useEffect(() => {
+        product.name ? (
+            document.title = `${product.name}`
+        ) : (
+            document.title = 'Ide Pinturerias'
+        );
+        return () => {
+            document.title = 'Ide Pinturerias';
+        };
+    }, [idProduct, product]);
+
 
 
     // COMPONENT:
@@ -248,13 +273,19 @@ function Detail() {
                         className="w-94 h-94 "
                     />
                 ) : (
-                    <div className="flex flex-col gap-8 max-w-[1920px] w-full px-[3.5%]">
+                    <div className="flex flex-col gap-12 max-w-[1920px] w-full px-[3.5%]">
                         {/* BREADCRUMB */}
-                        <div>Home / products / exterior</div>
+                        <div className="text-xs">
+                            <NavLink to="/" className="mr-4">Home</NavLink>
+                            /
+                            <NavLink to="/products" className="mx-4">productos</NavLink>
+                            /
+                            <span className="mx-4">{productMock.name}</span>
+                        </div>
                         {/* END OF BREADCRUMB */}
                         <div className="flex justify-between gap-8 w-full">
                             <section>
-                                <img src={productMock.image} className="w-[300px] rounded-[1rem] font-black" />
+                                <img src={productMock.image} className="w-[300px] rounded-[1rem] font-black select-none" />
                             </section>
 
                             <section className="flex flex-col border-black w-[calc(100%-300px)]">
@@ -271,7 +302,7 @@ function Detail() {
                                 </div>
                                 <div className="flex justify-between">
                                     <div className="w-[60%]">
-                                        <div className="flex items-center mb-4">
+                                        <div className="flex items-center">
                                             {
                                                 renderStars(productMock.rating)
                                             }
@@ -287,23 +318,47 @@ function Detail() {
                                                 }
                                             </span>
                                         </div>
+                                        <hr className="my-4 mt-5 border-orange" />
                                         <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
                                         <div className="p-4 bg-complementaryWhite text-black rounded-[1rem]">
                                             <ul className="text-lg">
                                                 <li>Tamaño del envase: {productMock.package}</li>
                                                 <li>Color: {productMock.color}</li>
-                                                <li><u className="cursor-pointer">Ver más</u></li>
+                                                <li><u className="text-primary cursor-pointer">Ver más</u></li>
                                             </ul>
                                         </div>
-                                        <div>
-                                            Disponible en tienda
+                                        <div className="flex flex-col justify-between mt-2">
+                                            <div className="flex items-center gap-2 w-fit mb-2 p-4 rounded-[1rem] bg-complementaryWhite">
+                                                <Shop />
+                                                Disponible en tienda
+                                            </div>
                                         </div>
-                                        <div>
-                                            Envío a domicilio
+
+                                        <hr className="my-4 border-focusedWhite" />
+
+                                        <h3 className="text-lg font-bold uppercase mb-2">¿Tienes alguna duda?</h3>
+                                        <div className="my-2">Estamos para ayudar</div>
+                                        <div className="flex gap-2">
+                                            <button
+                                                className={"flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase " + (showNumber && "cursor-default select-text")}
+                                                onClick={() => showNumber === false && setShowNumber(true)}
+                                            >
+                                                <Phone />
+                                                {
+                                                    !showNumber ? (
+                                                        "Llámanos"
+                                                    ) : (
+                                                        "+54 351 306 135"
+                                                    )
+                                                }
+                                            </button>
+                                            <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase">
+                                                <ChatEmpty />
+                                                Chatea
+                                            </button>
                                         </div>
-                                        <div>
-                                            Necesitas ayuda?
-                                        </div>
+
+                                        <hr className="my-4 border-orange" />
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
                                         <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(productMock.price)}</strong></div>
@@ -316,20 +371,36 @@ function Detail() {
                                                 inputMode="numeric"
                                                 maxLength={4}
                                                 step={1}
-                                                min={0} max={999}
+                                                min={0} max={productMock.stock}
                                                 className="bg-transparent text-center w-14 p-3"
                                             />
                                             <button className="p-3" onClick={() => handleNumberChange("add")}><Plus /></button>
                                         </div>
                                         {
                                             productMock.stock < 50 ? (
-                                                <div className="mb-4 text-sm">
-                                                    ¡Quedan solo {productMock.stock} unidades!
+                                                <div className={"mb-4 text-sm " + (productMock.stock === 0 && "text-red-600")}>
+                                                    {
+                                                        productMock.stock === 0 ? (
+                                                            "No quedan unidades de este producto"
+                                                        ) : productMock.stock === 1 ? (
+                                                            "¡Queda solo 1 unidad!"
+                                                        ) : (
+                                                            `¡Quedan solo ${productMock.stock} unidades!`
+                                                        )
+                                                    }
                                                 </div>
                                             ) : null
                                         }
-                                        <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                        <button className="w-[80%] mb-2 p-4 box-border border-[.15rem] border-primary rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
+                                        {
+                                            productMock.stock !== 0 ? (
+                                                <>
+                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
+                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
+                                                </>
+                                            ) : (
+                                                null
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </section>

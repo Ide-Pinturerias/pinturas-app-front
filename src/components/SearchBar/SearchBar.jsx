@@ -26,11 +26,11 @@ function SearchBar () {
   }
 
   return (
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex justify-center items-center gap-2 w-[40%]">
             <input
                 type="search"
-                placeholder="Busca en la tienda"
-                className="py-[0.2rem] px-4 box-border rounded-full border-2 transition-colors text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] focus:outline-none focus:border-orange focus:border-2"
+                placeholder="Buscar en la tienda"
+                className="w-[80%] py-[0.2rem] px-4 box-border border-[1.75px] border-transparent rounded-full bg-complementaryWhite transition-all text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] hover:border-focusedWhite outline-0 focus:border-orange"
                 value={search}
                 onChange={handleChange}
                 onFocus={() => setMagnifierFocus(true)}
@@ -41,7 +41,7 @@ function SearchBar () {
                 onFocus={() => setMagnifierFocus(true)}
                 onBlur={() => setMagnifierFocus(false)}
             >
-                <div className={`h-4 fill-black hover:fill-orange ${magnifierFocus ? 'fill-orange' : ''}`}>
+                <div className={`h-4 w-4 fill-black hover:fill-orange ${magnifierFocus ? 'fill-orange' : ''}`}>
                     <Magnifier />
                 </div>
             </button>

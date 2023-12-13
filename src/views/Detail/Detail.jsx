@@ -51,7 +51,7 @@ function Detail() {
     // Número de contacto:
     const [showNumber, setShowNumber] = useState(false);
     // DEV MODE:
-    const [productMock, setProductMock] = useState({});
+    // const [productMock, setProductMock] = useState({});
 
 
     // FUNCTIONS:
@@ -175,9 +175,9 @@ function Detail() {
     // Controlar el <input> conectado al estado "numberOfItems".
     // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberOfItems = (event) => {
-        if (productMock.stock !== 0) {
+        if (product.stock !== 0) {
             const { value } = event.target;
-            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= productMock.stock)) {
+            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
                 setNumberOfItems(value);
             };
         } else return;
@@ -186,8 +186,8 @@ function Detail() {
     // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
     // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberChange = (parameter) => {
-        if (productMock.stock !== 0) {
-            if (parameter === "add" && numberOfItems < productMock.stock) {
+        if (product.stock !== 0) {
+            if (parameter === "add" && numberOfItems < product.stock) {
                 setNumberOfItems((prev) => prev + 1);
             } else if (parameter === "remove" && numberOfItems > 1) {
                 setNumberOfItems((prev) => prev - 1);
@@ -234,18 +234,19 @@ function Detail() {
         dispatch(productById(idProduct));
         dispatch(getBestSellers());
         dispatch(cleanProductDetail());
-        if (productMock.stock === 0) {
+        if (product.stock === 0) {
             setNumberOfItems(0)
         }
+        console.log(product)
     }, [dispatch, idProduct]);
 
     // DEV MODE: Solo para evitar peticiones al servidor.
-    useEffect(() => {
-        // console.log(product);
-        // localStorage.setItem("productMock", JSON.stringify(product));
-        const product = localStorage.getItem("productMock");
-        setProductMock(JSON.parse(product));
-    }, []);
+    // useEffect(() => {
+    //     // console.log(product);
+    //     // localStorage.setItem("productMock", JSON.stringify(product));
+    //     const product = localStorage.getItem("productMock");
+    //     setProductMock(JSON.parse(product));
+    // }, []);
 
 
     // Setea el elemento <title> del <head> del documento HTML.
@@ -266,7 +267,7 @@ function Detail() {
     return (
         <main className="flex flex-col justify-center p-whiteSpaceTop bg-softWhite">
             {
-                Object.keys(productMock).length === 0 ? (
+                Object.keys(product).length === 0 ? (
                     <img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                         alt="cargando"
@@ -280,23 +281,23 @@ function Detail() {
                             /
                             <NavLink to="/products" className="mx-4">productos</NavLink>
                             /
-                            <span className="mx-4">{productMock.name}</span>
+                            <span className="mx-4">{product.name}</span>
                         </div>
                         {/* END OF BREADCRUMB */}
                         <div className="flex justify-between gap-8 w-full">
                             <section>
-                                <img src={productMock.image} className="w-[300px] rounded-[1rem] font-black select-none" />
+                                <img src={product.image} className="w-[300px] rounded-[1rem] font-black select-none" />
                             </section>
 
                             <section className="flex flex-col border-black w-[calc(100%-300px)]">
                                 <div className="flex justify-between">
                                     <div className="flex flex-col mb-4">
                                         {/* CATEGORY LABEL OPTION 1: */}
-                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]">{productMock.category}</a>
+                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]">{product.category}</a>
                                         {/* CATEGORY LABEL OPTION 2: */}
                                         {/* <a className="relative z-0 w-fit px-[2%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm tracking-[2px]">{productMock.category}</a> */}
-                                        <h1 className="mt-2 text-3xl font-bold uppercase">{productMock.name}</h1>
-                                        <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{productMock.patent}</u></a>
+                                        <h1 className="mt-2 text-3xl font-bold uppercase">{product.name}</h1>
+                                        <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{product.patent}</u></a>
                                     </div>
                                     <Bookmark />
                                 </div>
@@ -304,9 +305,9 @@ function Detail() {
                                     <div className="w-[60%]">
                                         <div className="flex items-center">
                                             {
-                                                renderStars(productMock.rating)
+                                                renderStars(product.rating)
                                             }
-                                            <span className="mr-4 leading-none font-bold">{productMock.rating}</span>
+                                            <span className="mr-4 leading-none font-bold">{product.rating}</span>
                                             <span className="text-primary underline cursor-pointer">
                                                 {
                                                     true ? (
@@ -322,8 +323,8 @@ function Detail() {
                                         <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
                                         <div className="p-4 bg-complementaryWhite text-black rounded-[1rem]">
                                             <ul className="text-lg">
-                                                <li>Tamaño del envase: {productMock.package}</li>
-                                                <li>Color: {productMock.color}</li>
+                                                <li>Tamaño del envase: {product.package}</li>
+                                                <li>Color: {product.color}</li>
                                                 <li><u className="text-primary cursor-pointer">Ver más</u></li>
                                             </ul>
                                         </div>
@@ -361,7 +362,7 @@ function Detail() {
                                         <hr className="my-4 border-orange" />
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
-                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(productMock.price)}</strong></div>
+                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
                                         <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
                                             <button className="p-3" onClick={() => handleNumberChange("remove")}><Minus /></button>
                                             <input
@@ -371,28 +372,28 @@ function Detail() {
                                                 inputMode="numeric"
                                                 maxLength={4}
                                                 step={1}
-                                                min={0} max={productMock.stock}
+                                                min={0} max={product.stock}
                                                 className="bg-transparent text-center w-14 p-3"
                                             />
                                             <button className="p-3" onClick={() => handleNumberChange("add")}><Plus /></button>
                                         </div>
                                         {
-                                            productMock.stock < 50 ? (
-                                                <div className={"mb-4 text-sm " + (productMock.stock === 0 && "text-red-600")}>
+                                            product.stock < 50 ? (
+                                                <div className={"mb-4 text-sm " + (product.stock === 0 && "text-red-600")}>
                                                     {
-                                                        productMock.stock === 0 ? (
+                                                        product.stock === 0 ? (
                                                             "No quedan unidades de este producto"
-                                                        ) : productMock.stock === 1 ? (
+                                                        ) : product.stock === 1 ? (
                                                             "¡Queda solo 1 unidad!"
                                                         ) : (
-                                                            `¡Quedan solo ${productMock.stock} unidades!`
+                                                            `¡Quedan solo ${product.stock} unidades!`
                                                         )
                                                     }
                                                 </div>
                                             ) : null
                                         }
                                         {
-                                            productMock.stock !== 0 ? (
+                                            product.stock !== 0 ? (
                                                 <>
                                                     <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
                                                     <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { allProducts } from '@redux/actions/Products/allProducts'
@@ -14,51 +14,49 @@ import Paginated from '../../components/Paginated/Paginated'
 import ProductBox from '../../components/ProductBox/ProductBox'
 import { Chevron } from '../../components/SVG'
 
-function ProductsPage() {
+function ProductsPage () {
+  // GLOBAL STATES:
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const totalPages = useSelector((state) => state.totalPages)
+  const thisPage = useSelector((state) => state.thisPage)
+  const { high, low } = useSelector((state) => state.price)
 
+  // LOCAL STATES:
+  const [isLoading, setIsLoading] = useState(true)
 
-    // GLOBAL STATES:
-    const filterCategory = useSelector((state) => state.filterCategory)
-    const totalPages = useSelector((state) => state.totalPages)
-    const thisPage = useSelector((state) => state.thisPage)
+  // CONSTANTS:
+  const dispatch = useDispatch()
 
-
-    // CONSTANTS:
-    const dispatch = useDispatch()
-
-
-    // FUNCTIONS:
-    const handlePageChange = (page) => {
-        dispatch(setPage(page))
-        if (filterCategory || low || high) {
-            dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
-                setIsLoading(false)
-            })
-        } else {
-            dispatch(allProducts(page)).then(() => {
-                setIsLoading(false)
-            })
-        }
+  // FUNCTIONS:
+  const handlePageChange = (page) => {
+    dispatch(setPage(page))
+    if (filterCategory || low || high) {
+      dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
+        setIsLoading(false)
+      })
+    } else {
+      dispatch(allProducts(page)).then(() => {
+        setIsLoading(false)
+      })
     }
+  }
 
+  // LIFE CYCLES:
+  useEffect(() => {
+    dispatch(allProducts(thisPage))
+    if (!filterCategory) {
+      dispatch(allCategories())
+    } else {
+      dispatch(getProductFilter(thisPage, filterCategory))
+    };
+  }, [dispatch, thisPage, filterCategory])
 
-    // LIFE CYCLES:
-    useEffect(() => {
-        dispatch(allProducts(thisPage))
-        if (!filterCategory) {
-            dispatch(allCategories())
-        } else {
-            dispatch(getProductFilter(thisPage, filterCategory))
-        };
-    }, [dispatch, thisPage, filterCategory])
+  useEffect(() => {
+    dispatch(getBestSellers())
+  }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getBestSellers())
-    }, [dispatch])
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
             <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-orange">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
@@ -80,7 +78,7 @@ function ProductsPage() {
                 </div>
             </section>
             <section className="flex justify-center w-full py-16 bg-complementaryWhite">
-                <ProductBox />
+              <ProductBox isLoading={isLoading} />
             </section>
 
             <section>
@@ -94,7 +92,7 @@ function ProductsPage() {
                 <FeaturedContainer />
             </div> */}
         </main>
-    )
+  )
 };
 
 export default ProductsPage

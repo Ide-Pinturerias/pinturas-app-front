@@ -1,18 +1,14 @@
 import { NavLink } from 'react-router-dom'
 
+function CardRegular ({ id, name, image, price, prodpackage }) {
+  // FUNCTIONS:
+  const preventRedirection = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+  }
 
-function CardRegular({ id, name, image, price, prodpackage }) {
-
-
-    // FUNCTIONS:
-    const preventRedirection = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-    };
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <NavLink
             to={`/products/${id}`}
             className=" flex flex-col items-center justify-between min-w-full min-h-full overflow-hidden bg-white rounded-3xl shadow-2xl text-black transition-all hover:outline-[3.5px] cursor-pointer"
@@ -31,7 +27,7 @@ function CardRegular({ id, name, image, price, prodpackage }) {
                 <button className="bg-orange rounded-3xl p-2 text-sm text-white font-bold">AGREGAR AL CARRO</button>
             </div>
         </NavLink>
-    );
+  )
 };
 
 export default CardRegular

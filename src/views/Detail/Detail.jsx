@@ -1,280 +1,194 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { productById } from '@redux/actions/Products/productById'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
-import { setCart } from '@redux/actions/Cart/setCart'
+// import { setCart } from '@redux/actions/Cart/setCart'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
-import { useCart } from '@hooks/useCart'
+// import { useCart } from '@hooks/useCart'
 
 import Swal from 'sweetalert2'
-import { Bag, Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
-import DeleteButton from '@components/DeleteButton/DeleteButton'
-import UpdateButton from '@components/UpdateButton/UpdateButton'
-import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { NavLink } from 'react-router-dom'
+import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
+// import DeleteButton from '@components/DeleteButton/DeleteButton'
+// import UpdateButton from '@components/UpdateButton/UpdateButton'
+// import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 
+function Detail () {
+  // GLOBAL STATES:
+  const loggedUser = useSelector((state) => state.user)
+  const product = useSelector((state) => state.detail)
 
-function Detail() {
+  // CONSTANTS:
+  const dispatch = useDispatch()
+  //   const navigate = useNavigate()
+  const { idProduct } = useParams()
+  // const cart = useSelector((state) => state.cart);
+  //   const { addToCart } = useCart()
 
+  // LOCAL STATES:
+  //   const [isValidQuantity, setIsValidQuantity] = useState(true)
+  //   const [error, setError] = useState('')
+  //   const [added, setAdded] = useState(false)
+  //   const [addedBuy, setAddedBuy] = useState(false)
+  //   const [addProduct, setAddProduct] = useState({
+  //     id: idProduct,
+  //     quantity: 1,
+  //     name: product.name,
+  //     image: product.image,
+  //     price: product.price,
+  //     stock: product.stock
+  //   })
+  // Cantidad de productos que se llevan:
+  const [numberOfItems, setNumberOfItems] = useState(1)
+  // Número de contacto:
+  const [showNumber, setShowNumber] = useState(false)
+  // DEV MODE:
+  // const [productMock, setProductMock] = useState({});
 
-    // GLOBAL STATES:
-    const loggedUser = useSelector((state) => state.user);
-    const product = useSelector((state) => state.detail);
+  // FUNCTIONS:
+  const addFavorite = () => {
+    if (Object.keys(loggedUser).length !== 0) {
+      const data = {
+        idUser: loggedUser.id,
+        idProduct
+      }
 
-
-    // CONSTANTS:
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { idProduct } = useParams();
-    // const cart = useSelector((state) => state.cart);
-    const { addToCart } = useCart();
-
-
-    // LOCAL STATES:
-    const [isValidQuantity, setIsValidQuantity] = useState(true);
-    const [error, setError] = useState('');
-    const [added, setAdded] = useState(false);
-    const [addedBuy, setAddedBuy] = useState(false);
-    const [addProduct, setAddProduct] = useState({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock
-    });
-    // Cantidad de productos que se llevan:
-    const [numberOfItems, setNumberOfItems] = useState(1);
-    // Número de contacto:
-    const [showNumber, setShowNumber] = useState(false);
-    // DEV MODE:
-    // const [productMock, setProductMock] = useState({});
-
-
-    // FUNCTIONS:
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-        const parsedValue = Number(value);
-
-        if (value === '' || isNaN(parsedValue) || parsedValue < 1) {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: ''
-            }));
-            setError('Ingrese una cantidad válida');
-            setIsValidQuantity(false);
-        } else if (parsedValue > product.stock) {
-            setError('Stock no disponible');
-            setIsValidQuantity(false);
-        } else {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: parsedValue
-            }));
-            setError('');
-            setIsValidQuantity(true);
-        };
-    };
-
-    const addFavorite = () => {
-        if (Object.keys(loggedUser).length !== 0) {
-            const data = {
-                idUser: loggedUser.id,
-                idProduct
-            };
-
-            dispatch(postFavorites(data))
-                .then((response) => {
-                    if (response === 'existe') {
-                        Swal.fire('Ya exite este producto en favoritos');
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Producto agregado a favoritos',
-                            timer: 2000,
-                            showConfirmButton: false
-                        });
-                    };
-                })
-                .catch((error) => {
-                    console.log('error productCart', error);
-                });
-        } else {
+      dispatch(postFavorites(data))
+        .then((response) => {
+          if (response === 'existe') {
+            Swal.fire('Ya exite este producto en favoritos')
+          } else {
             Swal.fire({
-                icon: 'info',
-                title: 'Debes estar logueado para agregar favoritos'
-            });
-        };
-    };
-
-    const shopCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            setAddedBuy(true);
-        };
-    };
-
-    const handleAddToCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity
+              icon: 'success',
+              title: 'Producto agregado a favoritos',
+              timer: 2000,
+              showConfirmButton: false
             })
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            })
+          };
+        })
+        .catch((error) => {
+          console.log('error productCart', error)
+        })
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Debes estar logueado para agregar favoritos'
+      })
+    };
+  }
 
-            setAdded(true)
-        } else {
-            Swal.fire('Ingrese una cantidad válida')
-        };
+  // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
+  function formatNumberWithDots (number) {
+    // Convierte el número a una string.
+    let numStr = number.toString()
+
+    // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
+    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+    return numStr
+  };
+
+  // Controlar el <input> conectado al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberOfItems = (event) => {
+    if (product.stock !== 0) {
+      const { value } = event.target
+      if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
+        setNumberOfItems(value)
+      };
     }
+  }
 
-    // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
-    function formatNumberWithDots(number) {
-        // Convierte el número a una string.
-        let numStr = number.toString();
+  // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberChange = (parameter) => {
+    if (product.stock !== 0) {
+      if (parameter === 'add' && numberOfItems < product.stock) {
+        setNumberOfItems((prev) => prev + 1)
+      } else if (parameter === 'remove' && numberOfItems > 1) {
+        setNumberOfItems((prev) => prev - 1)
+      };
+    }
+  }
 
-        // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
-        numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  // Se basa en el rating del producto para renderizar las estrellas.
+  const renderStars = (value) => {
+    const max = 5
+    const percentage = Math.round((value / max) * 100)
 
-        return numStr;
-    };
-
-    // Controlar el <input> conectado al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberOfItems = (event) => {
-        if (product.stock !== 0) {
-            const { value } = event.target;
-            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-                setNumberOfItems(value);
-            };
-        } else return;
-    };
-
-    // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberChange = (parameter) => {
-        if (product.stock !== 0) {
-            if (parameter === "add" && numberOfItems < product.stock) {
-                setNumberOfItems((prev) => prev + 1);
-            } else if (parameter === "remove" && numberOfItems > 1) {
-                setNumberOfItems((prev) => prev - 1);
-            };
-        } else return;
-    };
-
-
-    // Se basa en el rating del producto para renderizar las estrellas.
-    const renderStars = (value) => {
-        const max = 5;
-        const percentage = Math.round((value / max) * 100);
-
-        return (
-            <div className="relative flex items-center gap-1 mr-2 fill-orange">
-                {
-                    Array.from(Array(max).keys()).map((_, idx) => (
-                        <Star key={idx} />
-                    ))
-                }
-                <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
-            </div>
-        );
-    };
-
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        if (added) {
-            dispatch(setCart(addProduct));
-            Swal.fire('Producto agregado al carrito');
-            console.log('addProduct', addProduct);
-            setAdded(false);
-        };
-        if (addedBuy) {
-            dispatch(setCart(addProduct));
-            setAddedBuy(false);
-            navigate('/cart');
-        };
-    }, [added, addedBuy]);
-
-    // PRODUCTION:
-    useEffect(() => {
-        dispatch(productById(idProduct));
-        dispatch(getBestSellers());
-        dispatch(cleanProductDetail());
-        if (product.stock === 0) {
-            setNumberOfItems(0)
-        }
-        console.log(product)
-    }, [dispatch, idProduct]);
-
-    // DEV MODE: Solo para evitar peticiones al servidor.
-    // useEffect(() => {
-    //     // console.log(product);
-    //     // localStorage.setItem("productMock", JSON.stringify(product));
-    //     const product = localStorage.getItem("productMock");
-    //     setProductMock(JSON.parse(product));
-    // }, []);
-
-
-    // Setea el elemento <title> del <head> del documento HTML.
-    useEffect(() => {
-        product.name ? (
-            document.title = `${product.name}`
-        ) : (
-            document.title = 'Ide Pinturerias'
-        );
-        return () => {
-            document.title = 'Ide Pinturerias';
-        };
-    }, [idProduct, product]);
-
-
-
-    // COMPONENT:
     return (
+      <div className="relative flex items-center gap-1 mr-2 fill-orange">
+        {
+          Array.from(Array(max).keys()).map((_, idx) => (
+            <Star key={idx} />
+          ))
+        }
+        <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
+      </div>
+    )
+  }
+
+  // LIFE CYCLES:
+  //   useEffect(() => {
+  //     if (added) {
+  //       dispatch(setCart(addProduct))
+  //       Swal.fire('Producto agregado al carrito')
+  //       console.log('addProduct', addProduct)
+  //       setAdded(false)
+  //     };
+  //     if (addedBuy) {
+  //       dispatch(setCart(addProduct))
+  //       setAddedBuy(false)
+  //       navigate('/cart')
+  //     };
+  //   }, [added, addedBuy])
+
+  // PRODUCTION:
+  useEffect(() => {
+    dispatch(productById(idProduct))
+    dispatch(getBestSellers())
+    dispatch(cleanProductDetail())
+    if (product.stock === 0) {
+      setNumberOfItems(0)
+    }
+    console.log(product)
+  }, [dispatch, idProduct])
+
+  // DEV MODE: Solo para evitar peticiones al servidor.
+  // useEffect(() => {
+  //     // console.log(product);
+  //     // localStorage.setItem("productMock", JSON.stringify(product));
+  //     const product = localStorage.getItem("productMock");
+  //     setProductMock(JSON.parse(product));
+  // }, []);
+
+  // Setea el elemento <title> del <head> del documento HTML.
+  useEffect(() => {
+    product.name
+      ? (
+          document.title = `${product.name}`
+        )
+      : (
+          document.title = 'Ide Pinturerias'
+        )
+    return () => {
+      document.title = 'Ide Pinturerias'
+    }
+  }, [idProduct, product])
+
+  // COMPONENT:
+  return (
         <main className="flex flex-col justify-center p-whiteSpaceTop bg-softWhite">
             {
-                Object.keys(product).length === 0 ? (
-                    <img
+                Object.keys(product).length === 0
+                  ? (<img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                         alt="cargando"
                         className="w-94 h-94 "
-                    />
-                ) : (
-                    <div className="flex flex-col gap-12 max-w-[1920px] w-full px-[3.5%]">
+                    />)
+                  : (<div className="flex flex-col gap-12 max-w-[1920px] w-full px-[3.5%]">
                         {/* BREADCRUMB */}
                         <div className="text-xs">
                             <NavLink to="/" className="mr-4">Home</NavLink>
@@ -299,7 +213,9 @@ function Detail() {
                                         <h1 className="mt-2 text-3xl font-bold uppercase">{product.name}</h1>
                                         <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{product.patent}</u></a>
                                     </div>
-                                    <Bookmark />
+                                    <button className="flex outline-0 border-none bg-transparent h-fit" onClick={addFavorite}>
+                                      <Bookmark />
+                                    </button>
                                 </div>
                                 <div className="flex justify-between">
                                     <div className="w-[60%]">
@@ -310,12 +226,12 @@ function Detail() {
                                             <span className="mr-4 leading-none font-bold">{product.rating}</span>
                                             <span className="text-primary underline cursor-pointer">
                                                 {
-                                                    true ? (
-                                                        // "renderizar verdadera cantidad de reseñas"
-                                                        "1234 reseñas"
-                                                    ) : (
-                                                        "Deja la primera reseña"
-                                                    )
+                                                    product.nroReviews > 0
+                                                      ? (
+                                                          // "renderizar verdadera cantidad de reseñas"
+                                                          product.nroReviews
+                                                        )
+                                                      : null
                                                 }
                                             </span>
                                         </div>
@@ -341,16 +257,18 @@ function Detail() {
                                         <div className="my-2">Estamos para ayudar</div>
                                         <div className="flex gap-2">
                                             <button
-                                                className={"flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase " + (showNumber && "cursor-default select-text")}
+                                                className={'flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase ' + (showNumber && 'cursor-default select-text')}
                                                 onClick={() => showNumber === false && setShowNumber(true)}
                                             >
                                                 <Phone />
                                                 {
-                                                    !showNumber ? (
-                                                        "Llámanos"
-                                                    ) : (
-                                                        "+54 351 306 135"
-                                                    )
+                                                    !showNumber
+                                                      ? (
+                                                          'Llámanos'
+                                                        )
+                                                      : (
+                                                          '+54 351 306 135'
+                                                        )
                                                 }
                                             </button>
                                             <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase">
@@ -364,7 +282,7 @@ function Detail() {
                                     <div className="flex flex-col items-center w-[40%]">
                                         <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
                                         <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
-                                            <button className="p-3" onClick={() => handleNumberChange("remove")}><Minus /></button>
+                                            <button className="p-3" onClick={() => handleNumberChange('remove')}><Minus /></button>
                                             <input
                                                 value={numberOfItems}
                                                 onChange={(e) => handleNumberOfItems(e)}
@@ -375,43 +293,49 @@ function Detail() {
                                                 min={0} max={product.stock}
                                                 className="bg-transparent text-center w-14 p-3"
                                             />
-                                            <button className="p-3" onClick={() => handleNumberChange("add")}><Plus /></button>
+                                            <button className="p-3" onClick={() => handleNumberChange('add')}><Plus /></button>
                                         </div>
                                         {
-                                            product.stock < 50 ? (
-                                                <div className={"mb-4 text-sm " + (product.stock === 0 && "text-red-600")}>
+                                            product.stock < 50
+                                              ? (
+                                                <div className={'mb-4 text-sm ' + (product.stock === 0 && 'text-red-600')}>
                                                     {
-                                                        product.stock === 0 ? (
-                                                            "No quedan unidades de este producto"
-                                                        ) : product.stock === 1 ? (
-                                                            "¡Queda solo 1 unidad!"
-                                                        ) : (
+                                                        product.stock === 0
+                                                          ? (
+                                                              'No quedan unidades de este producto'
+                                                            )
+                                                          : product.stock === 1
+                                                            ? (
+                                                                '¡Queda solo 1 unidad!'
+                                                              )
+                                                            : (
                                                             `¡Quedan solo ${product.stock} unidades!`
-                                                        )
+                                                              )
                                                     }
                                                 </div>
-                                            ) : null
+                                                )
+                                              : null
                                         }
                                         {
-                                            product.stock !== 0 ? (
+                                            product.stock !== 0
+                                              ? (
                                                 <>
                                                     <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
                                                     <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
                                                 </>
-                                            ) : (
-                                                null
-                                            )
+                                                )
+                                              : (
+                                                  null
+                                                )
                                         }
                                     </div>
                                 </div>
                             </section>
                         </div>
-                    </div>
-                )
+                    </div>)
             }
         </main>
-    );
+  )
 };
-
 
 export default Detail

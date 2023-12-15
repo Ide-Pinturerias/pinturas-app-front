@@ -9,15 +9,23 @@ export const deleteProductCart = (user, products, idProduct) => {
 
       // Actualizo local storage
       localStorage.setItem('productsLocal', JSON.stringify(productsUpdated))
-      if (!user) return productsUpdated
+      if (Object.keys(user).length === 0) {
+        Swal.fire({
+          title: 'EXITO!',
+          text: 'Producto eliminado del carrito',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+        return productsUpdated
+      }
 
-      // actualizo DB
+      // Si hay usuario actualizo DB
       const cart = (await axios.put(`${BASE_URL}carts`, {
         idUser: user.id,
         products: JSON.stringify(productsUpdated)
       })).data
 
-      // Actualizo Redux
+      // Y actualizo Redux
       dispatch({ type: DELETE_PRODUCT_CART, payload: cart })
       Swal.fire({
         title: 'EXITO!',

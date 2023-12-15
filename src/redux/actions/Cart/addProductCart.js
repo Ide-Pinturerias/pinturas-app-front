@@ -2,19 +2,30 @@ import Swal from 'sweetalert2'
 import { ADD_PRODUCT_CART, BASE_URL } from '../../action-type'
 import axios from 'axios'
 
-export const addProductCart = (idUser, products, addProduct) => {
+export const addProductCart = (idUser, products, productToAdd) => {
   return async (dispatch) => {
     try {
-      products.push(addProduct)
-      // actualizo local storage
+      products.push(productToAdd)
+
+      // Actualizo local storage
       localStorage.setItem('productsLocal', JSON.stringify(products))
-      if (!idUser) return products
-      // actualizo db
+      if (!idUser) {
+        Swal.fire({
+          title: 'EXITO!',
+          text: 'Producto agregado al carrito',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
+        return products
+      }
+
+      // Si hay usuario actualizo db
       const cart = (await axios.put(`${BASE_URL}carts`, {
         idUser,
         products: JSON.stringify(products)
       })).data
-      // actualizo redux
+
+      // Y actualizo redux
       dispatch({ type: ADD_PRODUCT_CART, payload: cart })
       Swal.fire({
         title: 'EXITO!',

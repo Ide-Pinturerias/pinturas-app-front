@@ -1,60 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import DeleteButton from '@components/DeleteButton/DeleteButton'
-import UpdateButton from '@components/UpdateButton/UpdateButton'
+import { useEffect, useState } from 'react'
+import { useParams, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
 import { productById } from '@redux/actions/Products/productById'
-import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { bestSellers } from '@redux/actions/Products/bestSellers'
-import Swal from 'sweetalert2'
+import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
-import { addProductCart } from '../../redux/actions/Cart/addProductCart'
+import { addProductCart } from '@redux/actions/Cart/addProductCart'
+import Swal from 'sweetalert2'
+import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
 
-const Detail = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { idProduct } = useParams()
-
-  // ESTADOS GLOBALES
+function Detail () {
+  // GLOBAL STATES:
   const loggedUser = useSelector((state) => state.user)
+  console.log(loggedUser)
   const product = useSelector((state) => state.detail)
 
-  // ESTADOS LOCALES
-  const [isValidQuantity, setIsValidQuantity] = useState(true)
-  const [error, setError] = useState('')
-  const [inCart, setInCart] = useState(false)
-  const [addProduct, setAddProduct] = useState({
-    id: idProduct,
-    quantity: 1
-  })
+  // CONSTANTS:
+  const dispatch = useDispatch()
+  //   const navigate = useNavigate()
+  const { idProduct } = useParams()
+  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
-  const productsCart = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+  // LOCAL STATES:
+  // Cantidad de productos que se llevan:
+  const [numberOfItems, setNumberOfItems] = useState(1)
+  // Número de contacto:
+  const [showNumber, setShowNumber] = useState(false)
 
-  const handleInputChange = (event) => {
-    const { value } = event.target
-    const parsedValue = Number(value)
-
-    if (value === '' || isNaN(parsedValue) || parsedValue < 1) {
-      setAddProduct((prevProduct) => ({
-        ...prevProduct,
-        quantity: ''
-      }))
-      setError('Ingrese una cantidad válida')
-      setIsValidQuantity(false)
-    } else if (parsedValue > product.stock) {
-      setError('Stock no disponible')
-      setIsValidQuantity(false)
-    } else {
-      setAddProduct((prevProduct) => ({
-        ...prevProduct,
-        quantity: parsedValue
-      }))
-      setError('')
-      setIsValidQuantity(true)
-    }
-  }
-
+  // FUNCTIONS:
   const addFavorite = () => {
     if (Object.keys(loggedUser).length !== 0) {
       const data = {
@@ -73,7 +46,7 @@ const Detail = () => {
               timer: 2000,
               showConfirmButton: false
             })
-          }
+          };
         })
         .catch((error) => {
           console.log('error productCart', error)
@@ -83,260 +56,250 @@ const Detail = () => {
         icon: 'info',
         title: 'Debes estar logueado para agregar favoritos'
       })
+    };
+  }
+
+  // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
+  function formatNumberWithDots (number) {
+    // Convierte el número a una string.
+    let numStr = number.toString()
+
+    // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
+    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+    return numStr
+  };
+
+  // Controlar el <input> conectado al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberOfItems = (event) => {
+    if (product.stock !== 0) {
+      const { value } = event.target
+      if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
+        setNumberOfItems(Number(value))
+      };
     }
   }
 
-  const renderStars = (rating) => {
-    // const MAX_STARS = 5
-    const stars = []
-
-    // Generar estrellas llenas
-    for (let i = 1; i <= rating; i++) {
-      stars.push(
-        <svg
-          key={`star-${i}`}
-          className="mr-0 fill-[gold] w-[1em] h-[1em]"
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z" />
-        </svg>
-      )
+  // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberChange = (parameter) => {
+    if (product.stock !== 0) {
+      if (parameter === 'add' && numberOfItems < product.stock) {
+        setNumberOfItems((prev) => prev + 1)
+      } else if (parameter === 'remove' && numberOfItems > 1) {
+        setNumberOfItems((prev) => prev - 1)
+      };
     }
-    return <div className="inline-flex items-center">{stars}</div>
+  }
+  // Se basa en el rating del producto para renderizar las estrellas.
+  const renderStars = (value) => {
+    const max = 5
+    const percentage = Math.round((value / max) * 100)
+
+    return (
+      <div className="relative flex items-center gap-1 mr-2 fill-orange">
+        {
+          Array.from(Array(max).keys()).map((_, idx) => (
+            <Star key={idx} />
+          ))
+        }
+        <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
+      </div>
+    )
   }
 
   useEffect(() => {
     dispatch(productById(idProduct))
-    dispatch(bestSellers())
+    dispatch(getBestSellers())
     dispatch(cleanProductDetail())
+    if (product.stock === 0) {
+      setNumberOfItems(0)
+    }
   }, [dispatch, idProduct])
 
+  // Setea el elemento <title> del <head> del documento HTML.
+  useEffect(() => {
+    product.name
+      ? (
+          document.title = `${product.name}`
+        )
+      : (
+          document.title = 'Ide Pinturerias'
+        )
+    return () => {
+      document.title = 'Ide Pinturerias'
+    }
+  }, [idProduct])
+
+  // COMPONENT:
   return (
-      <section className="flex items-center justify-center">
-        {Object.keys(product).length === 0
-          ? <img
-          src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
-          alt="loading"
-          className="w-94 h-94 "
-          />
-          : <section>
-        <div className="container mx-auto px-4">
-          <div className="flex">
-            <ol role="list" className="flex items-center">
-              <li className="text-left">
-                <div className="-m-1">
-                  <a
-                    href="/"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                  >
-                    {' '}
-                    Inicio{' '}
-                  </a>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                    >
-                      {' '}
-                      Productos{' '}
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                      aria-current="page"
-                    >
-                      {product?.category}
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <div className="lg:col-gap-12 mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:mt-12 lg:grid-cols-2 lg:gap-10 xl:col-gap-16">
-            <div className="lg:col-span-3 lg:row-end-1">
-              <div className="lg:flex lg:items-start">
-                <div className="lg:order-2 lg:ml-5">
-                  <div className="max-w-xl overflow-hidden rounded-lg">
-                     <img
-                        className="w-full h-80 max-w-full object-cover"
-                        src={product?.image}
-                        alt={product?.name}
-                      />
+        <main className="flex flex-col justify-center p-whiteSpaceTop bg-softWhite">
+            {
+                Object.keys(product).length === 0
+                  ? (<img
+                        src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
+                        alt="cargando"
+                        className="w-94 h-94 "
+                    />)
+                  : (<div className="flex flex-col gap-12 max-w-[1920px] w-full px-[3.5%]">
+                        {/* BREADCRUMB */}
+                        <div className="text-xs">
+                            <NavLink to="/" className="mr-4">Home</NavLink>
+                            /
+                            <NavLink to="/products" className="mx-4">productos</NavLink>
+                            /
+                            <span className="mx-4">{product.name}</span>
+                        </div>
+                        {/* END OF BREADCRUMB */}
+                        <div className="flex justify-between gap-8 w-full">
+                            <section>
+                                <img src={product.image} className="w-[300px] rounded-[1rem] font-black select-none" />
+                            </section>
 
-                  </div>
-                </div>
-                <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0"></div>
-              </div>
-            </div>
-            <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
-              <p
-                className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:text-red-500"
-                onClick={addFavorite}
-              >
-                {' '}
-                Agregar a Favoritos 🤍
-              </p>
-              <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-                {product?.name}
-              </h1>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Marca: {'  '}
-                {product?.patent}
-              </p>
-              <div className="mt-5 flex items-center">
-                <div className="flex items-center mt-2">
-                  <div className="rating-stars flex mr-3">
-                    {renderStars(product?.rating)}
-                  </div>
-                </div>
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
-                  {product?.rating}
-                </span>
-              </div>
-              {/* <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                3 Reviews
-              </p> */}
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Presentación: {'  '}
-                {product?.package}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Color: {'  '}
-                {product?.color}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Stock disponible: {'  '}
-                {product?.stock}
-              </p>
-              <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="quantity"
-                    className=" mt-2 ml-2 text-sm font-medium text-gray-500"
-                  >
-                    Cantidad
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="cantidad"
-                    name="quantity"
-                    value={addProduct.quantity}
-                    onChange={handleInputChange}
-                    className=" flex items-center justify-center p-2 my-2 h-11 w-24 rounded border-indigo-800 border-solid border-2"
-                  />
-                </div>
-                <div className="w-20 h-14 flex items-center justify-center">
-                  {error && (
-                    <p className="text-sm font-semibold text-red-800">
-                      {' '}
-                      {error}{' '}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="mt-10 flex flex-col grid-cols-2 gap-2 items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
-                <div className="flex items-end">
-                  <h1 className="text-3xl font-bold">$ {product?.price}</h1>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+                            <section className="flex flex-col border-black w-[calc(100%-300px)]">
+                                <div className="flex justify-between">
+                                    <div className="flex flex-col mb-4">
+                                        {/* CATEGORY LABEL OPTION 1: */}
+                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]">{product.category}</a>
+                                        {/* CATEGORY LABEL OPTION 2: */}
+                                        {/* <a className="relative z-0 w-fit px-[2%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm tracking-[2px]">{productMock.category}</a> */}
+                                        <h1 className="mt-2 text-3xl font-bold uppercase">{product.name}</h1>
+                                        <a className="text-lg">Ver más productos de <u className="text-primary uppercase cursor-pointer">{product.patent}</u></a>
+                                    </div>
+                                    <button className="flex outline-0 border-none bg-transparent h-fit" onClick={addFavorite}>
+                                      <Bookmark />
+                                    </button>
+                                </div>
+                                <div className="flex justify-between">
+                                    <div className="w-[60%]">
+                                        <div className="flex items-center">
+                                            {
+                                                renderStars(product.rating)
+                                            }
+                                            <span className="mr-4 leading-none font-bold">{product.rating}</span>
+                                            <span className="text-primary underline cursor-pointer">
+                                                {
+                                                    product.nroReviews > 0
+                                                      ? (
+                                                          // "renderizar verdadera cantidad de reseñas"
+                                                          product.nroReviews
+                                                        )
+                                                      : null
+                                                }
+                                            </span>
+                                        </div>
+                                        <hr className="my-4 mt-5 border-orange" />
+                                        <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
+                                        <div className="p-4 bg-complementaryWhite text-black rounded-[1rem]">
+                                            <ul className="text-lg">
+                                                <li>Tamaño del envase: {product.package}</li>
+                                                <li>Color: {product.color}</li>
+                                                <li><u className="text-primary cursor-pointer">Ver más</u></li>
+                                            </ul>
+                                        </div>
+                                        <div className="flex flex-col justify-between mt-2">
+                                            <div className="flex items-center gap-2 w-fit mb-2 p-4 rounded-[1rem] bg-complementaryWhite">
+                                                <Shop />
+                                                Disponible en tienda
+                                            </div>
+                                        </div>
 
-                  {product.stock > 0
-                    ? (<div className="grid grid-cols-2 gap-4">
-                      {console.log('product.stock', product.stock)}
-                      <button
-                        type="button"
-                        disabled={!isValidQuantity || inCart}
-                        className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
-                          isValidQuantity
-                            ? 'hover:bg-purple-200'
-                            : 'cursor-not-allowed'
-                        }`}
-                        onClick={() => {
-                          dispatch(addProductCart(loggedUser.id, productsCart, addProduct))
-                          setInCart(true)
-                        } }
-                        >
-                        Agregar al carrito
-                      </button>
-                      <button
-                        type="button"
-                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${
-                          isValidQuantity
-                            ? 'hover:bg-gray-800'
-                            : 'cursor-not-allowed'
-                        }`}
-                        onClick={Object.keys(loggedUser).length !== 0
-                          ? <></>
-                          : () => { navigate('/login') }}
-                        disabled={!isValidQuantity}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="shrink-0 mr-3 h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                          />
-                        </svg>
-                        Comprar
-                      </button>
-                    </div>
-                      )
-                    : (<p> Producto sin Stock </p>)}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-3">
-            <div className="border-b border-gray-300">
-              <h3
-                title=""
-                className=" py-4 text-sm font-medium text-gray-900"
-              >
-                Descripcion del Producto
-              </h3>
-            </div>
-          </div>
-          <div className="mt-4 mb-4 flow-root sm:mt-4">
-            <p className="mt-2 mb-2">{product?.description}</p>
-          </div>
-          {/* RENDERIZADO CONDICIONAL BOTONES ADMIN */
-            (loggedUser.rol === 'admin')
-              ? <div className="flex justify-end">
-                  <DeleteButton idProduct={idProduct} />
-                  <UpdateButton idProduct={idProduct} />
-                </div>
-              : <></>
-          }
-        </div>
-        <div>
-          <FeaturedContainer />
-        </div>
-        </section>
-        }
-      </section>
+                                        <hr className="my-4 border-focusedWhite" />
+
+                                        <h3 className="text-lg font-bold uppercase mb-2">¿Tienes alguna duda?</h3>
+                                        <div className="my-2">Estamos para ayudar</div>
+                                        <div className="flex gap-2">
+                                            <button
+                                                className={'flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase ' + (showNumber && 'cursor-default select-text')}
+                                                onClick={() => showNumber === false && setShowNumber(true)}
+                                            >
+                                                <Phone />
+                                                {
+                                                    !showNumber
+                                                      ? (
+                                                          'Llámanos'
+                                                        )
+                                                      : (
+                                                          '+54 351 306 135'
+                                                        )
+                                                }
+                                            </button>
+                                            <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase">
+                                                <ChatEmpty />
+                                                Chatea
+                                            </button>
+                                        </div>
+
+                                        <hr className="my-4 border-orange" />
+                                    </div>
+                                    <div className="flex flex-col items-center w-[40%]">
+                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
+                                        <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
+                                            <button className="p-3" onClick={() => handleNumberChange('remove')}><Minus /></button>
+                                            <input
+                                                value={numberOfItems}
+                                                onChange={(e) => handleNumberOfItems(e)}
+                                                type="text"
+                                                inputMode="numeric"
+                                                maxLength={4}
+                                                step={1}
+                                                min={0} max={product.stock}
+                                                className="bg-transparent text-center w-14 p-3"
+                                            />
+                                            <button className="p-3" onClick={() => handleNumberChange('add')}><Plus /></button>
+                                        </div>
+                                        {
+                                            product.stock < 50
+                                              ? (
+                                                <div className={'mb-4 text-sm ' + (product.stock === 0 && 'text-red-600')}>
+                                                    {
+                                                        product.stock === 0
+                                                          ? (
+                                                              'No quedan unidades de este producto'
+                                                            )
+                                                          : product.stock === 1
+                                                            ? (
+                                                                '¡Queda solo 1 unidad!'
+                                                              )
+                                                            : (
+                                                            `¡Quedan solo ${product.stock} unidades!`
+                                                              )
+                                                    }
+                                                </div>
+                                                )
+                                              : null
+                                        }
+                                        {
+                                            product.stock !== 0
+                                              ? (
+                                                <>
+                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
+                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
+                                                    onClick={
+                                                      () => {
+                                                        const productToAdd = { id: idProduct, quantity: numberOfItems }
+
+                                                        dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+                                                      }
+
+                                                    }
+                                                    >Agregar al carro</button>
+                                                </>
+                                                )
+                                              : (
+                                                  null
+                                                )
+                                        }
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>)
+            }
+        </main>
+
   )
-}
+};
 
 export default Detail

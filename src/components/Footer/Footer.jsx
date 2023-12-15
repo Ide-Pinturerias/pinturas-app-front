@@ -19,68 +19,68 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="w-full flex flex-col items-center bg-primary">
-      <div className="w-full flex items-center justify-evenly">
-        <div className="hidden sm:block">
-          <NavLink to="/">
-            <img
-              src={logo}
-              alt="logo Ide Pinturerias"
-              className="w-40 cursor-pointer"
-            />
-          </NavLink>
-        </div>
-        <div className="flex flex-col md:flex-row items-center">
-          <ul className="flex items-center p-5">
-            {
-              SOCIAL_MEDIA.map((item, idx) => (
-                <li key={idx}>
-                  <a
-                    href={item.link}
-                    className="w-8 h-8 mx-2 flex items-center justify-center bg-white bg-opacity-20 rounded-md cursor-pointer"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <item.icon />
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-
-          <nav>
-            <ul className="flex items-center p-5">
-              {
-                NAV_LINKS.map((item, idx) => (
-                  <li key={idx}>
-                    <NavLink
-                      to={item.link}
-                      className="font-sans mx-2 text-white cursor-pointer uppercase"
-                    >
-                      {item.text}
+        <footer className="w-full flex flex-col items-center bg-primary">
+            <div className="w-full flex items-center justify-evenly">
+                <div className="hidden sm:block">
+                    <NavLink to="/">
+                        <img
+                            src={logo}
+                            alt="logo Ide Pinturerias"
+                            className="w-40 cursor-pointer"
+                        />
                     </NavLink>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
-        </div>
+                </div>
+                <div className="flex flex-col md:flex-row items-center">
+                    <ul className="flex items-center p-5">
+                        {
+                            SOCIAL_MEDIA.map((item, idx) => (
+                                <li key={idx}>
+                                    <a
+                                        href={item.link}
+                                        className="w-8 h-8 mx-2 flex items-center justify-center fill-black bg-white bg-opacity-20 rounded-md cursor-pointer"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <item.icon />
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
 
-        <div className="hidden sm:block">
-          <img src={mercadopago} alt="logo Mercado Pago" className="w-24" />
-        </div>
-      </div>
+                    <nav>
+                        <ul className="flex items-center p-5">
+                            {
+                                NAV_LINKS.map((item, idx) => (
+                                    <li key={idx}>
+                                        <NavLink
+                                            to={item.link}
+                                            className="font-sans mx-2 text-white cursor-pointer uppercase"
+                                        >
+                                            {item.text}
+                                        </NavLink>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </nav>
+                </div>
 
-      <p className="font-sans text-white mb-6">
-        ©Copyright 2023. Todos los derechos reservados a&nbsp;
-        <NavLink
-          to="/developers"
-          className="font-sans font-bold text-white cursor-pointer"
-        >
-          Work Team Developers
-        </NavLink>
-      </p>
-    </footer>
+                <div className="hidden sm:block">
+                    <img src={mercadopago} alt="logo Mercado Pago" className="w-24" />
+                </div>
+            </div>
+
+            <p className="font-sans text-white mb-6">
+                ©Copyright 2023. Todos los derechos reservados a&nbsp;
+                <NavLink
+                    to="/developers"
+                    className="font-sans font-bold text-white cursor-pointer"
+                >
+                    Work Team Developers
+                </NavLink>
+            </p>
+        </footer>
   )
 }
 

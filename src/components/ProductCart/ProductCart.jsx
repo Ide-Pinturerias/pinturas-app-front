@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const dispatch = useDispatch()
-  const user = useSelector(state => state.user) || null
+  const user = useSelector(state => state.user)
   const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
   return (

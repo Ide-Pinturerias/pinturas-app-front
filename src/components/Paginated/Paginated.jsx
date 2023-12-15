@@ -66,7 +66,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
               className={`flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white transform transition-transform hover:scale-110 ${
                 thisPage === 1 ? 'cursor-not-allowed' : 'hover:bg-gray-100'
               }`}
-              onClick={() => pageChange(thisPage - 1)}
+              onClick={() => { pageChange(thisPage - 1); console.log('no deberia funcionar!') }}
               disabled={thisPage === 1}
             >
               Previous

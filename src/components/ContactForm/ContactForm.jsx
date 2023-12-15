@@ -163,7 +163,7 @@ const Contact = () => {
                                 </h2>
                             </button>
                         </form>
-                        <div className="ml-6 grow">
+                        {/* <div className="ml-6 grow">
                                         <p className="mb-2 font-bold dark:text-balck">
                                             Dirección:
                                         </p>
@@ -185,7 +185,7 @@ const Contact = () => {
                                         <p className="mb-2 text-neutral-500 dark:text-black-200">
                                         idepintureria@gmail.com
                                         </p>
-                        </div>
+                        </div> */}
                 </div>
             </div>
         </div>

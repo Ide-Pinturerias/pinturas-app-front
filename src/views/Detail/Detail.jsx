@@ -12,12 +12,10 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../compo
 function Detail () {
   // GLOBAL STATES:
   const loggedUser = useSelector((state) => state.user)
-  console.log(loggedUser)
   const product = useSelector((state) => state.detail)
 
   // CONSTANTS:
   const dispatch = useDispatch()
-  //   const navigate = useNavigate()
   const { idProduct } = useParams()
   const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
@@ -26,8 +24,18 @@ function Detail () {
   const [numberOfItems, setNumberOfItems] = useState(1)
   // Número de contacto:
   const [showNumber, setShowNumber] = useState(false)
+  // Estado de producto en carrito
+  const [isInCart, setIsInCart] = useState(false)
 
   // FUNCTIONS:
+
+  // Saber si el producto ya esta en el carrito
+  const isProductInCart = (productsLocal, id) => {
+    const found = productsLocal.some(product => product.id === id)
+    setIsInCart(found)
+    return found
+  }
+
   const addFavorite = () => {
     if (Object.keys(loggedUser).length !== 0) {
       const data = {
@@ -113,6 +121,7 @@ function Detail () {
     dispatch(productById(idProduct))
     dispatch(getBestSellers())
     dispatch(cleanProductDetail())
+    isProductInCart(productsLocal, idProduct)
     if (product.stock === 0) {
       setNumberOfItems(0)
     }
@@ -276,6 +285,7 @@ function Detail () {
                                                 <>
                                                     <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
                                                     <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
+                                                    disabled={isInCart}
                                                     onClick={
                                                       () => {
                                                         const productToAdd = { id: idProduct, quantity: numberOfItems }

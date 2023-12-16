@@ -1,4 +1,4 @@
-import { deleteProductCart } from '../../redux/actions/Cart/deleteProductCart'
+import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { useDispatch, useSelector } from 'react-redux'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {

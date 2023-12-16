@@ -35,7 +35,7 @@ function Detail () {
     setIsInCart(found)
     return found
   }
-
+  // Agregar producto a favoritos
   const addFavorite = () => {
     if (Object.keys(loggedUser).length !== 0) {
       const data = {
@@ -292,7 +292,6 @@ function Detail () {
 
                                                         dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
                                                       }
-
                                                     }
                                                     >Agregar al carro</button>
                                                 </>
@@ -308,7 +307,6 @@ function Detail () {
                     </div>)
             }
         </main>
-
   )
 };
 

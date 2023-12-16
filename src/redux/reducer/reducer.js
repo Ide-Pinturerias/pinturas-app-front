@@ -32,12 +32,10 @@ import {
   SET_PAGE,
 
   // CART
+  FIND_OR_CREATE_CART,
+  ADD_PRODUCT_CART,
+  DELETE_PRODUCT_CART,
   SET_CART,
-  POST_CART,
-  GET_CART_ID,
-  GET_CART,
-  PUT_CART,
-  ADD_CART,
 
   // ORDERS
   GET_ALL_ORDERS,
@@ -81,11 +79,7 @@ import {
 
 const initialState = {
   // CART
-  cart: [],
-  sendCart: {},
-  cartID: '',
-  GET_CART: [],
-
+  cart: {},
   // ORDERS
   allOrders: [],
   newOrder: {},
@@ -206,35 +200,14 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, thisPage: payload }
 
     // CART
-    case SET_CART: {
-      const productoExistente = state.cart.find(item => item.id === payload.id)
-
-      if (productoExistente) {
-        return {
-          ...state,
-          cart: state?.cart?.map(item => item.id === payload.id ? { ...item, quantity: item.quantity + payload.quantity } : item
-          )
-        }
-      } else {
-        return {
-          ...state,
-          cart: [...state.cart, payload]
-        }
-      }
-    }
-    case POST_CART:
-      return { ...state, sendCart: payload }
-    case GET_CART_ID:
-      return { ...state, cartID: payload }
-    case GET_CART:
+    case FIND_OR_CREATE_CART:
       return { ...state, cart: payload }
-    case PUT_CART:
+    case ADD_PRODUCT_CART:
       return { ...state, cart: payload }
-    case ADD_CART:
-      return { ...state, cart: [...state.cart, ...payload] }
-
-    case GET_ALL_ORDERS:
-      return { ...state, allOrders: payload }
+    case DELETE_PRODUCT_CART:
+      return { ...state, cart: payload }
+    case SET_CART:
+      return { ...state, cart: payload }
 
     // NODE MAILER
     case POST_CONTACT_EMAIL:
@@ -245,6 +218,8 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, mail: payload }
 
     // ORDERS
+    case GET_ALL_ORDERS:
+      return { ...state, allOrders: payload }
     case POST_ORDER_PAYMENT:
       return { ...state, initPoint: payload }
     case GET_ORDERS_USER:

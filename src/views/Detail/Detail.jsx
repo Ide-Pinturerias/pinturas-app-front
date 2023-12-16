@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useParams, NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { productById } from '@redux/actions/Products/productById'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
-// import { setCart } from '@redux/actions/Cart/setCart'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
-// import { useCart } from '@hooks/useCart'
-
+import { addProductCart } from '@redux/actions/Cart/addProductCart'
 import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
-// import DeleteButton from '@components/DeleteButton/DeleteButton'
-// import UpdateButton from '@components/UpdateButton/UpdateButton'
-// import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 
 function Detail () {
   // GLOBAL STATES:
@@ -22,32 +16,26 @@ function Detail () {
 
   // CONSTANTS:
   const dispatch = useDispatch()
-  //   const navigate = useNavigate()
   const { idProduct } = useParams()
-  // const cart = useSelector((state) => state.cart);
-  //   const { addToCart } = useCart()
+  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
   // LOCAL STATES:
-  //   const [isValidQuantity, setIsValidQuantity] = useState(true)
-  //   const [error, setError] = useState('')
-  //   const [added, setAdded] = useState(false)
-  //   const [addedBuy, setAddedBuy] = useState(false)
-  //   const [addProduct, setAddProduct] = useState({
-  //     id: idProduct,
-  //     quantity: 1,
-  //     name: product.name,
-  //     image: product.image,
-  //     price: product.price,
-  //     stock: product.stock
-  //   })
   // Cantidad de productos que se llevan:
   const [numberOfItems, setNumberOfItems] = useState(1)
   // Número de contacto:
   const [showNumber, setShowNumber] = useState(false)
-  // DEV MODE:
-  // const [productMock, setProductMock] = useState({});
+  // Estado de producto en carrito
+  const [isInCart, setIsInCart] = useState(false)
 
   // FUNCTIONS:
+
+  // Saber si el producto ya esta en el carrito
+  const isProductInCart = (productsLocal, id) => {
+    const found = productsLocal.some(product => product.id === id)
+    setIsInCart(found)
+    return found
+  }
+  // Agregar producto a favoritos
   const addFavorite = () => {
     if (Object.keys(loggedUser).length !== 0) {
       const data = {
@@ -96,7 +84,7 @@ function Detail () {
     if (product.stock !== 0) {
       const { value } = event.target
       if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-        setNumberOfItems(value)
+        setNumberOfItems(Number(value))
       };
     }
   }
@@ -112,7 +100,6 @@ function Detail () {
       };
     }
   }
-
   // Se basa en el rating del producto para renderizar las estrellas.
   const renderStars = (value) => {
     const max = 5
@@ -130,39 +117,15 @@ function Detail () {
     )
   }
 
-  // LIFE CYCLES:
-  //   useEffect(() => {
-  //     if (added) {
-  //       dispatch(setCart(addProduct))
-  //       Swal.fire('Producto agregado al carrito')
-  //       console.log('addProduct', addProduct)
-  //       setAdded(false)
-  //     };
-  //     if (addedBuy) {
-  //       dispatch(setCart(addProduct))
-  //       setAddedBuy(false)
-  //       navigate('/cart')
-  //     };
-  //   }, [added, addedBuy])
-
-  // PRODUCTION:
   useEffect(() => {
     dispatch(productById(idProduct))
     dispatch(getBestSellers())
     dispatch(cleanProductDetail())
+    isProductInCart(productsLocal, idProduct)
     if (product.stock === 0) {
       setNumberOfItems(0)
     }
-    console.log(product)
   }, [dispatch, idProduct])
-
-  // DEV MODE: Solo para evitar peticiones al servidor.
-  // useEffect(() => {
-  //     // console.log(product);
-  //     // localStorage.setItem("productMock", JSON.stringify(product));
-  //     const product = localStorage.getItem("productMock");
-  //     setProductMock(JSON.parse(product));
-  // }, []);
 
   // Setea el elemento <title> del <head> del documento HTML.
   useEffect(() => {
@@ -176,7 +139,7 @@ function Detail () {
     return () => {
       document.title = 'Ide Pinturerias'
     }
-  }, [idProduct, product])
+  }, [idProduct])
 
   // COMPONENT:
   return (
@@ -321,7 +284,16 @@ function Detail () {
                                               ? (
                                                 <>
                                                     <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
+                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
+                                                    disabled={isInCart}
+                                                    onClick={
+                                                      () => {
+                                                        const productToAdd = { id: idProduct, quantity: numberOfItems }
+
+                                                        dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+                                                      }
+                                                    }
+                                                    >Agregar al carro</button>
                                                 </>
                                                 )
                                               : (

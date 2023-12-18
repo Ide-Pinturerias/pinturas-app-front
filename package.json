@@ -24,7 +24,7 @@
     "redux-thunk": "^2.4.2",
     "sass": "^1.68.0",
     "styled-components": "^6.0.8",
-    "sweetalert2": "^11.7.28",
+    "sweetalert2": "^11.10.1",
     "tailwindscss": "^0.3.0"
   },
   "devDependencies": {

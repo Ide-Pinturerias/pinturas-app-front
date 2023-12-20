@@ -36,12 +36,12 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ## Testing Status (Estado de las Pruebas)
 
-[![eslint-check](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml)
-
+[![Clean Install and Lint](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml)
+[![CodeQL](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql)
 
 ---
 
-# STRUCTURE
+## Project Structure (Estructura del Proyecto)
 
 ```
 src
@@ -61,7 +61,7 @@ src
 |--|--CategoryContainer
 |--|--|--CategoryContainer.jsx
 
-|--|--FeaturedProContainer  --> TopSellers 
+|--|--FeaturedProContainer  --> TopSellers
 |--|--|--FeaturedContainer.jsx
 
 -

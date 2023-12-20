@@ -28,7 +28,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
-    "daisyui": "^3.7.7",
+    "daisyui": "^4.4.21",
     "dotenv": "^16.3.1",
     "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
@@ -37,9 +37,9 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.2",
     "postcss": "^8.4.32",
-    "tailwindcss": "^3.3.7",
+    "tailwindcss": "^3.4.0",
     "tailwindcss-debug-screens": "^2.2.1",
-    "vite": "^4.5.1",
+    "vite": "^5.0.10",
     "vite-plugin-eslint": "^1.8.1"
   },
   "peerDependencies": {

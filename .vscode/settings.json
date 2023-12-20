@@ -2,5 +2,8 @@
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-}
+  },
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, pnpm-lock.yaml, postcss.config.*, tailwind.config.*, vercel.json, vite.config.*, .eslintrc.json"
+  }
 }

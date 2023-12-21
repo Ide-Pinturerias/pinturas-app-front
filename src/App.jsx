@@ -33,7 +33,7 @@ import BlogCreate from './views/Blog/BlogCreate'
 import EditBlog from './views/Blog/EditBlog'
 import BlogDetail from './views/Blog/BlogDetail'
 import UserOrderDetail from './views/UserOrderDetail/UserOrderDetail'
-import ChatBotApp from './components/ChatBot/ChatBotApp'
+// import ChatBotApp from './components/ChatBot/ChatBotApp'
 import { addCart } from './redux/actions/Cart/addCart'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
@@ -122,7 +122,7 @@ function App () {
           {/* </footer> */}
         </div>
       </BrowserRouter>
-      <ChatBotApp />
+      {/* <ChatBotApp /> */}
     </div>
   )
 }

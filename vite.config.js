@@ -27,7 +27,8 @@ export default defineConfig(({ mode }) => {
         '@redux': path.resolve(__dirname, './src/redux'),
         '@img': path.resolve(__dirname, './src/img'),
         '@assets': path.resolve(__dirname, './src/assets'),
-        '@hooks': path.resolve(__dirname, './src/hooks')
+        '@hooks': path.resolve(__dirname, './src/hooks'),
+        '@api': path.resolve(__dirname, './src/services/api')
       }
     }
   }

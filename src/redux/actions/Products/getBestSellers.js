@@ -1,12 +1,14 @@
-import axios from 'axios'
-import { GET_BEST_SELL, BASE_URL } from '../../action-type'
+import { GET_BEST_SELL } from '../../action-type'
+import { get_best_sellers_request } from '@api'
 
-export const getBestSellers = (limit) => {
-  // Definir un límite por defecto.
-  if (typeof (limit) !== 'number') limit = 4
-
-  return async (dispatch) => {
-    const product = (await axios.get(`${BASE_URL}products?limit=${limit}&minRating=5`)).data.results.rows
-    dispatch({ type: GET_BEST_SELL, payload: product })
+export const getBestSellers = (limit) => async (dispatch) => {
+  try {
+    // Límite por defecto es igual a 4.
+    limit = typeof (limit) !== 'number' ? limit : 4
+    const bestSellers = await get_best_sellers_request(limit)
+    dispatch({ type: GET_BEST_SELL, payload: bestSellers })
+  } catch (error) {
+    console.log('Error trying to dispatch getBestSellers' + error)
+    throw error
   }
 }

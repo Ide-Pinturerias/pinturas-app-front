@@ -96,7 +96,7 @@ function Detail () {
     if (product.stock !== 0) {
       const { value } = event.target
       if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-        setNumberOfItems(value)
+        setNumberOfItems(Number(value))
       };
     }
   }
@@ -177,6 +177,12 @@ function Detail () {
       document.title = 'Ide Pinturerias'
     }
   }, [idProduct, product])
+
+  useEffect(() => {
+    if (numberOfItems <= 0 || numberOfItems > product.stock) {
+      setNumberOfItems(1)
+    }
+  }, [numberOfItems])
 
   // COMPONENT:
   return (

@@ -5,7 +5,6 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
   
-
   return (
         <div className=" py-3 my-5 w-full border-t">
             <div className="">
@@ -18,9 +17,8 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
                         <div className="flex gap-5">
                             <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => {
                                 const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
-                              dispatch(deleteProductCart(user, productsLocal, id))
-                              console.log(id)
-                              console.log(productsLocal)
+ 
+                                dispatch(deleteProductCart(user, productsLocal, id))
                             }}>Eliminar</button>
                         </div>
                         <div className="flex justify-between ">

@@ -9,7 +9,7 @@ export const get_best_sellers_request = async (limit) => {
         const data = response.data.results.rows
         return data
     } catch (error) {
-        console.error('Error fetching best sellers:', error)
+        console.error('Error fetching best sellers: ', error)
         throw error
     }
 }

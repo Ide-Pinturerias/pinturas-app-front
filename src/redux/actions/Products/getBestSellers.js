@@ -8,7 +8,7 @@ export const getBestSellers = (limit) => async (dispatch) => {
     const bestSellers = await get_best_sellers_request(limit)
     dispatch({ type: GET_BEST_SELL, payload: bestSellers })
   } catch (error) {
-    console.log('Error trying to dispatch getBestSellers' + error)
+    console.log('Error trying to dispatch getBestSellers: ' + error)
     throw error
   }
 }

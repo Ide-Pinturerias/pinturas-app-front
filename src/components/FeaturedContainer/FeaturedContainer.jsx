@@ -7,7 +7,7 @@ import CardRegular from '../ProductCards/CardRegular'
 // import featuredBanner from '@img/featured-banner.png'
 
 function FeaturedContainer () {
-  const bestSellers = useSelector((state) => state.bestSell)
+  const bestSellers = useSelector((state) => state.bestSellers)
 
   const dispatch = useDispatch()
 

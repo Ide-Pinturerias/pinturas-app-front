@@ -24,3 +24,7 @@ node_modules
 *.sw?
 .env
 dist/
+
+
+# Apuntes:
+notes.md

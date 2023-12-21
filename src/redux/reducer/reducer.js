@@ -95,7 +95,7 @@ const initialState = {
   products: [],
   detail: {},
   allProducts: [],
-  bestSell: [],
+  bestSellers: [],
 
   // CATEGORIES
   categories: [],
@@ -157,7 +157,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_PRODUCT_BY_ID:
       return { ...state, detail: payload }
     case GET_BEST_SELL:
-      return { ...state, bestSell: payload }
+      return { ...state, bestSellers: payload }
     case GET_PRODUCT_BY_NAME:
       return { ...state, products: payload }
     case GET_ALL_PRODUCTS_NO_FILTER:

@@ -6,7 +6,7 @@ const BASE_URL = 'https://pinturas-app-back.onrender.com/'
 export const get_best_sellers_request = async (limit) => {
     try {
         const response = await axios.get(`${BASE_URL}products?limit=${limit}&minRating=5`)
-        const data = response.data.results.rows
+        const data = response.data
         return data
     } catch (error) {
         console.error('Error fetching best sellers: ', error)
@@ -40,7 +40,7 @@ export const get_all_products_filtered = async (query) => {
     try {
         const response = await axios.get(`${BASE_URL}${query}`)
         const data = response.data
-        return dada
+        return data
     } catch (error) {
         console.error('Error fetching all products filtered: ', error)
         throw error

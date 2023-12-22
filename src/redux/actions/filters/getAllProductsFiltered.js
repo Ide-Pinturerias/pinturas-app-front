@@ -21,14 +21,14 @@ export const getAllProductsFiltered = (page, category, low, high) => async (disp
     // Juntar el array en una sola string
     const query = url.join('')
     // Hacer la petición de la api con la query creada para obtener los productos filtrados.
-    const response = await get_all_products_filtered(query)
-    const pages = response.data.pages
-    const products = response.data.results.rows
+    const data = await get_all_products_filtered(query)
+    const pages = data.pages
+    const filteredProducts = data.results.rows
     // Despachar las acciones a redux.
     dispatch({ type: SET_TOTAL_PAGES, payload: pages })
-    dispatch({ type: GET_ALL_PRODUCTS_FILTERED, payload: products })
+    dispatch({ type: GET_ALL_PRODUCTS_FILTERED, payload: filteredProducts })
   } catch (error) {
-    console.log('Error trying to dispatch getProductsFiltered: ' + error)
+    console.log('Error trying to dispatch getAllProductsFiltered: ' + error)
     dispatch({ type: GET_ALL_PRODUCTS_FILTERED, payload: [] })
   }
 }

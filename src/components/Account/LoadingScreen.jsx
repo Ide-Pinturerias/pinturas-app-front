@@ -1,11 +1,9 @@
 import React from 'react'
 
 const LoadingScreen = ({ isLoading }) => {
-  if (!isLoading) {
-    return null
-  }
+  if (!isLoading) return null
 
-  return (
+  else return (
         <div
             style={{
               display: 'flex',

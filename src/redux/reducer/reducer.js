@@ -1,6 +1,6 @@
 import {
   // PRODUCTS
-  GET_ALL_PRODUCTS,
+  GET_ALL_PRODUCTS_PAGINATED,
   POST_PRODUCT,
   PUT_PRODUCT,
   GET_PRODUCT_BY_ID,
@@ -92,7 +92,7 @@ const initialState = {
   payment: '',
 
   // PRODUCTS
-  products: [],
+  allProductsPaginated: [],
   detail: {},
   allProducts: [],
   bestSellers: [],
@@ -148,18 +148,18 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     // PRODUCTS
-    case GET_ALL_PRODUCTS:
-      return { ...state, products: payload }
+    case GET_ALL_PRODUCTS_PAGINATED:
+      return { ...state, allProductsPaginated: payload }
     case POST_PRODUCT:
-      return { ...state, products: payload }
+      return { ...state, allProductsPaginated: payload }
     case PUT_PRODUCT:
-      return { ...state, products: payload }
+      return { ...state, allProductsPaginated: payload }
     case GET_PRODUCT_BY_ID:
       return { ...state, detail: payload }
     case GET_BEST_SELL:
       return { ...state, bestSellers: payload }
     case GET_PRODUCT_BY_NAME:
-      return { ...state, products: payload }
+      return { ...state, allProductsPaginated: payload }
     case GET_ALL_PRODUCTS_NO_FILTER:
       return { ...state, allProducts: payload }
     case CLEAN_PRODUCT_DETAIL:
@@ -191,7 +191,7 @@ const reducer = (state = initialState, { type, payload }) => {
 
     // FILTERS
     case GET_PRODUCT_FILTER:
-      return { ...state, products: payload }
+      return { ...state, allProductsPaginated: payload }
     case SET_CATEGORY:
       return { ...state, filterCategory: payload }
     case SET_HIGH_PRICE:

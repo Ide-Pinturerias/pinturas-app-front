@@ -24,7 +24,7 @@ import ReviewsPage from './views/ReviewsPage/ReviewsPage'
 import { useCart } from './hooks/useCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
-import { allProducts } from './redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from './redux/actions/Products/getAllProductsPaginated'
 import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import { getCart } from './redux/actions/Cart/getCart'
 import OrderDetail from './views/OrderDetail/OrderDetail'
@@ -53,7 +53,7 @@ function App () {
 
     if (user) dispatch(setUser(JSON.parse(user)))
 
-    dispatch(allProducts())
+    dispatch(getAllProductsPaginated())
   }, [])
 
   useEffect(() => {

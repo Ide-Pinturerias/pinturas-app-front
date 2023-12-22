@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { allProducts } from '@redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { deleteProduct } from './deleteProduct'
 
 const DeleteButton = ({ idProduct }) => {
@@ -8,7 +8,7 @@ const DeleteButton = ({ idProduct }) => {
 
   const handleClick = async () => {
     await deleteProduct(idProduct)
-    dispatch(allProducts())
+    dispatch(getAllProductsPaginated())
   }
 
   return (

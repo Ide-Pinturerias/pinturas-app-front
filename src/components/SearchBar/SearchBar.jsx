@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productByName } from '@redux/actions/Products/productByName'
-import { allProducts } from '@redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { setPage } from '@redux/actions/Page/setPage'
 
 import { Magnifier } from '../SVG'
@@ -22,7 +22,7 @@ function SearchBar () {
 
     event.target.value.length
       ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
-      : dispatch(allProducts())
+      : dispatch(getAllProductsPaginated())
   }
 
   return (

@@ -13,3 +13,13 @@ export const get_best_sellers_request = async (limit) => {
         throw error
     }
 }
+
+export const get_all_products_paginated_request = async (query) => {
+    try {
+        const response = await axios.get(`${BASE_URL}products?active=true${query}`)
+        const data = response.data
+        return data
+    } catch (error) {
+        console.error('Error fetching all product paginated: ', error)
+    }
+}

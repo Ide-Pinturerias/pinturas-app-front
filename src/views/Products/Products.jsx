@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { allProducts } from '@redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { allCategories } from '@redux/actions/Categories/allCategories'
 import { getProductFilter } from '@redux/actions/filters/getProductFilter'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
@@ -35,7 +35,7 @@ function ProductsPage () {
         setIsLoading(false)
       })
     } else {
-      dispatch(allProducts(page)).then(() => {
+      dispatch(getAllProductsPaginated(page)).then(() => {
         setIsLoading(false)
       })
     }
@@ -43,7 +43,7 @@ function ProductsPage () {
 
   // LIFE CYCLES:
   useEffect(() => {
-    dispatch(allProducts(thisPage))
+    dispatch(getAllProductsPaginated(thisPage))
     if (!filterCategory) {
       dispatch(allCategories())
     } else {

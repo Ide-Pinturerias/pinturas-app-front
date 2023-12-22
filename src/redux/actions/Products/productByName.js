@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, SET_TOTAL_PAGES, BASE_URL } from '../../action-type'
+import { GET_ALL_PRODUCTS_PAGINATED, SET_TOTAL_PAGES, BASE_URL } from '../../action-type'
 import axios from 'axios'
 
 export const productByName = (name, page, category, low, high) => {
@@ -15,10 +15,10 @@ export const productByName = (name, page, category, low, high) => {
       const pages = response.pages
       const products = response.results.rows
       dispatch({ type: SET_TOTAL_PAGES, payload: pages })
-      dispatch({ type: GET_ALL_PRODUCTS, payload: products })
+      dispatch({ type: GET_ALL_PRODUCTS_PAGINATED, payload: products })
     } catch (error) {
       console.log('error', error)
-      dispatch({ type: GET_ALL_PRODUCTS, payload: [] })
+      dispatch({ type: GET_ALL_PRODUCTS_PAGINATED, payload: [] })
     }
   }
 }

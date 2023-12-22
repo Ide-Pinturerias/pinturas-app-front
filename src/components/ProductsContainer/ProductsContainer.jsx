@@ -3,7 +3,7 @@ import ProductCard from '../Products/ProductCard'
 import Paginated from '../Paginated/Paginated'
 // import SearchBar from '../SearchBar/SearchBar';
 import { useSelector, useDispatch } from 'react-redux'
-import { allProducts } from '@redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { getProductFilter } from '@redux/actions/filters/getProductFilter'
 import { setPage } from '@redux/actions/Page/setPage'
 import { setCategory } from '@redux/actions/filters/setCategory'
@@ -13,7 +13,7 @@ import imgNO from '@img/ProductoNo.png'
 
 function ProductsContainer () {
   // GLOBAL STATES:
-  const products = useSelector((state) => state.products)
+  const products = useSelector((state) => state.allProductsPaginated)
   const categories = useSelector((state) => state.categories)
   const totalPages = useSelector((state) => state.totalPages)
   const thisPage = useSelector((state) => state.thisPage)
@@ -60,7 +60,7 @@ function ProductsContainer () {
         setIsLoading(false)
       })
     } else {
-      dispatch(allProducts(page)).then(() => {
+      dispatch(getAllProductsPaginated(page)).then(() => {
         setIsLoading(false)
       })
     }
@@ -85,7 +85,7 @@ function ProductsContainer () {
         }
       )
     } else {
-      dispatch(allProducts(thisPage)).then(() => {
+      dispatch(getAllProductsPaginated(thisPage)).then(() => {
         setIsLoading(false)
       })
     }

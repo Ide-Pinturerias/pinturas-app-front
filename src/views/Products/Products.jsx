@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
-import { getBestSellers } from '@redux/actions/Products/getBestSellers'
+import { setCategory } from '@redux/actions/filters/setCategory'
 import { setPage } from '@redux/actions/Page/setPage'
+import { setLowPrice } from '@redux/actions/filters/setLowPrice'
+import { setHighPrice } from '@redux/actions/filters/setHighPrice'
+import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 
 import Paginated from '../../components/Paginated/Paginated'
 
@@ -17,6 +20,7 @@ import { Chevron } from '../../components/SVG'
 function ProductsPage () {
   // GLOBAL STATES:
   const filterCategory = useSelector((state) => state.filterCategory)
+  const categories = useSelector((state) => state.categories)
   const totalPages = useSelector((state) => state.totalPages)
   const thisPage = useSelector((state) => state.thisPage)
   const { high, low } = useSelector((state) => state.price)
@@ -28,6 +32,31 @@ function ProductsPage () {
   const dispatch = useDispatch()
 
   // FUNCTIONS:
+  const handleCategory = (category) => {
+    dispatch(setPage(1))
+    dispatch(setCategory(category))
+  }
+
+  const handlePriceFilter = (priceFilter) => {
+    if (priceFilter === 'Hasta $10000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(10000))
+    } else if (priceFilter === '$10000 a $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(10000))
+      dispatch(setHighPrice(20000))
+    } else if (priceFilter === 'Mas de $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(20000))
+      dispatch(setHighPrice(0))
+    } else if (priceFilter === 'no price') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(0))
+    }
+  }
+
   const handlePageChange = (page) => {
     dispatch(setPage(page))
     if (filterCategory || low || high) {

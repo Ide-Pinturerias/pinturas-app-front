@@ -1,4 +1,4 @@
-import { SET_CATEGORY } from '../../action-type'
+import { SET_CATEGORY } from '@redux/action-type'
 
 // Idea: crear un array con todas las categorías existentes. En caso de que la categoría pasada por parámetro no se encuentre en este array, lanzar un error para evitar problemas en producción.
 export const setCategory = (category) => ({

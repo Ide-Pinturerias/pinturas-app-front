@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
-import { allCategories } from '@redux/actions/Categories/allCategories'
+import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { getProductFilter } from '@redux/actions/filters/getProductFilter'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { setPage } from '@redux/actions/Page/setPage'
@@ -45,7 +45,7 @@ function ProductsPage () {
   useEffect(() => {
     dispatch(getAllProductsPaginated(thisPage))
     if (!filterCategory) {
-      dispatch(allCategories())
+      dispatch(getAllCategories())
     } else {
       dispatch(getProductFilter(thisPage, filterCategory))
     };

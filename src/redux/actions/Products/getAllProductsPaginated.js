@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS_PAGINATED, SET_TOTAL_PAGES } from '../../action-type'
+import { GET_ALL_PRODUCTS_PAGINATED, SET_TOTAL_PAGES } from '@redux/action-type'
 import { get_all_products_paginated_request } from '@api'
 
 export const getAllProductsPaginated = (page) => async (dispatch) => {

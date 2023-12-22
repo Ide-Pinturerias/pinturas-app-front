@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { allCategories } from '@redux/actions/Categories/allCategories'
+import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { productById } from '@redux/actions/Products/productById'
 import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
 import validations from './validations'
@@ -19,7 +19,7 @@ const UpdateForm = () => {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(allCategories())
+    dispatch(getAllCategories())
     dispatch(getProvidersActive())
     dispatch(productById(idProduct))
   }, [dispatch])

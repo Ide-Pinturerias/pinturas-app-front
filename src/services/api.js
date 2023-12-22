@@ -20,6 +20,18 @@ export const get_all_products_paginated_request = async (query) => {
         const data = response.data
         return data
     } catch (error) {
-        console.error('Error fetching all product paginated: ', error)
+        console.error('Error fetching all products paginated: ', error)
+        throw error
+    }
+}
+
+export const get_all_categories_request = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}categories`)
+        const data = response.data
+        return data
+    } catch (error) {
+        console.error('Error fetching all categories: ', error)
+        throw error
     }
 }

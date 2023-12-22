@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { allCategories } from '@redux/actions/Categories/allCategories'
+import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import validations from './validations'
 import { formatAndPost } from './formatAndPost'
 import { getProvidersActive } from '@redux/actions/Providers/getProvidersActive'
@@ -15,7 +15,7 @@ const CreateForm = () => {
   const categories = useSelector(state => state.categories)
 
   useEffect(() => {
-    dispatch(allCategories())
+    dispatch(getAllCategories())
     dispatch(getProvidersActive())
   }, [dispatch])
 

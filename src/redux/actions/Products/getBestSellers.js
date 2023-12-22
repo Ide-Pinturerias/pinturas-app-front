@@ -1,4 +1,4 @@
-import { GET_BEST_SELL } from '../../action-type'
+import { GET_BEST_SELL } from '@redux/action-type'
 import { get_best_sellers_request } from '@api'
 
 export const getBestSellers = (limit) => async (dispatch) => {

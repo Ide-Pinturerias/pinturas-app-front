@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
-import { getProductFilter } from '@redux/actions/filters/getProductFilter'
+import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { setPage } from '@redux/actions/Page/setPage'
 
@@ -31,7 +31,7 @@ function ProductsPage () {
   const handlePageChange = (page) => {
     dispatch(setPage(page))
     if (filterCategory || low || high) {
-      dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
+      dispatch(getAllProductsFiltered(page, filterCategory, low, high)).then(() => {
         setIsLoading(false)
       })
     } else {
@@ -47,7 +47,7 @@ function ProductsPage () {
     if (!filterCategory) {
       dispatch(getAllCategories())
     } else {
-      dispatch(getProductFilter(thisPage, filterCategory))
+      dispatch(getAllProductsFiltered(thisPage, filterCategory))
     };
   }, [dispatch, thisPage, filterCategory])
 

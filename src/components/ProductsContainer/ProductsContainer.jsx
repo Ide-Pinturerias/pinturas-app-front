@@ -4,7 +4,7 @@ import Paginated from '../Paginated/Paginated'
 // import SearchBar from '../SearchBar/SearchBar';
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
-import { getProductFilter } from '@redux/actions/filters/getProductFilter'
+import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
 import { setPage } from '@redux/actions/Page/setPage'
 import { setCategory } from '@redux/actions/filters/setCategory'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
@@ -56,7 +56,7 @@ function ProductsContainer () {
   const handlePageChange = (page) => {
     dispatch(setPage(page))
     if (filterCategory || low || high) {
-      dispatch(getProductFilter(page, filterCategory, low, high)).then(() => {
+      dispatch(getAllProductsFiltered(page, filterCategory, low, high)).then(() => {
         setIsLoading(false)
       })
     } else {
@@ -79,7 +79,7 @@ function ProductsContainer () {
     })
     setIsLoading(true)
     if (filterCategory || low || high) {
-      dispatch(getProductFilter(thisPage, filterCategory, low, high)).then(
+      dispatch(getAllProductsFiltered(thisPage, filterCategory, low, high)).then(
         () => {
           setIsLoading(false)
         }

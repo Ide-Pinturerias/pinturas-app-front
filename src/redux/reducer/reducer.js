@@ -21,7 +21,7 @@ import {
   SET_USER,
 
   // FILTERS
-  GET_PRODUCT_FILTER,
+  GET_ALL_PRODUCTS_FILTERED,
   GET_BEST_SELL,
   SET_CATEGORY,
   SET_LOW_PRICE,
@@ -190,7 +190,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, userId: payload }
 
     // FILTERS
-    case GET_PRODUCT_FILTER:
+    case GET_ALL_PRODUCTS_FILTERED:
       return { ...state, allProductsPaginated: payload }
     case SET_CATEGORY:
       return { ...state, filterCategory: payload }

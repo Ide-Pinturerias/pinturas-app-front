@@ -35,3 +35,14 @@ export const get_all_categories_request = async () => {
         throw error
     }
 }
+
+export const get_all_products_filtered = async (query) => {
+    try {
+        const response = await axios.get(`${BASE_URL}${query}`)
+        const data = response.data
+        return dada
+    } catch (error) {
+        console.error('Error fetching all products filtered: ', error)
+        throw error
+    }
+}

@@ -3,8 +3,9 @@ import { get_best_sellers_request } from '@api'
 
 export const getBestSellers = (limit) => async (dispatch) => {
   try {
-    // Establecer límite por defecto en
+    // Asegurarse de que "limit" sea un número (por defecto: 4).
     limit = typeof (limit) === 'number' ? limit : 4
+    // Hacer la petición a la api pasando "limit" como parámetro para obtener los productos más vendidos.
     const bestSellers = await get_best_sellers_request(limit)
     dispatch({ type: GET_BEST_SELL, payload: bestSellers })
   } catch (error) {

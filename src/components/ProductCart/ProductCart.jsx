@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
-
+  
   return (
         <div className=" py-3 my-5 w-full border-t">
             <div className="">
@@ -17,7 +16,9 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
                         <h1 className="text-base text-ms font-semibold">{name}</h1>
                         <div className="flex gap-5">
                             <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={() => {
-                              dispatch(deleteProductCart(user, productsLocal, id))
+                                const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+ 
+                                dispatch(deleteProductCart(user, productsLocal, id))
                             }}>Eliminar</button>
                         </div>
                         <div className="flex justify-between ">

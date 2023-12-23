@@ -15,7 +15,7 @@ import Paginated from '../../components/Paginated/Paginated'
 // import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
 import ProductBox from '../../components/ProductBox/ProductBox'
 import FilterMenu from '../../components/Refiners/FilterMenu'
-import { Chevron } from '../../components/SVG'
+import { Chevron, XSmall } from '../../components/SVG'
 
 function ProductsPage() {
     // GLOBAL STATES:
@@ -123,7 +123,46 @@ function ProductsPage() {
                     </div>
                 ) : null
             }
-            <section className="flex justify-center w-full py-16 bg-complementaryWhite">
+            <section className="flex flex-col items-center justify-center w-full py-16 bg-complementaryWhite">
+                <div className="flex justify-center items-center flex-wrap gap-4 w-full">
+                    {/*          CLEAR FILTERS        */}
+                    {filterCategory && (
+                        <button
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            onClick={() => filterByCategory('')}
+                        >
+                            <span className="whitespace-nowrap">{filterCategory}</span>
+                            <XSmall side={20} />
+                        </button>
+                    )}
+                    {high === 0 && low !== 0 && low && (
+                        <button
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            onClick={() => filterByPrice('no price')}
+                        >
+                            <span className="whitespace-nowrap">Desde ${low}</span>
+                            <XSmall side={20} />
+                        </button>
+                    )}
+                    {low === 0 && high !== 0 && high && (
+                        <button
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            onClick={() => filterByPrice('no price')}
+                        >
+                            <span className="whitespace-nowrap">Hasta ${high}</span>
+                            <XSmall side={20} />
+                        </button>
+                    )}
+                    {low !== 0 && high !== 0 && high && low && (
+                        <button
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            onClick={() => filterByPrice('no price')}
+                        >
+                            <span className="whitespace-nowrap">${low} hasta ${high}</span>
+                            <XSmall side={20} />
+                        </button>
+                    )}
+                </div>
                 <ProductBox isLoading={isLoading} />
             </section>
 

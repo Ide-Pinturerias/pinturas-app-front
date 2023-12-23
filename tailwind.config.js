@@ -20,7 +20,8 @@ export default {
         seasalt: '#FAF8F5',
         softWhite: '#F7F7F2',
         complementaryWhite: '#EAEAE6',
-        focusedWhite: 'rgba(18,18,18,.14)'
+        focusedWhite: 'rgba(18,18,18,.14)',
+        overlay: 'rgba(0,0,0,.5)'
       },
       padding: {
         // Debe ser usado en cada component "main" para dar espacio al header principal.

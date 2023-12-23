@@ -14,6 +14,7 @@ import Paginated from '../../components/Paginated/Paginated'
 // import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 // import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
 import ProductBox from '../../components/ProductBox/ProductBox'
+import FilterMenu from '../../components/Refiners/FilterMenu'
 import { Chevron } from '../../components/SVG'
 
 function ProductsPage() {
@@ -26,17 +27,18 @@ function ProductsPage() {
 
     // LOCAL STATES:
     const [isLoading, setIsLoading] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     // CONSTANTS:
     const dispatch = useDispatch()
 
     // FUNCTIONS:
-    const handleCategory = (category) => {
+    const filterByCategory = (category) => {
         dispatch(setPage(1))
         dispatch(setCategory(category))
     }
 
-    const handlePriceFilter = (priceFilter) => {
+    const filterByPrice = (priceFilter) => {
         if (priceFilter === 'Hasta $10000') {
             dispatch(setPage(1))
             dispatch(setLowPrice(0))
@@ -56,6 +58,10 @@ function ProductsPage() {
         }
     }
 
+    const changePage = (page) => {
+        dispatch(setPage(page))
+    }
+
     const filterProducts = (page) => {
         let selectedPage;
         selectedPage = page || thisPage
@@ -68,16 +74,13 @@ function ProductsPage() {
         }
     }
 
-    const handlePageChange = (page) => {
-        dispatch(setPage(page))
-    }
-
-    // LIFE CYCLES:
+    // LIFE CYCLES:    
     useEffect(() => {
         setIsLoading(true)
         if (!filterCategory) dispatch(getAllCategories())
         filterProducts(null)
     }, [dispatch, low, high, thisPage, filterCategory])
+
 
     // COMPONENT:
     return (
@@ -91,7 +94,10 @@ function ProductsPage() {
                         </p>
                     </div>
                     <div className="flex justify-between items-center">
-                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
+                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]" onClick={(e) => {
+                            e.stopPropagation();
+                            setIsModalOpen(true)
+                        }}>
                             Filtrar
                         </button>
                         <Chevron width={'5rem'} />
@@ -101,104 +107,22 @@ function ProductsPage() {
                     </div>
                 </div>
             </section>
-            <section className="text-base flex flex-col p-6 sm:w-70 bg-tertiary text-gray rounded-2xl">
-                {/*       SIDE BAR     */}
-                <div className="gap-3">
-                    <div className="h-10 flex gap-1 mb-3">
-                        {/*          CLEAR FILTERS        */}
-                        {filterCategory && (
-                            <div className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                                {filterCategory}
-                                <button onClick={() => handleCategory('')}>X</button>
-                            </div>
-                        )}
-                        {high === 0 && low !== 0 && low && (
-                            <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                                Desde ${low}
-                                <button onClick={() => handlePriceFilter('no price')}>
-                                    X
-                                </button>
-                            </p>
-                        )}
-                        {low === 0 && high !== 0 && high && (
-                            <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                                Hasta ${high}
-                                <button onClick={() => handlePriceFilter('no price')}>
-                                    X
-                                </button>
-                            </p>
-                        )}
-                        {low !== 0 && high !== 0 && high && low && (
-                            <p className="flex items-center text-xs w-fit h-fit text-gray-400 rounded-lg border bg-white px-1 py-1 md:px-1">
-                                ${low} hasta ${high}
-                                <button onClick={() => handlePriceFilter('no price')}>
-                                    X
-                                </button>
-                            </p>
-                        )}
+            {
+                isModalOpen ? (
+                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 w-full bg-overlay" >
+                        <FilterMenu
+                            isModalOpen={isModalOpen}
+                            setIsModalOpen={setIsModalOpen}
+                            categories={categories}
+                            high={high}
+                            low={low}
+                            filterCategory={filterCategory}
+                            filterByCategory={filterByCategory}
+                            filterByPrice={filterByPrice}
+                        />
                     </div>
-                    <div className="mb-5">
-                        {/*       FILTER CATEGORY      */}
-                        <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
-                            Categorias
-                        </h2>
-                        <div className="text-lg flex flex-col">
-                            {categories.map((category, index) => (
-                                <h3
-                                    key={index}
-                                    rel="noopener noreferrer"
-                                    onClick={() => handleCategory(category)}
-                                    className={`mt-1 no-underline text-sm ${filterCategory === category
-                                        ? 'text-indigo-900'
-                                        : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
-                                        } m-0`}
-                                >
-                                    {category}
-                                </h3>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="mb-5">
-                        {/*       FILTER PRICE         */}
-                        <h2 className="text-base font-semibold tracking-wide uppercase text-blue-600">
-                            Precio
-                        </h2>
-                        <div className="text-lg flex flex-col flex-wrap">
-                            <h3
-                                className={`mt-1 no-underline text-sm ${!low && high === 10000
-                                    ? 'text-indigo-900'
-                                    : 'text-gray-400  hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
-                                    } m-0`}
-                                onClick={() => handlePriceFilter('Hasta $10000')}
-                            >
-                                Hasta $10.000
-                            </h3>
-                        </div>
-                        <div className="text-lg flex flex-col">
-                            <h3
-                                className={`mt-1 no-underline text-sm ${low === 10000 && high === 20000
-                                    ? 'text-indigo-900'
-                                    : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
-                                    } m-0`}
-                                onClick={() => handlePriceFilter('$10000 a $20000')}
-                            >
-                                $10.000 a $20.000
-                            </h3>
-                        </div>
-                        <div className="text-lg flex flex-col">
-                            <h3
-                                className={`mt-1 no-underline text-sm ${low === 20000 && high === ''
-                                    ? 'text-indigo-900'
-                                    : 'text-gray-400 hover:text-indigo-900 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110'
-                                    } m-0`}
-                                onClick={() => handlePriceFilter('Mas de $20000')}
-                            >
-                                Más de $20.000
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                ) : null
+            }
             <section className="flex justify-center w-full py-16 bg-complementaryWhite">
                 <ProductBox isLoading={isLoading} />
             </section>
@@ -207,7 +131,7 @@ function ProductsPage() {
                 <Paginated
                     totalPages={totalPages}
                     thisPage={thisPage}
-                    pageChange={handlePageChange}
+                    pageChange={changePage}
                 />
             </section>
             {/* <div>

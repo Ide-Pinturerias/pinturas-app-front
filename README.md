@@ -91,6 +91,9 @@ src
 |--|--|--ProductBox.jsx
 -
 
+|--|--Refiners
+|--|--|--FilterMenu.jsx
+
 |--|--SVG.jsx
 
 |--context

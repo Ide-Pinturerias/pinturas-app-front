@@ -17,6 +17,10 @@
     font-family: 'Montserrat';
 }
 
+body {
+    background-color: #FFFAED;
+}
+
 #root {
     /* Debe coincidir con el padding top definido en tailwind.config.css */
     --whiteSpaceTop: 7rem;

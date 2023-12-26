@@ -74,6 +74,13 @@ function ProductsPage() {
         }
     }
 
+    const clearFilters = () => {
+        dispatch(setPage(1))
+        dispatch(setCategory(""))
+        dispatch(setLowPrice(0))
+        dispatch(setHighPrice(0))
+    }
+
     // LIFE CYCLES:    
     useEffect(() => {
         setIsLoading(true)
@@ -119,6 +126,7 @@ function ProductsPage() {
                             filterCategory={filterCategory}
                             filterByCategory={filterByCategory}
                             filterByPrice={filterByPrice}
+                            clearFilters={clearFilters}
                         />
                     </div>
                 ) : null

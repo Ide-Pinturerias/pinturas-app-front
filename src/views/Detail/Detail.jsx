@@ -70,6 +70,7 @@ function Detail () {
   const onAddProductCart = () => {
     const productToAdd = { id: idProduct, quantity: numberOfItems }
     dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+    isProductInCart(productsLocal, idProduct)
     Swal.fire({
       title: 'EXITO!',
       text: 'Producto agregado al carrito. Desear ir al carrito o seguir comprando?',

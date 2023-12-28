@@ -9,15 +9,7 @@ export const addProductCart = (idUser, products, productToAdd) => {
 
       // Actualizo local storage
       localStorage.setItem('productsLocal', JSON.stringify(products))
-      if (!idUser) {
-        Swal.fire({
-          title: 'EXITO!',
-          text: 'Producto agregado al carrito',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        })
-        return products
-      }
+      if (!idUser) return products
 
       // Si hay usuario actualizo db
       const cart = (await axios.put(`${BASE_URL}carts`, {

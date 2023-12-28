@@ -7,8 +7,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const user = useSelector(state => state.user)
 
   const onDeleteProductCart = ({ user, id }) => {
-    const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
-    dispatch(deleteProductCart(user, productsLocal, id))
+    dispatch(deleteProductCart(user, id))
     Swal.fire({
       title: 'EXITO!',
       text: 'Producto eliminado del carrito',

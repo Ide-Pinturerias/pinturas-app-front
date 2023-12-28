@@ -27,12 +27,6 @@ export const addProductCart = (idUser, products, productToAdd) => {
 
       // Y actualizo redux
       dispatch({ type: ADD_PRODUCT_CART, payload: cart })
-      Swal.fire({
-        title: 'EXITO!',
-        text: 'Producto agregado al carrito',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
     } catch (error) {
       console.error(error.message)
       Swal.fire({

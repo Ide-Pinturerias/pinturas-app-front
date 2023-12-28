@@ -27,12 +27,6 @@ export const deleteProductCart = (user, products, idProduct) => {
 
       // Y actualizo Redux
       dispatch({ type: DELETE_PRODUCT_CART, payload: cart })
-      Swal.fire({
-        title: 'EXITO!',
-        text: 'Producto eliminado del carrito',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
     } catch (error) {
       console.error(error.message)
       Swal.fire({

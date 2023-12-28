@@ -67,6 +67,24 @@ function Detail () {
     };
   }
 
+  const onAddProductCart = () => {
+    const productToAdd = { id: idProduct, quantity: numberOfItems }
+    dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+    Swal.fire({
+      title: 'EXITO!',
+      text: 'Producto agregado al carrito. Desear ir al carrito o seguir comprando?',
+      icon: 'success',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Ir a carrito',
+      denyButtonText: 'Seguir comprando'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = '/cart'
+      }
+    })
+  }
+
   // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
   function formatNumberWithDots (number) {
     // Convierte el número a una string.
@@ -287,11 +305,7 @@ function Detail () {
                                                     <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
                                                     disabled={isInCart}
                                                     onClick={
-                                                      () => {
-                                                        const productToAdd = { id: idProduct, quantity: numberOfItems }
-
-                                                        dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
-                                                      }
+                                                      () => onAddProductCart()
                                                     }
                                                     >Agregar al carro</button>
                                                 </>

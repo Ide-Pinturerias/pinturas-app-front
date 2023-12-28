@@ -3,7 +3,7 @@ const TotalCart = ({ products }) => {
     return accumulator + product.price * product.quantity
   }, 0)
 
-  return (
+  return products?.length > 0 && !isNaN(total) && (
       <main className="w-full flex justify-end p-10">
         <h2 className="text-xl font-bold text-gray-700">Total: ${total.toFixed(2)}</h2>
       </main>

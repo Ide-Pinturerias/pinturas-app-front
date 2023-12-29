@@ -13,7 +13,7 @@ export const findOrCreateCart = (idUser) => {
 
     // en caso de tener productos localmente y luego crearme un usuario necesito guardarlos en la db y Redux
     const productsLocal = JSON.parse(localStorage.getItem('productsLocal')) || []
-    if (cart.id === null & productsLocal.length > 0) {
+    if (cart.products === null & productsLocal.length > 0) {
       cart = (await axios.put(`${BASE_URL}carts`, {
         idUser,
         products: JSON.stringify(productsLocal)

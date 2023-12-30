@@ -2,22 +2,18 @@ import Swal from 'sweetalert2'
 import { DELETE_PRODUCT_CART, BASE_URL } from '../../action-type'
 import axios from 'axios'
 
-export const deleteProductCart = (user, products, idProduct) => {
+export const deleteProductCart = (user, idProduct) => {
   return async (dispatch) => {
     try {
-      const productsUpdated = products.filter(product => Number(product.id) !== idProduct)
+      const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
+
+      const productsUpdated = productsLocal.filter(product => {
+        return String(product.id) !== String(idProduct)
+      })
 
       // Actualizo local storage
       localStorage.setItem('productsLocal', JSON.stringify(productsUpdated))
-      if (Object.keys(user).length === 0) {
-        Swal.fire({
-          title: 'EXITO!',
-          text: 'Producto eliminado del carrito',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        })
-        return productsUpdated
-      }
+      if (Object.keys(user).length === 0) return productsUpdated
 
       // Si hay usuario actualizo DB
       const cart = (await axios.put(`${BASE_URL}carts`, {
@@ -27,12 +23,6 @@ export const deleteProductCart = (user, products, idProduct) => {
 
       // Y actualizo Redux
       dispatch({ type: DELETE_PRODUCT_CART, payload: cart })
-      Swal.fire({
-        title: 'EXITO!',
-        text: 'Producto eliminado del carrito',
-        icon: 'success',
-        confirmButtonText: 'Ok'
-      })
     } catch (error) {
       console.error(error.message)
       Swal.fire({

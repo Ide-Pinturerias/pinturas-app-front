@@ -7,7 +7,9 @@ export const deleteProductCart = (user, idProduct) => {
     try {
       const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
-      const productsUpdated = productsLocal.filter(product => Number(product.id) !== idProduct)
+      const productsUpdated = productsLocal.filter(product => {
+        return Number(product.id) !== Number(idProduct)
+      })
 
       // Actualizo local storage
       localStorage.setItem('productsLocal', JSON.stringify(productsUpdated))

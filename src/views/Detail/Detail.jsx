@@ -6,8 +6,9 @@ import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { postFavorites } from '@redux/actions/Favorites/postFavorites'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { addProductCart } from '@redux/actions/Cart/addProductCart'
+import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import Swal from 'sweetalert2'
-import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
+import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@components/SVG'
 
 function Detail () {
   // GLOBAL STATES:
@@ -73,16 +74,29 @@ function Detail () {
     isProductInCart(productsLocal, idProduct)
     Swal.fire({
       title: 'EXITO!',
-      text: 'Producto agregado al carrito. Desear ir al carrito o seguir comprando?',
+      text: 'Producto agregado al carrito. ¿Deseas revisar tu carrito?',
       icon: 'success',
       showDenyButton: true,
-      showCancelButton: true,
+      // showCancelButton: true,
       confirmButtonText: 'Ir a carrito',
       denyButtonText: 'Seguir comprando'
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.href = '/cart'
       }
+    })
+  }
+
+  const onDeleteProductCart = ({ user, id }) => {
+    dispatch(deleteProductCart(user, id))
+    setIsInCart(false)
+    Swal.fire({
+      title: 'EXITO!',
+      text: 'Producto eliminado del carrito',
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    }).then(() => {
+      window.location.reload()
     })
   }
 
@@ -159,6 +173,33 @@ function Detail () {
       document.title = 'Ide Pinturerias'
     }
   }, [idProduct])
+
+  // Remove From Cart Button
+  const removeFromCartButton = (
+    <button className="w-[80%] mb-2 p-4 box-border border text-red-600 border-red-600 rounded-[2rem] text-sm font-bold uppercase"
+      title="Ya tienes este producto en el carrito"
+      onClick={
+        () => onDeleteProductCart({
+          user: loggedUser,
+          id: idProduct
+        })
+    }
+    >
+      Eliminar del carrito
+    </button>
+  )
+
+  // Add To Cart Button
+  const addToCartButton = (
+    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
+      title="Agregar al carrito"
+      onClick={
+        () => onAddProductCart()
+      }
+    >
+      Agregar al carrito
+    </button>
+  )
 
   // COMPONENT:
   return (
@@ -303,12 +344,11 @@ function Detail () {
                                               ? (
                                                 <>
                                                     <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
-                                                    disabled={isInCart}
-                                                    onClick={
-                                                      () => onAddProductCart()
+                                                    {
+                                                        isInCart
+                                                          ? removeFromCartButton
+                                                          : addToCartButton
                                                     }
-                                                    >Agregar al carro</button>
                                                 </>
                                                 )
                                               : (

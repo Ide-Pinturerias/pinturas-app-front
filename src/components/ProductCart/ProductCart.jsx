@@ -23,10 +23,16 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
         <div className="">
             <div className="flex flex-row">
                 <div className="w-fit">
+                  <a href={`/products/${id}`}>
                     <img src={image} alt="" className="w-20" />
+                  </a>
                 </div>
                 <div className="flex px-5 flex-col w-11/12">
-                    <h1 className="text-base text-ms font-semibold">{name}</h1>
+                    <h1 className="text-base text-ms font-semibold">
+                      <a href={`/products/${id}`}>
+                        {name}
+                      </a>
+                    </h1>
                     <div className="flex gap-5">
                         <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={
                             () => onDeleteProductCart({ user, id })

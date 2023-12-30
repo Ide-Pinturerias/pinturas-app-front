@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '@img/logo-black.png'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import SearchBar from '@components/SearchBar/SearchBar'
+import { logoutUser } from '@redux/actions/User/logoutUser'
 
 import { Cart, UserIcon } from '../SVG'
 
 const Nav = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const userBd = useSelector((state) => state.user)
-
-  const { isAuthenticated, user } = useAuth0()
 
   // Menu para las opciones: INICIAR SESION, REGISTRARSE
   const [credentialsMenu, setCredentialsMenu] = useState(false)
@@ -24,7 +24,12 @@ const Nav = () => {
       setCredentialsMenu(false)
     };
   }
-
+  // LogOut
+  const logoutUserAction = () => {
+    localStorage.clear()
+    logoutUser(dispatch)
+    navigate('/')
+  }
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick)
     return () => {
@@ -75,16 +80,15 @@ const Nav = () => {
                     onClick={(e) => { setCredentialsMenu(true); e.stopPropagation() }}
                 >
                     {
-                        (!userBd.id && !isAuthenticated)
+                        (!userBd.id) // No hay usuario logueado
                           ? (
                             <NavLink
-                                // to="/account"
                                 className="h-5 hidden sm:block cursor-pointer"
                             >
                                 <UserIcon />
                             </NavLink>
 
-                        // Existe ID en redux
+                        // Usuario logueado
                             )
                           : userBd.id
                             ? (
@@ -95,25 +99,28 @@ const Nav = () => {
                                 <UserIcon />
                                 {userBd.name}
                             </NavLink>
-
-                          // El usuario esta autenticado
                               )
-                            : isAuthenticated
-                              ? (
-                            <NavLink
-                                to="/account"
-                                className="h-5 hidden sm:block cursor-pointer"
-                            >
-                                <UserIcon />
-                                {user.name} {user.lastName}
-                            </NavLink>
-                                )
-                              : null
+                            : null
                     }
-                    <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primary rounded-lg shadow-credentialsMenu`}>
-                        <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>INICIAR SESIÓN</button>
-                        <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>REGISTRARSE</button>
-                    </div>
+                        {(!userBd.id) // No hay usuario logueado
+                          ? (
+                            <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primary rounded-lg shadow-credentialsMenu`}>
+                                <NavLink to="/login">
+                                <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>INICIAR SESIÓN</button>
+                                </NavLink>
+                                <NavLink to="/login/register">
+                                <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>REGISTRARSE</button>
+                                </NavLink>
+                            </div>
+                            )
+                          : ( // Usuario logueado
+                            <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primary rounded-lg shadow-credentialsMenu`}>
+                                <NavLink to="/login">
+                                <button onClick={() => { logoutUserAction() }}className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-turquoise text-white text-start whitespace-nowrap transition-colors'}>CERRAR SESIÓN</button>
+                                </NavLink>
+                            </div>
+                            )
+                    }
                 </div>
             </nav>
         </header>

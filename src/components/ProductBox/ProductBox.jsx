@@ -8,7 +8,7 @@ import LoadingScreen from '../Account/LoadingScreen'
 function ProductBox ({ isLoading }) {
   // GLOBAL STATES:
   const products = useSelector((state) => state.allProductsPaginated)
-  
+
   // LOCAL STATES:
   const [filteredProducts, setFilteredProducts] = useState(products)
 

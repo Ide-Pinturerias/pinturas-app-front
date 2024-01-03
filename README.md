@@ -41,6 +41,39 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ---
 
+# COMPONENTS:
+
+## App:
+
+1. NavBar.jsx (SearchBar.jsx)
+2. Footer.jsx
+
+## Home:
+
+1. Banner.jsx
+2. FeaturedContainer.jsx (CardRegular.jsx)
+3. AboutCard.jsx
+4. BannerBlog.jsx
+
+## Products:
+
+1. Paginated.jsx
+2. ProductBox.jsx
+3. FilterMenu.jsx
+4. SortMenu.jsx
+
+## Detail:
+
+- No components (other than SVG components) are being used yet.
+
+## Contact:
+
+- No components (other than SVG components) are being used yet.
+
+## About:
+
+- No components (other than SVG components) are being used yet.
+
 # STRUCTURE
 
 ```
@@ -49,19 +82,20 @@ src
 
 |--components
 
-|--|--AboutCard --> AboutSection
+|--|--AboutCard
 |--|--|--AboutCard.jsx
 
+<!-- HOME -->
 |--|--Banner
 |--|--|--Banner.jsx
-
-|--|--BannerBlog
-|--|--|--BannerBlog.jsx
 
 |--|--CategoryContainer
 |--|--|--CategoryContainer.jsx
 
-|--|--FeaturedProContainer  --> TopSellers 
+|--|--BannerBlog
+|--|--|--BannerBlog.jsx
+
+|--|--FeaturedContainer (TOP SELLERS) 
 |--|--|--FeaturedContainer.jsx
 
 -
@@ -81,18 +115,25 @@ src
 |--|--NavBar
 |--|--|--NavBar.jsx
 
+|--|--Paginated
+|--|--|--Paginated.jsx
+
 -
 |--|--ProductContainer (CAN BE REMOVED)
 |--|--|--ProductContainer.jsx
 -
-=>
+=> 
 -
-|--|--ProductBox
+|--|--ProductBox (THIS COMPONENT REPLACE: ProductContainer)
 |--|--|--ProductBox.jsx
 -
 
 |--|--Refiners
 |--|--|--FilterMenu.jsx
+|--|--|--SortMenu.jsx
+
+|--|--SearchBar
+|--|--|--SearchBar.jsx
 
 |--|--SVG.jsx
 

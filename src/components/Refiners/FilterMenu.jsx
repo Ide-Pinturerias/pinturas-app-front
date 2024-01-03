@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react"
 import { XLarge } from "../SVG"
 
-function FilterMenu({ isModalOpen, setIsModalOpen, categories, high, low, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
+function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, high, low, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
 
 
     // Detectar click fuera del menú.
     const filterMenuRef = useRef(null)
     const handleOutsideClick1 = (event) => {
-        if (isModalOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
-            setIsModalOpen(false)
+        if (isFilterOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
+            setIsFilterOpen(false)
         };
     }
 
@@ -22,13 +22,13 @@ function FilterMenu({ isModalOpen, setIsModalOpen, categories, high, low, filter
     return (
         <aside
             ref={filterMenuRef}
-            className="flex flex-col w-[30%] h-full p-6 bg-complementaryWhite rounded-r-[2rem]"
+            className="flex flex-col w-[30%] h-full mr-auto p-6 bg-complementaryWhite rounded-r-[2rem]"
         >
             <div className="flex justify-between items-center font-bold uppercase">
                 <h2>Filtros</h2>
                 <div
                     className="cursor-pointer"
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => setIsFilterOpen(false)}
                 >
                     <XLarge />
                 </div>
@@ -85,7 +85,7 @@ function FilterMenu({ isModalOpen, setIsModalOpen, categories, high, low, filter
             <div className="flex flex-col items-center gap-2">
                 <button
                     className="w-[80%] p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
-                    onClick={() => setIsModalOpen(false)}
+                    onClick={() => setIsFilterOpen(false)}
                 >
                     Mostrar resultados
                 </button>

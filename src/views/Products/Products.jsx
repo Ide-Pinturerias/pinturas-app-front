@@ -15,6 +15,7 @@ import Paginated from '../../components/Paginated/Paginated'
 // import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
 import ProductBox from '../../components/ProductBox/ProductBox'
 import FilterMenu from '../../components/Refiners/FilterMenu'
+import SortMenu from '../../components/Refiners/SortMenu'
 import { Chevron, XSmall } from '../../components/SVG'
 
 function ProductsPage() {
@@ -27,7 +28,8 @@ function ProductsPage() {
 
     // LOCAL STATES:
     const [isLoading, setIsLoading] = useState(true)
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isFilterOpen, setIsFilterOpen] = useState(false)
+    const [isSortOpen, setIsSortOpen] = useState(false)
 
     // CONSTANTS:
     const dispatch = useDispatch()
@@ -101,25 +103,30 @@ function ProductsPage() {
                         </p>
                     </div>
                     <div className="flex justify-between items-center">
-                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]" onClick={(e) => {
+                        <button className={` ${isSortOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                             e.stopPropagation();
-                            setIsModalOpen(true)
+                            setIsSortOpen(false);
+                            setIsFilterOpen(true)
                         }}>
                             Filtrar
                         </button>
                         <Chevron width={'5rem'} />
-                        <button className="p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
+                        <button className={`${isFilterOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                            e.stopPropagation();
+                            setIsFilterOpen(false);
+                            setIsSortOpen(true)
+                        }}>
                             Ordenar
                         </button>
                     </div>
                 </div>
             </section>
             {
-                isModalOpen ? (
+                isFilterOpen ? (
                     <div className="fixed z-50 top-0 bottom-0 left-0 right-0 w-full bg-overlay" >
                         <FilterMenu
-                            isModalOpen={isModalOpen}
-                            setIsModalOpen={setIsModalOpen}
+                            isFilterOpen={isFilterOpen}
+                            setIsFilterOpen={setIsFilterOpen}
                             categories={categories}
                             high={high}
                             low={low}
@@ -127,6 +134,16 @@ function ProductsPage() {
                             filterByCategory={filterByCategory}
                             filterByPrice={filterByPrice}
                             clearFilters={clearFilters}
+                        />
+                    </div>
+                ) : null
+            }
+            {
+                isSortOpen ? (
+                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 flex w-full bg-overlay">
+                        <SortMenu
+                            isSortOpen={isSortOpen}
+                            setIsSortOpen={setIsSortOpen}
                         />
                     </div>
                 ) : null

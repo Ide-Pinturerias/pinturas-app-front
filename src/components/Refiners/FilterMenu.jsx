@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { XLarge } from "../SVG"
 
-function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, high, low, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
+function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
 
 
     // Detectar click fuera del menú.
@@ -61,19 +61,19 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, high, low, filt
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${!low && high === 10000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${!lowPrice && highPrice === 10000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
                             onClick={() => filterByPrice('Hasta $10000')}
                         >
                             Hasta $10.000
                         </span>
                         <span
-                            className={`text-sm ${low === 10000 && high === 20000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 10000 && highPrice === 20000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
                             onClick={() => filterByPrice('$10000 a $20000')}
                         >
                             $10.000 a $20.000
                         </span>
                         <span
-                            className={`text-sm ${low === 20000 && high === '' ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 20000 && highPrice === '' ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
                             onClick={() => filterByPrice('Mas de $20000')}
                         >
                             Más de $20.000

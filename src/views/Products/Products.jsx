@@ -24,7 +24,7 @@ function ProductsPage() {
     const categories = useSelector((state) => state.categories)
     const totalPages = useSelector((state) => state.totalPages)
     const thisPage = useSelector((state) => state.thisPage)
-    const { high, low } = useSelector((state) => state.price)
+    const { highPrice, lowPrice } = useSelector((state) => state.price)
 
     // LOCAL STATES:
     const [isLoading, setIsLoading] = useState(true)
@@ -67,8 +67,8 @@ function ProductsPage() {
     const filterProducts = (page) => {
         let selectedPage;
         selectedPage = page || thisPage
-        if (filterCategory || low || high) {
-            dispatch(getAllProductsFiltered(selectedPage, filterCategory, low, high))
+        if (filterCategory || lowPrice || highPrice) {
+            dispatch(getAllProductsFiltered(selectedPage, filterCategory, lowPrice, highPrice))
                 .then(() => setIsLoading(false))
         } else {
             dispatch(getAllProductsPaginated(selectedPage))
@@ -88,7 +88,7 @@ function ProductsPage() {
         setIsLoading(true)
         if (!filterCategory) dispatch(getAllCategories())
         filterProducts(null)
-    }, [dispatch, low, high, thisPage, filterCategory])
+    }, [dispatch, lowPrice, highPrice, thisPage, filterCategory])
 
 
     // COMPONENT:
@@ -128,8 +128,8 @@ function ProductsPage() {
                             isFilterOpen={isFilterOpen}
                             setIsFilterOpen={setIsFilterOpen}
                             categories={categories}
-                            high={high}
-                            low={low}
+                            highPrice={highPrice}
+                            lowPrice={lowPrice}
                             filterCategory={filterCategory}
                             filterByCategory={filterByCategory}
                             filterByPrice={filterByPrice}
@@ -160,30 +160,30 @@ function ProductsPage() {
                             <XSmall side={20} />
                         </button>
                     )}
-                    {high === 0 && low !== 0 && low && (
+                    {highPrice === 0 && lowPrice !== 0 && lowPrice && (
                         <button
                             className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
-                            <span className="whitespace-nowrap">Desde ${low}</span>
+                            <span className="whitespace-nowrap">Desde ${lowPrice}</span>
                             <XSmall side={20} />
                         </button>
                     )}
-                    {low === 0 && high !== 0 && high && (
+                    {lowPrice === 0 && highPrice !== 0 && highPrice && (
                         <button
                             className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
-                            <span className="whitespace-nowrap">Hasta ${high}</span>
+                            <span className="whitespace-nowrap">Hasta ${highPrice}</span>
                             <XSmall side={20} />
                         </button>
                     )}
-                    {low !== 0 && high !== 0 && high && low && (
+                    {lowPrice !== 0 && highPrice !== 0 && highPrice && lowPrice && (
                         <button
                             className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
-                            <span className="whitespace-nowrap">${low} hasta ${high}</span>
+                            <span className="whitespace-nowrap">${lowPrice} hasta ${highPrice}</span>
                             <XSmall side={20} />
                         </button>
                     )}

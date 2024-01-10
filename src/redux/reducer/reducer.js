@@ -109,8 +109,8 @@ const initialState = {
   // FILTERS
   filterCategory: '',
   price: {
-    high: 0,
-    low: 0
+    highPrice: 0,
+    lowPrice: 0
   },
 
   // PAGES
@@ -195,9 +195,9 @@ const reducer = (state = initialState, { type, payload }) => {
     case SET_CATEGORY:
       return { ...state, filterCategory: payload }
     case SET_HIGH_PRICE:
-      return { ...state, price: { ...state.price, high: payload } }
+      return { ...state, price: { ...state.price, highPrice: payload } }
     case SET_LOW_PRICE:
-      return { ...state, price: { ...state.price, low: payload } }
+      return { ...state, price: { ...state.price, lowPrice: payload } }
 
     // PAGES
     case SET_TOTAL_PAGES:

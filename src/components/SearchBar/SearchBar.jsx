@@ -9,7 +9,7 @@ import { Magnifier } from '../SVG'
 function SearchBar () {
   const thisPage = useSelector((state) => state.thisPage)
   const filterCategory = useSelector((state) => state.filterCategory)
-  const { high, low } = useSelector((state) => state.price)
+  const { highPrice, lowPrice } = useSelector((state) => state.price)
 
   const [search, setSearch] = useState('')
   const [magnifierFocus, setMagnifierFocus] = useState(false)
@@ -21,7 +21,7 @@ function SearchBar () {
     setSearch(event.target.value)
 
     event.target.value.length
-      ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
       : dispatch(getAllProductsPaginated())
   }
 

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react"
-import { useSelector } from "react-redux" 
 import { XLarge } from "../SVG"
 
 function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
@@ -13,7 +12,7 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
         };
     }
 
-    
+
     // LIFE CYCLES:
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick1)

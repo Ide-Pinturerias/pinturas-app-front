@@ -8,13 +8,11 @@ export const getAllProductsFiltered = (page, category, lowPrice, highPrice, sort
   // maxStock,
   // color,
   // sortBy,
-  // orderBy
-
-  //     minRating, maxRating,
-  //     minStock, maxStock,
-  //     page, color,
-  //     active, limit,
-  //     sortBy, orderBy
+  // orderBy,
+  // page, 
+  // color,
+  // active, 
+  // limit
   try {
     // Construir la URL incial con un parámetro común.
     const url = ['products?active=true']

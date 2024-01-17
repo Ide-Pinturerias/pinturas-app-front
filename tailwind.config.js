@@ -7,7 +7,7 @@ export default {
       colors: {
         primary: '#662c7b',
         turquoise: '#00A491',
-        orange: '#E96827',
+        orange: '#E96827', //#FF6600
         orangeAlt: '#E7976F',
         orangeAlt1: '#FFDDA6',
         secondary: '#535353',
@@ -16,7 +16,7 @@ export default {
         formBg: '#D9D9D9',
         warning: '#ff0f0f',
         white: '#f1f1f1',
-        warmWhite: '#FFFAED',
+        warmWhite: '#FFFAED', // ##F7EEDD
         seasalt: '#FAF8F5',
         softWhite: '#F7F7F2',
         complementaryWhite: '#EAEAE6',

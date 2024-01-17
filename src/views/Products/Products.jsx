@@ -8,6 +8,7 @@ import { setCategory } from '@redux/actions/filters/setCategory'
 import { setPage } from '@redux/actions/Page/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
+import { setSortClause, setSortDirection } from '../../redux/actions/filters/sort'
 
 import Paginated from '../../components/Paginated/Paginated'
 
@@ -25,6 +26,8 @@ function ProductsPage() {
     const totalPages = useSelector((state) => state.totalPages)
     const thisPage = useSelector((state) => state.thisPage)
     const { highPrice, lowPrice } = useSelector((state) => state.price)
+    const sortBy = useSelector((state) => state.sortBy)
+    const orderBy = useSelector((state) => state.orderBy)
 
     // LOCAL STATES:
     const [isLoading, setIsLoading] = useState(true)
@@ -35,6 +38,11 @@ function ProductsPage() {
     const dispatch = useDispatch()
 
     // FUNCTIONS:
+    const sortByClauseAndDirection = (clause, direction) => {
+        if (clause) dispatch(setSortClause(clause))
+        if (direction) dispatch(setSortDirection(direction))
+    }
+
     const filterByCategory = (category) => {
         dispatch(setPage(1))
         dispatch(setCategory(category))
@@ -67,8 +75,8 @@ function ProductsPage() {
     const filterProducts = (page) => {
         let selectedPage;
         selectedPage = page || thisPage
-        if (filterCategory || lowPrice || highPrice) {
-            dispatch(getAllProductsFiltered(selectedPage, filterCategory, lowPrice, highPrice))
+        if (filterCategory || lowPrice || highPrice || sortBy || orderBy) {
+            dispatch(getAllProductsFiltered(selectedPage, filterCategory, lowPrice, highPrice, sortBy, orderBy))
                 .then(() => setIsLoading(false))
         } else {
             dispatch(getAllProductsPaginated(selectedPage))
@@ -88,7 +96,7 @@ function ProductsPage() {
         setIsLoading(true)
         if (!filterCategory) dispatch(getAllCategories())
         filterProducts(null)
-    }, [dispatch, lowPrice, highPrice, thisPage, filterCategory])
+    }, [dispatch, lowPrice, highPrice, thisPage, filterCategory, sortBy, orderBy])
 
 
     // COMPONENT:
@@ -144,6 +152,9 @@ function ProductsPage() {
                         <SortMenu
                             isSortOpen={isSortOpen}
                             setIsSortOpen={setIsSortOpen}
+                            sortBy={sortBy}
+                            orderBy={orderBy}
+                            sortByClauseAndDirection={sortByClauseAndDirection}
                         />
                     </div>
                 ) : null

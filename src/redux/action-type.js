@@ -28,6 +28,10 @@ export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_HIGH_PRICE = 'SET_HIGH_PRICE'
 export const SET_LOW_PRICE = 'SET_LOW_PRICE'
 
+// SORTING
+export const SET_SORT_CLAUSE = 'SET_SORT_CLAUSE'
+export const SET_SORT_DIRECTION = 'SET_SORT_DIRECTION'
+
 // PAGES
 export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
 export const SET_PAGE = 'SET_PAGE'

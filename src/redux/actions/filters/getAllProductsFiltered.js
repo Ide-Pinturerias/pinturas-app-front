@@ -1,7 +1,7 @@
 import { GET_ALL_PRODUCTS_FILTERED, SET_TOTAL_PAGES } from '@redux/action-type'
 import { get_all_products_filtered } from '@api'
 
-export const getAllProductsFiltered = (page, category, lowPrice, highPrice) => async (dispatch) => {
+export const getAllProductsFiltered = (page, category, lowPrice, highPrice, sortBy, orderBy) => async (dispatch) => {
   // minRating,
   // maxRating,
   // minStock,
@@ -24,8 +24,11 @@ export const getAllProductsFiltered = (page, category, lowPrice, highPrice) => a
     if (category) url.push(`&category=${category}`)
     if (lowPrice > 0) url.push(`&lowPrice=${lowPrice}`)
     if (highPrice > 0) url.push(`&highPrice=${highPrice}`)
+    if (sortBy) url.push(`&sortBy=${sortBy}`)
+    if (orderBy) url.push(`&orderBy=${orderBy}`)
     // Juntar el array en una sola string
     const query = url.join('')
+
     // Hacer la petición de la api con la query creada para obtener los productos filtrados.
     const data = await get_all_products_filtered(query)
     const pages = data.pages

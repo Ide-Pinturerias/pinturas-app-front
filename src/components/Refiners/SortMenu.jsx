@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react"
 import { XLarge } from "../SVG"
 
-function SortMenu({ isSortOpen, setIsSortOpen }) {
+function SortMenu({ isSortOpen, setIsSortOpen, sortByClauseAndDirection }) {
 
 
     // Detectar click fuera del menú.
@@ -12,6 +12,8 @@ function SortMenu({ isSortOpen, setIsSortOpen }) {
         };
     }
 
+
+    // LIFE CYCLES:
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick1)
         return () => {
@@ -19,6 +21,8 @@ function SortMenu({ isSortOpen, setIsSortOpen }) {
         }
     }, [])
 
+
+    // COMPONENT:
     return (
         <aside
             ref={sortMenuRef}
@@ -41,10 +45,16 @@ function SortMenu({ isSortOpen, setIsSortOpen }) {
                         Nombre
                     </h3>
                     <div className="flex flex-col gap-1">
-                        <span className={`text-sm text-orange cursor-default' : 'hover:text-orange cursor-pointer`}>
+                        <span
+                            className={`text-sm text-orange cursor-default' : 'hover:text-orange cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection("name", "ASC")}
+                        >
                             Ascendente (A-Z)
                         </span>
-                        <span className={`text-sm hover:text-orange cursor-pointer`}>
+                        <span
+                            className={`text-sm hover:text-orange cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection("name", "DESC")}
+                        >
                             Descendente (Z-A)
                         </span>
                     </div>
@@ -55,10 +65,16 @@ function SortMenu({ isSortOpen, setIsSortOpen }) {
                         Precio
                     </h3>
                     <div className="flex flex-col gap-1">
-                        <span className={`text-sm hover:text-orange cursor-pointer`}>
+                        <span
+                            className={`text-sm hover:text-orange cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection("price", "ASC")}
+                        >
                             Menor a mayor
                         </span>
-                        <span className={`text-sm hover:text-orange cursor-pointer`}>
+                        <span
+                            className={`text-sm hover:text-orange cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection("price", "DESC")}
+                        >
                             Mayor a menor
                         </span>
                     </div>

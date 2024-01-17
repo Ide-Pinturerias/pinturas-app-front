@@ -27,6 +27,10 @@ import {
   SET_LOW_PRICE,
   SET_HIGH_PRICE,
 
+  // SORTING
+  SET_SORT_CLAUSE,
+  SET_SORT_DIRECTION,
+
   // PAGES
   SET_TOTAL_PAGES,
   SET_PAGE,
@@ -113,6 +117,10 @@ const initialState = {
     lowPrice: 0
   },
 
+  // SORTING
+  sortBy: '', // 'price' | 'rating' | 'stock' | 'name' | undefined, '' => 'idProduct'
+  orderBy: '', // 'asc' | 'desc'
+
   // PAGES
   totalPages: 0,
   thisPage: 1,
@@ -198,6 +206,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, price: { ...state.price, highPrice: payload } }
     case SET_LOW_PRICE:
       return { ...state, price: { ...state.price, lowPrice: payload } }
+
+    // SORTING
+    case SET_SORT_CLAUSE:
+      return { ...state, sortBy: payload }
+    case SET_SORT_DIRECTION:
+      return { ...state, orderBy: payload }
 
     // PAGES
     case SET_TOTAL_PAGES:

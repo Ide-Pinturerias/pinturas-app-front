@@ -31,4 +31,5 @@ body {
 #root {
     /* Debe coincidir con el padding top definido en tailwind.config.css */
     --whiteSpaceTop: 7rem;
+    --whiteSpaceSides: 3.5% 
 }

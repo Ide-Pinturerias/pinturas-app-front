@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import banner1 from '@img/banner1.png'
-import banner2 from '@img/banner2.png'
-import banner3 from '@img/banner3.png'
+import banner1 from "../../assets/images/banners/banner1.webp"
+import banner2 from "../../assets/images/banners/banner2.webp"
+import banner3 from "../../assets/images/banners/banner3.webp"
 
 const BannerCarousel = () => {
   const [currentImage, setCurrentImage] = useState(0)
@@ -40,8 +40,8 @@ const BannerCarousel = () => {
   }
 
   return (
-    <section className="hidden sm:block w-full">
-      <div className="relative flex justify-center items-center">
+    <section className="flex justify-center items-center w-full">
+          <div className="overflow-hidden relative flex justify-center items-center m-sides aspect-[16/5] max-w-max rounded-[2rem]">
         {
           images.map((image, index) => (
             <Link
@@ -52,7 +52,7 @@ const BannerCarousel = () => {
               <img
                 src={image.src}
                 alt={`Image ${index + 1}`}
-                className="w-full object-contain select-none"
+                className="w-full h-auto select-none"
               />
             </Link>
           ))

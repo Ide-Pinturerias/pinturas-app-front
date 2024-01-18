@@ -32,11 +32,18 @@ export default {
       },
       padding: {
         // Debe ser usado en cada component "main" para dar espacio al header principal.
-        whiteSpaceTop: '7rem 0 0 0'
+        whiteSpaceTop: '7rem 0 0 0',
+        sides: '0 3.5%'
+      },
+      margin: {
+        sides: '0 3.5%'
       },
       boxShadow: {
         credentialsMenu: '2px 2px 2px #662c7b75;'
-      }
+      },
+      maxWidth: {
+        max: '1480px'
+      },
     },
     fontFamily: {
       abc: ['Urbanist', 'sans-serif'],

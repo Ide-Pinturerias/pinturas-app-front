@@ -1,81 +1,84 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import banner1 from "../../assets/images/banners/banner1.webp"
 import banner2 from "../../assets/images/banners/banner2.webp"
 import banner3 from "../../assets/images/banners/banner3.webp"
+import { ChevronRightRounded, ChevronLeftRounded } from '@mui/icons-material'
 
 const BannerCarousel = () => {
-  const [currentImage, setCurrentImage] = useState(0)
-  const images = [
-    {
-      src: banner1,
-      link: '/products'
-    },
-    {
-      src: banner2,
-      link: '/products'
-    },
-    {
-      src: banner3,
-      link: '/products'
+
+    // LOCA STATES:
+    const [currentImage, setCurrentImage] = useState(0)
+
+    // CONST:
+    const images = [{
+        src: banner1,
+        alt: "Juntos por un mundo mejor. Por cada balde de 20L lleno de tapitas, FADEPA te da 4 litros de pintura."
+    }, {
+        src: banner2,
+        alt: "¡Ponle color a los Black Days! 15% OFF *En referencias seleccionadas."
+    }, {
+        src: banner3,
+        alt: "Dale color a tu vida. idePinturerías."
+    }]
+    const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-button focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
+
+    // FUNCTIONS:
+    const goToPrevImage = () => {
+        setCurrentImage((prevImage) => (prevImage - 1 + images.length) % images.length)
     }
-  ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length)
-    }, 5000)
+    const goToNextImage = () => {
+        setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+    }
 
-    return () => clearInterval(interval)
-  }, [])
+    // LIFE CYCLES:
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+        }, 5000)
 
-  const goToPrevImage = () => {
-    setCurrentImage(
-      (prevImage) => (prevImage - 1 + images.length) % images.length
+        return () => clearInterval(interval)
+    }, [])
+
+    // COMPONENTS:
+    return (
+        <section className="flex justify-center items-center w-full">
+            <div className="overflow-hidden relative flex justify-center items-center m-sides aspect-[16/5] max-w-maxSc w-maxIn rounded-[2rem]">
+                {
+                    images.map((img, index) => (
+                        <Link
+                            key={index}
+                            to='/products'
+                            className={`top-0 left-0 absolute size-full transition-opacity duration-1000 ease-in-out ${index === currentImage ? 'opacity-100' : '-z-10 pointer-events-none opacity-20'}`}
+                        >
+                            <img
+                                src={img.src}
+                                alt={img.alt}
+                                className="w-full h-auto object-cover select-none m-auto"
+                            />
+                        </Link>
+                    ))
+                }
+                <div className="absolute top-1/2 -translate-y-1/2 left-[3%]">
+                    <button
+                        className={`size-[45px] grid place-items-center box-border bg-bg text-primaryClear border border-primaryClear rounded-full ${focusAnimation}`}
+                        onClick={goToPrevImage}
+                    >
+                        <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
+                    </button>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-[3%]">
+                    <button
+                        className={`size-[45px] grid place-items-center box-border bg-bg text-primaryClear border border-primaryClear rounded-full ${focusAnimation}`}
+                        onClick={goToNextImage}
+                    >
+                        <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
+                    </button>
+                </div>
+            </div>
+        </section>
     )
-  }
-
-  const goToNextImage = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % images.length)
-  }
-
-  return (
-    <section className="flex justify-center items-center w-full">
-          <div className="overflow-hidden relative flex justify-center items-center m-sides aspect-[16/5] max-w-max rounded-[2rem]">
-        {
-          images.map((image, index) => (
-            <Link
-              key={index}
-              to={image.link}
-              className={`top-0 left-0 w-full transition-opacity duration-500 ease-in-out ${index === currentImage ? 'relative opacity-100' : 'absolute opacity-0'}`}
-            >
-              <img
-                src={image.src}
-                alt={`Image ${index + 1}`}
-                className="w-full h-auto select-none"
-              />
-            </Link>
-          ))
-        }
-        <div className="absolute left-8">
-          <button
-            className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-            onClick={goToPrevImage}
-          >
-            &lt;
-          </button>
-        </div>
-        <div className="absolute right-8">
-          <button
-            className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-            onClick={goToNextImage}
-          >
-            &gt;
-          </button>
-        </div>
-      </div>
-    </section>
-  )
 }
 
 export default BannerCarousel

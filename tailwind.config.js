@@ -24,6 +24,7 @@ export default {
         bg: '#FFFFFF', // '#F7EEDD'
         bgFocus: '#F5F5F5', // '#EDE4D3'
         primaryClear: '#FF6600',
+        primaryDull: '#FFDDA6',
         primaryVisible: '#FFFFA1',
         accentClear: '#00A491',
         duller: '#CCCCCC',
@@ -39,11 +40,30 @@ export default {
         sides: '0 3.5%'
       },
       boxShadow: {
-        credentialsMenu: '2px 2px 2px #662c7b75;'
+        credentialsMenu: '2px 2px 2px #662c7b75;',
+        button: '0px 3px 6px rgba(30,30,30,0.3)',
+      },
+      outlineColor: {
+        focus: '#00A491'
+      },
+      outlineWidth: {
+        focus: '2.5px'
+      },
+      outlineOffset: {
+        focus: '1.7px'
       },
       maxWidth: {
-        max: '1480px'
+        maxSc: '1480px'
       },
+      minWidth: {
+        minIn: '93%'
+      },
+      width: {
+        maxIn: '93%'
+      },
+      transitionProperty: {
+        focus: 'transform, background-color, box-shadow'
+      }
     },
     fontFamily: {
       abc: ['Urbanist', 'sans-serif'],

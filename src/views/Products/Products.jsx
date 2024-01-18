@@ -102,16 +102,16 @@ function ProductsPage() {
     // COMPONENT:
     return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
-            <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-orange">
+            <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-primaryClear">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
                     <div>
-                        <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem] font-heading"> Todos nuestros productos </h2>
+                        <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-bg before:rounded-[2rem] font-heading"> Todos nuestros productos </h2>
                         <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
                             Somos un distribuidor oficial de pinturas Fadepa. En nuestra tienda encontrarás barniz, aditivos, diluyentes, entre otros.
                         </p>
                     </div>
                     <div className="flex justify-between items-center">
-                        <button className={` ${isSortOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={` ${isSortOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                             e.stopPropagation();
                             setIsSortOpen(false);
                             setIsFilterOpen(true)
@@ -119,7 +119,7 @@ function ProductsPage() {
                             Filtrar
                         </button>
                         <Chevron width={'5rem'} />
-                        <button className={`${isFilterOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-black text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={`${isFilterOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                             e.stopPropagation();
                             setIsFilterOpen(false);
                             setIsSortOpen(true)
@@ -159,12 +159,12 @@ function ProductsPage() {
                     </div>
                 ) : null
             }
-            <section className="flex flex-col items-center justify-center w-full py-16 bg-complementaryWhite">
+            <section className="flex flex-col items-center justify-center w-full py-16 bg-bg">
                 <div className="flex justify-center items-center flex-wrap gap-4 w-full">
                     {/*          CLEAR FILTERS        */}
                     {filterCategory && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByCategory('')}
                         >
                             <span className="whitespace-nowrap">{filterCategory}</span>
@@ -173,7 +173,7 @@ function ProductsPage() {
                     )}
                     {highPrice === 0 && lowPrice !== 0 && lowPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Desde ${lowPrice}</span>
@@ -182,7 +182,7 @@ function ProductsPage() {
                     )}
                     {lowPrice === 0 && highPrice !== 0 && highPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Hasta ${highPrice}</span>
@@ -191,7 +191,7 @@ function ProductsPage() {
                     )}
                     {lowPrice !== 0 && highPrice !== 0 && highPrice && lowPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">${lowPrice} hasta ${highPrice}</span>

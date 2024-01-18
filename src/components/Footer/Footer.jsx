@@ -19,7 +19,7 @@ const Footer = () => {
   ]
 
   return (
-        <footer className="w-full flex flex-col items-center bg-primary">
+    <footer className="w-full flex flex-col items-center bg-primaryClear">
             <div className="w-full flex items-center justify-evenly">
                 <div className="hidden sm:block">
                     <NavLink to="/">
@@ -80,7 +80,7 @@ const Footer = () => {
                     Work Team Developers
                 </NavLink>
             </p>
-        </footer>
+    </footer>
   )
 }
 

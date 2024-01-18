@@ -102,6 +102,10 @@ src
 |--|--Featured (CAN BE REMOVED)
 |--|--|--Featured.jsx
 -
+&
+-
+|--|--Products (CAN BE REMOVED)
+|--|--|--ProductCard.jsx
 =>
 -
 |--|--ProductCards
@@ -128,6 +132,11 @@ src
 |--|--|--ProductBox.jsx
 -
 
+-
+|--|--SideBar (CAN BE REMOVED)
+|--|--|--SideBar.jsx
+-
+=>
 |--|--Refiners
 |--|--|--FilterMenu.jsx
 |--|--|--SortMenu.jsx

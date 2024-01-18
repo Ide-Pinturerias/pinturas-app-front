@@ -16,12 +16,12 @@ const SOCIAL_MEDIA = [
 
 const Contact = () => {
   return (
-        <main className="relative flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-turquoise">
+        <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-accentClear">
             <section className="flex justify-center mb-[8rem] text-white w-full">
                 <div className="max-w-[1920px] w-full px-[3.5%]">
-                    <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-warmWhite before:rounded-[2rem] font-heading">Nuestra tienda</h2>
+                    <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-bg before:rounded-[2rem] font-heading">Nuestra tienda</h2>
                     <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                        En nuestra tienda encontraras todos los productos que necesitas.
+                        En nuestra tienda encontrarás todos los productos que necesitas.
                     </p>
                     <div className="w-full flex justify-center items-center">
                         <img src={Local} alt="Local" className="w-full rounded-[2rem]" />
@@ -29,7 +29,7 @@ const Contact = () => {
                 </div>
             </section>
 
-            <section className="relative flex justify-center w-full before:content-[''] before:absolute before:-z-50 before:bottom-0 before:left-0 before:h-[25%] before:w-full before:bg-orange">
+            <section className="relative flex justify-center w-full before:content-[''] before:absolute before:-z-50 before:bottom-0 before:left-0 before:h-[25%] before:w-full before:bg-primaryClear">
                 <div className="px-[3.5%] box-border w-full max-w-[1920px]">
                     <div className="flex mb-[8rem]">
                         <img
@@ -48,7 +48,7 @@ const Contact = () => {
                 </div>
             </section>
 
-            <section className="flex justify-center py-[8rem] w-full bg-orange text-white ">
+            <section className="flex justify-center py-[8rem] w-full bg-primaryClear text-white ">
                 <div className="px-[3.5%] max-w-[1920px] w-full">
                     <h3 className="text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase mb-12"><strong>Encuéntranos</strong></h3>
                     <div className="w-full flex justify-between items-center">
@@ -101,36 +101,36 @@ const Contact = () => {
                 </div>
             </section>
 
-            <section className="py-[8rem] bg-orange">
+            <section className="py-[8rem] bg-primaryClear">
                 <div className="flex flex-col items-center max-w-[1920px] text-white">
                     <h3 className="mb-16 text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase font-bold">Atención al cliente</h3>
-                    <div className="p-8 mx-[20%] mb-16 rounded-[2rem] bg-warmWhite">
-                        <p className="text-center text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-black">
+                    <div className="p-8 mx-[20%] mb-16 rounded-[2rem] bg-bgFocus">
+                        <p className="text-center text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-clear">
                             <strong className="block">Tú eres el centro.</strong>
                             Nuestro equipo de atención al cliente está aquí para responder a tus preguntas, proporcionar asesoramiento experto y garantizar tu completa satisfacción. Ya sea que necesites ayuda para elegir el color perfecto o tengas consultas sobre nuestros productos, estamos comprometidos a hacer de tu experiencia de compra algo extraordinario.
                         </p>
                     </div>
                     <div className="flex justify-between w-1/2">
                         <div className="flex flex-col items-center">
-                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-warmWhite before:rounded-full">
+                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-bgFocus before:rounded-full">
                                 <Phone style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
                             </div>
                             <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
                                 Teléfono
                             </p>
-                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] dark:text-black-200">
+                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-white">
                                 +54 351 306 1350
                             </p>
 
                         </div>
                         <div className="flex flex-col items-center">
-                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-warmWhite before:rounded-full">
+                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-bgFocus before:rounded-full">
                                 <Email style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
                             </div>
                             <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
                                 Correo
                             </p>
-                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] dark:text-black-200">
+                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-white">
                                 idepintureria@gmail.com
                             </p>
                         </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                                 SOCIAL_MEDIA.map((item, idx) => (
                                     <li
                                         key={idx}
-                                        className={`grid items-center ${item.rotate} w-[20%] h-auto p-[5.5%] aspect-square rounded-[2rem] bg-warmWhite fill-black shadow-md`}
+                                        className={`grid items-center ${item.rotate} w-[20%] h-auto p-[5.5%] aspect-square rounded-[2rem] bg-bgFocus fill-black shadow-md`}
                                     >
                                         <a
                                             href={item.link}

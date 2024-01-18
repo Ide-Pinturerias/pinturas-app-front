@@ -41,7 +41,7 @@ const CategoryContainer = () => {
   ]
 
   return (
-        <section className="flex flex-col items-center justify-center mb-[50px] px-[3.5%] w-full bg-[#FFFAED]">
+        <section className="flex flex-col items-center justify-center mb-[50px] px-[3.5%] w-full bg-bg">
             <h2 className="w-full text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Nuestras Líneas</h2>
             <div className="relative z-10 grid grid-cols-2 gap-6 w-full">
                 {
@@ -54,7 +54,7 @@ const CategoryContainer = () => {
                             <img
                                 src={category.image}
                                 alt={category.searchQuery}
-                                className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-orange hover:opacity-90"
+                                className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-primaryClear hover:opacity-90"
                             />
                         </Link>
                     ))

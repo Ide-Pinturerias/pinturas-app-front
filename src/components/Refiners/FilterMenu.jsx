@@ -26,7 +26,7 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
     return (
         <aside
             ref={filterMenuRef}
-            className="flex flex-col w-[30%] h-full mr-auto p-6 bg-complementaryWhite rounded-r-[2rem]"
+            className="flex flex-col w-[30%] h-full mr-auto p-6 bg-bgFocus rounded-r-[2rem]"
         >
             <div className="flex justify-between items-center font-bold uppercase">
                 <h2>Filtros</h2>
@@ -50,7 +50,7 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
                                 <span
                                     key={index}
                                     onClick={() => filterByCategory(category)}
-                                    className={`text-sm ${filterCategory === category ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                                    className={`text-sm ${filterCategory === category ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                                 >
                                     {category}
                                 </span>
@@ -65,19 +65,19 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${!lowPrice && highPrice === 10000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${!lowPrice && highPrice === 10000 ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('Hasta $10000')}
                         >
                             Hasta $10.000
                         </span>
                         <span
-                            className={`text-sm ${lowPrice === 10000 && highPrice === 20000 ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 10000 && highPrice === 20000 ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('$10000 a $20000')}
                         >
                             $10.000 a $20.000
                         </span>
                         <span
-                            className={`text-sm ${lowPrice === 20000 && highPrice === '' ? 'text-orange cursor-default' : 'hover:text-orange cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 20000 && highPrice === '' ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('Mas de $20000')}
                         >
                             Más de $20.000
@@ -88,13 +88,13 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
                 <button
-                    className="w-[80%] p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
+                    className="w-[80%] p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase"
                     onClick={() => setIsFilterOpen(false)}
                 >
                     Mostrar resultados
                 </button>
                 <button
-                    className="w-[80%] p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
+                    className="w-[80%] p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase"
                     onClick={() => clearFilters()}
                 >
                     Limpiar filtros

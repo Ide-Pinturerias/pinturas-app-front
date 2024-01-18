@@ -119,7 +119,7 @@ function Detail () {
     const percentage = Math.round((value / max) * 100)
 
     return (
-      <div className="relative flex items-center gap-1 mr-2 fill-orange">
+      <div className="relative flex items-center gap-1 mr-2 fill-primaryClear">
         {
           Array.from(Array(max).keys()).map((_, idx) => (
             <Star key={idx} />
@@ -186,7 +186,7 @@ function Detail () {
 
   // COMPONENT:
   return (
-        <main className="flex flex-col justify-center p-whiteSpaceTop bg-softWhite">
+        <main className="flex flex-col justify-center p-whiteSpaceTop bg-bg">
             {
                 Object.keys(product).length === 0
                   ? (<img
@@ -213,7 +213,7 @@ function Detail () {
                                 <div className="flex justify-between">
                                     <div className="flex flex-col mb-4">
                                         {/* CATEGORY LABEL OPTION 1: */}
-                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-orange text-sm text-orange tracking-[.25px]">{product.category}</a>
+                                        <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]">{product.category}</a>
                                         {/* CATEGORY LABEL OPTION 2: */}
                                         {/* <a className="relative z-0 w-fit px-[2%] py-[.25%] before:content-[''] before:-z-10 before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-full before:h-full before:rounded-[15px] before:bg-black text-white text-sm tracking-[2px]">{productMock.category}</a> */}
                                         <h1 className="mt-2 text-3xl font-bold uppercase">{product.name}</h1>
@@ -241,9 +241,9 @@ function Detail () {
                                                 }
                                             </span>
                                         </div>
-                                        <hr className="my-4 mt-5 border-orange" />
+                                        <hr className="my-4 mt-5 border-primaryClear" />
                                         <h2 className="text-lg font-bold uppercase mb-2">Descripción general</h2>
-                                        <div className="p-4 bg-complementaryWhite text-black rounded-[1rem]">
+                                        <div className="p-4 bg-bgFocus text-clear rounded-[1rem]">
                                             <ul className="text-lg">
                                                 <li>Tamaño del envase: {product.package}</li>
                                                 <li>Color: {product.color}</li>
@@ -251,19 +251,19 @@ function Detail () {
                                             </ul>
                                         </div>
                                         <div className="flex flex-col justify-between mt-2">
-                                            <div className="flex items-center gap-2 w-fit mb-2 p-4 rounded-[1rem] bg-complementaryWhite">
+                                            <div className="flex items-center gap-2 w-fit mb-2 p-4 rounded-[1rem] bg-bgFocus">
                                                 <Shop />
                                                 Disponible en tienda
                                             </div>
                                         </div>
 
-                                        <hr className="my-4 border-focusedWhite" />
+                                        <hr className="my-4 border-duller" />
 
                                         <h3 className="text-lg font-bold uppercase mb-2">¿Tienes alguna duda?</h3>
                                         <div className="my-2">Estamos para ayudar</div>
                                         <div className="flex gap-2">
                                             <button
-                                                className={'flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase ' + (showNumber && 'cursor-default select-text')}
+                                                className={'flex items-center gap-2 w-fit mb-2 p-4 box-border border border-primaryClear text-primaryClear rounded-[2rem] text-sm font-bold uppercase ' + (showNumber && 'cursor-default select-text')}
                                                 onClick={() => showNumber === false && setShowNumber(true)}
                                             >
                                                 <Phone />
@@ -277,13 +277,13 @@ function Detail () {
                                                         )
                                                 }
                                             </button>
-                                            <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-orange text-orange rounded-[2rem] text-sm font-bold uppercase">
+                                            <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-primaryClear text-primaryClear rounded-[2rem] text-sm font-bold uppercase">
                                                 <ChatEmpty />
                                                 Chatea
                                             </button>
                                         </div>
 
-                                        <hr className="my-4 border-orange" />
+                                        <hr className="my-4 border-primaryClear" />
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
                                         <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
@@ -326,8 +326,8 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                 <>
-                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                                    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
+                                                    <button className="w-[80%] mb-2 p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
+                                                    <button className="w-[80%] mb-2 p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
                                                 </>
                                                 )
                                               : (

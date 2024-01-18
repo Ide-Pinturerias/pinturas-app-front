@@ -30,7 +30,7 @@ function SearchBar () {
             <input
                 type="search"
                 placeholder="Buscar en la tienda"
-                className="w-[80%] py-[0.2rem] px-4 box-border border-[1.75px] border-transparent rounded-full bg-complementaryWhite transition-all text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] hover:border-focusedWhite outline-0 focus:border-orange"
+                className="w-[80%] py-[0.2rem] px-4 box-border border-[1.75px] border-transparent rounded-full bg-bgFocus transition-all text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] hover:border-duller outline-0 focus:border-primaryClear"
                 value={search}
                 onChange={handleChange}
                 onFocus={() => setMagnifierFocus(true)}
@@ -41,7 +41,7 @@ function SearchBar () {
                 onFocus={() => setMagnifierFocus(true)}
                 onBlur={() => setMagnifierFocus(false)}
             >
-                <div className={`h-4 w-4 fill-black hover:fill-orange ${magnifierFocus ? 'fill-orange' : ''}`}>
+                <div className={`h-4 w-4 fill-black hover:fill-primaryClear ${magnifierFocus ? 'fill-primaryClear' : ''}`}>
                     <Magnifier />
                 </div>
             </button>

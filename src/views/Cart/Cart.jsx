@@ -73,6 +73,7 @@ const Cart = () => {
       key={useId()}
       products={productsCart}
       />
+      <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar Carrito!</button>
     </main>
   )
 

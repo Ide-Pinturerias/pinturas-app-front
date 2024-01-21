@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { productById } from '@redux/actions/Products/productById'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
@@ -16,6 +16,7 @@ function Detail () {
   const product = useSelector((state) => state.detail)
 
   // CONSTANTS:
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const { idProduct } = useParams()
   const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
@@ -86,6 +87,15 @@ function Detail () {
       }
     })
   }
+  // Ir a comprar carrito
+  const handleBuyNow = () => {
+    if (!isInCart) {
+      const productToAdd = { id: idProduct, quantity: numberOfItems }
+      dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+      isProductInCart(productsLocal, idProduct)
+    }
+    navigate('/cart')
+  }
 
   const onDeleteProductCart = ({ user, id }) => {
     dispatch(deleteProductCart(user, id))
@@ -95,8 +105,6 @@ function Detail () {
       text: 'Producto eliminado del carrito',
       icon: 'success',
       confirmButtonText: 'Ok'
-    }).then(() => {
-      window.location.reload()
     })
   }
 
@@ -343,7 +351,9 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                 <>
-                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
+                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
+                                                    onClick={handleBuyNow}
+                                                    >¡Comprar ahora!</button>
                                                     {
                                                         isInCart
                                                           ? removeFromCartButton

@@ -3,6 +3,7 @@ import ProductCart from '@components/ProductCart/ProductCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
 import TotalCart from '@components/ProductCart/TotalCart'
+import PurchaseCart from '../../components/PurchaseCart/PurchaseCart'
 
 const LoadingSpinner = () => {
   return (
@@ -73,7 +74,7 @@ const Cart = () => {
       key={useId()}
       products={productsCart}
       />
-      <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar Carrito!</button>
+      <PurchaseCart/>
     </main>
   )
 

@@ -5,11 +5,11 @@ export const postOrderPayment = (idOrder) => {
   return async (dispatch) => {
     try {
       const body = { idOrder }
-      const response = (await axios.post(`${BASE_URL}orders/payment`, body)).data
+      const { preference } = (await axios.post(`${BASE_URL}orders/payment`, body)).data
+      dispatch({ type: POST_ORDER_PAYMENT })
 
-      dispatch({ type: POST_ORDER_PAYMENT, payload: response.body.init_point })
-
-      return response
+      console.log(preference) // to-do quitar antes del merge
+      return preference.init_point
     } catch (error) {
       console.log('postOrderPayment error:', error)
     }

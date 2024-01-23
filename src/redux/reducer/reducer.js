@@ -42,6 +42,7 @@ import {
   GET_ORDERS_USER,
   GET_ORDER_BY_ID,
   POST_ORDER_PAYMENT,
+  POST_ORDER_CART,
   PUT_ORDER,
 
   // NODE MAILER
@@ -82,8 +83,8 @@ const initialState = {
   cart: {},
   // ORDERS
   allOrders: [],
-  newOrder: {},
-  payment: '',
+  ordersUser: {},
+  orderDetail: {},
 
   // PRODUCTS
   products: [],
@@ -113,11 +114,6 @@ const initialState = {
 
   // MAIL
   mail: {},
-
-  // ORDERS
-  initPoint: '',
-  ordersUser: {},
-  orderDetail: {},
 
   // AUTH0-USERS-INFO
   userData: {},
@@ -221,13 +217,15 @@ const reducer = (state = initialState, { type, payload }) => {
     case GET_ALL_ORDERS:
       return { ...state, allOrders: payload }
     case POST_ORDER_PAYMENT:
-      return { ...state, initPoint: payload }
+      return { ...state }
     case GET_ORDERS_USER:
       return { ...state, ordersUser: payload }
     case GET_ORDER_BY_ID:
       return { ...state, orderDetail: payload }
     case PUT_ORDER:
       return { ...state, orderDetail: payload }
+    case POST_ORDER_CART:
+      return { ...state }
 
     // AUTH0-USERS-INFO
     case SET_USER_DATA:

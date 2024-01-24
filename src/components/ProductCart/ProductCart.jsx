@@ -62,7 +62,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
 
   return (
     <>
-      {id && name && quantity && image && price && stock && subtotal
+      {id && name && quantity && image && price && stock >= 0 && subtotal
         ? productView
         : null}
     </>

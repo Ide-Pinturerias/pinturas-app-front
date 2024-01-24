@@ -74,7 +74,9 @@ const Cart = () => {
       key={useId()}
       products={productsCart}
       />
-      <PurchaseCart/>
+      <PurchaseCart
+      products={productsCart}
+      />
     </main>
   )
 

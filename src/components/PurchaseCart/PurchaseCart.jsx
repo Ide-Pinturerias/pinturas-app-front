@@ -3,11 +3,16 @@ import { postOrderByCart } from '../../redux/actions/Orders/postOrderByCart'
 import { postOrderPayment } from '../../redux/actions/Orders/postOrderPayment'
 import Swal from 'sweetalert2'
 
-const PurchaseCart = () => {
+const PurchaseCart = ({ products }) => {
   const dispatch = useDispatch()
   const { idCart } = useSelector(state => state.cart)
   const user = useSelector(state => state.user)
 
+  // controlar si algun producto que se quiera comprar no tiene stock
+  const checkStock = () => {
+    return products.some(product => product.stock <= 0)
+  }
+  // funcion para efectuar compra
   const handlePurchase = async () => {
     try {
       // Si no estoy logueado no puedo comprar
@@ -21,6 +26,7 @@ const PurchaseCart = () => {
 
       window.location.href = initPoint
     } catch (error) {
+      Swal.fire('Algo falló al intentar realizar la compra')
       console.error('Error al realizar la compra:', error.message)
     }
   }
@@ -28,6 +34,8 @@ const PurchaseCart = () => {
   return (<>
         <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
         onClick={handlePurchase}
+        disabled={checkStock()}
+        style={{ backgroundColor: checkStock() ? '#ccc' : null }}
         >¡Comprar Carrito!</button>
     </>)
 }

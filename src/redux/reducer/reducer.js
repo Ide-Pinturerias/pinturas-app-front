@@ -36,6 +36,7 @@ import {
   ADD_PRODUCT_CART,
   DELETE_PRODUCT_CART,
   SET_CART,
+  CLEAR_CART,
 
   // ORDERS
   GET_ALL_ORDERS,
@@ -203,6 +204,8 @@ const reducer = (state = initialState, { type, payload }) => {
     case DELETE_PRODUCT_CART:
       return { ...state, cart: payload }
     case SET_CART:
+      return { ...state, cart: payload }
+    case CLEAR_CART:
       return { ...state, cart: payload }
 
     // NODE MAILER

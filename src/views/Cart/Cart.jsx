@@ -1,9 +1,10 @@
 import { useEffect, useId } from 'react'
-import ProductCart from '@components/ProductCart/ProductCart'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
-import TotalCart from '@components/ProductCart/TotalCart'
-import PurchaseCart from '../../components/PurchaseCart/PurchaseCart'
+import ProductCart from '@components/Cart/ProductCart'
+import TotalCart from '@components/Cart/TotalCart'
+import PurchaseCart from '@components/Cart/PurchaseCart'
+import ClearCart from '@components/Cart/ClearCart'
 
 const LoadingSpinner = () => {
   return (
@@ -77,6 +78,7 @@ const Cart = () => {
       <PurchaseCart
       products={productsCart}
       />
+      <ClearCart/>
     </main>
   )
 

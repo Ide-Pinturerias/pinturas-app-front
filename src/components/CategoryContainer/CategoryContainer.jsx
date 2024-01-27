@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setPage } from '@redux/actions/Page/setPage'
 import { setCategory } from '@redux/actions/filters/setCategory'
+import stl from './CategoryContainer.module.css'
 // Banners
 import category2 from '@img/especiales.png'
 import category3 from '@img/esmalte.png'
@@ -55,13 +56,6 @@ const CategoryContainer = () => {
     //     dispatch(setPage(1))
     //     dispatch(setCategory(category))
     // }
-    const gridTemplateAreas = `
-        "item1 item1 item1 item2 item2 item2"
-        "item3 item3 item4 item4 item5 item5"
-        "item6 item6 item6 item7 item7 item7"
-        "item8 item8 item9 item9 item10 item10"
-        "item11 item11 item11 item12 item12 item12"
-    `
 
     const CATEGORIES = [
         { image: category14, searchQuery: 'Linea Maderas' },
@@ -87,10 +81,7 @@ const CategoryContainer = () => {
                     <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
                     <p>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
                 </div>
-                <div
-                    className='grid grid-cols-6 gap-6 mt-6'
-                    style={{ gridTemplateAreas: gridTemplateAreas }}
-                >
+                <div className={`grid grid-cols-6 gap-6 mt-6 ${stl.div__grid_container}`}>
                     {
                         CATEGORIES.map((category, idx) => (
                             <CategoryCard

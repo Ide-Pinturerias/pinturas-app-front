@@ -1,0 +1,21 @@
+.div__grid_container {
+    grid-template-areas:
+        "item1 item1 item1 item2 item2 item2"
+        "item3 item3 item4 item4 item5 item5"
+        "item6 item6 item6 item7 item7 item7"
+        "item8 item8 item9 item9 item10 item10"
+        "item11 item11 item11 item12 item12 item12";
+}
+
+@media only screen and (max-width: 1000px) {
+    .div__grid_container {
+        grid-template-areas:
+            "item1 item1 item1 item2 item2 item2"
+            "item3 item3 item3 item4 item4 item4"
+            "item5 item5 item5 item6 item6 item6"
+            "item7 item7 item7 item8 item8 item8"
+            "item9 item9 item9 item10 item10 item10"
+            "item11 item11 item11 item12 item12 item12"
+        ;
+    }
+}

@@ -30,30 +30,38 @@ const afterPseudo = `
     focus:after:bg-duller focus:after:border-clear focus:after:shadow-main 
 `
 
-const CategoryCard = ({ searchQuery, image }) => {
+const CategoryCard = ({ idx, searchQuery, image, title }) => {
     return (
         <Link
             to={`/products?category=${encodeURIComponent(searchQuery)}`}
             onClick={() => handleCategory(searchQuery)}
             className={`relative rounded-lg ${afterPseudo}`}
+            style={{ gridArea: `item${idx + 1}` }}
         >
             <img
                 src={image}
                 alt={searchQuery}
-                // className="h-auto object-cover cursor-pointer rounded-3xl transition-all hover:outline hover:outline-4 hover:outline-primaryClear hover:opacity-90"
-                className="overflow-hidden h-auto object-cover rounded-lg "
+                className="overflow-hidden h-auto object-cover rounded-lg"
             />
+            <h3 className='text-start font-bold'>{title}</h3>
         </Link>
     )
 }
 
 const CategoryContainer = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
-    const handleCategory = (category) => {
-        dispatch(setPage(1))
-        dispatch(setCategory(category))
-    }
+    // const handleCategory = (category) => {
+    //     dispatch(setPage(1))
+    //     dispatch(setCategory(category))
+    // }
+    const gridTemplateAreas = `
+        "item1 item1 item1 item2 item2 item2"
+        "item3 item3 item4 item4 item5 item5"
+        "item6 item6 item6 item7 item7 item7"
+        "item8 item8 item9 item9 item10 item10"
+        "item11 item11 item11 item12 item12 item12"
+    `
 
     const CATEGORIES = [
         { image: category14, searchQuery: 'Linea Maderas' },
@@ -65,7 +73,7 @@ const CategoryContainer = () => {
         { image: category8, searchQuery: 'Linea Esmaltes Industriales' },
         { image: category2, searchQuery: 'Linea Productos Especiales' },
         { image: category10, searchQuery: 'Linea Impermeabilizantes' },
-        { image: category11, searchQuery: 'Linea Fijadores - Aditivos -' },
+        { image: category11, searchQuery: 'Linea Fijadores - Aditivos' },
         { image: category9, searchQuery: 'Linea Latex' },
         // { image: category12, searchQuery: "Linea" },
         { image: category13, searchQuery: 'Linea Productos Auxiliares' }
@@ -76,97 +84,25 @@ const CategoryContainer = () => {
             <div className=" relative z-10 flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 <div className="text-start">
                     <p className="text-primaryClear">Arte que transforma tus paredes en obras maestras</p>
-                    <h2 className="w-full text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
+                    <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
                     <p>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
                 </div>
-                <div className="grid grid-cols-2 gap-6 w-full mt-6">
+                <div
+                    className='grid grid-cols-6 gap-6 mt-6'
+                    style={{ gridTemplateAreas: gridTemplateAreas }}
+                >
                     {
-                        CATEGORIES.map((category, idx) => {
-                            if (idx >= 0 && idx <= 1) {
-                                return (
-                                    <CategoryCard
-                                        key={idx}
-                                        searchQuery={category.searchQuery}
-                                        image={category.image}
-                                    />
-                                )
-                            }
-                        })
+                        CATEGORIES.map((category, idx) => (
+                            <CategoryCard
+                                key={idx}
+                                idx={idx}
+                                searchQuery={category.searchQuery}
+                                image={category.image}
+                                title={category.searchQuery}
+                            />
+                        ))
                     }
                 </div>
-                <div className="grid grid-cols-3 gap-6 w-full mt-6">
-                    {
-                        CATEGORIES.map((category, idx) => {
-                            if (idx >= 2 && idx <= 4) {
-                                return (
-                                    <CategoryCard
-                                        key={idx}
-                                        searchQuery={category.searchQuery}
-                                        image={category.image}
-                                    />
-                                )
-                            }
-                        })
-                    }
-                </div>
-                <div className="grid grid-cols-2 gap-6 w-full mt-6">
-                    {
-                        CATEGORIES.map((category, idx) => {
-                            if (idx >= 5 && idx <= 6) {
-                                return (
-                                    <CategoryCard
-                                        key={idx}
-                                        searchQuery={category.searchQuery}
-                                        image={category.image}
-                                    />
-                                )
-                            }
-                        })
-                    }
-                </div>
-                <div></div>
-                <div className="grid grid-cols-3 gap-6 w-full mt-6">
-                    {
-                        CATEGORIES.map((category, idx) => {
-                            if (idx >= 7 && idx <= 9) {
-                                return (
-                                    <CategoryCard
-                                        key={idx}
-                                        searchQuery={category.searchQuery}
-                                        image={category.image}
-                                    />
-                                )
-                            }
-                        })
-                    }
-                </div>
-                <div className="grid grid-cols-2 gap-6 w-full mt-6">
-                    {
-                        CATEGORIES.map((category, idx) => {
-                            if (idx >= 10 && idx <= 11) {
-                                return (
-                                    <CategoryCard
-                                        key={idx}
-                                        searchQuery={category.searchQuery}
-                                        image={category.image}
-                                    />
-                                )
-                            }
-                        })
-                    }
-                </div>
-                {/* <Link
-            to={`/products?category=${encodeURIComponent(
-            'Linea Bases Tintometricas'
-            )}`}
-            onClick={() => handleCategory('Linea Latex')}
-        >
-            <img
-            src={category9}
-            alt="category12"
-            className="h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-            />
-        </Link> */}
             </div>
         </section>
     )

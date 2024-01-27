@@ -4,18 +4,18 @@ import { setPage } from '@redux/actions/Page/setPage'
 import { setCategory } from '@redux/actions/filters/setCategory'
 import stl from './CategoryContainer.module.css'
 // Banners
-import category2 from '@img/especiales.png'
-import category3 from '@img/esmalte.png'
-import category4 from '@img/cal.png'
-import category5 from '@img/fondos.png'
-import category6 from '@img/tintas.png'
-import category7 from '@img/ecologico.png'
-import category8 from '@img/industriales.png'
-import category9 from '@img/latex.png'
-import category10 from '@img/impermeabilizante.png'
-import category11 from '@img/fijadores.png'
-import category13 from '@img/auxiliares.png'
-import category14 from '@img/madera.png'
+import category2 from '../../assets/images/categories/especiales.webp'
+import category3 from '../../assets/images/categories/esmalte.webp'
+import category4 from '../../assets/images/categories/cal.webp'
+import category5 from '../../assets/images/categories/fondos.webp'
+import category6 from '../../assets/images/categories/tintas.webp'
+import category7 from '../../assets/images/categories/ecologico.webp'
+import category8 from '../../assets/images/categories/industriales.webp'
+import category9 from '../../assets/images/categories/latex.webp'
+import category10 from '../../assets/images/categories/impermeabilizante.webp'
+import category11 from '../../assets/images/categories/fijadores.webp'
+import category13 from '../../assets/images/categories/auxiliares.webp'
+import category14 from '../../assets/images/categories/madera.webp'
 
 
 const afterPseudo = `
@@ -42,7 +42,7 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
             <img
                 src={image}
                 alt={searchQuery}
-                className="overflow-hidden h-auto object-cover rounded-lg"
+                className="overflow-hidden object-cover h-auto aspect-[12/5] rounded-lg"
             />
             <h3 className='text-start font-bold'>{title}</h3>
         </Link>

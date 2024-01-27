@@ -21,7 +21,7 @@ const BannerCarousel = () => {
         src: banner3,
         alt: "Dale color a tu vida. idePinturerías."
     }]
-    const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-button focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
+    const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
 
     // FUNCTIONS:
     const goToPrevImage = () => {

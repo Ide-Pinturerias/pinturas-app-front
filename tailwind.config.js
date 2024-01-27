@@ -27,6 +27,7 @@ export default {
         primaryDull: '#FFDDA6',
         primaryVisible: '#FFFFA1',
         accentClear: '#00A491',
+        hightlight: '#8B8B8B',
         duller: '#CCCCCC',
         clear: '#1D1F21',
         overlay: 'rgba(0,0,0,.5)'
@@ -41,7 +42,7 @@ export default {
       },
       boxShadow: {
         credentialsMenu: '2px 2px 2px #662c7b75;',
-        button: '0px 3px 6px rgba(30,30,30,0.3)',
+        main: '0px 3px 6px rgba(30,30,30,0.3)',
       },
       outlineColor: {
         focus: '#00A491'
@@ -62,7 +63,7 @@ export default {
         maxIn: '93%'
       },
       transitionProperty: {
-        focus: 'transform, background-color, box-shadow'
+        focus: 'transform, background-color, box-shadow, opacity'
       }
     },
     fontFamily: {

@@ -74,8 +74,8 @@ const CategoryContainer = () => {
     ]
 
     return (
-        <section className="flex items-center justify-center mt-[50px] w-full bg-bg">
-            <div className=" relative z-10 flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
+        <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
+            <div className="relative z-10 flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 <div className="text-start">
                     <p className="text-primaryClear">Arte que transforma tus paredes en obras maestras</p>
                     <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>

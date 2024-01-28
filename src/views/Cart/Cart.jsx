@@ -75,10 +75,12 @@ const Cart = () => {
       key={useId()}
       products={productsCart}
       />
-      <PurchaseCart
-      products={productsCart}
-      />
-      <ClearCart/>
+      <section className="flex justify-center">
+        <PurchaseCart
+        products={productsCart}
+        />
+        <ClearCart/>
+      </section>
     </main>
   )
 

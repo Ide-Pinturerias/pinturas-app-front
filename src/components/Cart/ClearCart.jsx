@@ -12,9 +12,9 @@ const ClearCart = () => {
       })
   }
   return (<>
-    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
+    <button className="w-[45%] ml-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
     onClick={handleClearCart}
-        >Vaciar Carrito!</button>
+        >Vaciar Carrito</button>
     </>)
 }
 

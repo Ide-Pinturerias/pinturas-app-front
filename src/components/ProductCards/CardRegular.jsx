@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 import { BookmarkOutlined } from '@mui/icons-material';
 
+import { formatNumberWithDots } from '../../scripts/formatNumberWithDots';
+
 function CardRegular({ id, name, category, color, image, brand, price }) {
 
     // LOCAL STATES:
@@ -73,7 +75,7 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
                 {/* BRAND */}
                 <p className='font-bold'>{brand}</p>
                 {/* PRICE */}
-                <strong className="text-[clamp(.5rem,calc(.75rem+1vw),3rem)]">$ {price}</strong>
+                <strong className="text-[clamp(.5rem,calc(.75rem+1vw),3rem)]">$ {formatNumberWithDots(price)}</strong>
             </div>
             {/* ADD TO CART */}
             <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>

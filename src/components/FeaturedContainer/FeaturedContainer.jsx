@@ -39,16 +39,18 @@ function FeaturedContainer() {
                     <h2 className="text-[clamp(.75rem,calc(0.5rem+2.5vw),3.5rem)] font-bold">Top ventas</h2>
                     <p className="text-xl">Las mejores opciones para transformar sus espacios con estilo</p>
                 </div>
-                <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 place-items-center w-full mt-6">
+                <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 place-items-center w-full mt-6">
                     {
                         bestSellers.map((bestSeller) => (
                             <CardRegular
                                 key={bestSeller.idProduct}
                                 id={bestSeller.idProduct}
-                                image={bestSeller.image}
                                 name={bestSeller.name}
+                                category={bestSeller.category}
+                                color={bestSeller.color}
+                                image={bestSeller.image}
+                                brand={bestSeller.patent}
                                 price={bestSeller.price}
-                                prodpackage={bestSeller.prodpackage}
                             />
                         ))
                     }

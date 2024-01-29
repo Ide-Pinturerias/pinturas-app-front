@@ -19,7 +19,7 @@ import category14 from '../../assets/images/categories/madera.webp'
 
 
 const afterPseudo = `
-    after:content-[""] after:absolute after:-z-10 after:opacity-0 after:-inset-2 
+    after:content-[""] after:absolute after:opacity-0 after:-inset-2 
     after:rounded-lg after:shadow-main after:bg-bgFocus 
     after:border after:border-hightlight 
     after:transition-focus after:ease-linear after:duration-100 
@@ -29,6 +29,9 @@ const afterPseudo = `
 
     focus:after:outline focus:after:outline-focus focus:after:outline-offset-focus 
     focus:after:bg-duller focus:after:border-clear focus:after:shadow-main 
+    after:mix-blend-multiply
+
+    after:pointer-events-none
 `
 
 const CategoryCard = ({ idx, searchQuery, image, title }) => {
@@ -75,7 +78,7 @@ const CategoryContainer = () => {
 
     return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
-            <div className="relative z-10 flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
+            <div className="relative flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 <div className="text-start">
                     <p className="text-primaryClear">Arte que transforma tus paredes en obras maestras</p>
                     <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>

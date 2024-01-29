@@ -24,6 +24,8 @@ export default {
         bg: '#FFFFFF', // '#F7EEDD'
         bgFocus: '#F5F5F5', // '#EDE4D3'
         primaryClear: '#FF6600',
+        primaryLight: '#FF8533',
+        primaryDark: '#D45C00',
         primaryDull: '#FFDDA6',
         primaryVisible: '#FFFFA1',
         accentClear: '#00A491',

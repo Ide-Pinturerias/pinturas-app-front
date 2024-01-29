@@ -1,33 +1,86 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom'
 
-function CardRegular ({ id, name, image, price, prodpackage }) {
-  // FUNCTIONS:
-  const preventRedirection = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
-  }
+import { BookmarkOutlined } from '@mui/icons-material';
 
-  // COMPONENT:
-  return (
+function CardRegular({ id, name, category, color, image, brand, price }) {
+
+    // LOCAL STATES:
+    const [isFav, setIsFav] = useState(false);
+
+    // STYLES:
+    const afterPseudo = `
+        after:content-[""] after:absolute after:opacity-0 after:-inset-2 
+        after:rounded-lg after:rounded-b-3xl after:shadow-main after:bg-bgFocus 
+        after:border after:border-hightlight 
+        after:transition-focus after:ease-linear after:duration-100 
+
+        hover:after:opacity-100
+        focus:after:opacity-100
+
+        focus:after:outline focus:after:outline-focus focus:after:outline-offset-focus 
+        focus:after:bg-duller focus:after:border-clear focus:after:shadow-main
+        after:mix-blend-multiply
+
+        after:pointer-events-none
+    `
+    const buttonMain = `transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]`
+    const buttonFav = `transition-all ease-linear duration-100 hover:stroke-primaryLight active:text-primaryDark active:scale-[.97]`
+    const tag = `w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap`
+
+    // FUNCTIONS:
+    const preventRedirection = (event) => {
+        event.preventDefault()
+        event.stopPropagation()
+    }
+
+    const addToFavourites = (event) => {
+        preventRedirection(event)
+        setIsFav((prev) => !prev)
+    }
+
+    // COMPONENT:
+    return (
         <NavLink
             to={`/products/${id}`}
-            className=" flex flex-col items-center justify-between min-w-full min-h-full overflow-hidden bg-bgFocus rounded-3xl shadow-2xl text-clear transition-all hover:outline-[3.5px] cursor-pointer"
+            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full outline-clear outline -outline-offset-1 outline-1 bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
         >
-            <div className="w-full p-1">
-                <img src={image} alt="image" className="w-full h-[18rem] mx-auto rounded-t-3xl " />
-                <div className="px-4 pt-3">
-                    <h3 className=" text-xl m-0 white">{name}</h3>
-                    <strong className="text-[clamp(.5rem,calc(.75rem+1vw),3rem)]">$ {price}</strong>
+            {/* IMAGE */}
+            <img src={image} alt={name} className="w-full aspect-square object-fit mx-auto overflow-hidden rounded-t-lg " />
+            {/* INFO */}
+            <div className="p-4">
+                {/* TAGS: CATEGORY, COLOUR */}
+                <div className='flex flex-wrap items-center gap-2 mb-1'>
+                    <p className={`${tag}`}>{category}</p>
+                    {
+                        color !== 'No aplica' ? (
+                            <p className={`${tag}`}>{color}</p>
+                        ) : null
+                    }
                 </div>
+                {/* NAME & BOOKMARK */}
+                <div className='text-xl flex justify-between gap-2'>
+                    <p className="m-0 white">{name}</p>
+                    <button
+                        className='self-start rounded-sm focus:outline focus:outline-focus focus:-outline-offset-[.5px]'
+                        onClick={addToFavourites}
+                    >
+                        <div className={`rounded-sm ${buttonFav} ${isFav ? 'text-primaryClear stroke-primaryClear' : 'text-bg stroke-clear'}`}>
+                            <BookmarkOutlined style={{ width: '1.7rem', height: '1.7rem' }} />
+                        </div>
+                    </button>
+                </div>
+                {/* BRAND */}
+                <p className='font-bold'>{brand}</p>
+                {/* PRICE */}
+                <strong className="text-[clamp(.5rem,calc(.75rem+1vw),3rem)]">$ {price}</strong>
             </div>
-            {/* <p className={`relative z-20 inline-flex items-center justify-center mt-4 p-4 w-full max-h-12 h-12 overflow-hidden text-sm uppercase font-medium focus:ring-4 focus:outline-none after:-z-10 after:absolute after:content[''] after:left-0 after:bg-primaryClear after:h-full after:w-full after:transition-all ${isHovered ? 'after:top-0 text-white' : 'after:top-full text-black'}`}>
-                Ver producto
-            </p> */}
-            <div className="flex justify-center w-full mt-3 px-4 pb-4" onClick={preventRedirection}>
-                <button className="bg-primaryClear rounded-3xl p-2 text-sm text-white font-bold">AGREGAR AL CARRO</button>
+            {/* ADD TO CART */}
+            <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>
+                <button className={`p-4 bg-primaryClear border-primaryClear rounded-3xl text-sm font-bold text-primaryVisible ${buttonMain}`}>AGREGAR AL CARRO</button>
             </div>
-        </NavLink>
-  )
+        </NavLink >
+    )
 };
 
 export default CardRegular

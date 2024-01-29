@@ -3,7 +3,7 @@ import React from 'react'
 
 const AboutCard = () => {
   return (
-    <section className="w-full p-10 bg-primaryClear">
+    <section className="w-full mt-[50px] p-10 bg-primaryClear">
       {/* <Link to="/about"> */}
       <div className="flex flex-col justify-center mt-3">
         <h2 className="text-white text-[clamp(1rem,calc(0.75rem+5vw),4rem)] text-center uppercase my-10">

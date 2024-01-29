@@ -16,7 +16,7 @@ function FeaturedContainer() {
     }, [dispatch])
 
     return (
-        <section className="relative flex flex-col items-center w-full mt-[50px] text-white">
+        <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 {/* OP1: */}
                 {/* <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full overflow-hidden leading-none">
@@ -29,13 +29,13 @@ function FeaturedContainer() {
                     <h2 className="text-[clamp(.75rem,calc(0.5rem+3vw),3.5rem)]">Productos más vendidos.</h2>
                     <p className="text-xl">Las mejores opciones para transformar sus espacios con estilo</p>
                 </div> */}
-                {/* <img0
+                {/* <img
                     src={featuredBanner}
                     alt="Los más vendidos. Top ventas."
                     className="object-cover w-full h-[120px] bg-bgFocus rounded-lg text-clear select-none"
                 /> */}
                 {/* OP2: */}
-                <div className='flex flex-col items-center justify-between bg-primaryClear w-full rounded-xl p-4 pb-5'>
+                <div className='flex flex-col items-center justify-between w-full p-4 pb-5 bg-primaryClear rounded-xl text-bg'>
                     <h2 className="text-[clamp(.75rem,calc(0.5rem+2.5vw),3.5rem)] font-bold">Top ventas</h2>
                     <p className="text-xl">Las mejores opciones para transformar sus espacios con estilo</p>
                 </div>

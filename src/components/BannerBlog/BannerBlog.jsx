@@ -5,7 +5,7 @@ import banner4 from '@img/banner4.png'
 const BannerCarousel = () => {
   return (
     // <div className="mt-15 mb-15">
-    <div className="w-full h-full">
+    <div className="w-full h-full mt-[50px]">
       <Link to="/blog">
         <img
           src={banner4}

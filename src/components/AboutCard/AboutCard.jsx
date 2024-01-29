@@ -1,27 +1,36 @@
-// import { Link } from 'react-router-dom'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import image1 from "../../assets/images/store/store1.webp"
 
 const AboutCard = () => {
-  return (
-    <section className="w-full mt-[50px] p-10 bg-primaryClear">
-      {/* <Link to="/about"> */}
-      <div className="flex flex-col justify-center mt-3">
-        <h2 className="text-white text-[clamp(1rem,calc(0.75rem+5vw),4rem)] text-center uppercase my-10">
-          Sobre Nosotros
-        </h2>
-        <p className="text-white text-sm md:text-md lg:text-lg mb-3 md:mb-11 text-center">
-          En <strong>ide Pinturerías</strong>, creemos en la excelencia y el servicio
-          personalizado. Nuestro equipo dedicado está aquí para asesorarte
-          en cada paso de tu proyecto, desde grandes obras hasta pequeños
-          proyectos de decoración. Nuestra pasión por la calidad y la
-          satisfacción del cliente nos impulsa a superar las expectativas
-          y a ser tu socio confiable en todas tus necesidades relacionadas
-          con pinturas y ferretería.
-        </p>
-      </div>
-      {/* </Link> */}
-    </section>
-  )
+
+    const buttonMain = `transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]`
+
+    return (
+        <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
+            <div className='flex justify-center items-center gap-[50px] m-sides max-w-maxSc w-maxIn'>
+                <img
+                    src={image1} 
+                    alt="Vista exterior de la tienda idePinturerias mostrando productos de pintura y herramientas."
+                    className='self-center items-center object-cover aspect-[4/3] w-[calc((100%-50px)/2)] rounded-3xl'
+                />
+                <div className="flex flex-col justify-center w-[calc((100%-50px)/2)] mt-3">
+                    <h2 className="text-clear text-[clamp(1rem,calc(0.75rem+5vw),4rem)] text-start font-heading font-bold">
+                        Conózcanos
+                    </h2>
+                    <p className="text-clear text-md mb-3 md:mb-11 text-start">
+                        Dedicados y comprometidos al 100% con pasión por la calidad, en idePinturerias priorizamos la excelencia y servicio personalizado. Nos esforzamos por superar tus expectativas al ofrecerte un servicio excepcional en pinturas y ferretería. Queremos ser tu socio confiable mientras nuestro equipo te brinda asesoramiento en cada proyecto, ya sea grande o pequeño.
+                    </p>
+                    <Link
+                        to='/about'
+                        className={`self-center w-fit p-4 box-border bg-transparent border border-primaryClear rounded-3xl text-sm font-bold text-primaryClear ${buttonMain}`}
+                    >
+                        Nuestra historia
+                    </Link>
+                </div>
+            </div>
+        </section>
+    )
 }
 
 export default AboutCard

@@ -48,7 +48,11 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
             className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full outline-clear outline -outline-offset-1 outline-1 bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
         >
             {/* IMAGE */}
-            <img src={image} alt={name} className="w-full aspect-square object-fit mx-auto overflow-hidden rounded-t-lg " />
+            <img
+                src={image}
+                alt={name}
+                className="w-full aspect-square object-fit mx-auto overflow-hidden rounded-t-lg"
+            />
             {/* INFO */}
             <div className="p-4">
                 {/* TAGS: CATEGORY, COLOUR */}
@@ -79,7 +83,7 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
             </div>
             {/* ADD TO CART */}
             <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>
-                <button className={`p-4 bg-primaryClear border-primaryClear rounded-3xl text-sm font-bold text-primaryVisible ${buttonMain}`}>AGREGAR AL CARRO</button>
+                <button className={`p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible ${buttonMain}`}>AGREGAR AL CARRO</button>
             </div>
         </NavLink >
     )

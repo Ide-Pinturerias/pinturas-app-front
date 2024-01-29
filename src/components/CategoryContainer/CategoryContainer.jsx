@@ -78,13 +78,13 @@ const CategoryContainer = () => {
 
     return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
-            <div className="relative flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
+            <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 <div className="text-start">
                     <p className="text-primaryClear">Arte que transforma tus paredes en obras maestras</p>
                     <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
                     <p>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
                 </div>
-                <div className={`grid grid-cols-6 gap-6 mt-6 ${stl.div__grid_container}`}>
+                <div className={`grid grid-cols-6 gap-6 w-full mt-6 ${stl.div__grid_container}`}>
                     {
                         CATEGORIES.map((category, idx) => (
                             <CategoryCard

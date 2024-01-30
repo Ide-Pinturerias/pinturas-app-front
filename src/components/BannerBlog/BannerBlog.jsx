@@ -3,19 +3,19 @@ import { Link } from 'react-router-dom'
 import banner4 from '@img/banner4.png'
 
 const BannerCarousel = () => {
-  return (
-    // <div className="mt-15 mb-15">
-    <div className="w-full h-full mt-[50px]">
-      <Link to="/blog">
-        <img
-          src={banner4}
-          alt="banner4"
-          className="w-full h-auto object-cover cursor-pointer hover:opacity-70 transition-opacity duration-300 ease-in-out"
-        />
-      </Link>
-    </div>
-    // </div>
-  )
+    return (
+        <section className='flex items-center justify-center w-full my-[50px] bg-bg'>
+            <div className="m-sides max-w-maxSc w-maxIn">
+                <Link to="/blog">
+                    <img
+                        // src={banner4}
+                        alt="¡Descubre un mundo de colores en nuestro blog de pinturas!"
+                        className="object-cover w-full h-auto rounded-xl cursor-pointer"
+                    />
+                </Link>
+            </div>
+        </section>
+    )
 }
 
 export default BannerCarousel

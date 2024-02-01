@@ -45,7 +45,7 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
             <img
                 src={image}
                 alt={searchQuery}
-                className="overflow-hidden object-cover h-auto aspect-[12/5] rounded-lg"
+                className="overflow-hidden object-cover w-full h-auto aspect-[12/5] rounded-lg"
             />
             <h3 className='text-start font-bold'>{title}</h3>
         </Link>

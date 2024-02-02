@@ -65,8 +65,12 @@ export default {
         maxIn: '93%'
       },
       transitionProperty: {
-        focus: 'transform, background-color, box-shadow, opacity'
-      }
+        focus: 'transform, background-color, box-shadow, opacity',
+        hoverLink: 'color'
+      },
+    //   transitionTimingFunction: {
+    //     ease: 'ease'
+    //   }
     },
     fontFamily: {
       abc: ['Urbanist', 'sans-serif'],

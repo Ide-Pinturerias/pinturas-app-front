@@ -13,7 +13,7 @@ function ProductBox ({ isLoading }) {
   const [filteredProducts, setFilteredProducts] = useState(products)
 
   // LIFE CYCLES:
-  useEffect(() => {``
+  useEffect(() => {
     setFilteredProducts(products)
   }, [products])
 
@@ -26,12 +26,14 @@ function ProductBox ({ isLoading }) {
             {
               filteredProducts.map((product) => (
                 <CardRegular
-                  key={product.idProduct}
-                  id={product.idProduct}
-                  image={product.image}
-                  name={product.name}
-                  price={product.price}
-                  package={product.package}
+                    key={product.idProduct}
+                    id={product.idProduct}
+                    name={product.name}
+                    category={product.category}
+                    color={product.color}
+                    image={product.image}
+                    brand={product.patent}
+                    price={product.price}
                 />
               ))
             }

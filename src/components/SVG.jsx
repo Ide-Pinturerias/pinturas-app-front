@@ -14,7 +14,7 @@ function XLarge({ side }) {
 
 function XSmall({ side }) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-x" viewBox="0 0 16 16"
+        <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-x" viewBox="0 0 16 16"
             width={side || 16}
             height={side || 16}
             fill="currentColor"

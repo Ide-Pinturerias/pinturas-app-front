@@ -13,7 +13,7 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
     // STYLES:
     const afterPseudo = `
         after:content-[""] after:absolute after:opacity-0 after:-inset-2 
-        after:rounded-lg after:rounded-b-3xl after:shadow-main after:bg-bgFocus 
+        after:rounded-lg after:rounded--3xl after:shadow-main after:bg-bgFocus 
         after:border after:border-hightlight 
         after:transition-focus after:ease-linear after:duration-100 
 
@@ -45,16 +45,16 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
     return (
         <NavLink
             to={`/products/${id}`}
-            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full outline-clear outline -outline-offset-1 outline-1 bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
+            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
         >
             {/* IMAGE */}
             <img
                 src={image}
                 alt={name}
-                className="w-full aspect-square object-fit mx-auto overflow-hidden rounded-t-lg"
+                className="w-full aspect-square object-cover mx-auto overflow-hidden rounded-lg"
             />
             {/* INFO */}
-            <div className="p-4">
+            <div className="py-4">
                 {/* TAGS: CATEGORY, COLOUR */}
                 <div className='flex flex-wrap items-center gap-2 mb-1'>
                     <p className={`${tag}`}>{category}</p>

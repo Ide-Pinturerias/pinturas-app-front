@@ -71,6 +71,7 @@ export default {
     fontFamily: {
       abc: ['Urbanist', 'sans-serif'],
       primary: 'Montserrat',
+      secondary: 'Nunito',
       heading: 'Gill Sans'
     }
   },

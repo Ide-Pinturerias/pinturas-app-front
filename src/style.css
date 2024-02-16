@@ -1,5 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Skranji&family=Urbanist:wght@500&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,7 +15,7 @@
 * {
     /* margin: 0;
     padding: 0; */
-    font-family: 'Montserrat';
+    /* font-family: 'Montserrat'; */
 }
 
 html {
@@ -26,6 +27,7 @@ body {
     color: #1D1F21;
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat';
 }
 
 #root {

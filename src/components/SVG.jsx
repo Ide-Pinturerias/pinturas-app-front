@@ -24,12 +24,11 @@ function XSmall({ side }) {
     )
 }
 
-function UserIcon() {
+function UserIcon({size}) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-person-circle" viewBox="0 0 16 16"
-            width="100%"
-            height="100%"
-            fill="currentColor"
+            width={size || "100%"}
+            height={size || "100%"}
         >
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
             <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -37,23 +36,22 @@ function UserIcon() {
     )
 };
 
-function Cart() {
+function Cart({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512" id="shopping-cart"
-            width="100%"
-            height="100%"
+            width={size || "100%"}
+            height={size || "100%"}
         >
             <path d="M199.039 373.884A46.058 46.058 0 1 0 245.1 419.941 46.111 46.111 0 0 0 199.039 373.884zM380.316 373.884a46.058 46.058 0 1 0 46.059 46.057A46.111 46.111 0 0 0 380.316 373.884zM455.132 127.679H141.567l-6.8-40.047A49.869 49.869 0 0 0 85.475 46H56.868a10 10 0 1 0 0 20H85.474A29.92 29.92 0 0 1 115.05 90.979l36.21 213.315a49.871 49.871 0 0 0 49.3 41.632H413.729a10 10 0 0 0 0-20H200.556a29.92 29.92 0 0 1-29.576-24.979L167.34 279.5H376.362a59.816 59.816 0 0 0 57.131-41.666l31.161-97.1a10 10 0 0 0-9.522-13.055z"></path>
         </svg>
     )
 };
 
-function Magnifier() {
+function Magnifier({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-            width="100%"
-            height="100%"
-            className="fill-inherit transition-colors bi bi-search"
+            width={size || "100%"}
+            height={size || "100%"}
         >
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>
@@ -76,12 +74,11 @@ function Bag() {
     )
 };
 
-function Bookmark() {
+function Bookmark({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-bookmark" viewBox="0 0 16 16"
-            width="16"
-            height="16"
-            fill="currentColor"
+            width={size || "100%"}
+            height={size || "100%"}
         >
             <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
         </svg>

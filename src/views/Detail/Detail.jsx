@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
-// import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 
 function Detail() {
     // GLOBAL STATES:
@@ -346,10 +346,23 @@ function Detail() {
                                 </div>
                             </section>
                         </div>
-                        <div className="mb-[50px]">
-                            <section>
+                        <div className="mb-[100px]">
+                            <section className='mb-[50px]'>
                                 <h2 className='text-lg font-bold uppercase mb-2'>Descripción</h2>
                                 <p className='first-letter:capitalize'>{product.description}</p>
+                            </section>
+                            <section>
+                                <h2 className='text-lg font-bold uppercase mb-2'>Productos similares</h2>
+                                <FeaturedContainer
+                                    bestSellersContainer={false}
+                                    similarProductsContainer={true}
+                                    similarProductsContainerOptions={{
+                                        currentId: product.idProduct,
+                                        limit: 4,
+                                        category: product.category,
+                                        color: product.color
+                                    }}
+                                />
                             </section>
                         </div>
                     </div>)

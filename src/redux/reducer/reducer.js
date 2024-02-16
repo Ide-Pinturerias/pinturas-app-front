@@ -7,7 +7,6 @@ import {
   GET_PRODUCT_BY_NAME,
   GET_ALL_PRODUCTS_NO_FILTER,
   CLEAN_PRODUCT_DETAIL,
-  GET_SIMILAR_PRODUCTS,
 
   // CATEGORIES
   GET_ALL_CATEGORIES,
@@ -101,7 +100,6 @@ const initialState = {
   detail: {},
   allProducts: [],
   bestSellers: [],
-  similarProducts: [],
 
   // CATEGORIES
   categories: [],
@@ -174,8 +172,6 @@ const reducer = (state = initialState, { type, payload }) => {
       return { ...state, allProducts: payload }
     case CLEAN_PRODUCT_DETAIL:
       return { ...state, detail: {} }
-    case GET_SIMILAR_PRODUCTS:
-      return {...state, similarProducts: payload}
 
     // CATEGORIES
     case GET_ALL_CATEGORIES:

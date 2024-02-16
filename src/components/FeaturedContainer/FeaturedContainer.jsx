@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
-import { getSimilarProducts } from '@/redux/actions/Products/getSimilarProducts'
+import { get_similar_products } from '@api'
 
 import CardRegular from '../ProductCards/CardRegular'
 // import featuredBanner from '@img/featured-banner.png'
@@ -12,7 +12,6 @@ function FeaturedContainer({ bestSellersContainer, similarProductsContainer, sim
 
     // GLOBAL STATES:
     const bestSellers = useSelector((state) => state.bestSellers);
-    const similarProducts = useSelector((state) => state.similarProducts);
 
     // LOCAL STATES:
     const [products, setProducts] = useState([]);
@@ -22,31 +21,27 @@ function FeaturedContainer({ bestSellersContainer, similarProductsContainer, sim
 
     // LIFE CYCLES:
     useEffect(() => {
-        if (bestSellersContainer) {
-            dispatch(getBestSellers(4));
-        } else if (similarProductsContainer) {
-            dispatch(getSimilarProducts(similarProductsContainerOptions));
-        }
-
+        (async () => {
+            if (bestSellersContainer) {
+                dispatch(getBestSellers(4));
+            } else if (similarProductsContainer) {
+                const similarProducts = await get_similar_products(similarProductsContainerOptions);
+                setProducts(similarProducts);
+            }
+        })()
     }, [bestSellersContainer, similarProductsContainer, dispatch]);
 
     useEffect(() => {
         if (bestSellersContainer) {
             setProducts(bestSellers);
-        } else if (similarProductsContainer) {
-            setProducts(similarProducts);
         }
-    }, [bestSellersContainer, similarProductsContainer, bestSellers, similarProducts, dispatch]);
-
-    useEffect(() => {
-        console.log(products)
-    }, [products])
+    }, [bestSellersContainer, similarProductsContainer, bestSellers, dispatch]);
 
     // COMPONENT:
     return (
         <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 place-items-center w-full mt-6">
             {
-                products.map((bestSeller) => (
+                Array.isArray(products) && products.map((bestSeller) => (
                     <CardRegular
                         key={bestSeller.idProduct}
                         id={bestSeller.idProduct}

@@ -4,49 +4,53 @@ import { productByName } from '@redux/actions/Products/productByName'
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { setPage } from '@redux/actions/Page/setPage'
 
-import { Magnifier } from '../SVG'
+import { XLarge } from '../SVG'
 
-function SearchBar () {
-  const thisPage = useSelector((state) => state.thisPage)
-  const filterCategory = useSelector((state) => state.filterCategory)
-  const { highPrice, lowPrice } = useSelector((state) => state.price)
+function SearchBar({ toggleSearch }) {
+    const thisPage = useSelector((state) => state.thisPage)
+    const filterCategory = useSelector((state) => state.filterCategory)
+    const { highPrice, lowPrice } = useSelector((state) => state.price)
 
-  const [search, setSearch] = useState('')
-  const [magnifierFocus, setMagnifierFocus] = useState(false)
+    const [search, setSearch] = useState('')
 
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-  const handleChange = (event) => {
-    dispatch(setPage(1))
-    setSearch(event.target.value)
+    const handleChange = (event) => {
+        dispatch(setPage(1))
+        setSearch(event.target.value)
 
-    event.target.value.length
-      ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
-      : dispatch(getAllProductsPaginated())
-  }
+        event.target.value.length
+            ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
+            : dispatch(getAllProductsPaginated())
+    }
 
-  return (
-        <div className="flex justify-center items-center gap-2 w-[40%]">
-            <input
-                type="search"
-                placeholder="Buscar en la tienda"
-                className="w-[80%] py-[0.2rem] px-4 box-border border-[1.75px] border-transparent rounded-full bg-bgFocus transition-all text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] hover:border-duller outline-0 focus:border-primaryClear"
-                value={search}
-                onChange={handleChange}
-                onFocus={() => setMagnifierFocus(true)}
-                onBlur={() => setMagnifierFocus(false)}
-            />
+    const linkStl = 'relative flex items-center gap-2 py-[.5rem] px-[1em] bg-transparent rounded-[8px] capitalize cursor-pointer transition-colors hover:text-primaryVisible hover:fill-primaryVisible hover:bg-primaryClear';
+
+    return (
+        <div className="flex justify-center items-center size-full">
+            <form className="flex justify-center items-center flex-1 h-full gap-2">
+                <input
+                    type="search"
+                    placeholder="Buscar en la tienda"
+                    className="flex-1 h-[80%] mx-[1em] py-[0.2em] px-[1em] box-border border-[1.75px] border-transparent rounded-[12px] bg-inherit transition-all text-[clamp(0.75rem,calc(.8vw+0.25rem),3rem)] hover:border-duller outline-0 focus:border-primaryClear"
+                    value={search}
+                    onChange={handleChange}
+                />
+                <button
+                    type="submit"
+                    className={linkStl}
+                >
+                    Buscar
+                </button>
+            </form>
             <button
-                type="submit"
-                onFocus={() => setMagnifierFocus(true)}
-                onBlur={() => setMagnifierFocus(false)}
+                className={`${linkStl} mx-4`}
+                onClick={toggleSearch}
             >
-                <div className={`h-4 w-4 fill-black hover:fill-primaryClear ${magnifierFocus ? 'fill-primaryClear' : ''}`}>
-                    <Magnifier />
-                </div>
+                <XLarge side={"1rem"} />
             </button>
         </div>
-  )
+    )
 }
 
 export default SearchBar

@@ -6,7 +6,7 @@ import SearchBar from '@components/SearchBar/SearchBar'
 
 import { Magnifier, Cart, Bookmark, UserIcon } from '../SVG'
 
-const NavBar = () => {
+function NavBar() {
 
 
     // STATES:

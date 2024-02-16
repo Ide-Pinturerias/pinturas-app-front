@@ -1,20 +1,48 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
+import { getSimilarProducts } from '@/redux/actions/Products/getSimilarProducts'
 
 import CardRegular from '../ProductCards/CardRegular'
 // import featuredBanner from '@img/featured-banner.png'
 
-function FeaturedContainer() {
-    const bestSellers = useSelector((state) => state.bestSellers)
+function FeaturedContainer({ bestSellersContainer, similarProductsContainer, similarProductsContainerOptions }) {
 
+
+    // GLOBAL STATES:
+    const bestSellers = useSelector((state) => state.bestSellers);
+    const similarProducts = useSelector((state) => state.similarProducts);
+
+    // LOCAL STATES:
+    const [products, setProducts] = useState([]);
+
+    // CONST:
     const dispatch = useDispatch()
 
+    // LIFE CYCLES:
     useEffect(() => {
-        dispatch(getBestSellers(4))
-    }, [dispatch])
+        if (bestSellersContainer) {
+            dispatch(getBestSellers(4));
+        } else if (similarProductsContainer) {
+            dispatch(getSimilarProducts(similarProductsContainerOptions));
+        }
 
+    }, [bestSellersContainer, similarProductsContainer, dispatch]);
+
+    useEffect(() => {
+        if (bestSellersContainer) {
+            setProducts(bestSellers);
+        } else if (similarProductsContainer) {
+            setProducts(similarProducts);
+        }
+    }, [bestSellersContainer, similarProductsContainer, bestSellers, similarProducts, dispatch]);
+
+    useEffect(() => {
+        console.log(products)
+    }, [products])
+
+    // COMPONENT:
     return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
@@ -41,7 +69,7 @@ function FeaturedContainer() {
                 </div>
                 <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 place-items-center w-full mt-6">
                     {
-                        bestSellers.map((bestSeller) => (
+                        products.map((bestSeller) => (
                             <CardRegular
                                 key={bestSeller.idProduct}
                                 id={bestSeller.idProduct}

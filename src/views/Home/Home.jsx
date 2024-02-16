@@ -9,7 +9,7 @@ function Home () {
         <main className="flex flex-col items-center w-full h-full p-whiteSpaceTop bg-bg">
             <Banner />
             <CategoryContainer />
-            <FeaturedContainer />
+            <FeaturedContainer bestSellersContainer={true} similarProductsContainer={false}/>
             <AboutCard />
             <BannerBlog />
         </main>

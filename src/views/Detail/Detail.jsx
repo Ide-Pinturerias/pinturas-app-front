@@ -153,7 +153,6 @@ function Detail() {
         if (product.stock === 0) {
             setNumberOfItems(0)
         }
-        console.log(product)
     }, [dispatch, idProduct])
 
     // DEV MODE: Solo para evitar peticiones al servidor.
@@ -184,9 +183,6 @@ function Detail() {
         }
     }, [numberOfItems])
 
-    useEffect(() => {
-        console.log(product)
-    }, [product])
 
     // COMPONENT:
     return (

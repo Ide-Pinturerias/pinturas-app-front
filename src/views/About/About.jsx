@@ -31,7 +31,7 @@ const About = () => {
       <div className="flex justify-between">
         <div className="flex items-center gap-14  max-w-[800px]">
           <div className="flex flex-col items-center my-[20px] text-center">
-            <Rocket width={'8rem'} />
+            <Rocket size={'8rem'} />
 
             <div>
               <p className="text-[20px] font-bold mt-[10px]">Misión</p>
@@ -45,7 +45,7 @@ const About = () => {
           </div>
 
           <div className="flex flex-col items-center my-[20px] text-center">
-            <LightBulb width={'8rem'} />
+            <LightBulb size={'8rem'} />
 
             <div>
               <p className="text-[20px] font-bold mt-[10px]">Visión</p>

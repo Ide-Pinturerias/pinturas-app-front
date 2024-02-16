@@ -1,10 +1,10 @@
 import React from 'react'
 
-function XLarge({ side }) {
+function XLarge({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-x-lg" viewBox="0 0 16 16"
-            width={side || 16}
-            height={side || 16}
+            width={size || 16}
+            height={size || 16}
             fill="currentColor"
         >
             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
@@ -12,11 +12,11 @@ function XLarge({ side }) {
     )
 }
 
-function XSmall({ side }) {
+function XSmall({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-x" viewBox="0 0 16 16"
-            width={side || 16}
-            height={side || 16}
+            width={size || 16}
+            height={size || 16}
             fill="currentColor"
         >
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
@@ -24,7 +24,7 @@ function XSmall({ side }) {
     )
 }
 
-function UserIcon({size}) {
+function UserIcon({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-person-circle" viewBox="0 0 16 16"
             width={size || "100%"}
@@ -95,6 +95,17 @@ function Star() {
         </svg>
     )
 };
+
+function ArrowLeft({ size }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+            width={size || "100%"}
+            height={size || "100%"}
+        >
+            <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+    )
+}
 
 function Shop() {
     return (
@@ -199,10 +210,10 @@ function Twitter() {
     )
 };
 
-function Rocket({ width }) {
+function Rocket({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 132"
-            width={width}
+            width={size}
             height="auto"
             fill="#831ED2"
         >
@@ -218,10 +229,10 @@ function Rocket({ width }) {
     )
 };
 
-function LightBulb({ width }) {
+function LightBulb({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 131"
-            width={width}
+            width={size}
             height="auto"
             fill="#831ED2"
         >
@@ -240,10 +251,10 @@ function LightBulb({ width }) {
     )
 };
 
-function Chevron({ width }) {
+function Chevron({ size }) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className="bi bi-chevron-compact-down" viewBox="0 0 16 16"
-            width={width}
+            width={size}
             height="auto"
             fill="currentColor"
         >
@@ -261,6 +272,7 @@ export {
     Bag,
     Bookmark,
     Star,
+    ArrowLeft,
     Shop,
     Phone,
     ChatEmpty,

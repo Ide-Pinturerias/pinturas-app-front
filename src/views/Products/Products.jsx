@@ -118,7 +118,7 @@ function ProductsPage() {
                         }}>
                             Filtrar
                         </button>
-                        <Chevron width={'5rem'} />
+                        <Chevron size={'5rem'} />
                         <button className={`${isFilterOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                             e.stopPropagation();
                             setIsFilterOpen(false);
@@ -168,7 +168,7 @@ function ProductsPage() {
                             onClick={() => filterByCategory('')}
                         >
                             <span className="whitespace-nowrap">{filterCategory}</span>
-                            <XSmall side={20} />
+                            <XSmall size={20} />
                         </button>
                     )}
                     {highPrice === 0 && lowPrice !== 0 && lowPrice && (
@@ -177,7 +177,7 @@ function ProductsPage() {
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Desde ${lowPrice}</span>
-                            <XSmall side={20} />
+                            <XSmall size={20} />
                         </button>
                     )}
                     {lowPrice === 0 && highPrice !== 0 && highPrice && (
@@ -186,7 +186,7 @@ function ProductsPage() {
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Hasta ${highPrice}</span>
-                            <XSmall side={20} />
+                            <XSmall size={20} />
                         </button>
                     )}
                     {lowPrice !== 0 && highPrice !== 0 && highPrice && lowPrice && (
@@ -195,7 +195,7 @@ function ProductsPage() {
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">${lowPrice} hasta ${highPrice}</span>
-                            <XSmall side={20} />
+                            <XSmall size={20} />
                         </button>
                     )}
                 </div>

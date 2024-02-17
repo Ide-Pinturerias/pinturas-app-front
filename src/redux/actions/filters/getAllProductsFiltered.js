@@ -1,5 +1,5 @@
 import { GET_ALL_PRODUCTS_FILTERED, SET_TOTAL_PAGES } from '@redux/action-type'
-import { get_all_products_filtered } from '@api'
+import { getFilteredProducts } from '@api'
 
 export const getAllProductsFiltered = (page, category, lowPrice, highPrice, sortBy, orderBy) => async (dispatch) => {
   // minRating,
@@ -9,9 +9,9 @@ export const getAllProductsFiltered = (page, category, lowPrice, highPrice, sort
   // color,
   // sortBy,
   // orderBy,
-  // page, 
+  // page,
   // color,
-  // active, 
+  // active,
   // limit
   try {
     // Construir la URL incial con un parámetro común.
@@ -28,7 +28,7 @@ export const getAllProductsFiltered = (page, category, lowPrice, highPrice, sort
     const query = url.join('')
 
     // Hacer la petición de la api con la query creada para obtener los productos filtrados.
-    const data = await get_all_products_filtered(query)
+    const data = await getFilteredProducts(query)
     const pages = data.pages
     const filteredProducts = data.results.rows
     // Despachar las acciones a redux.

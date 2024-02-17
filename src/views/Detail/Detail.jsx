@@ -15,110 +15,110 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../compo
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 
-function Detail() {
-    // GLOBAL STATES:
-    const loggedUser = useSelector((state) => state.user)
-    const product = useSelector((state) => state.detail)
+function Detail () {
+  // GLOBAL STATES:
+  const loggedUser = useSelector((state) => state.user)
+  const product = useSelector((state) => state.detail)
 
-    // CONSTANTS:
-    const dispatch = useDispatch()
-    //   const navigate = useNavigate()
-    const { idProduct } = useParams()
-    // const cart = useSelector((state) => state.cart);
-    //   const { addToCart } = useCart()
+  // CONSTANTS:
+  const dispatch = useDispatch()
+  //   const navigate = useNavigate()
+  const { idProduct } = useParams()
+  // const cart = useSelector((state) => state.cart);
+  //   const { addToCart } = useCart()
 
-    // LOCAL STATES:
-    //   const [isValidQuantity, setIsValidQuantity] = useState(true)
-    //   const [error, setError] = useState('')
-    //   const [added, setAdded] = useState(false)
-    //   const [addedBuy, setAddedBuy] = useState(false)
-    //   const [addProduct, setAddProduct] = useState({
-    //     id: idProduct,
-    //     quantity: 1,
-    //     name: product.name,
-    //     image: product.image,
-    //     price: product.price,
-    //     stock: product.stock
-    //   })
-    // Cantidad de productos que se llevan:
-    const [numberOfItems, setNumberOfItems] = useState(1)
-    // Número de contacto:
-    const [showNumber, setShowNumber] = useState(false)
-    // DEV MODE:
-    // const [productMock, setProductMock] = useState({});
+  // LOCAL STATES:
+  //   const [isValidQuantity, setIsValidQuantity] = useState(true)
+  //   const [error, setError] = useState('')
+  //   const [added, setAdded] = useState(false)
+  //   const [addedBuy, setAddedBuy] = useState(false)
+  //   const [addProduct, setAddProduct] = useState({
+  //     id: idProduct,
+  //     quantity: 1,
+  //     name: product.name,
+  //     image: product.image,
+  //     price: product.price,
+  //     stock: product.stock
+  //   })
+  // Cantidad de productos que se llevan:
+  const [numberOfItems, setNumberOfItems] = useState(1)
+  // Número de contacto:
+  const [showNumber, setShowNumber] = useState(false)
+  // DEV MODE:
+  // const [productMock, setProductMock] = useState({});
 
-    // FUNCTIONS:
-    const addFavorite = () => {
-        if (Object.keys(loggedUser).length !== 0) {
-            const data = {
-                idUser: loggedUser.id,
-                idProduct
-            }
+  // FUNCTIONS:
+  const addFavorite = () => {
+    if (Object.keys(loggedUser).length !== 0) {
+      const data = {
+        idUser: loggedUser.id,
+        idProduct
+      }
 
-            dispatch(postFavorites(data))
-                .then((response) => {
-                    if (response === 'existe') {
-                        Swal.fire('Ya exite este producto en favoritos')
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Producto agregado a favoritos',
-                            timer: 2000,
-                            showConfirmButton: false
-                        })
-                    };
-                })
-                .catch((error) => {
-                    console.log('error productCart', error)
-                })
-        } else {
+      dispatch(postFavorites(data))
+        .then((response) => {
+          if (response === 'existe') {
+            Swal.fire('Ya exite este producto en favoritos')
+          } else {
             Swal.fire({
-                icon: 'info',
-                title: 'Debes estar logueado para agregar favoritos'
+              icon: 'success',
+              title: 'Producto agregado a favoritos',
+              timer: 2000,
+              showConfirmButton: false
             })
-        };
-    }
-
-    // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
-    function formatNumberWithDots(number) {
-        // Convierte el número a una string.
-        let numStr = number.toString()
-
-        // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
-        numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-        return numStr
+          };
+        })
+        .catch((error) => {
+          console.log('error productCart', error)
+        })
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Debes estar logueado para agregar favoritos'
+      })
     };
+  }
 
-    // Controlar el <input> conectado al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberOfItems = (event) => {
-        if (product.stock !== 0) {
-            const { value } = event.target
-            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-                setNumberOfItems(Number(value))
-            };
-        }
+  // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
+  function formatNumberWithDots (number) {
+    // Convierte el número a una string.
+    let numStr = number.toString()
+
+    // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
+    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+
+    return numStr
+  };
+
+  // Controlar el <input> conectado al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberOfItems = (event) => {
+    if (product.stock !== 0) {
+      const { value } = event.target
+      if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
+        setNumberOfItems(Number(value))
+      };
     }
+  }
 
-    // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberChange = (parameter) => {
-        if (product.stock !== 0) {
-            if (parameter === 'add' && numberOfItems < product.stock) {
-                setNumberOfItems((prev) => prev + 1)
-            } else if (parameter === 'remove' && numberOfItems > 1) {
-                setNumberOfItems((prev) => prev - 1)
-            };
-        }
+  // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
+  // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
+  const handleNumberChange = (parameter) => {
+    if (product.stock !== 0) {
+      if (parameter === 'add' && numberOfItems < product.stock) {
+        setNumberOfItems((prev) => prev + 1)
+      } else if (parameter === 'remove' && numberOfItems > 1) {
+        setNumberOfItems((prev) => prev - 1)
+      };
     }
+  }
 
-    // Se basa en el rating del producto para renderizar las estrellas.
-    const renderStars = (value) => {
-        const max = 5
-        const percentage = Math.round((value / max) * 100)
+  // Se basa en el rating del producto para renderizar las estrellas.
+  const renderStars = (value) => {
+    const max = 5
+    const percentage = Math.round((value / max) * 100)
 
-        return (
+    return (
             <div className="relative flex items-center gap-1 mr-2 fill-primaryClear">
                 {
                     Array.from(Array(max).keys()).map((_, idx) => (
@@ -127,74 +127,73 @@ function Detail() {
                 }
                 <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
             </div>
-        )
+    )
+  }
+
+  // LIFE CYCLES:
+  //   useEffect(() => {
+  //     if (added) {
+  //       dispatch(setCart(addProduct))
+  //       Swal.fire('Producto agregado al carrito')
+  //       console.log('addProduct', addProduct)
+  //       setAdded(false)
+  //     };
+  //     if (addedBuy) {
+  //       dispatch(setCart(addProduct))
+  //       setAddedBuy(false)
+  //       navigate('/cart')
+  //     };
+  //   }, [added, addedBuy])
+
+  // PRODUCTION:
+  useEffect(() => {
+    dispatch(productById(idProduct))
+    dispatch(getBestSellers())
+    dispatch(cleanProductDetail())
+    if (product.stock === 0) {
+      setNumberOfItems(0)
     }
+  }, [dispatch, idProduct])
 
-    // LIFE CYCLES:
-    //   useEffect(() => {
-    //     if (added) {
-    //       dispatch(setCart(addProduct))
-    //       Swal.fire('Producto agregado al carrito')
-    //       console.log('addProduct', addProduct)
-    //       setAdded(false)
-    //     };
-    //     if (addedBuy) {
-    //       dispatch(setCart(addProduct))
-    //       setAddedBuy(false)
-    //       navigate('/cart')
-    //     };
-    //   }, [added, addedBuy])
+  // DEV MODE: Solo para evitar peticiones al servidor.
+  // useEffect(() => {
+  //     // console.log(product);
+  //     // localStorage.setItem("productMock", JSON.stringify(product));
+  //     const product = localStorage.getItem("productMock");
+  //     setProductMock(JSON.parse(product));
+  // }, []);
 
-    // PRODUCTION:
-    useEffect(() => {
-        dispatch(productById(idProduct))
-        dispatch(getBestSellers())
-        dispatch(cleanProductDetail())
-        if (product.stock === 0) {
-            setNumberOfItems(0)
-        }
-    }, [dispatch, idProduct])
+  // Setea el elemento <title> del <head> del documento HTML.
+  useEffect(() => {
+    product.name
+      ? (
+          document.title = `${product.name}`
+        )
+      : (
+          document.title = 'Ide Pinturerias'
+        )
+    return () => {
+      document.title = 'Ide Pinturerias'
+    }
+  }, [idProduct, product])
 
-    // DEV MODE: Solo para evitar peticiones al servidor.
-    // useEffect(() => {
-    //     // console.log(product);
-    //     // localStorage.setItem("productMock", JSON.stringify(product));
-    //     const product = localStorage.getItem("productMock");
-    //     setProductMock(JSON.parse(product));
-    // }, []);
+  useEffect(() => {
+    if (numberOfItems <= 0 || numberOfItems > product.stock) {
+      setNumberOfItems(1)
+    }
+  }, [numberOfItems])
 
-    // Setea el elemento <title> del <head> del documento HTML.
-    useEffect(() => {
-        product.name
-            ? (
-                document.title = `${product.name}`
-            )
-            : (
-                document.title = 'Ide Pinturerias'
-            )
-        return () => {
-            document.title = 'Ide Pinturerias'
-        }
-    }, [idProduct, product])
-
-    useEffect(() => {
-        if (numberOfItems <= 0 || numberOfItems > product.stock) {
-            setNumberOfItems(1)
-        }
-    }, [numberOfItems])
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <main className="flex items-center justify-center w-full p-whiteSpaceTop bg-bg">
             {
                 Object.keys(product).length === 0
-                    ? (<img
+                  ? (<img
                         src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
                         alt="Cargando..."
                         className="w-94 h-94 "
                     />)
-                    : (<div className="flex flex-col max-w-maxSc w-maxIn m-sides">
+                  : (<div className="flex flex-col max-w-maxSc w-maxIn m-sides">
                         {/* BREADCRUMB */}
                         <div className="text-xs font-secondary mb-[50px]">
                             <ul className='flex items-center'>
@@ -228,7 +227,7 @@ function Detail() {
                                         <p className="text-lg">Ver más productos de <a className="text-accentClear underline uppercase cursor-pointer">{product.patent}</a></p>
                                     </div>
                                     <button className="flex outline-0 border-none bg-transparent h-fit" onClick={addFavorite}>
-                                        <Bookmark size={"1rem"} />
+                                        <Bookmark size={'1rem'} />
                                     </button>
                                 </div>
                                 <div className="flex justify-between">
@@ -241,11 +240,11 @@ function Detail() {
                                             <span className="text-accentClear underline cursor-pointer">
                                                 {
                                                     product.nroReviews > 0
-                                                        ? (
-                                                            // "renderizar verdadera cantidad de reseñas"
-                                                            product.nroReviews
+                                                      ? (
+                                                    // "renderizar verdadera cantidad de reseñas"
+                                                          product.nroReviews
                                                         )
-                                                        : null
+                                                      : null
                                                 }
                                             </span>
                                         </div>
@@ -277,11 +276,11 @@ function Detail() {
                                                 <Phone />
                                                 {
                                                     !showNumber
-                                                        ? (
-                                                            'Llámanos'
+                                                      ? (
+                                                          'Llámanos'
                                                         )
-                                                        : (
-                                                            '+54 351 306 135'
+                                                      : (
+                                                          '+54 351 306 135'
                                                         )
                                                 }
                                             </button>
@@ -311,35 +310,35 @@ function Detail() {
                                         </div>
                                         {
                                             product.stock < 50
-                                                ? (
+                                              ? (
                                                     <div className={'mb-4 text-sm ' + (product.stock === 0 && 'text-red-600')}>
                                                         {
                                                             product.stock === 0
-                                                                ? (
-                                                                    'No quedan unidades de este producto'
+                                                              ? (
+                                                                  'No quedan unidades de este producto'
                                                                 )
-                                                                : product.stock === 1
-                                                                    ? (
-                                                                        '¡Queda solo 1 unidad!'
-                                                                    )
-                                                                    : (
+                                                              : product.stock === 1
+                                                                ? (
+                                                                    '¡Queda solo 1 unidad!'
+                                                                  )
+                                                                : (
                                                                         `¡Quedan solo ${product.stock} unidades!`
-                                                                    )
+                                                                  )
                                                         }
                                                     </div>
                                                 )
-                                                : null
+                                              : null
                                         }
                                         {
                                             product.stock !== 0
-                                                ? (
+                                              ? (
                                                     <>
                                                         <button className="w-[80%] mb-2 p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
                                                         <button className="w-[80%] mb-2 p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
                                                     </>
                                                 )
-                                                : (
-                                                    null
+                                              : (
+                                                  null
                                                 )
                                         }
                                     </div>
@@ -357,10 +356,10 @@ function Detail() {
                                     bestSellersContainer={false}
                                     similarProductsContainer={true}
                                     similarProductsContainerOptions={{
-                                        currentId: product.idProduct,
-                                        limit: 4,
-                                        category: product.category,
-                                        color: product.color
+                                      currentId: product.idProduct,
+                                      limit: 4,
+                                      category: product.category,
+                                      color: product.color
                                     }}
                                 />
                             </section>
@@ -368,7 +367,7 @@ function Detail() {
                     </div>)
             }
         </main>
-    )
+  )
 };
 
 export default Detail

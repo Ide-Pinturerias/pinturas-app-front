@@ -1,16 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import image1 from "../../assets/images/store/store1.webp"
+import image1 from '../../assets/images/store/store1.webp'
 
 const AboutCard = () => {
+  const buttonMain = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]'
 
-    const buttonMain = `transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]`
-
-    return (
+  return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className='flex justify-center items-center gap-[50px] m-sides max-w-maxSc w-maxIn'>
                 <img
-                    src={image1} 
+                    src={image1}
                     alt="Vista exterior de la tienda idePinturerias mostrando productos de pintura y herramientas."
                     className='self-center items-center object-cover aspect-[4/3] w-[calc((100%-50px)/2)] rounded-3xl'
                 />
@@ -30,7 +29,7 @@ const AboutCard = () => {
                 </div>
             </div>
         </section>
-    )
+  )
 }
 
 export default AboutCard

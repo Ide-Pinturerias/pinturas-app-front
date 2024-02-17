@@ -28,7 +28,8 @@ export default defineConfig(({ mode }) => {
         '@img': path.resolve(__dirname, './src/img'),
         '@assets': path.resolve(__dirname, './src/assets'),
         '@hooks': path.resolve(__dirname, './src/hooks'),
-        '@api': path.resolve(__dirname, './src/services/api')
+        '@api': path.resolve(__dirname, './src/services/api'),
+        '@images': path.resolve(__dirname, './src/assets/images')
       }
     }
   }

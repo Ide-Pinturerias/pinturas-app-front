@@ -1,29 +1,25 @@
-import { useEffect, useRef } from "react"
-import { XLarge } from "../SVG"
+import { useEffect, useRef } from 'react'
+import { XLarge } from '../SVG'
 
-function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
+function FilterMenu ({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
+  // Detectar click fuera del menú.
+  const filterMenuRef = useRef(null)
+  const handleOutsideClick1 = (event) => {
+    if (isFilterOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
+      setIsFilterOpen(false)
+    };
+  }
 
-
-    // Detectar click fuera del menú.
-    const filterMenuRef = useRef(null)
-    const handleOutsideClick1 = (event) => {
-        if (isFilterOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
-            setIsFilterOpen(false)
-        };
+  // LIFE CYCLES:
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick1)
+    return () => {
+      document.removeEventListener('click', handleOutsideClick1)
     }
+  }, [])
 
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        document.addEventListener('click', handleOutsideClick1)
-        return () => {
-            document.removeEventListener('click', handleOutsideClick1)
-        }
-    }, [])
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <aside
             ref={filterMenuRef}
             className="flex flex-col w-[30%] h-full mr-auto p-6 bg-bgFocus rounded-r-[2rem]"
@@ -101,7 +97,7 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
                 </button>
             </div>
         </aside>
-    )
+  )
 }
 
 export default FilterMenu

@@ -19,88 +19,86 @@ import FilterMenu from '../../components/Refiners/FilterMenu'
 import SortMenu from '../../components/Refiners/SortMenu'
 import { Chevron, XSmall } from '../../components/SVG'
 
-function ProductsPage() {
-    // GLOBAL STATES:
-    const filterCategory = useSelector((state) => state.filterCategory)
-    const categories = useSelector((state) => state.categories)
-    const totalPages = useSelector((state) => state.totalPages)
-    const thisPage = useSelector((state) => state.thisPage)
-    const { highPrice, lowPrice } = useSelector((state) => state.price)
-    const sortBy = useSelector((state) => state.sortBy)
-    const orderBy = useSelector((state) => state.orderBy)
+function ProductsPage () {
+  // GLOBAL STATES:
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const categories = useSelector((state) => state.categories)
+  const totalPages = useSelector((state) => state.totalPages)
+  const thisPage = useSelector((state) => state.thisPage)
+  const { highPrice, lowPrice } = useSelector((state) => state.price)
+  const sortBy = useSelector((state) => state.sortBy)
+  const orderBy = useSelector((state) => state.orderBy)
 
-    // LOCAL STATES:
-    const [isLoading, setIsLoading] = useState(true)
-    const [isFilterOpen, setIsFilterOpen] = useState(false)
-    const [isSortOpen, setIsSortOpen] = useState(false)
+  // LOCAL STATES:
+  const [isLoading, setIsLoading] = useState(true)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [isSortOpen, setIsSortOpen] = useState(false)
 
-    // CONSTANTS:
-    const dispatch = useDispatch()
+  // CONSTANTS:
+  const dispatch = useDispatch()
 
-    // FUNCTIONS:
-    const sortByClauseAndDirection = (clause, direction) => {
-        if (clause) dispatch(setSortClause(clause))
-        if (direction) dispatch(setSortDirection(direction))
+  // FUNCTIONS:
+  const sortByClauseAndDirection = (clause, direction) => {
+    if (clause) dispatch(setSortClause(clause))
+    if (direction) dispatch(setSortDirection(direction))
+  }
+
+  const filterByCategory = (category) => {
+    dispatch(setPage(1))
+    dispatch(setCategory(category))
+  }
+
+  const filterByPrice = (priceFilter) => {
+    if (priceFilter === 'Hasta $10000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(10000))
+    } else if (priceFilter === '$10000 a $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(10000))
+      dispatch(setHighPrice(20000))
+    } else if (priceFilter === 'Mas de $20000') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(20000))
+      dispatch(setHighPrice(0))
+    } else if (priceFilter === 'no price') {
+      dispatch(setPage(1))
+      dispatch(setLowPrice(0))
+      dispatch(setHighPrice(0))
     }
+  }
 
-    const filterByCategory = (category) => {
-        dispatch(setPage(1))
-        dispatch(setCategory(category))
+  const changePage = (page) => {
+    dispatch(setPage(page))
+  }
+
+  const filterProducts = (page) => {
+    const selectedPage = page || thisPage
+    if (filterCategory || lowPrice || highPrice || sortBy || orderBy) {
+      dispatch(getAllProductsFiltered(selectedPage, filterCategory, lowPrice, highPrice, sortBy, orderBy))
+        .then(() => setIsLoading(false))
+    } else {
+      dispatch(getAllProductsPaginated(selectedPage))
+        .then(() => setIsLoading(false))
     }
+  }
 
-    const filterByPrice = (priceFilter) => {
-        if (priceFilter === 'Hasta $10000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(0))
-            dispatch(setHighPrice(10000))
-        } else if (priceFilter === '$10000 a $20000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(10000))
-            dispatch(setHighPrice(20000))
-        } else if (priceFilter === 'Mas de $20000') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(20000))
-            dispatch(setHighPrice(0))
-        } else if (priceFilter === 'no price') {
-            dispatch(setPage(1))
-            dispatch(setLowPrice(0))
-            dispatch(setHighPrice(0))
-        }
-    }
+  const clearFilters = () => {
+    dispatch(setPage(1))
+    dispatch(setCategory(''))
+    dispatch(setLowPrice(0))
+    dispatch(setHighPrice(0))
+  }
 
-    const changePage = (page) => {
-        dispatch(setPage(page))
-    }
+  // LIFE CYCLES:
+  useEffect(() => {
+    setIsLoading(true)
+    if (!filterCategory) dispatch(getAllCategories())
+    filterProducts(null)
+  }, [dispatch, lowPrice, highPrice, thisPage, filterCategory, sortBy, orderBy])
 
-    const filterProducts = (page) => {
-        let selectedPage;
-        selectedPage = page || thisPage
-        if (filterCategory || lowPrice || highPrice || sortBy || orderBy) {
-            dispatch(getAllProductsFiltered(selectedPage, filterCategory, lowPrice, highPrice, sortBy, orderBy))
-                .then(() => setIsLoading(false))
-        } else {
-            dispatch(getAllProductsPaginated(selectedPage))
-                .then(() => setIsLoading(false))
-        }
-    }
-
-    const clearFilters = () => {
-        dispatch(setPage(1))
-        dispatch(setCategory(""))
-        dispatch(setLowPrice(0))
-        dispatch(setHighPrice(0))
-    }
-
-    // LIFE CYCLES:    
-    useEffect(() => {
-        setIsLoading(true)
-        if (!filterCategory) dispatch(getAllCategories())
-        filterProducts(null)
-    }, [dispatch, lowPrice, highPrice, thisPage, filterCategory, sortBy, orderBy])
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
             <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-primaryClear">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
@@ -111,18 +109,18 @@ function ProductsPage() {
                         </p>
                     </div>
                     <div className="flex justify-between items-center">
-                        <button className={` ${isSortOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
-                            e.stopPropagation();
-                            setIsSortOpen(false);
-                            setIsFilterOpen(true)
+                        <button className={` ${isSortOpen ? 'z-[60]' : ''} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                          e.stopPropagation()
+                          setIsSortOpen(false)
+                          setIsFilterOpen(true)
                         }}>
                             Filtrar
                         </button>
                         <Chevron size={'5rem'} />
-                        <button className={`${isFilterOpen ? "z-[60]" : ""} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
-                            e.stopPropagation();
-                            setIsFilterOpen(false);
-                            setIsSortOpen(true)
+                        <button className={`${isFilterOpen ? 'z-[60]' : ''} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                          e.stopPropagation()
+                          setIsFilterOpen(false)
+                          setIsSortOpen(true)
                         }}>
                             Ordenar
                         </button>
@@ -130,7 +128,8 @@ function ProductsPage() {
                 </div>
             </section>
             {
-                isFilterOpen ? (
+                isFilterOpen
+                  ? (
                     <div className="fixed z-50 top-0 bottom-0 left-0 right-0 w-full bg-overlay" >
                         <FilterMenu
                             isFilterOpen={isFilterOpen}
@@ -144,10 +143,12 @@ function ProductsPage() {
                             clearFilters={clearFilters}
                         />
                     </div>
-                ) : null
+                    )
+                  : null
             }
             {
-                isSortOpen ? (
+                isSortOpen
+                  ? (
                     <div className="fixed z-50 top-0 bottom-0 left-0 right-0 flex w-full bg-overlay">
                         <SortMenu
                             isSortOpen={isSortOpen}
@@ -157,7 +158,8 @@ function ProductsPage() {
                             sortByClauseAndDirection={sortByClauseAndDirection}
                         />
                     </div>
-                ) : null
+                    )
+                  : null
             }
             <section className="flex flex-col items-center justify-center w-full py-16 bg-bg">
                 <div className="flex justify-center items-center flex-wrap gap-4 w-full">
@@ -213,7 +215,7 @@ function ProductsPage() {
                 <FeaturedContainer />
             </div> */}
         </main>
-    )
+  )
 };
 
 export default ProductsPage

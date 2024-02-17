@@ -1,29 +1,25 @@
-import { useEffect, useRef } from "react"
-import { XLarge } from "../SVG"
+import { useEffect, useRef } from 'react'
+import { XLarge } from '../SVG'
 
-function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
+function SortMenu ({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
+  // Detectar click fuera del menú.
+  const sortMenuRef = useRef(null)
+  const handleOutsideClick1 = (event) => {
+    if (isSortOpen && sortMenuRef.current && !sortMenuRef.current.contains(event.target)) {
+      setIsSortOpen(false)
+    };
+  }
 
-
-    // Detectar click fuera del menú.
-    const sortMenuRef = useRef(null)
-    const handleOutsideClick1 = (event) => {
-        if (isSortOpen && sortMenuRef.current && !sortMenuRef.current.contains(event.target)) {
-            setIsSortOpen(false)
-        };
+  // LIFE CYCLES:
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick1)
+    return () => {
+      document.removeEventListener('click', handleOutsideClick1)
     }
+  }, [])
 
-
-    // LIFE CYCLES:
-    useEffect(() => {
-        document.addEventListener('click', handleOutsideClick1)
-        return () => {
-            document.removeEventListener('click', handleOutsideClick1)
-        }
-    }, [])
-
-
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <aside
             ref={sortMenuRef}
             className="flex flex-col ml-auto w-[30%] h-full p-6 bg-bgFocus rounded-l-[2rem]"
@@ -43,7 +39,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     {/*       SORT RATING       */}
                     <h3
                         className="font-semibold uppercase mb-2"
-                        onClick={() => sortByClauseAndDirection("rating", "ASC")}
+                        onClick={() => sortByClauseAndDirection('rating', 'ASC')}
                     >
                         Los más puntuados
                     </h3>
@@ -63,14 +59,14 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === "name" && orderBy === "ASC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("name", "ASC")}
+                            className={`text-sm ${sortBy === 'name' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('name', 'ASC')}
                         >
                             Ascendente (A-Z)
                         </span>
                         <span
-                            className={`text-sm ${sortBy === "name" && orderBy === "DESC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("name", "DESC")}
+                            className={`text-sm ${sortBy === 'name' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('name', 'DESC')}
                         >
                             Descendente (Z-A)
                         </span>
@@ -83,14 +79,14 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === "price" && orderBy === "ASC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("price", "ASC")}
+                            className={`text-sm ${sortBy === 'price' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('price', 'ASC')}
                         >
                             Menor a mayor
                         </span>
                         <span
-                            className={`text-sm ${sortBy === "price" && orderBy === "DESC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("price", "DESC")}
+                            className={`text-sm ${sortBy === 'price' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('price', 'DESC')}
                         >
                             Mayor a menor
                         </span>
@@ -103,14 +99,14 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === "stock" && orderBy === "ASC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("stock", "ASC")}
+                            className={`text-sm ${sortBy === 'stock' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('stock', 'ASC')}
                         >
                             Menor a mayor
                         </span>
                         <span
-                            className={`text-sm ${sortBy === "stock" && orderBy === "DESC" ? "text-primaryClear" : ""} hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("stock", "DESC")}
+                            className={`text-sm ${sortBy === 'stock' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            onClick={() => sortByClauseAndDirection('stock', 'DESC')}
                         >
                             Mayor a menor
                         </span>
@@ -130,7 +126,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                 </button>
             </div>
         </aside>
-    )
+  )
 }
 
 export default SortMenu

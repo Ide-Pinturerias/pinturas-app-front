@@ -1,3 +1,4 @@
+const URL_API = import.meta.env.VITE_API_URL
 // PRODUCTS
 export const GET_ALL_PRODUCTS_PAGINATED = 'GET_ALL_PRODUCTS_PAGINATED'
 export const POST_PRODUCT = 'POST_PRODUCT'
@@ -75,11 +76,11 @@ export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
 // export const BASE_URL = 'http://localhost:3000/'
-export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
+export const BASE_URL = URL_API
 
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'
-export const URL_SAVE_REVIEW = 'https://pinturas-app-back.onrender.com/'
+export const URL_SAVE_REVIEW = URL_API
 
 // PROVIDERS
 export const GET_PROVIDERS = 'GET_PROVIDERS'

@@ -1,163 +1,96 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import ProductCart from '@components/ProductCart/ProductCart'
-import { postCart } from '@redux/actions/Cart/postCart'
-import { setCart } from '@redux/actions/Cart/setCart'
-import { postOrderByCart } from '@redux/actions/Orders/postOrderByCart'
-import { postOrderPayment } from '@redux/actions/Orders/postOrderPayment'
-import Swal from 'sweetalert2'
+import { useEffect, useId } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter'
+import ProductCart from '@components/Cart/ProductCart'
+import TotalCart from '@components/Cart/TotalCart'
+import PurchaseCart from '@components/Cart/PurchaseCart'
+import ClearCart from '@components/Cart/ClearCart'
+
+const LoadingSpinner = () => {
+  return (
+      <div role="status">
+          <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-[#FF6600]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+          </svg>
+          <span className="sr-only">Loading...</span>
+      </div>
+  )
+}
 
 const Cart = () => {
-  const user = useSelector((state) => state.user)
-  const cart = useSelector((state) => state.cart)
-  // const cartID = useSelector((state) => state.cartID)
-  // const [price, setPrice] = useState(0);
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const sumPrices = []
 
-  const addPrice = (quantity, price) => {
-    sumPrices.push(quantity * price)
-  }
+  // PRODUCTOS ESTADO GLOBAL
+  const allProducts = useSelector(state => state.allProducts)
 
-  const handleSendProduct = async () => {
-    if (!user.id) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Iniciar Sesión',
-        text: 'Necesitas estar loggeado para comprar'
-      })
-    } else if (user.id) {
-      const buyCart = {
-        idUser: user.id,
-        products: cart
-      }
+  // PRODUCTOS LOCAL STORAGE (array solo con id y quantity)
+  const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
-      await postCart(buyCart)(dispatch)
-        .then(async (response) => {
-          if (response) {
-            const order = {
-              idCart: response.data.idCart
-            }
+  // FILTRAR Y CALCULAR SUBTOTALES
+  const productsCart = productsLocal.map(cartItem => {
+    const productsWithQuantity = allProducts.find(product => product.idProduct === Number(cartItem.id))
+    return { ...productsWithQuantity, quantity: cartItem.quantity }
+  })
 
-            await postOrderByCart(order)(dispatch)
-              .then(async (response) => {
-                if (response) {
-                  const idOrder = response.id
+  useEffect(() => {
+    dispatch(getAllProductsNoFilter())
+  }, [])
 
-                  await postOrderPayment(idOrder)(dispatch)
-                    .then((response) => {
-                      if (response) navigate('/cart/detail')
-                      console.log(
-                        'response postOrderPayment N46',
-                        response.response.initPoint
-                      )
-                      dispatch(setCart([]))
-                      localStorage.removeItem('cart')
-                    })
-                    .catch((err) => {
-                      console.log('err postOrderPayment', err)
-                    })
-                }
-              })
-              .catch((err) => {
-                console.log('err postOrderByCart', err)
-              })
-          }
-        })
-        .catch((err) => {
-          alert(err)
-        })
-    }
-  }
-
-  return (
-    <div className="my-10 w-full">
-      <div className="flex flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-        <div className="w-10 mx-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            data-name="Layer 1"
-            viewBox="0 0 512 512"
-            id="shopping-cart"
-          >
-            <path d="M199.039 373.884A46.058 46.058 0 1 0 245.1 419.941 46.111 46.111 0 0 0 199.039 373.884zM380.316 373.884a46.058 46.058 0 1 0 46.059 46.057A46.111 46.111 0 0 0 380.316 373.884zM455.132 127.679H141.567l-6.8-40.047A49.869 49.869 0 0 0 85.475 46H56.868a10 10 0 1 0 0 20H85.474A29.92 29.92 0 0 1 115.05 90.979l36.21 213.315a49.871 49.871 0 0 0 49.3 41.632H413.729a10 10 0 0 0 0-20H200.556a29.92 29.92 0 0 1-29.576-24.979L167.34 279.5H376.362a59.816 59.816 0 0 0 57.131-41.666l31.161-97.1a10 10 0 0 0-9.522-13.055z"></path>
-          </svg>
-        </div>
-        <a href="#" className="text-2xl font-bold text-gray-800">
-          Mi Carrito
+  if (!productsCart?.length > 0) {
+    return (
+    <main className="pt-[5rem] grid justify-center items-center h-[100dvh]">
+      <h1 className="text-2xl font-bold text-gray-700">No tienes productos en el carrito</h1>
+      <div className="flex flex-row gap-2 w-full justify-center">
+        <a href="/products" className="bg-indigo-600 text-white rounded-md px-5 py-2 mt-5">
+          Ir a productos
         </a>
-        <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base"></div>
+        <a href="/" className="bg-[#FF6600] text-white rounded-md px-5 py-2 mt-5">
+          Volver al inicio
+        </a>
       </div>
-      <div className="my-2 flex-col items-center sm:flex-row sm:mx-5 lg:mx-20 xl:mx-32">
-        <p className="text-xl font-medium">Resumen del pedido</p>
-        <p className="text-gray-400">Revisa tus artículos.</p>
-      </div>
-      <div className="w-full h-full flex flex-wrap justify-center items-stretch md:px-10  lg:px-20 xl:px-32">
-        <div className="w-11/12 h-5/6 mx-3 mt-3 flex justify-center flex-col ">
-          <div className=" mt-3 space-y-3 rounded-lg border bg-white px-2 py-4 md:px-6">
-            {cart?.length > 0 && (
-              <div>
-                {console.log('cart', cart)}
-                <div className="w-full flex justify-between px-4">
-                  <h1 className="text-lg font-semibold"> Detalle </h1>
-                  <h1 className="text-lg font-semibold text-right"> Precio </h1>
-                </div>
-                <div>
-                  {cart?.map((product) =>
-                    product && product?.id
-                      ? (
-                        <div key={product.id}>
-                          {addPrice(product.quantity, product.price)}
-                          <ProductCart
-                            // calcTotal={calcTotal}
-                            // key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            stock={product.stock}
-                            quantity={product.quantity}
-                            price={product.price}
-                            // color={product.color}
-                            image={product.image}
-                          />
-                        </div>)
-                      : null
-                  )}
-                </div>
-                {/* <div className="w-full flex justify-between px-4 pt-4 border-t">
-                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5">
-                    {" "}
-                    Total{" "}
-                  </h1>
-                  <h1 className="text-2xl font-bold text-gray-800 pb-2 my-5">
-                    {" "}
-                    $ {totalPrice()}
-                  </h1>
-                </div> */}
-              </div>
-            )}
-            {cart !== null && cart.length === 0 && (
-              <p className="text-gray-400 flex items-center justify-center">
-                El carrito está vacío.
-              </p>
-            )}
-          </div>
-          <div className="my-9 flex items-center justify-center">
-            <div>
-              <button
-                type="button"
-                onClick={handleSendProduct}
-                className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
-              >
-                Comprar carrito
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </main>
+    )
+  }
+
+  const productsView = (
+    <main className="pt-[5rem] grid justify-center items-center min-h-[100dvh]">
+      {
+        productsCart.map(product => {
+          return (
+            <ProductCart
+            key={useId()}
+            id={product.idProduct}
+            name={product.name}
+            quantity={product.quantity}
+            image={product.image}
+            price={product.price}
+            stock={product.stock}
+            subtotal={product.price * product.quantity }
+            />
+          )
+        })
+      }
+      <TotalCart
+      key={useId()}
+      products={productsCart}
+      />
+      <section className="flex justify-center">
+        <PurchaseCart
+        products={productsCart}
+        />
+        <ClearCart/>
+      </section>
+    </main>
   )
+
+  return productsCart.at(0).price
+    ? productsView
+    : (
+    <main className="pt-[5rem] grid justify-center items-center h-[100dvh]">
+      <LoadingSpinner />
+    </main>
+      )
 }
 
 export default Cart

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '@img/logo-black.png'
 import { useSelector } from 'react-redux'
 import SearchBar from '@components/SearchBar/SearchBar'
+import { logoutUser } from '@redux/actions/User/logoutUser'
 
 import { Magnifier, Cart, Bookmark, UserIcon } from '../SVG'
 

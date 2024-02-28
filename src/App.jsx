@@ -23,7 +23,7 @@ import Login from './views/Login/Login'
 import ReviewsPage from './views/ReviewsPage/ReviewsPage'
 import { useDispatch } from 'react-redux'
 import { setUser } from './redux/actions/User/setUser'
-import { allProducts } from './redux/actions/Products/allProducts'
+import { getAllProductsPaginated } from './redux/actions/Products/getAllProductsPaginated'
 import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
 import OrderDetail from './views/OrderDetail/OrderDetail'
 import Dashboard from './views/Dashboard/Dashboard'
@@ -48,7 +48,7 @@ function App () {
       dispatch(setUser(user))
       dispatch(findOrCreateCart(user.id))
     }
-    dispatch(allProducts())
+    dispatch(getAllProductsPaginated())
   }, [])
 
   useEffect(() => {

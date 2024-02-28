@@ -32,7 +32,7 @@ const PurchaseCart = ({ products }) => {
   }
 
   return (<>
-        <button className="w-[45%] mr-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
+        <button className="p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible m-1"
         onClick={handlePurchase}
         disabled={checkStock()}
         style={{ backgroundColor: checkStock() ? '#ccc' : null }}

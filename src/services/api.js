@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Nota: setear axios defaults en el futuro.
-const BASE_URL = 'https://pinturas-app-back.onrender.com/'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 export const getBestSellers = async (limit) => {
   try {

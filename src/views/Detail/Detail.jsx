@@ -366,7 +366,7 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                 <>
-                                                    <button className="w-[80%] mb-2 p-4 bg-orange rounded-[2rem] text-white text-sm font-bold uppercase"
+                                                    <button className="p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible m-1"
                                                     onClick={handleBuyNow}
                                                     >¡Comprar ahora!</button>
                                                     {

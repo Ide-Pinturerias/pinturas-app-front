@@ -108,7 +108,7 @@ src
 |--|--|--ProductCard.jsx
 =>
 -
-|--|--ProductCards
+|--|--ProductCards (THIS COMPONENT REPLACES: Featured & Products)
 |--|--|--CardCategory.jsx
 |--|--|--CardRegular.jsx
 -
@@ -128,7 +128,7 @@ src
 -
 => 
 -
-|--|--ProductBox (THIS COMPONENT REPLACE: ProductContainer)
+|--|--ProductBox (THIS COMPONENT REPLACES: ProductContainer)
 |--|--|--ProductBox.jsx
 -
 
@@ -137,7 +137,7 @@ src
 |--|--|--SideBar.jsx
 -
 =>
-|--|--Refiners
+|--|--Refiners (THESE COMPONENTS REPLACE: SideBar)
 |--|--|--FilterMenu.jsx
 |--|--|--SortMenu.jsx
 
@@ -149,9 +149,11 @@ src
 |--context
 ...
 |--views
-|--|--Home
 |--|--About
 |--|--Contact
+|--|--Home
+|--|--Detail
+|--|--Products
 
 ...
 ```
@@ -173,3 +175,17 @@ services/api/get_best_sellers_request
 ```
 
 - El controlador para el endpoint <u>**products?limit=${limit}&minRating=5**</u> debe realizar la manipulación de datos, y retornar solo la respuesta necesaria, en lugar de realizarla en la misma petición.
+
+## 3. Actions in use
+
+### filters/getAllProductsFiltered
+### filters/setCategory
+### filters/setHighPrice
+### filters/setLowPrice
+### filters/sort
+### page/setPage
+### products/cleanProductDetail
+### products/getAllProductsPaginated
+### products/getBestSellers
+### products/productById
+### products/productByName

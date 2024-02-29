@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/NavBar'
 import Contact from './views/Contact/Contact'
 import Detail from './views/Detail/Detail'
 import Footer from './components/Footer/Footer'
+import Bookmarks from './views/Bookmarks/bookmarks';
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
 import Products from './views/Products/Products'
@@ -96,6 +97,8 @@ function App () {
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart/buying" element={<Purchases />} />
               <Route path="/cart/detail" element={<OrderDetail />} />
+
+              <Route path="/bookmarks" element={<Bookmarks />} />
 
               <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
 

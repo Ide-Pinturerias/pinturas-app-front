@@ -83,10 +83,11 @@ src
 
 |--components
 
+
+<!-- HOME -->
 |--|--AboutCard
 |--|--|--AboutCard.jsx
 
-<!-- HOME -->
 |--|--Banner
 |--|--|--Banner.jsx
 
@@ -96,8 +97,12 @@ src
 |--|--BannerBlog
 |--|--|--BannerBlog.jsx
 
-|--|--FeaturedContainer (TOP SELLERS) 
+|--|--FeaturedContainer (TOP SELLERS)
 |--|--|--FeaturedContainer.jsx
+
+
+|--|--BookmarksList
+|--|--|--BookmarksList.jsx
 
 -
 |--|--Featured (CAN BE REMOVED)
@@ -151,6 +156,7 @@ src
 ...
 |--views
 |--|--About
+|--|--Bookmarks
 |--|--Contact
 |--|--Home
 |--|--Detail

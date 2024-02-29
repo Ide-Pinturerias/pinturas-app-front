@@ -104,7 +104,7 @@ function NavBar() {
                             </div>
                             <div className="font-mono flex justify-center items-center cursor-pointer">
                                 <NavLink
-                                    to="/cart"
+                                    to="/bookmarks"
                                     className={linkStl}
                                 >
                                     <Bookmark size={".75rem"} />

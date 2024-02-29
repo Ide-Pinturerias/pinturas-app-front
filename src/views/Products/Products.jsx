@@ -5,7 +5,7 @@ import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsP
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
 import { setCategory } from '@redux/actions/filters/setCategory'
-import { setPage } from '@redux/actions/Page/setPage'
+import { setPage } from '@redux/actions/pagination/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
 import { setSortClause, setSortDirection } from '../../redux/actions/filters/sort'

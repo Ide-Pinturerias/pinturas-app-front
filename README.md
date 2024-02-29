@@ -41,19 +41,20 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ---
 
-# COMPONENTS:
+# VIEWS/ROUTES:
 
-## App:
+## App (every component):
 
 1. NavBar.jsx (SearchBar.jsx)
 2. Footer.jsx
 
 ## Home:
 
-1. Banner.jsx
-2. FeaturedContainer.jsx (CardRegular.jsx)
-3. AboutCard.jsx
-4. BannerBlog.jsx
+1. AboutCard.jsx
+2. Banner.jsx
+3. FeaturedContainer.jsx (CardRegular.jsx)
+4. AboutCard.jsx
+5. BannerBlog.jsx
 
 ## Products:
 
@@ -64,7 +65,7 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ## Detail:
 
-- No components (other than SVG components) are being used yet.
+1. FeaturedContainer.jsx (CardRegular.jsx)
 
 ## Contact:
 
@@ -183,7 +184,7 @@ services/api/get_best_sellers_request
 ### filters/setHighPrice
 ### filters/setLowPrice
 ### filters/sort
-### page/setPage
+### pagination/setPage
 ### products/cleanProductDetail
 ### products/getAllProductsPaginated
 ### products/getBestSellers

@@ -196,3 +196,5 @@ services/api/get_best_sellers_request
 ### products/getBestSellers
 ### products/productById
 ### products/productByName
+### favorites/getFavorites
+### favorites/postFavorite

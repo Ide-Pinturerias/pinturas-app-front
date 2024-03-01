@@ -80,6 +80,17 @@ export const get_similar_products = async ({ currentId, limit, category, color }
     }
 }
 
+export const get_favorites = async (user) => {
+    try {
+        const response = await axios.post(`${BASE_URL}favorites/user`, user);
+        const data = response.data;
+        return data;
+    } catch (error) {
+        console.log('Error fetching favorites: ' + error);
+        throw error;
+    }
+};
+
 export const post_favorite = async (favData) => {
     try {
         const response = await axios.post(`${BASE_URL}favorites`, favData);

@@ -75,7 +75,18 @@ export const get_similar_products = async ({ currentId, limit, category, color }
             return similarProducts;
         }
     } catch (error) {
-        console.log('Error trying to dispatch getSimilarProducts: ' + error)
+        console.log('Error fetching all products filtered: ' + error)
         return [];
+    }
+}
+
+export const post_favorite = async (favData) => {
+    try {
+        const response = await axios.post(`${BASE_URL}favorites`, favData);
+        const data = response.data;
+        return data;
+    } catch (error) {
+        console.log('Error posting favorite: ' + error);
+        throw error;
     }
 }

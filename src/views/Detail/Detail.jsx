@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { productById } from '@redux/actions/Products/productById'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 // import { setCart } from '@redux/actions/Cart/setCart'
-import { postFavorites } from '@redux/actions/Favorites/postFavorites'
+import { postFavorite } from '@redux/actions/Favorites/postFavorite'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 // import { useCart } from '@hooks/useCart'
 
@@ -55,7 +55,7 @@ function Detail() {
                 idProduct
             }
 
-            dispatch(postFavorites(data))
+            dispatch(postFavorite(data))
                 .then((response) => {
                     if (response === 'existe') {
                         Swal.fire('Ya exite este producto en favoritos')

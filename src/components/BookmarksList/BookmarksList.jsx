@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 function BookmarkItem({ product }) {
     return (
@@ -14,6 +15,9 @@ function BookmarkItem({ product }) {
 }
 
 export default function BookmarksList() {
+
+    const favorites = useSelector((state) => state.allFavorites);
+
     return (
         <div className="flex flex-col">
             <div className="flex">

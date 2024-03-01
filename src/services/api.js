@@ -89,7 +89,7 @@ export const get_favorites = async (user) => {
         console.log('Error fetching favorites: ' + error);
         throw error;
     }
-};
+}
 
 export const post_favorite = async (favData) => {
     try {

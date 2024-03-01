@@ -1,22 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 
-function BookmarkItem({ product }) {
+function BookmarkItem({ favorite }) {
     return (
         <div className="flex items-center">
-            <img src={product.img} />
-            <span>{product.title}</span>
-            <span>{product.patent}</span>
-            <span>{product.category}</span>
-            <span>{product.stock}</span>
-            <span>{product.price}</span>
+            <img src={favorite.image} style={{ width: '80px' }} />
+            <span>{favorite.name}</span>
+            <span>{favorite.package}</span>
+            <span>{favorite.color}</span>
+            <span>{favorite.patent}</span>
+            <span>{favorite.category}</span>
+            <span>{favorite.stock}</span>
+            <span>{favorite.price}</span>
         </div>
     )
 }
 
-export default function BookmarksList() {
-
-    const favorites = useSelector((state) => state.allFavorites);
+export default function BookmarksList({ favorites }) {
 
     return (
         <div className="flex flex-col">
@@ -27,6 +26,11 @@ export default function BookmarksList() {
                 <span>Stock</span>
                 <span>Precio</span>
             </div>
+            {
+                Array.isArray(favorites) && favorites.length > 0 && favorites.map((fav) => (
+                    <BookmarkItem favorite={fav} />
+                ))
+            }
         </div>
     )
 };

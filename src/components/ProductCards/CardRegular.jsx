@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { BookmarkOutlined } from '@mui/icons-material';
+import { BookmarkOutlined } from '@mui/icons-material'
 
-import { formatNumberWithDots } from '../../scripts/formatNumberWithDots';
+import { formatNumberWithDots } from '../../scripts/formatNumberWithDots'
 
-function CardRegular({ id, name, category, color, image, brand, price }) {
+function CardRegular ({ id, name, category, color, image, brand, price }) {
+  // LOCAL STATES:
+  const [isFav, setIsFav] = useState(false)
 
-    // LOCAL STATES:
-    const [isFav, setIsFav] = useState(false);
-
-    // STYLES:
-    const afterPseudo = `
+  // STYLES:
+  const afterPseudo = `
         after:content-[""] after:absolute after:opacity-0 after:-inset-2 
         after:rounded-lg after:rounded--3xl after:shadow-main after:bg-bgFocus 
         after:border after:border-hightlight 
@@ -26,23 +25,23 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
 
         after:pointer-events-none
     `
-    const buttonMain = `transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]`
-    const buttonFav = `transition-all ease-linear duration-100 hover:stroke-primaryLight active:text-primaryDark active:scale-[.97]`
-    const tag = `w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap`
+  const buttonMain = 'transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]'
+  const buttonFav = 'transition-all ease-linear duration-100 hover:stroke-primaryLight active:text-primaryDark active:scale-[.97]'
+  const tag = 'w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap'
 
-    // FUNCTIONS:
-    const preventRedirection = (event) => {
-        event.preventDefault()
-        event.stopPropagation()
-    }
+  // FUNCTIONS:
+  const preventRedirection = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+  }
 
-    const addToFavourites = (event) => {
-        preventRedirection(event)
-        setIsFav((prev) => !prev)
-    }
+  const addToFavourites = (event) => {
+    preventRedirection(event)
+    setIsFav((prev) => !prev)
+  }
 
-    // COMPONENT:
-    return (
+  // COMPONENT:
+  return (
         <NavLink
             to={`/products/${id}`}
             className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
@@ -59,9 +58,11 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
                 <div className='flex flex-wrap items-center gap-2 mb-1'>
                     <p className={`${tag}`}>{category}</p>
                     {
-                        color !== 'No aplica' ? (
+                        color !== 'No aplica'
+                          ? (
                             <p className={`${tag}`}>{color}</p>
-                        ) : null
+                            )
+                          : null
                     }
                 </div>
                 {/* NAME & BOOKMARK */}
@@ -86,7 +87,7 @@ function CardRegular({ id, name, category, color, image, brand, price }) {
                 <button className={`p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible ${buttonMain}`}>AGREGAR AL CARRO</button>
             </div>
         </NavLink >
-    )
+  )
 };
 
 export default CardRegular

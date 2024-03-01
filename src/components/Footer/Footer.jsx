@@ -1,45 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Facebook, Instagram, Linkedin, Twitter } from '../SVG'
-import ide from "../../assets/images/logo/ide.png"
+import ide from '../../assets/images/logo/ide.png'
 import mercadopago from '../../assets/images/logo/mercadopago.png'
 
 const Footer = () => {
+  const focus = 'outline-offset-[1.5px] focus:outline-focus focus:outline focus-visible:outline-focus focus-visible:outline'
+  const link = 'cursor-pointer hover:underline hover:text-primaryVisible active:no-underline'
 
-    const focus = `outline-offset-[1.5px] focus:outline-focus focus:outline focus-visible:outline-focus focus-visible:outline`
-    const link = `cursor-pointer hover:underline hover:text-primaryVisible active:no-underline`
+  const SOCIAL_MEDIA = [
+    { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/' },
+    { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/' },
+    { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/' },
+    { icon: Twitter, link: 'https://twitter.com/ide.pintureria/' }
+  ]
 
-    const SOCIAL_MEDIA = [
-        { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/' },
-        { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/' },
-        { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/' },
-        { icon: Twitter, link: 'https://twitter.com/ide.pintureria/' }
-    ]
+  const NAV_LINKS_1 = [
+    { text: 'Impermeabilizantes', link: '/products?category=Linea Impermeabilizantes' },
+    { text: 'Productos especiales', link: '/products?category=Linea Productos Especiales' },
+    { text: 'Latex', link: '/products?category=Linea Latex' },
+    { text: 'Fijadores y aditivos', link: '/products?category=Linea Fijadores - Aditivos' },
+    { text: 'Maderas', link: '/products?category=Linea Maderas' },
+    { text: 'Productos auxiliares', link: '/products?category=Linea Productos Auxiliares' },
+    { text: 'Emaltes', link: '/products?category=Linea Emaltes' },
+    { text: 'Esmaltes industriales', link: '/products?category=Linea Esmaltes Industriales' },
+    { text: 'Pinturas a la cal', link: '/products?category=Linea Pinturas a la cal' },
+    { text: 'Entonadores y tintas', link: '/products?category=Linea Entonadores y Tintas' },
+    { text: 'Fondos', link: '/products?category=Linea Fondos' },
+    { text: 'Ecológica', link: '/products?category=Linea Ecologica' },
+    { text: 'Ver todos los productos', link: '/products' }
+  ]
 
-    const NAV_LINKS_1 = [
-        { text: 'Impermeabilizantes', link: '/products?category=Linea Impermeabilizantes' },
-        { text: 'Productos especiales', link: '/products?category=Linea Productos Especiales' },
-        { text: 'Latex', link: '/products?category=Linea Latex' },
-        { text: 'Fijadores y aditivos', link: '/products?category=Linea Fijadores - Aditivos' },
-        { text: 'Maderas', link: '/products?category=Linea Maderas' },
-        { text: 'Productos auxiliares', link: '/products?category=Linea Productos Auxiliares' },
-        { text: 'Emaltes', link: '/products?category=Linea Emaltes' },
-        { text: 'Esmaltes industriales', link: '/products?category=Linea Esmaltes Industriales' },
-        { text: 'Pinturas a la cal', link: '/products?category=Linea Pinturas a la cal' },
-        { text: 'Entonadores y tintas', link: '/products?category=Linea Entonadores y Tintas' },
-        { text: 'Fondos', link: '/products?category=Linea Fondos' },
-        { text: 'Ecológica', link: '/products?category=Linea Ecologica' },
-        { text: 'Ver todos los productos', link: '/products' }
-    ]
+  const NAV_LINKS_2 = [
+    { text: 'Nosotros', link: '/about' },
+    { text: 'Contacto', link: '/contact' },
+    { text: 'Blog', link: '/blog' },
+    { text: 'Preguntas fecuentes', link: '/blog' }
+  ]
 
-    const NAV_LINKS_2 = [
-        { text: 'Nosotros', link: '/about' },
-        { text: 'Contacto', link: '/contact' },
-        { text: 'Blog', link: '/blog' },
-        { text: 'Preguntas fecuentes', link: '/blog' }
-    ]
-
-    return (
+  return (
         <footer className="flex items-center justify-center w-full bg-primaryClear">
             <div className="flex flex-col justify-between items-center gap-[50px] m-sides max-w-maxSc w-maxIn mt-[50px] mb-[25px]">
                 <div className="flex justify-between items-start gap-[6%] w-full">
@@ -72,7 +71,7 @@ const Footer = () => {
                                 }
                             </ul>
                         </div>
-                        {/* CONTACT */} 
+                        {/* CONTACT */}
                         <div className="w-full mt-[30px]">
                             <div className="font-bold uppercase text-black">Soporte</div>
                             <ul className="mt-[10px]">
@@ -144,7 +143,7 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-    )
+  )
 }
 
 export default Footer

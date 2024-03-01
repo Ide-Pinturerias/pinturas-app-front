@@ -6,32 +6,31 @@ import { setPage } from '@redux/actions/pagination/setPage'
 
 import { XLarge, ArrowLeft } from '../SVG'
 
-function SearchBar({ toggleSearch }) {
-    const thisPage = useSelector((state) => state.thisPage)
-    const filterCategory = useSelector((state) => state.filterCategory)
-    const { highPrice, lowPrice } = useSelector((state) => state.price)
+function SearchBar ({ toggleSearch }) {
+  const thisPage = useSelector((state) => state.thisPage)
+  const filterCategory = useSelector((state) => state.filterCategory)
+  const { highPrice, lowPrice } = useSelector((state) => state.price)
 
-    const [search, setSearch] = useState('')
+  const [search, setSearch] = useState('')
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-    const handleChange = (event) => {
-        dispatch(setPage(1))
-        setSearch(event.target.value)
+  const handleChange = (event) => {
+    dispatch(setPage(1))
+    setSearch(event.target.value)
 
-        event.target.value.length
-            ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
-            : dispatch(getAllProductsPaginated())
-    }
+    event.target.value.length
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
+      : dispatch(getAllProductsPaginated())
+  }
 
-    const clearSearh = () => {
-        setSearch("");
-    }
+  const clearSearh = () => {
+    setSearch('')
+  }
 
-    const linkStl = 'flex items-center gap-2 py-[.5rem] px-[1em] bg-transparent rounded-[8px] capitalize cursor-pointer transition-colors hover:text-primaryVisible hover:fill-primaryVisible hover:bg-primaryClear';
+  const linkStl = 'flex items-center gap-2 py-[.5rem] px-[1em] bg-transparent rounded-[8px] capitalize cursor-pointer transition-colors hover:text-primaryVisible hover:fill-primaryVisible hover:bg-primaryClear'
 
-
-    return (
+  return (
         <div className="flex justify-center items-center size-full">
             <form className="flex justify-center items-center flex-1 h-full">
                 <div className="relative flex flex-1 h-[80%] ml-[.4em]">
@@ -47,7 +46,7 @@ function SearchBar({ toggleSearch }) {
                         className={`${linkStl} absolute top-1/2 -translate-y-1/2 right-[.3em]`}
                         onClick={clearSearh}
                     >
-                        <XLarge size={"1rem"} />
+                        <XLarge size={'1rem'} />
                     </button>
                 </div>
                 <button
@@ -62,10 +61,10 @@ function SearchBar({ toggleSearch }) {
                 onClick={toggleSearch}
             >
                 Volver
-                <ArrowLeft size={"1rem"} />
+                <ArrowLeft size={'1rem'} />
             </button>
         </div>
-    )
+  )
 }
 
 export default SearchBar

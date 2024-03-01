@@ -132,7 +132,7 @@ src
 |--|--ProductContainer (CAN BE REMOVED)
 |--|--|--ProductContainer.jsx
 -
-=> 
+=>
 -
 |--|--ProductBox (THIS COMPONENT REPLACES: ProductContainer)
 |--|--|--ProductBox.jsx
@@ -173,12 +173,14 @@ src
 redux/actions/filters/setCategory
 ```
 
-- Crear un array con todas las categorías existentes. En caso de que la categoría pasada por parámetro no se encuentre en este array, lanzar un error para evitar problemas en producción.
+- Crear un array con todas las categorías existentes. En caso de que la
+  categoría pasada por parámetro no se encuentre en este array, lanzar un error
+  para evitar problemas en producción.
 
 ## 2. get_best_sellers_request
 
 ```
-services/api/get_best_sellers_request
+services/api/getBestSellers
 ```
 
 - El controlador para el endpoint <u>**products?limit=${limit}&minRating=5**</u> debe realizar la manipulación de datos, y retornar solo la respuesta necesaria, en lugar de realizarla en la misma petición.

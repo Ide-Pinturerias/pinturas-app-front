@@ -3,7 +3,8 @@ import React from 'react'
 const LoadingScreen = ({ isLoading }) => {
   if (!isLoading) return null
 
-  else return (
+  else {
+    return (
         <div
             style={{
               display: 'flex',
@@ -19,7 +20,8 @@ const LoadingScreen = ({ isLoading }) => {
                 alt="loading"
             />
         </div>
-  )
+    )
+  }
 }
 
 export default LoadingScreen

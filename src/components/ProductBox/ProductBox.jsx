@@ -21,7 +21,7 @@ function ProductBox ({ isLoading }) {
     <>
       {
         (Array.isArray(filteredProducts) && filteredProducts.length > 0) && !isLoading
-        ? (
+          ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 place-items-center w-[93%] max-w-[1920px] mx-[3.5%]">
             {
               filteredProducts.map((product) => (
@@ -38,10 +38,10 @@ function ProductBox ({ isLoading }) {
               ))
             }
           </div>
-        )
-        : (
+            )
+          : (
           <LoadingScreen isLoading={isLoading}/>
-        )
+            )
       }
     </>
   )

@@ -1,48 +1,47 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import banner1 from "../../assets/images/banners/banner1.webp"
-import banner2 from "../../assets/images/banners/banner2.webp"
-import banner3 from "../../assets/images/banners/banner3.webp"
+import banner1 from '../../assets/images/banners/banner1.webp'
+import banner2 from '../../assets/images/banners/banner2.webp'
+import banner3 from '../../assets/images/banners/banner3.webp'
 import { ChevronRightRounded, ChevronLeftRounded } from '@mui/icons-material'
 
 const BannerCarousel = () => {
+  // LOCA STATES:
+  const [currentImage, setCurrentImage] = useState(0)
 
-    // LOCA STATES:
-    const [currentImage, setCurrentImage] = useState(0)
+  // CONST:
+  const images = [{
+    src: banner1,
+    alt: 'Juntos por un mundo mejor. Por cada balde de 20L lleno de tapitas, FADEPA te da 4 litros de pintura.'
+  }, {
+    src: banner2,
+    alt: '¡Ponle color a los Black Days! 15% OFF *En referencias seleccionadas.'
+  }, {
+    src: banner3,
+    alt: 'Dale color a tu vida. idePinturerías.'
+  }]
+  const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
 
-    // CONST:
-    const images = [{
-        src: banner1,
-        alt: "Juntos por un mundo mejor. Por cada balde de 20L lleno de tapitas, FADEPA te da 4 litros de pintura."
-    }, {
-        src: banner2,
-        alt: "¡Ponle color a los Black Days! 15% OFF *En referencias seleccionadas."
-    }, {
-        src: banner3,
-        alt: "Dale color a tu vida. idePinturerías."
-    }]
-    const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
+  // FUNCTIONS:
+  const goToPrevImage = () => {
+    setCurrentImage((prevImage) => (prevImage - 1 + images.length) % images.length)
+  }
 
-    // FUNCTIONS:
-    const goToPrevImage = () => {
-        setCurrentImage((prevImage) => (prevImage - 1 + images.length) % images.length)
-    }
+  const goToNextImage = () => {
+    setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+  }
 
-    const goToNextImage = () => {
-        setCurrentImage((prevImage) => (prevImage + 1) % images.length)
-    }
+  // LIFE CYCLES:
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+    }, 5000)
 
-    // LIFE CYCLES:
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImage((prevImage) => (prevImage + 1) % images.length)
-        }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
-        return () => clearInterval(interval)
-    }, [])
-
-    // COMPONENTS:
-    return (
+  // COMPONENTS:
+  return (
         <section className="flex justify-center items-center w-full">
             <div className="overflow-hidden relative flex justify-center items-center m-sides aspect-[16/5] max-w-maxSc w-maxIn rounded-[2rem]">
                 {
@@ -78,7 +77,7 @@ const BannerCarousel = () => {
                 </div>
             </div>
         </section>
-    )
+  )
 }
 
 export default BannerCarousel

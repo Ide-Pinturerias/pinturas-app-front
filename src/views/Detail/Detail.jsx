@@ -70,24 +70,12 @@ function Detail () {
           .catch((error) => {
               console.log('error productCart', error)
           })
-        } else {
-            Swal.fire({
-              icon: 'success',
-              title: 'Producto agregado a favoritos',
-              timer: 2000,
-              showConfirmButton: false
-            })
-          };
-        })
-        .catch((error) => {
-          console.log('error productCart', error)
-        })
-    } else {
-      Swal.fire({
+      } else {
+        Swal.fire({
         icon: 'info',
         title: 'Debes estar logueado para agregar favoritos'
-      })
-    };
+        })
+      }
   }
 
   // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.

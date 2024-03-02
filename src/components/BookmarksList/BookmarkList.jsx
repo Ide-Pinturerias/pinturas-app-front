@@ -1,11 +1,11 @@
 import React from "react";
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots";
-import { ButtonSecondary, ButtonDanger } from "@components/controls/Buttons";
-import { ButtonLink } from "@components/controls/Links";
+import { ButtonSecondary, ButtonDanger } from "@components/Controls/Buttons";
+import { ButtonLink } from "@components/Controls/Links";
 import { Circle } from "@svg";
 
 // Grid layout:
-const bookmark_list_layout = {
+const BookmarkListLayout = {
     display: 'grid',
     gridTemplateColumns: '3.8fr 2fr 0.8fr 3fr',
     gap: '2rem',
@@ -15,7 +15,7 @@ function BookmarkItem({ favorite }) {
     return (
         <li
             className="relative flex items-center w-full p-4"
-            style={bookmark_list_layout}
+            style={BookmarkListLayout}
         >
             <div className="flex items-center gap-4 ">
                 <img src={favorite.image} className="aspect-square object-cover overflow-hidden size-[80px] rounded-lg" />
@@ -76,7 +76,7 @@ export default function BookmarkList({ favorites }) {
             {
                 hasFavorites ? (
                     <>
-                        <div style={bookmark_list_layout} className="flex w-full p-4 font-bold text-[1.25rem]">
+                        <div style={BookmarkListLayout} className="flex w-full p-4 font-bold text-[1.25rem]">
                             <span>Item</span>
                             <span>Stock</span>
                             <span>Precio</span>

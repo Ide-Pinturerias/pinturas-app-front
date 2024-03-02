@@ -17,7 +17,7 @@ import Paginated from '@components/Paginated/Paginated'
 import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
 import SortMenu from '@components/Refiners/SortMenu'
-import { Chevron, XSmall } from '@svg   '
+import { Chevron, XSmall } from '@svg'
 
 function ProductsPage () {
   // GLOBAL STATES:

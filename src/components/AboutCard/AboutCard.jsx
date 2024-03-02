@@ -1,6 +1,6 @@
 import React from 'react'
 import image1 from '@images/store/store1.webp'
-import { ButtonLink } from '@components/controls/Links'
+import { ButtonLink } from '@components/Controls/Links'
 
 const AboutCard = () => {
     return (

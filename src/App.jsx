@@ -6,7 +6,7 @@ import NavBar from './components/NavBar/NavBar'
 import Contact from './views/Contact/Contact'
 import Detail from './views/Detail/Detail'
 import Footer from './components/Footer/Footer'
-import Bookmarks from './views/Bookmarks/bookmarks';
+import Bookmarks from './views/Bookmarks/Bookmarks';
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
 import Products from './views/Products/Products'

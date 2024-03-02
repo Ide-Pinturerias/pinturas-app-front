@@ -28,6 +28,8 @@ export default {
         primaryDark: '#D45C00',
         primaryDull: '#FFDDA6',
         primaryVisible: '#FFFFA1',
+        secondaryClear: '#FF3333',
+        secondaryDull: '#FFCCCC',
         accentClear: '#00A491',
         hightlight: '#8B8B8B',
         duller: '#CCCCCC',

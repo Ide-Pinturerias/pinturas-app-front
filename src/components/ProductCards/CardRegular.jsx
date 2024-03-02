@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { formatNumberWithDots } from '../../scripts/formatNumberWithDots'
+import { formatNumberWithDots } from '@/scripts/formatNumberWithDots'
 
 import { BookmarkOutlined } from '@mui/icons-material'
-import { ButtonPrimary } from '@components/controls/Buttons';
+import { ButtonPrimary } from '@components/Controls/Buttons';
 
 
 function CardRegular ({ id, name, category, color, image, brand, price }) {

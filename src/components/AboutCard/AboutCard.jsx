@@ -1,11 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import image1 from '../../assets/images/store/store1.webp'
+import image1 from '@images/store/store1.webp'
+import { ButtonLink } from '@components/controls/Links'
 
 const AboutCard = () => {
-  const buttonMain = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]'
-
-  return (
+    return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className='flex justify-center items-center gap-[50px] m-sides max-w-maxSc w-maxIn'>
                 <img
@@ -20,16 +18,13 @@ const AboutCard = () => {
                     <p className="text-clear text-md mb-3 md:mb-11 text-start">
                         Dedicados y comprometidos al 100% con pasión por la calidad, en idePinturerias priorizamos la excelencia y servicio personalizado. Nos esforzamos por superar tus expectativas al ofrecerte un servicio excepcional en pinturas y ferretería. Queremos ser tu socio confiable mientras nuestro equipo te brinda asesoramiento en cada proyecto, ya sea grande o pequeño.
                     </p>
-                    <Link
-                        to='/about'
-                        className={`self-center w-fit p-4 box-border bg-transparent border border-primaryClear rounded-3xl text-sm font-bold text-primaryClear ${buttonMain}`}
-                    >
+                    <ButtonLink path='/about' styles={{ 'align-self': 'center' }}>
                         Nuestra historia
-                    </Link>
+                    </ButtonLink>
                 </div>
             </div>
         </section>
-  )
+    )
 }
 
 export default AboutCard

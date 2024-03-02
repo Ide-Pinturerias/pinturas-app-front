@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots";
 import { ButtonSecondary, ButtonDanger } from "@components/controls/Buttons";
+import { ButtonLink } from "@components/controls/Links";
 
 // Grid layout:
 const bookmark_list_layout = {
@@ -75,7 +75,6 @@ function BookmarkItem({ favorite }) {
 export default function BookmarkList({ favorites }) {
 
     const hasFavorites = Array.isArray(favorites) && favorites.length > 0;
-    const interaction = 'transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]'
 
     return (
         <div className="flex flex-col my-[50px] text-[clamp(10px,calc(.25rem+.75vw),1rem)]">
@@ -98,12 +97,9 @@ export default function BookmarkList({ favorites }) {
                 ) : (
                     <>
                         <p className="mb-[25px]">No se encontraron productos guardados.</p>
-                        <Link
-                            to='/products'
-                            className={`w-fit p-4 box-border bg-transparent border border-primaryClear rounded-3xl font-bold uppercase text-primaryClear ${interaction}`}
-                        >
+                        <ButtonLink url='/products'>
                             Continuar comprando
-                        </Link>
+                        </ButtonLink>
                     </>
                 )
             }

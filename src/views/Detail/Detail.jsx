@@ -14,7 +14,7 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../compo
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { ButtonPrimary, ButtonSecondary } from '@components/controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:

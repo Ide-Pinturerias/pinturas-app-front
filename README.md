@@ -101,8 +101,11 @@ src
 |--|--|--FeaturedContainer.jsx
 
 
-|--|--BookmarksList
-|--|--|--BookmarksList.jsx
+|--|--BookmarkList
+|--|--|--BookmarkList.jsx
+
+|--|--Controls
+|--|--|--Buttons.jsx
 
 -
 |--|--Featured (CAN BE REMOVED)
@@ -200,3 +203,31 @@ services/api/getBestSellers
 ### products/productByName
 ### favorites/getFavorites
 ### favorites/postFavorite
+
+# Components
+
+## Controls (buttons)
+
+```
+Path: '@components/controls/Buttons.jsx'
+```
+
+### 1. ButtonPrimary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 2. ButtonSecondary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 3. ButtonTertiary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 4. ButtonDanger
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.

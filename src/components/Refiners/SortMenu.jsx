@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '../SVG'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { ButtonPrimary, ButtonSecondary } from '@components/controls/Buttons'
 
 function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
     // Detectar click fuera del menú.

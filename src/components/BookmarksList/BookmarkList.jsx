@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatNumberWithDots } from "../../scripts/formatNumberWithDots";
-import { ButtonSecondary, ButtonDanger } from "@components/Controls/Buttons";
+import { formatNumberWithDots } from "@scripts/formatNumberWithDots";
+import { ButtonSecondary, ButtonDanger } from "@components/controls/Buttons";
 
 // Grid layout:
 const bookmark_list_layout = {

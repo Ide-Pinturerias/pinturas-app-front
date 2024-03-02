@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '../SVG'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { ButtonPrimary, ButtonSecondary } from '@components/controls/Buttons'
 
 function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
     // Detectar click fuera del menú.

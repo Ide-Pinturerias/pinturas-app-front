@@ -1,25 +1,26 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '../SVG'
+import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
 
-function FilterMenu ({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
-  // Detectar click fuera del menú.
-  const filterMenuRef = useRef(null)
-  const handleOutsideClick1 = (event) => {
-    if (isFilterOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
-      setIsFilterOpen(false)
-    };
-  }
-
-  // LIFE CYCLES:
-  useEffect(() => {
-    document.addEventListener('click', handleOutsideClick1)
-    return () => {
-      document.removeEventListener('click', handleOutsideClick1)
+function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
+    // Detectar click fuera del menú.
+    const filterMenuRef = useRef(null)
+    const handleOutsideClick1 = (event) => {
+        if (isFilterOpen && filterMenuRef.current && !filterMenuRef.current.contains(event.target)) {
+            setIsFilterOpen(false)
+        };
     }
-  }, [])
 
-  // COMPONENT:
-  return (
+    // LIFE CYCLES:
+    useEffect(() => {
+        document.addEventListener('click', handleOutsideClick1)
+        return () => {
+            document.removeEventListener('click', handleOutsideClick1)
+        }
+    }, [])
+
+    // COMPONENT:
+    return (
         <aside
             ref={filterMenuRef}
             className="flex flex-col w-[30%] h-full mr-auto p-6 bg-bgFocus rounded-r-[2rem]"
@@ -83,21 +84,15 @@ function FilterMenu ({ isFilterOpen, setIsFilterOpen, categories, highPrice, low
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <button
-                    className="w-[80%] p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase"
-                    onClick={() => setIsFilterOpen(false)}
-                >
+                <ButtonPrimary action={() => setIsFilterOpen(false)} styles={{ width: '80%' }}>
                     Mostrar resultados
-                </button>
-                <button
-                    className="w-[80%] p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase"
-                    onClick={() => clearFilters()}
-                >
+                </ButtonPrimary>
+                <ButtonSecondary action={() => clearFilters()} styles={{ width: '80%' }}>
                     Limpiar filtros
-                </button>
+                </ButtonSecondary>
             </div>
         </aside>
-  )
+    )
 }
 
 export default FilterMenu

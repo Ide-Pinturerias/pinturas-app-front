@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { BookmarkOutlined } from '@mui/icons-material'
-
 import { formatNumberWithDots } from '../../scripts/formatNumberWithDots'
+
+import { BookmarkOutlined } from '@mui/icons-material'
+import { ButtonPrimary } from '@components/Controls/Buttons';
+
 
 function CardRegular ({ id, name, category, color, image, brand, price }) {
   // LOCAL STATES:
@@ -25,7 +27,6 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
 
         after:pointer-events-none
     `
-  const buttonMain = 'transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]'
   const buttonFav = 'transition-all ease-linear duration-100 hover:stroke-primaryLight active:text-primaryDark active:scale-[.97]'
   const tag = 'w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap'
 
@@ -84,7 +85,7 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
             </div>
             {/* ADD TO CART */}
             <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>
-                <button className={`p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible ${buttonMain}`}>AGREGAR AL CARRO</button>
+                <ButtonPrimary>Agregar al carro</ButtonPrimary>
             </div>
         </NavLink >
   )

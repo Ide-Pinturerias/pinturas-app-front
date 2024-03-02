@@ -14,6 +14,7 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../compo
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:
@@ -331,10 +332,10 @@ function Detail () {
                                         {
                                             product.stock !== 0
                                               ? (
-                                                    <>
-                                                        <button className="w-[80%] mb-2 p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                                        <button className="w-[80%] mb-2 p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
-                                                    </>
+                                                  <div className='flex flex-col items-center gap-4 w-full'>
+                                                    <ButtonPrimary styles={{width: '80%'}}>¡Comprar ahora!</ButtonPrimary>
+                                                    <ButtonSecondary styles={{width: '80%'}}>Agregar al carro</ButtonSecondary>
+                                                  </div>
                                                 )
                                               : (
                                                   null

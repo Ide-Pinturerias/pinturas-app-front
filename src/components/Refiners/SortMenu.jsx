@@ -1,25 +1,26 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '../SVG'
+import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
 
-function SortMenu ({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
-  // Detectar click fuera del menú.
-  const sortMenuRef = useRef(null)
-  const handleOutsideClick1 = (event) => {
-    if (isSortOpen && sortMenuRef.current && !sortMenuRef.current.contains(event.target)) {
-      setIsSortOpen(false)
-    };
-  }
-
-  // LIFE CYCLES:
-  useEffect(() => {
-    document.addEventListener('click', handleOutsideClick1)
-    return () => {
-      document.removeEventListener('click', handleOutsideClick1)
+function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
+    // Detectar click fuera del menú.
+    const sortMenuRef = useRef(null)
+    const handleOutsideClick1 = (event) => {
+        if (isSortOpen && sortMenuRef.current && !sortMenuRef.current.contains(event.target)) {
+            setIsSortOpen(false)
+        };
     }
-  }, [])
 
-  // COMPONENT:
-  return (
+    // LIFE CYCLES:
+    useEffect(() => {
+        document.addEventListener('click', handleOutsideClick1)
+        return () => {
+            document.removeEventListener('click', handleOutsideClick1)
+        }
+    }, [])
+
+    // COMPONENT:
+    return (
         <aside
             ref={sortMenuRef}
             className="flex flex-col ml-auto w-[30%] h-full p-6 bg-bgFocus rounded-l-[2rem]"
@@ -115,18 +116,15 @@ function SortMenu ({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAnd
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <button
-                    className="w-[80%] p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase"
-                    onClick={() => setIsSortOpen(false)}
-                >
+                <ButtonPrimary action={() => setIsSortOpen(false)} styles={{ width: '80%' }}>
                     Mostrar resultados
-                </button>
-                <button className="w-[80%] p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase">
+                </ButtonPrimary>
+                <ButtonSecondary styles={{ width: '80%' }}>
                     Mostrar los más vendidos
-                </button>
+                </ButtonSecondary>
             </div>
         </aside>
-  )
+    )
 }
 
 export default SortMenu

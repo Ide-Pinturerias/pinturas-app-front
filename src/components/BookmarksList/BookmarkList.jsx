@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatNumberWithDots } from "../../scripts/formatNumberWithDots";
+import { ButtonSecondary, ButtonDanger } from "@components/Controls/Buttons";
 
 // Grid layout:
 const bookmark_list_layout = {
@@ -8,8 +9,6 @@ const bookmark_list_layout = {
     gridTemplateColumns: '3.8fr 2fr 0.8fr 3fr',
     gap: '2rem',
 };
-const buttonMain = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]'
-const buttonDanger = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-secondaryDull active:scale-[.97]'
 
 function BookmarkItem({ favorite }) {
     return (
@@ -64,10 +63,10 @@ function BookmarkItem({ favorite }) {
             <div className="flex justify-end gap-4">
                 {
                     favorite.stock === 0 ? null : (
-                        <button className={`w-fit p-4 px-6 box-border bg-transparent border border-primaryClear rounded-[60px] font-bold uppercase text-primaryClear ${buttonMain}`}>Agregar al carro</button>
+                        <ButtonSecondary>Agregar al carro</ButtonSecondary>
                     )
                 }
-                <button className={`w-fit p-4 px-6 box-border bg-transparent border border-secondaryClear rounded-[60px] font-bold uppercase text-secondaryClear ${buttonDanger}`}>Quitar</button>
+                <ButtonDanger>Quitar</ButtonDanger>
             </div>
         </li>
     )
@@ -76,6 +75,7 @@ function BookmarkItem({ favorite }) {
 export default function BookmarkList({ favorites }) {
 
     const hasFavorites = Array.isArray(favorites) && favorites.length > 0;
+    const interaction = 'transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDark active:scale-[.97]'
 
     return (
         <div className="flex flex-col my-[50px] text-[clamp(10px,calc(.25rem+.75vw),1rem)]">
@@ -86,7 +86,6 @@ export default function BookmarkList({ favorites }) {
                             <span>Item</span>
                             <span>Stock</span>
                             <span>Precio</span>
-                            <span></span>
                         </div>
                         <ul>
                             {
@@ -101,7 +100,7 @@ export default function BookmarkList({ favorites }) {
                         <p className="mb-[25px]">No se encontraron productos guardados.</p>
                         <Link
                             to='/products'
-                            className={`w-fit p-4 box-border bg-transparent border border-primaryClear rounded-3xl font-bold uppercase text-primaryClear ${buttonMain}`}
+                            className={`w-fit p-4 box-border bg-transparent border border-primaryClear rounded-3xl font-bold uppercase text-primaryClear ${interaction}`}
                         >
                             Continuar comprando
                         </Link>

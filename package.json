@@ -52,7 +52,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite",
-    "lint": "eslint --fix src --ext js,jsx --report-unused-disable-directives --max-warnings 5",
+    "lint": "eslint --fix src --ext js,jsx --report-unused-disable-directives",
     "preview": "vite preview",
     "prepare": "husky"
   },

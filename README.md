@@ -41,19 +41,20 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ---
 
-# COMPONENTS:
+# VIEWS/ROUTES:
 
-## App:
+## App (every component):
 
 1. NavBar.jsx (SearchBar.jsx)
 2. Footer.jsx
 
 ## Home:
 
-1. Banner.jsx
-2. FeaturedContainer.jsx (CardRegular.jsx)
-3. AboutCard.jsx
-4. BannerBlog.jsx
+1. AboutCard.jsx
+2. Banner.jsx
+3. FeaturedContainer.jsx (CardRegular.jsx)
+4. AboutCard.jsx
+5. BannerBlog.jsx
 
 ## Products:
 
@@ -64,7 +65,7 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ## Detail:
 
-- No components (other than SVG components) are being used yet.
+1. FeaturedContainer.jsx (CardRegular.jsx)
 
 ## Contact:
 
@@ -82,10 +83,11 @@ src
 
 |--components
 
+
+<!-- HOME -->
 |--|--AboutCard
 |--|--|--AboutCard.jsx
 
-<!-- HOME -->
 |--|--Banner
 |--|--|--Banner.jsx
 
@@ -98,6 +100,13 @@ src
 |--|--FeaturedContainer (TOP SELLERS)
 |--|--|--FeaturedContainer.jsx
 
+
+|--|--BookmarkList
+|--|--|--BookmarkList.jsx
+
+|--|--Controls
+|--|--|--Buttons.jsx
+
 -
 |--|--Featured (CAN BE REMOVED)
 |--|--|--Featured.jsx
@@ -108,7 +117,7 @@ src
 |--|--|--ProductCard.jsx
 =>
 -
-|--|--ProductCards
+|--|--ProductCards (THIS COMPONENT REPLACES: Featured & Products)
 |--|--|--CardCategory.jsx
 |--|--|--CardRegular.jsx
 -
@@ -128,7 +137,7 @@ src
 -
 =>
 -
-|--|--ProductBox (THIS COMPONENT REPLACE: ProductContainer)
+|--|--ProductBox (THIS COMPONENT REPLACES: ProductContainer)
 |--|--|--ProductBox.jsx
 -
 
@@ -137,7 +146,7 @@ src
 |--|--|--SideBar.jsx
 -
 =>
-|--|--Refiners
+|--|--Refiners (THESE COMPONENTS REPLACE: SideBar)
 |--|--|--FilterMenu.jsx
 |--|--|--SortMenu.jsx
 
@@ -149,9 +158,12 @@ src
 |--context
 ...
 |--views
-|--|--Home
 |--|--About
+|--|--Bookmarks
 |--|--Contact
+|--|--Home
+|--|--Detail
+|--|--Products
 
 ...
 ```
@@ -174,6 +186,70 @@ redux/actions/filters/setCategory
 services/api/getBestSellers
 ```
 
-- El controlador para el endpoint <u>**products?limit=${limit}&minRating=5**</u>
-  debe realizar la manipulación de datos, y retornar solo la respuesta
-  necesaria, en lugar de realizarla en la misma petición.
+- El controlador para el endpoint <u>**products?limit=${limit}&minRating=5**</u> debe realizar la manipulación de datos, y retornar solo la respuesta necesaria, en lugar de realizarla en la misma petición.
+
+## 3. Actions in use
+
+### filters/getAllProductsFiltered
+### filters/setCategory
+### filters/setHighPrice
+### filters/setLowPrice
+### filters/sort
+### pagination/setPage
+### products/cleanProductDetail
+### products/getAllProductsPaginated
+### products/getBestSellers
+### products/productById
+### products/productByName
+### favorites/getFavorites
+### favorites/postFavorite
+
+# Components
+
+## Controls (buttons)
+
+```
+Path: '@components/controls/Buttons.jsx'
+```
+
+### 1. ButtonPrimary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 2. ButtonSecondary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 3. ButtonTertiary
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+### 4. ButtonDanger
+- ```children```: Texto del botón.
+- ```action```: Función que se ejecuta ```onClick```.
+- ```styles```: Objecto con estilos adicionales.
+
+## Controls (links)
+
+```
+Path: '@components/controls/Links.jsx'
+```
+
+### 1. ButtonLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+
+### 2. PlaintNavLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+
+### 3. PlainExternalLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+- ```icon```: Booleano. En caso de ser ícono se aplicarán diferentes estilos.

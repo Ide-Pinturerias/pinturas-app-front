@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '@img/logo-black.png'
 import { useSelector } from 'react-redux'
 import SearchBar from '@components/SearchBar/SearchBar'
 
-import { Magnifier, Cart, Bookmark, UserIcon } from '../SVG'
+import { Magnifier, Cart, Bookmark, UserIcon } from '@svg'
 
 function NavBar () {
   // STATES:
@@ -52,35 +52,35 @@ function NavBar () {
                         <nav className="w-[calc((95%-5rem)/2)]">
                             <ul className="flex justify-evenly w-full">
                                 <li>
-                                    <NavLink to="/products" className={linkStl}>
+                                    <Link to="/products" className={linkStl}>
                                         Productos
-                                    </NavLink>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <NavLink to="/contact" className={linkStl}>
+                                    <Link to="/contact" className={linkStl}>
                                         Contacto
-                                    </NavLink>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <NavLink to="/about" className={linkStl}>
+                                    <Link to="/about" className={linkStl}>
                                         Nosotros
-                                    </NavLink>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <NavLink to="/blog" className={linkStl}>
+                                    <Link to="/blog" className={linkStl}>
                                         <p>Blog</p>
-                                    </NavLink>
+                                    </Link>
                                 </li>
                             </ul>
                         </nav>
 
                         {/* LOGO */}
-                        <NavLink to="/">
+                        <Link to="/">
                             <img
                                 src={logo} alt="Logo Ide Pinturerias."
                                 className="w-[3.25rem] object-contain cursor-pointer"
                             />
-                        </NavLink>
+                        </Link>
 
                         {/* NAV LINKS */}
                         <nav className="flex justify-around w-[calc((95%-5rem)/2)]">
@@ -92,34 +92,34 @@ function NavBar () {
                                 Buscar
                             </button>
                             <div className="font-mono flex justify-center items-center cursor-pointer">
-                                <NavLink
+                                <Link
                                     to="/cart"
                                     className={linkStl}
                                 >
                                     <Cart size={'1rem'} />
                                     Carrito
-                                </NavLink>
+                                </Link>
                             </div>
                             <div className="font-mono flex justify-center items-center cursor-pointer">
-                                <NavLink
-                                    to="/cart"
+                                <Link
+                                    to="/bookmarks"
                                     className={linkStl}
                                 >
                                     <Bookmark size={'.75rem'} />
                                     Favoritos
-                                </NavLink>
+                                </Link>
                             </div>
                             <div
                                 className="relative flex justify-center items-center"
                                 onClick={(e) => { setCredentialsMenu(true); e.stopPropagation() }}
                             >
-                                <NavLink
+                                <Link
                                     to="/account"
                                     className={linkStl}
                                 >
                                     <UserIcon size={'.75rem'} />
                                     Cuenta
-                                </NavLink>
+                                </Link>
                                 <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primaryClear rounded-lg shadow-credentialsMenu`}>
                                     <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-accentClear text-white text-start whitespace-nowrap transition-colors'}>INICIAR SESIÓN</button>
                                     <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-accentClear text-white text-start whitespace-nowrap transition-colors'}>REGISTRARSE</button>

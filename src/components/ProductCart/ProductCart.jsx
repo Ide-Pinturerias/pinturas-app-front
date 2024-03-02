@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { postFavorites } from '@redux/actions/Favorites/postFavorites'
+import { postFavorite } from '@redux/actions/Favorites/postFavorite'
 
 // import { useCart } from '@hooks/useCart'
 
@@ -72,7 +72,7 @@ const ProductCart = ({ id, name, quantity, image, price, stock, calcTotal }) => 
         idUser: user.id,
         idProduct: id
       }
-      dispatch(postFavorites(data)).then((response) => {
+      dispatch(postFavorite(data)).then((response) => {
         if (response === 'existe') {
           Swal.fire('Ya exite este producto en favoritos')
         } else {

@@ -1,12 +1,12 @@
 import { GET_ALL_PRODUCTS_PAGINATED, SET_TOTAL_PAGES } from '@redux/action-type'
-import { getPaginatedProducts } from '@api'
+import { GetPaginatedProducts } from '@api'
 
 export const getAllProductsPaginated = (page) => async (dispatch) => {
   try {
     // Construir la query con el parámetro "page" (por defecto: 1).
     const query = `&page=${page || 1}`
     // Hacer la petición de la api con la query creada para obtener los productos por páginas.
-    const data = await getPaginatedProducts(query)
+    const data = await GetPaginatedProducts(query)
     const totalPages = data.pages
     const paginatedProducts = data.results.rows
     // Despachar las acciones a redux.

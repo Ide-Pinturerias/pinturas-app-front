@@ -3,7 +3,7 @@ import axios from 'axios'
 // Nota: setear axios defaults en el futuro.
 const BASE_URL = 'https://pinturas-app-back.onrender.com/'
 
-export const getBestSellers = async (limit) => {
+export const GetBestSellers = async (limit) => {
   try {
     const response = await axios.get(`${BASE_URL}products?limit=${limit}&minRating=5`)
     const data = response.data
@@ -14,7 +14,7 @@ export const getBestSellers = async (limit) => {
   }
 }
 
-export const getPaginatedProducts = async (query) => {
+export const GetPaginatedProducts = async (query) => {
   try {
     const response = await axios.get(`${BASE_URL}products?active=true${query}`)
     const data = response.data
@@ -25,7 +25,7 @@ export const getPaginatedProducts = async (query) => {
   }
 }
 
-export const getCategories = async () => {
+export const GetCategories = async () => {
   try {
     const response = await axios.get(`${BASE_URL}categories`)
     const data = response.data
@@ -36,7 +36,7 @@ export const getCategories = async () => {
   }
 }
 
-export const getFilteredProducts = async (query) => {
+export const GetFilteredProducts = async (query) => {
   try {
     const response = await axios.get(`${BASE_URL}${query}`)
     const data = response.data
@@ -47,7 +47,7 @@ export const getFilteredProducts = async (query) => {
   }
 }
 
-export const getSimilarProducts = async ({ currentId, limit, category, color }) => {
+export const GetSimilarProducts = async ({ currentId, limit, category, color }) => {
   try {
     // Construir la URL incial con un parámetro común.
     let url = ['products?active=true']
@@ -60,7 +60,7 @@ export const getSimilarProducts = async ({ currentId, limit, category, color }) 
     const query = url.join('')
 
     // Hacer la petición de la api con la query creada para obtener los productos filtrados.
-    const data = await getFilteredProducts(query)
+    const data = await GetFilteredProducts(query)
     const similarProducts = data.results.rows.filter((product) => product.idProduct !== currentId).slice(0, limit)
 
     if (similarProducts.length < 2) {
@@ -68,14 +68,37 @@ export const getSimilarProducts = async ({ currentId, limit, category, color }) 
       if (category) url.push(`&category=${category}`)
       const query = url.join('')
       // Hacer la petición de la api con la query creada para obtener los productos filtrados.
-      const data = await getFilteredProducts(query)
+      // const data = await get_all_products_filtered(query)
+      // TODO: Implementar función get_all_products_filtered o similar.
       const similarProducts = data.results.rows.filter((product) => product.idProduct !== currentId).slice(0, limit)
       return similarProducts
     } else {
       return similarProducts
     }
   } catch (error) {
-    console.log('Error trying to dispatch getSimilarProducts: ' + error)
+    console.log('Error fetching all products filtered: ' + error)
     return []
+  }
+}
+
+export const GetFavorites = async (user) => {
+  try {
+    const response = await axios.post(`${BASE_URL}favorites/user`, user)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.log('Error fetching favorites: ' + error)
+    throw error
+  }
+}
+
+export const PostFavorite = async (favData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}favorites`, favData)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.log('Error posting favorite: ' + error)
+    throw error
   }
 }

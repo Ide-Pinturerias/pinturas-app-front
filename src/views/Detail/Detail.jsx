@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { productById } from '@redux/actions/Products/productById'
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 // import { setCart } from '@redux/actions/Cart/setCart'
-import { postFavorites } from '@redux/actions/Favorites/postFavorites'
+import { postFavorite } from '@redux/actions/Favorites/postFavorite'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 // import { useCart } from '@hooks/useCart'
+import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
 
 import Swal from 'sweetalert2'
-import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
+import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:
@@ -54,41 +56,29 @@ function Detail () {
         idUser: loggedUser.id,
         idProduct
       }
-
-      dispatch(postFavorites(data))
-        .then((response) => {
-          if (response === 'existe') {
-            Swal.fire('Ya exite este producto en favoritos')
-          } else {
-            Swal.fire({
-              icon: 'success',
-              title: 'Producto agregado a favoritos',
-              timer: 2000,
-              showConfirmButton: false
-            })
-          };
-        })
-        .catch((error) => {
-          console.log('error productCart', error)
-        })
-    } else {
-      Swal.fire({
+        dispatch(postFavorite(data))
+          .then((response) => {
+            if (response === 'existe') {
+              Swal.fire('Ya exite este producto en favoritos')
+              } else {
+                  Swal.fire({
+                  icon: 'success',
+                  title: 'Producto agregado a favoritos',
+                  timer: 2000,
+                  showConfirmButton: false
+                })
+            };
+          })
+          .catch((error) => {
+              console.log('error productCart', error)
+          })
+      } else {
+        Swal.fire({
         icon: 'info',
         title: 'Debes estar logueado para agregar favoritos'
-      })
-    };
+        })
+      }
   }
-
-  // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
-  function formatNumberWithDots (number) {
-    // Convierte el número a una string.
-    let numStr = number.toString()
-
-    // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
-    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-    return numStr
-  };
 
   // Controlar el <input> conectado al estado "numberOfItems".
   // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
@@ -198,11 +188,11 @@ function Detail () {
                         <div className="text-xs font-secondary mb-[50px]">
                             <ul className='flex items-center'>
                                 <li>
-                                    <NavLink to="/" className="mr-4">Home</NavLink>
+                                    <Link to="/" className="mr-4">Home</Link>
                                     /
                                 </li>
                                 <li>
-                                    <NavLink to="/products" className="mx-4">productos</NavLink>
+                                    <Link to="/products" className="mx-4">productos</Link>
                                     /
                                 </li>
                                 <li>
@@ -293,7 +283,7 @@ function Detail () {
                                         {/* <hr className="my-4 border-duller" /> */}
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
-                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
+                                        <div className="mb-8"><strong className="text-5xl">$ {formatNumberWithDots(product.price)}</strong></div>
                                         <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
                                             <button className="p-3" onClick={() => handleNumberChange('remove')}><Minus /></button>
                                             <input
@@ -332,10 +322,10 @@ function Detail () {
                                         {
                                             product.stock !== 0
                                               ? (
-                                                    <>
-                                                        <button className="w-[80%] mb-2 p-4 bg-primaryClear rounded-[2rem] text-white text-sm font-bold uppercase">¡Comprar ahora!</button>
-                                                        <button className="w-[80%] mb-2 p-4 box-border border text-primaryClear border-primaryClear rounded-[2rem] text-sm font-bold uppercase">Agregar al carro</button>
-                                                    </>
+                                                  <div className='flex flex-col items-center gap-4 w-full'>
+                                                    <ButtonPrimary styles={{width: '80%'}}>¡Comprar ahora!</ButtonPrimary>
+                                                    <ButtonSecondary styles={{width: '80%'}}>Agregar al carro</ButtonSecondary>
+                                                  </div>
                                                 )
                                               : (
                                                   null

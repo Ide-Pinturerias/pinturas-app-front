@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { formatNumberWithDots } from '@/scripts/formatNumberWithDots'
 
 import { BookmarkOutlined } from '@mui/icons-material'
 import { ButtonPrimary } from '@components/Controls/Buttons';
+import { afterPseudo } from '../../styles.js';
 
 
 function CardRegular ({ id, name, category, color, image, brand, price }) {
@@ -12,21 +13,6 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
   const [isFav, setIsFav] = useState(false)
 
   // STYLES:
-  const afterPseudo = `
-        after:content-[""] after:absolute after:opacity-0 after:-inset-2 
-        after:rounded-lg after:rounded--3xl after:shadow-main after:bg-bgFocus 
-        after:border after:border-hightlight 
-        after:transition-focus after:ease-linear after:duration-100 
-
-        hover:after:opacity-100
-        focus:after:opacity-100
-
-        focus:after:outline focus:after:outline-focus focus:after:outline-offset-focus 
-        focus:after:bg-duller focus:after:border-clear focus:after:shadow-main
-        after:mix-blend-multiply
-
-        after:pointer-events-none
-    `
   const buttonFav = 'transition-all ease-linear duration-100 hover:stroke-primaryLight active:text-primaryDark active:scale-[.97]'
   const tag = 'w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap'
 
@@ -43,9 +29,9 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
 
   // COMPONENT:
   return (
-        <NavLink
+        <Link
             to={`/products/${id}`}
-            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full bg-bg rounded-lg rounded-b-3xl text-clear transition-all cursor-pointer`}
+            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full bg-bg rounded-lg text-clear transition-all cursor-pointer`}
         >
             {/* IMAGE */}
             <img
@@ -87,7 +73,7 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
             <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>
                 <ButtonPrimary>Agregar al carro</ButtonPrimary>
             </div>
-        </NavLink >
+        </Link >
   )
 };
 

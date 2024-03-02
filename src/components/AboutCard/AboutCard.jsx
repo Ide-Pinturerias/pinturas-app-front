@@ -9,7 +9,7 @@ const AboutCard = () => {
                 <img
                     src={image1}
                     alt="Vista exterior de la tienda idePinturerias mostrando productos de pintura y herramientas."
-                    className='self-center items-center object-cover aspect-[4/3] w-[calc((100%-50px)/2)] rounded-3xl'
+                    className='self-center items-center object-cover aspect-[4/3] w-[calc((100%-50px)/2)] rounded-lg'
                 />
                 <div className="flex flex-col justify-center w-[calc((100%-50px)/2)] mt-3">
                     <h2 className="text-clear text-[clamp(1rem,calc(0.75rem+5vw),4rem)] text-start font-heading font-bold">

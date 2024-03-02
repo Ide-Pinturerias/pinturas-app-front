@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { productById } from '@redux/actions/Products/productById'
@@ -8,6 +8,7 @@ import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { postFavorite } from '@redux/actions/Favorites/postFavorite'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 // import { useCart } from '@hooks/useCart'
+import { formatNumberWithDots } from '../../scripts/formatNumberWithDots'
 
 import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '../../components/SVG'
@@ -78,17 +79,6 @@ function Detail () {
         })
       }
   }
-
-  // Formatea el precio del producto como una string e inserta puntos (.) cada 3 dígitos para seguir el formato de precios argentinos.
-  function formatNumberWithDots (number) {
-    // Convierte el número a una string.
-    let numStr = number.toString()
-
-    // Usar un Regex para instertar 3 puntos (.) cada 3 dígitos empezando de la derecha.
-    numStr = numStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-    return numStr
-  };
 
   // Controlar el <input> conectado al estado "numberOfItems".
   // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
@@ -198,11 +188,11 @@ function Detail () {
                         <div className="text-xs font-secondary mb-[50px]">
                             <ul className='flex items-center'>
                                 <li>
-                                    <NavLink to="/" className="mr-4">Home</NavLink>
+                                    <Link to="/" className="mr-4">Home</Link>
                                     /
                                 </li>
                                 <li>
-                                    <NavLink to="/products" className="mx-4">productos</NavLink>
+                                    <Link to="/products" className="mx-4">productos</Link>
                                     /
                                 </li>
                                 <li>
@@ -293,7 +283,7 @@ function Detail () {
                                         {/* <hr className="my-4 border-duller" /> */}
                                     </div>
                                     <div className="flex flex-col items-center w-[40%]">
-                                        <div className="mb-8"><strong className="text-5xl">${formatNumberWithDots(product.price)}</strong></div>
+                                        <div className="mb-8"><strong className="text-5xl">$ {formatNumberWithDots(product.price)}</strong></div>
                                         <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
                                             <button className="p-3" onClick={() => handleNumberChange('remove')}><Minus /></button>
                                             <input

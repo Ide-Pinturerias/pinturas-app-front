@@ -231,3 +231,25 @@ Path: '@components/controls/Buttons.jsx'
 - ```children```: Texto del botón.
 - ```action```: Función que se ejecuta ```onClick```.
 - ```styles```: Objecto con estilos adicionales.
+
+## Controls (links)
+
+```
+Path: '@components/controls/Links.jsx'
+```
+
+### 1. ButtonLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+
+### 2. PlaintNavLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+
+### 3. PlainExternalLink
+- ```children```: Texto del link.
+- ```path```: String que indica la URL.
+- ```styles```: Objecto con estilos adicionales.
+- ```icon```: Booleano. En caso de ser ícono se aplicarán diferentes estilos.

@@ -4,7 +4,7 @@ import { productByName } from '@redux/actions/Products/productByName'
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { setPage } from '@redux/actions/pagination/setPage'
 
-import { XLarge, ArrowLeft } from '../SVG'
+import { XLarge, ArrowLeft } from '@svg'
 
 function SearchBar ({ toggleSearch }) {
   const thisPage = useSelector((state) => state.thisPage)

@@ -1,5 +1,5 @@
 // import ContactForm from '../../components/ContactForm/ContactForm'
-import { Facebook, Instagram, Linkedin, Twitter } from '../../components/SVG'
+import { Facebook, Instagram, Linkedin, Twitter } from '@svg'
 
 import Banner5 from '@img/pet.png'
 import Local from '@img/location.png'

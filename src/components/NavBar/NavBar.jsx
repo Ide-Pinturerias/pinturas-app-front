@@ -4,7 +4,7 @@ import logo from '@img/logo-black.png'
 import { useSelector } from 'react-redux'
 import SearchBar from '@components/SearchBar/SearchBar'
 
-import { Magnifier, Cart, Bookmark, UserIcon } from '../SVG'
+import { Magnifier, Cart, Bookmark, UserIcon } from '@svg'
 
 function NavBar () {
   // STATES:

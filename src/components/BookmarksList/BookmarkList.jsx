@@ -2,6 +2,7 @@ import React from "react";
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots";
 import { ButtonSecondary, ButtonDanger } from "@components/controls/Buttons";
 import { ButtonLink } from "@components/controls/Links";
+import { Circle } from "@svg";
 
 // Grid layout:
 const bookmark_list_layout = {
@@ -34,17 +35,13 @@ function BookmarkItem({ favorite }) {
                         : favorite.stock === 1
                             ? (
                                 <div className="flex items-center gap-2 w-fit py-[.4em] px-[.85em] rounded-[60px] text-white fill-white bg-secondaryClear">
-                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="size-[.5em]">
-                                        <circle cx="50" cy="50" r="50" />
-                                    </svg>
+                                    <Circle size={".5em"} />
                                     ¡Última unidad!
                                 </div>
                             )
                             : (
                                 <div className="flex items-center gap-2 w-fit py-[.4em] px-[.85em] rounded-[60px] text-[#4E4E4E] fill-[#4E4E4E] bg-[#FFECB3]">
-                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="size-[.5em]">
-                                        <circle cx="50" cy="50" r="50" />
-                                    </svg>
+                                    <Circle size={".5em"} />
                                     <span>
                                         <strong>{favorite.stock}</strong> en stock
                                     </span>
@@ -52,9 +49,7 @@ function BookmarkItem({ favorite }) {
                             )
                 ) : (
                     <div className="flex items-center gap-2 w-fit py-[.4em] px-[.85em] rounded-[60px] text-[#2E7D32] fill-[#2E7D32] bg-[#C9EACE]">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="size-[.5em]">
-                            <circle cx="50" cy="50" r="50" />
-                        </svg>
+                        <Circle size={".5em"} />
                         En stock
                     </div>
                 )

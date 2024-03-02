@@ -1,7 +1,7 @@
 import imgAbout2 from '@img/about2.png'
 import imgAbout from '@img/about.png'
 import React from 'react'
-import { LightBulb, Rocket } from '../../components/SVG'
+import { LightBulb, Rocket } from '@svg'
 
 const About = () => {
   const PARRAGRAPH_1 = 'Nuestra historia comenzó como un emprendimiento familiar, impulsado por la visión y pasión de Rodolfo Miguel Guercio. Inicialmente ubicada en la pintoresca localidad de Alta Gracia – Córdoba, pronto nos dimos cuenta de la creciente demanda de pinturas de alta calidad para obras industriales y proyectos particulares en la próspera Villa Anisacate.'

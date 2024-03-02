@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { XLarge } from '../SVG'
+import { XLarge } from '@svg'
 import { ButtonPrimary, ButtonSecondary } from '@components/controls/Buttons'
 
 function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Facebook, Instagram, Linkedin, Twitter } from '../SVG'
+import { Facebook, Instagram, Linkedin, Twitter } from '@svg'
 import ide from '@images/logo/ide.png'
 import mercadopago from '@images/logo/mercadopago.png'
 import { PlainNavLink, PlainExternalLink } from '@components/controls/Links'

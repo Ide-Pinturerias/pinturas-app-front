@@ -15,7 +15,7 @@ export function ButtonSecondary({ children, action, styles }) {
     const interaction = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]';
     return (
         <button
-            className={`w-fit py-[1em] px-[1.5em] box-border bg-transparent border border-primaryClear rounded-[60px] text-primaryClear font-bold uppercase ${interaction}`}
+            className={`w-fit py-[1em] px-[1.5em] box-border bg-bg border border-primaryClear rounded-[60px] text-primaryClear font-bold uppercase ${interaction}`}
             style={styles}
             onClick={action}
         >
@@ -49,5 +49,5 @@ export function ButtonDanger({ children, action, styles }) {
     )
 }
 
-// Buttons: Banner.jsx, Paginated.jsx, CardRegular (addFav), Products, NavBar and SearchBar buttons, Detail,
+// Buttons: Paginated.jsx, CardRegular (addFav), Products, NavBar and SearchBar buttons, Detail,
 // Links: Banner.jsx, CategoryContainer.jsx

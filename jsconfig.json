@@ -11,6 +11,15 @@
             "@redux/*": [
                 "src/redux/*"
             ],
+            "@scripts/*": [
+                "src/scripts/*"
+            ],
+            "@svg": [
+                "src/components/SVG.jsx"
+            ],
+            "@images/*": [
+                "src/assets/images/*"                
+            ],
             "@img/*": [
                 "src/img/*"
             ],
@@ -20,8 +29,11 @@
             "@hooks/*": [
                 "src/hooks/*"
             ],
-            "@api/*": [
-                "src/services/api/*"
+            "@api": [
+                "src/services/api.js"
+            ],
+            "@styles": [
+                "src/styles.js"
             ]
         }
     },

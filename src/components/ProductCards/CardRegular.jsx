@@ -5,7 +5,7 @@ import { formatNumberWithDots } from '@/scripts/formatNumberWithDots'
 
 import { BookmarkOutlined } from '@mui/icons-material'
 import { ButtonPrimary } from '@components/Controls/Buttons';
-import { afterPseudo } from '../../styles.js';
+import { afterPseudo } from '@styles';
 
 
 function CardRegular ({ id, name, category, color, image, brand, price }) {

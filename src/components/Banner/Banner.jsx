@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import banner1 from '../../assets/images/banners/banner1.webp'
-import banner2 from '../../assets/images/banners/banner2.webp'
-import banner3 from '../../assets/images/banners/banner3.webp'
+import banner1 from '@images/banners/banner1.webp'
+import banner2 from '@images/banners/banner2.webp'
+import banner3 from '@images/banners/banner3.webp'
 import { ChevronRightRounded, ChevronLeftRounded } from '@mui/icons-material'
+import { ButtonSecondary } from '@components/controls/Buttons'
 
 const BannerCarousel = () => {
   // LOCA STATES:
@@ -20,7 +21,6 @@ const BannerCarousel = () => {
     src: banner3,
     alt: 'Dale color a tu vida. idePinturerías.'
   }]
-  const focusAnimation = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-90'
 
   // FUNCTIONS:
   const goToPrevImage = () => {
@@ -60,20 +60,20 @@ const BannerCarousel = () => {
                     ))
                 }
                 <div className="absolute top-1/2 -translate-y-1/2 left-[3%]">
-                    <button
-                        className={`size-[45px] grid place-items-center box-border bg-bg text-primaryClear border border-primaryClear rounded-full ${focusAnimation}`}
-                        onClick={goToPrevImage}
-                    >
+                  <ButtonSecondary
+                      styles={{ display: 'grid', placeItems: 'center', width: '45px', height: '45px', padding: '0' }}
+                      action={goToPrevImage}
+                  >
                         <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
-                    </button>
+                  </ButtonSecondary>
                 </div>
                 <div className="absolute top-1/2 -translate-y-1/2 right-[3%]">
-                    <button
-                        className={`size-[45px] grid place-items-center box-border bg-bg text-primaryClear border border-primaryClear rounded-full ${focusAnimation}`}
-                        onClick={goToNextImage}
-                    >
-                        <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
-                    </button>
+                  <ButtonSecondary
+                      styles={{ display: 'grid', placeItems: 'center', width: '45px', height: '45px', padding: '0' }}
+                      action={goToNextImage}
+                  >
+                      <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
+                  </ButtonSecondary>
                 </div>
             </div>
         </section>

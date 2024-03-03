@@ -68,7 +68,7 @@ export const GetSimilarProducts = async ({ currentId, limit, category, color }) 
       if (category) url.push(`&category=${category}`)
       const query = url.join('')
       // Hacer la petición de la api con la query creada para obtener los productos filtrados.
-      // const data = await get_all_products_filtered(query)
+      const data = await get_all_products_filtered(query)
       // TODO: Implementar función get_all_products_filtered o similar.
       const similarProducts = data.results.rows.filter((product) => product.idProduct !== currentId).slice(0, limit)
       return similarProducts

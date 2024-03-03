@@ -1,7 +1,7 @@
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setPage } from '@redux/actions/pagination/setPage'
-import { setCategory } from '@redux/actions/filters/setCategory'
+// import { setPage } from '@redux/actions/pagination/setPage'
+// import { setCategory } from '@redux/actions/filters/setCategory'
 import stl from './CategoryContainer.module.css'
 import { afterPseudo } from '../../styles.js'
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '@img/logo-black.png'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import SearchBar from '@components/SearchBar/SearchBar'
 
 import { Magnifier, Cart, Bookmark, UserIcon } from '@svg'

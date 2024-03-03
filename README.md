@@ -106,6 +106,7 @@ src
 
 |--|--Controls
 |--|--|--Buttons.jsx
+|--|--|--Buttons.tsx
 |--|--|--Links.jsx
 
 -
@@ -232,6 +233,16 @@ Path: '@components/controls/Buttons.jsx'
 - ```children```: Texto del botón.
 - ```action```: Función que se ejecuta ```onClick```.
 - ```styles```: Objecto con estilos adicionales.
+
+```
+Path: '@components/controls/Buttons.tsx'
+```
+### Props:
+- ```children```: Texto del botón.
+- ```variant```: Tipo de botón. Valores posibles: `primary`, `secondary`, `tertiary`, `danger`. Puede ser para la acción principal, secundaria, terciaria o la de peligro.
+- ```className```: Sobreescribe las clases en caso de ser necesario.
+- Y el resto de propiedades disponibles para `button` de React.
+
 
 ## Controls (links)
 

@@ -4,7 +4,7 @@ import banner1 from '@images/banners/banner1.webp'
 import banner2 from '@images/banners/banner2.webp'
 import banner3 from '@images/banners/banner3.webp'
 import { ChevronRightRounded, ChevronLeftRounded } from '@mui/icons-material'
-import { ButtonSecondary } from '@components/controls/Buttons'
+import { Button } from '@components/Controls/Buttons'
 
 const BannerCarousel = () => {
   // LOCA STATES:
@@ -60,20 +60,14 @@ const BannerCarousel = () => {
                     ))
                 }
                 <div className="absolute top-1/2 -translate-y-1/2 left-[3%]">
-                  <ButtonSecondary
-                      styles={{ display: 'grid', placeItems: 'center', width: '45px', height: '45px', padding: '0' }}
-                      action={goToPrevImage}
-                  >
-                        <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
-                  </ButtonSecondary>
+                  <Button variant="secondary" onClick={goToPrevImage} className="grid place-items-center size-[45px] p-0 active:scale-90">
+                      <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
+                  </Button>
                 </div>
                 <div className="absolute top-1/2 -translate-y-1/2 right-[3%]">
-                  <ButtonSecondary
-                      styles={{ display: 'grid', placeItems: 'center', width: '45px', height: '45px', padding: '0' }}
-                      action={goToNextImage}
-                  >
+                  <Button variant="secondary" onClick={goToNextImage} className="grid place-items-center size-[45px] p-0 active:scale-90">
                       <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
-                  </ButtonSecondary>
+                  </Button>
                 </div>
             </div>
         </section>

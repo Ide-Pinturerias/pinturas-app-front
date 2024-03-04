@@ -1,12 +1,13 @@
-import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import React, { ButtonHTMLAttributes, Children, ReactNode } from "react";
 import { twMerge } from "tailwind-merge"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode,
-    variant: "primary" | "secondary" | "tertiary" | "danger"
+    variant: "primary" | "secondary" | "tertiary" | "danger",
+    subVariant: "icon"
 }
 
-export function Button({ children, variant, className, ...props }: ButtonProps) {
+export function Button({ children, variant, subVariant, className, ...props }: ButtonProps) {
     let buttonClass: string;
     let interaction: string;
 
@@ -30,6 +31,15 @@ export function Button({ children, variant, className, ...props }: ButtonProps) 
             buttonClass = ""
             interaction = ""
             break
+    }
+
+    switch (subVariant) {
+        case "icon":
+            const numberOfChildren = Children.count(children);
+            buttonClass = `${buttonClass} ${numberOfChildren === 1 ? "grid place-items-center p-0" : "flex items-center"}`;
+            break;
+        default:
+            break;
     }
 
     return (

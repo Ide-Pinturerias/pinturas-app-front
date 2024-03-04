@@ -60,12 +60,12 @@ const BannerCarousel = () => {
                     ))
                 }
                 <div className="absolute top-1/2 -translate-y-1/2 left-[3%]">
-                  <Button variant="secondary" onClick={goToPrevImage} className="grid place-items-center size-[45px] p-0 active:scale-90">
+                  <Button variant="secondary" subVariant="icon" onClick={goToPrevImage} className="size-[45px] active:scale-90">
                       <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
                   </Button>
                 </div>
                 <div className="absolute top-1/2 -translate-y-1/2 right-[3%]">
-                  <Button variant="secondary" onClick={goToNextImage} className="grid place-items-center size-[45px] p-0 active:scale-90">
+                  <Button variant="secondary" subVariant="icon" onClick={goToNextImage} className="size-[45px] active:scale-90">
                       <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
                   </Button>
                 </div>

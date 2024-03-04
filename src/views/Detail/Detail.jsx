@@ -15,7 +15,7 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { Button } from '@components/Controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:
@@ -323,8 +323,8 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                   <div className='flex flex-col items-center gap-4 w-full'>
-                                                    <ButtonPrimary styles={{width: '80%'}}>¡Comprar ahora!</ButtonPrimary>
-                                                    <ButtonSecondary styles={{width: '80%'}}>Agregar al carro</ButtonSecondary>
+                                                    <Button variant="primary" className="w-[80%]">¡Comprar ahora!</Button>
+                                                    <Button variant="secondary" className="w-[80%]">Agregar al carro</Button>
                                                   </div>
                                                 )
                                               : (

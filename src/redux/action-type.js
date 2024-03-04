@@ -75,11 +75,11 @@ export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
 // export const BASE_URL = 'http://localhost:3000/'
-export const BASE_URL = 'https://pinturas-app-back.onrender.com/'
+export const BASE_URL = import.meta.env.VITE_API_URL
 
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'
-export const URL_SAVE_REVIEW = 'https://pinturas-app-back.onrender.com/'
+export const URL_SAVE_REVIEW = import.meta.env.VITE_API_URL
 
 // PROVIDERS
 export const GET_PROVIDERS = 'GET_PROVIDERS'

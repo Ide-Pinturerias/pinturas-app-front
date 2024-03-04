@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { formatNumberWithDots } from '@/scripts/formatNumberWithDots'
 
 import { BookmarkOutlined } from '@mui/icons-material'
-import { ButtonPrimary } from '@components/Controls/Buttons';
+import { Button } from '@components/Controls/Buttons';
 import { afterPseudo } from '@styles';
 
 
@@ -71,7 +71,7 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
             </div>
             {/* ADD TO CART */}
             <div className="flex justify-center w-full px-4 pb-4" onClick={preventRedirection}>
-                <ButtonPrimary>Agregar al carro</ButtonPrimary>
+                <Button variant="primary">Agregar al carro</Button>
             </div>
         </Link >
   )

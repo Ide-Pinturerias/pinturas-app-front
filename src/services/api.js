@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 // Nota: setear axios defaults en el futuro.
-const BASE_URL = 'https://pinturas-app-back.onrender.com/'
+const URL_API = import.meta.env.VITE_API_URL
 
 export const GetBestSellers = async (limit) => {
   try {
-    const response = await axios.get(`${BASE_URL}products?limit=${limit}&minRating=5`)
+    const response = await axios.get(`${URL_API}products?limit=${limit}&minRating=5`)
     const data = response.data
     return data
   } catch (error) {
@@ -16,7 +16,7 @@ export const GetBestSellers = async (limit) => {
 
 export const GetPaginatedProducts = async (query) => {
   try {
-    const response = await axios.get(`${BASE_URL}products?active=true${query}`)
+    const response = await axios.get(`${URL_API}products?active=true${query}`)
     const data = response.data
     return data
   } catch (error) {
@@ -27,7 +27,7 @@ export const GetPaginatedProducts = async (query) => {
 
 export const GetCategories = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}categories`)
+    const response = await axios.get(`${URL_API}categories`)
     const data = response.data
     return data
   } catch (error) {
@@ -38,7 +38,7 @@ export const GetCategories = async () => {
 
 export const GetFilteredProducts = async (query) => {
   try {
-    const response = await axios.get(`${BASE_URL}${query}`)
+    const response = await axios.get(`${URL_API}${query}`)
     const data = response.data
     return data
   } catch (error) {
@@ -83,7 +83,7 @@ export const GetSimilarProducts = async ({ currentId, limit, category, color }) 
 
 export const GetFavorites = async (user) => {
   try {
-    const response = await axios.post(`${BASE_URL}favorites/user`, user)
+    const response = await axios.post(`${URL_API}favorites/user`, user)
     const data = response.data
     return data
   } catch (error) {
@@ -94,7 +94,7 @@ export const GetFavorites = async (user) => {
 
 export const PostFavorite = async (favData) => {
   try {
-    const response = await axios.post(`${BASE_URL}favorites`, favData)
+    const response = await axios.post(`${URL_API}favorites`, favData)
     const data = response.data
     return data
   } catch (error) {

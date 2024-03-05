@@ -117,13 +117,13 @@ const Footer = () => {
                     <p>
                         Desarrollado por <PlainNavLink
                             path="/developers"
-                            styles={{ 'font-weight': 'bold' }}
+                            styles={{ 'fontWeight': 'bold' }}
                         >Dium</PlainNavLink>
                     </p>
                     <p className="text-center">©Copyright 2023. idePinturerías. Todos los derechos reservados. <br /> RP5, Esquina La Isla Anisacate, Córdoba, Argentina.</p>
                     <p>
                         Diseñado por <PlainNavLink
-                            styles={{ 'font-weight': 'bold' }}
+                            styles={{ 'fontWeight': 'bold' }}
                         >Sebastian M.</PlainNavLink>
                     </p>
                 </div>

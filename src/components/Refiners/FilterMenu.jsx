@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '@svg'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { Button } from '@components/Controls/Buttons'
 
 function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowPrice, filterCategory, filterByCategory, filterByPrice, clearFilters }) {
     // Detectar click fuera del menú.
@@ -84,12 +84,12 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <ButtonPrimary action={() => setIsFilterOpen(false)} styles={{ width: '80%' }}>
+                <Button variant="primary" onClick={() => setIsFilterOpen(false)} className="w-[80%]">
                     Mostrar resultados
-                </ButtonPrimary>
-                <ButtonSecondary action={() => clearFilters()} styles={{ width: '80%' }}>
+                </Button>
+                <Button variant="secondary" onClick={() => clearFilters()} className="w-[80%]">
                     Limpiar filtros
-                </ButtonSecondary>
+                </Button>
             </div>
         </aside>
     )

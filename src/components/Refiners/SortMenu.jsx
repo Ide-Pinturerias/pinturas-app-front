@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { XLarge } from '@svg'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { Button } from '@components/Controls/Buttons'
 
 function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndDirection }) {
     // Detectar click fuera del menú.
@@ -116,12 +116,12 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <ButtonPrimary action={() => setIsSortOpen(false)} styles={{ width: '80%' }}>
+                <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-[80%]'>
                     Mostrar resultados
-                </ButtonPrimary>
-                <ButtonSecondary styles={{ width: '80%' }}>
+                </Button>
+                <Button variant='secondary' className='w-[80%]'>
                     Mostrar los más vendidos
-                </ButtonSecondary>
+                </Button>
             </div>
         </aside>
     )

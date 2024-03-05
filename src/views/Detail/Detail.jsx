@@ -15,7 +15,7 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 // import DeleteButton from '@components/DeleteButton/DeleteButton'
 // import UpdateButton from '@components/UpdateButton/UpdateButton'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { ButtonPrimary, ButtonSecondary } from '@components/Controls/Buttons'
+import { Button } from '@components/Controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:
@@ -259,8 +259,9 @@ function Detail () {
                                         <h2 className="text-lg font-bold uppercase mb-2">¿Tienes alguna duda?</h2>
                                         <div className="my-2">Estamos para ayudar</div>
                                         <div className="flex gap-2">
-                                            <button
-                                                className={'flex items-center gap-2 w-fit mb-2 p-4 box-border border border-primaryClear text-primaryClear rounded-[2rem] text-sm font-bold uppercase ' + (showNumber && 'cursor-default select-text')}
+                                            <Button
+                                                variant="secondary" subVariant="icon"
+                                                className={'gap-2 text-sm ' + (showNumber && 'cursor-default select-text transition-none active:bg-bg active:scale-100')}
                                                 onClick={() => showNumber === false && setShowNumber(true)}
                                             >
                                                 <Phone />
@@ -273,11 +274,11 @@ function Detail () {
                                                           '+54 351 306 135'
                                                         )
                                                 }
-                                            </button>
-                                            <button className="flex items-center gap-2 w-fit mb-2 p-4 box-border border border-primaryClear text-primaryClear rounded-[2rem] text-sm font-bold uppercase">
+                                            </Button>
+                                            <Button variant="secondary" subVariant="icon" className="gap-2 text-sm">
                                                 <ChatEmpty />
                                                 Chatea
-                                            </button>
+                                            </Button>
                                         </div>
 
                                         {/* <hr className="my-4 border-duller" /> */}
@@ -323,8 +324,8 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                   <div className='flex flex-col items-center gap-4 w-full'>
-                                                    <ButtonPrimary styles={{width: '80%'}}>¡Comprar ahora!</ButtonPrimary>
-                                                    <ButtonSecondary styles={{width: '80%'}}>Agregar al carro</ButtonSecondary>
+                                                    <Button variant="primary" className="w-[80%]">¡Comprar ahora!</Button>
+                                                    <Button variant="secondary" className="w-[80%]">Agregar al carro</Button>
                                                   </div>
                                                 )
                                               : (

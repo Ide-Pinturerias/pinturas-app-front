@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
+import { Button } from '@components/Controls/Buttons'
 
 function Detail () {
   // GLOBAL STATES:

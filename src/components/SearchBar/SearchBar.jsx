@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productByName } from '@redux/actions/Products/productByName'
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
-import { setPage } from '@redux/actions/Page/setPage'
+import { setPage } from '@redux/actions/pagination/setPage'
 
-import { XLarge, ArrowLeft } from '../SVG'
+import { XLarge, ArrowLeft } from '@svg'
 
 function SearchBar ({ toggleSearch }) {
   const thisPage = useSelector((state) => state.thisPage)

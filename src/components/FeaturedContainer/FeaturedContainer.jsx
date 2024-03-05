@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
-import { getSimilarProducts } from '@api'
+import { GetSimilarProducts } from '@api'
 
 import CardRegular from '../ProductCards/CardRegular'
 // import featuredBanner from '@img/featured-banner.png'
@@ -23,7 +23,7 @@ function FeaturedContainer ({ bestSellersContainer, similarProductsContainer, si
       if (bestSellersContainer) {
         dispatch(getBestSellers(4))
       } else if (similarProductsContainer) {
-        const similarProducts = await getSimilarProducts(similarProductsContainerOptions)
+        const similarProducts = await GetSimilarProducts(similarProductsContainerOptions)
         setProducts(similarProducts)
       }
     })()

@@ -5,19 +5,19 @@ import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsP
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
 import { setCategory } from '@redux/actions/filters/setCategory'
-import { setPage } from '@redux/actions/Page/setPage'
+import { setPage } from '@redux/actions/pagination/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
-import { setSortClause, setSortDirection } from '../../redux/actions/filters/sort'
+import { setSortClause, setSortDirection } from '@/redux/actions/filters/sort'
 
-import Paginated from '../../components/Paginated/Paginated'
+import Paginated from '@components/Paginated/Paginated'
 
 // import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 // import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
-import ProductBox from '../../components/ProductBox/ProductBox'
-import FilterMenu from '../../components/Refiners/FilterMenu'
-import SortMenu from '../../components/Refiners/SortMenu'
-import { Chevron, XSmall } from '../../components/SVG'
+import ProductBox from '@components/ProductBox/ProductBox'
+import FilterMenu from '@components/Refiners/FilterMenu'
+import SortMenu from '@components/Refiners/SortMenu'
+import { Chevron, XSmall } from '@svg'
 
 function ProductsPage () {
   // GLOBAL STATES:

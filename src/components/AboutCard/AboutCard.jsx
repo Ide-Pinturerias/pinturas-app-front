@@ -18,7 +18,7 @@ const AboutCard = () => {
                     <p className="text-clear text-md mb-3 md:mb-11 text-start">
                         Dedicados y comprometidos al 100% con pasión por la calidad, en idePinturerias priorizamos la excelencia y servicio personalizado. Nos esforzamos por superar tus expectativas al ofrecerte un servicio excepcional en pinturas y ferretería. Queremos ser tu socio confiable mientras nuestro equipo te brinda asesoramiento en cada proyecto, ya sea grande o pequeño.
                     </p>
-                    <ButtonLink path='/about' styles={{ 'align-self': 'center' }}>
+                    <ButtonLink path='/about' styles={{ 'alignSelf': 'center' }}>
                         Nuestra historia
                     </ButtonLink>
                 </div>

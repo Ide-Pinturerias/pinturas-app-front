@@ -1,6 +1,6 @@
 import React from "react";
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots";
-import { ButtonSecondary, ButtonDanger } from "@components/Controls/Buttons";
+import { Button } from "@components/Controls/Buttons";
 import { ButtonLink } from "@components/Controls/Links";
 import { Circle } from "@svg";
 
@@ -58,10 +58,10 @@ function BookmarkItem({ favorite }) {
             <div className="flex justify-end gap-4">
                 {
                     favorite.stock === 0 ? null : (
-                        <ButtonSecondary>Agregar al carro</ButtonSecondary>
+                        <Button variant="primary">Agregar al carro</Button>
                     )
                 }
-                <ButtonDanger>Quitar</ButtonDanger>
+                <Button variant="danger">Quitar</Button>
             </div>
         </li>
     )

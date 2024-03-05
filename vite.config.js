@@ -26,12 +26,13 @@ export default defineConfig(({ mode }) => {
         '@views': path.resolve(__dirname, './src/views'),
         '@redux': path.resolve(__dirname, './src/redux'),
         '@scripts': path.resolve(__dirname, './src/scripts'),
-        '@svg': path.resolve(__dirname, './src/components/SVG'),
+        '@svg': path.resolve(__dirname, './src/components/SVG.jsx'),
         '@img': path.resolve(__dirname, './src/img'),
         '@assets': path.resolve(__dirname, './src/assets'),
         '@hooks': path.resolve(__dirname, './src/hooks'),
-        '@api': path.resolve(__dirname, './src/services/api'),
-        '@images': path.resolve(__dirname, './src/assets/images')
+        '@api': path.resolve(__dirname, './src/services/api.js'),
+        '@images': path.resolve(__dirname, './src/assets/images'),
+        '@styles': path.resolve(__dirname, './src/styles.js')
       }
     }
   }

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '@img/logo-black.png'
 import SearchBar from '@components/SearchBar/SearchBar'
-
 import { Magnifier, Cart, Bookmark, UserIcon } from '@svg'
 
 function NavBar () {

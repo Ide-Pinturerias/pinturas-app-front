@@ -22,6 +22,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "sass": "^1.69.5",
+    "serve": "^14.2.1",
     "sweetalert2": "^11.10.1",
     "tailwind-merge": "^2.2.1",
     "tailwindscss": "^0.3.0"
@@ -57,7 +58,8 @@
     "dev": "vite",
     "lint": "eslint --fix src --ext js,jsx --report-unused-disable-directives",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start": "serve dist -s -n -L -p $PORT"
   },
   "type": "module",
   "version": "2.0.0"

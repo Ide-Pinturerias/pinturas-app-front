@@ -5,7 +5,6 @@ import App from './App'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import { Auth0Provider } from '@auth0/auth0-react'
-import { CartProvider } from './context/cart'
 const { VITE_DOMAIN: DOMAIN, VITE_AUTH0_CLIENT_ID: CLIENT_ID } = import.meta
   .env
 
@@ -18,9 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         redirect_uri: window.location.origin
       }}
     >
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <App />
     </Auth0Provider>
   </Provider>
 )

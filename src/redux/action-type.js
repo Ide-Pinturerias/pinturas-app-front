@@ -1,3 +1,4 @@
+const URL_API = import.meta.env.VITE_API_URL
 // PRODUCTS
 export const GET_ALL_PRODUCTS_PAGINATED = 'GET_ALL_PRODUCTS_PAGINATED'
 export const POST_PRODUCT = 'POST_PRODUCT'
@@ -37,12 +38,11 @@ export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES'
 export const SET_PAGE = 'SET_PAGE'
 
 // CART
+export const FIND_OR_CREATE_CART = 'FIND_OR_CREATE_CART'
+export const ADD_PRODUCT_CART = 'ADD_PRODUCT_CART'
+export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART'
 export const SET_CART = 'SET_CART'
-export const POST_CART = 'POST_CART'
-export const GET_CART_ID = 'GET_CART_ID'
-export const GET_CART = 'GET_CART'
-export const PUT_CART = 'PUT_CART'
-export const ADD_CART = 'ADD_CART'
+export const CLEAR_CART = 'CLEAR_CAT'
 
 // ORDERS
 export const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
@@ -75,11 +75,12 @@ export const URL_INFO_USER_AUTH0 = '--'
 
 // URL
 // export const BASE_URL = 'http://localhost:3000/'
-export const BASE_URL = import.meta.env.VITE_API_URL
+export const BASE_URL = URL_API
 
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'
-export const URL_SAVE_REVIEW = import.meta.env.VITE_API_URL
+export const URL_SAVE_REVIEW = URL_API
+
 
 // PROVIDERS
 export const GET_PROVIDERS = 'GET_PROVIDERS'

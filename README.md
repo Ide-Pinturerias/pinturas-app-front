@@ -7,6 +7,7 @@
 - [Carlos Barrera](https://github.com/CBarreraB)
 - [Basilio Romero](https://github.com/bachiromero)
 - [Sebastian Menacho](https://github.com/Squiffles)
+
 ## Description (Descripción)
 
 This is the client side of the Pinturas App project. It is a web application for
@@ -36,8 +37,8 @@ The application is deployed on [Vercel](https://vercel.com/).
 
 ## Testing Status (Estado de las Pruebas)
 
-[![eslint-check](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/eslint.yml)
-
+[![Clean Install and Lint](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml)
+[![CodeQL](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql)
 
 ---
 
@@ -172,7 +173,7 @@ src
 
 # REDUX REVIEW REPORT
 
-##  1. setCategory
+## 1. setCategory
 
 ```
 redux/actions/filters/setCategory

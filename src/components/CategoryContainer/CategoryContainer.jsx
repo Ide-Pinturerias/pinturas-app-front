@@ -1,9 +1,9 @@
-// import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-// import { setPage } from '@redux/actions/pagination/setPage'
-// import { setCategory } from '@redux/actions/filters/setCategory'
+import { setPage } from '@redux/actions/pagination/setPage'
+import { setCategory } from '@redux/actions/filters/setCategory'
 import stl from './CategoryContainer.module.css'
 import { afterPseudo } from '../../styles.js'
+import { useDispatch } from 'react-redux'
 
 // Banners
 import category2 from '@images/categories/especiales.webp'
@@ -20,10 +20,15 @@ import category13 from '@images/categories/auxiliares.webp'
 import category14 from '@images/categories/madera.webp'
 
 const CategoryCard = ({ idx, searchQuery, image, title }) => {
+    const dispatch = useDispatch()
+    const handleCategory = (category) => {
+        dispatch(setPage(1))
+        dispatch(setCategory(category))
+    }
   return (
         <Link
             to={`/products?category=${encodeURIComponent(searchQuery)}`}
-            // onClick={() => handleCategory(searchQuery)}
+            onClick={() => handleCategory(searchQuery)}
             className={`relative rounded-lg ${afterPseudo}`}
             style={{ gridArea: `item${idx + 1}` }}
         >
@@ -38,12 +43,8 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
 }
 
 const CategoryContainer = () => {
-  // const dispatch = useDispatch()
 
-  // const handleCategory = (category) => {
-  //     dispatch(setPage(1))
-  //     dispatch(setCategory(category))
-  // }
+  
 
   const CATEGORIES = [
     { image: category14, searchQuery: 'Linea Maderas' },

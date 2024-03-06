@@ -1,6 +1,7 @@
 import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
+import { Button } from '@components/Controls/Buttons'
 
 const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
   const dispatch = useDispatch()
@@ -34,9 +35,12 @@ const ProductCart = ({ id, name, quantity, image, price, stock, subtotal }) => {
                       </a>
                     </h1>
                     <div className="flex gap-5">
-                        <button className="text-indigo-500 font-medium font-sans text-left flex items-center pb-3" onClick={
-                            () => onDeleteProductCart({ user, id })
-                        }>Eliminar</button>
+                      <Button 
+                        variant="danger"
+                        onClick={() => onDeleteProductCart({ user, id })}
+                      >
+                        Eliminar
+                      </Button>
                     </div>
                     <div className="flex justify-between ">
                         <div className="flex items-center justify-center flex-col">

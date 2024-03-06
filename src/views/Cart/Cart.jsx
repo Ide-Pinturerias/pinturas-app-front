@@ -5,6 +5,7 @@ import ProductCart from '@components/Cart/ProductCart'
 import TotalCart from '@components/Cart/TotalCart'
 import PurchaseCart from '@components/Cart/PurchaseCart'
 import ClearCart from '@components/Cart/ClearCart'
+import { ButtonLink } from '@components/Controls/Links'
 
 const LoadingSpinner = () => {
   return (
@@ -42,12 +43,12 @@ const Cart = () => {
     <main className="pt-[5rem] grid justify-center items-center h-[100dvh]">
       <h1 className="text-2xl font-bold text-gray-700">No tienes productos en el carrito</h1>
       <div className="flex flex-row gap-2 w-full justify-center">
-        <a href="/products" className="bg-indigo-600 text-white rounded-md px-5 py-2 mt-5">
+        <ButtonLink path="/products">
           Ir a productos
-        </a>
-        <a href="/" className="bg-[#FF6600] text-white rounded-md px-5 py-2 mt-5">
+        </ButtonLink>
+        <ButtonLink path="/">
           Volver al inicio
-        </a>
+        </ButtonLink>
       </div>
     </main>
     )

@@ -1,4 +1,7 @@
-const URL_API = import.meta.env.VITE_API_URL
+// URL
+// export const BASE_URL = 'http://localhost:3000/'
+export const BASE_URL = import.meta.env.VITE_API_URL
+
 // PRODUCTS
 export const GET_ALL_PRODUCTS_PAGINATED = 'GET_ALL_PRODUCTS_PAGINATED'
 export const POST_PRODUCT = 'POST_PRODUCT'
@@ -73,13 +76,10 @@ export const DELETE_FAVORITES = 'DELETE_FAVORITES'
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const URL_INFO_USER_AUTH0 = '--'
 
-// URL
-// export const BASE_URL = 'http://localhost:3000/'
-export const BASE_URL = URL_API
 
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'
-export const URL_SAVE_REVIEW = URL_API
+export const URL_SAVE_REVIEW = BASE_URL
 
 
 // PROVIDERS

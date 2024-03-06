@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { clearCart } from '../../redux/actions/Cart/clearCart'
+import { clearCart } from '@redux/actions/Cart/clearCart'
+import { Button } from '@components/Controls/Buttons'
 
 const ClearCart = () => {
   const dispatch = useDispatch()
@@ -11,11 +12,14 @@ const ClearCart = () => {
         window.location.reload()
       })
   }
-  return (<>
-    <button className="p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible m-1"
-    onClick={handleClearCart}
-        >Vaciar Carrito</button>
-    </>)
+  return (
+    <Button
+      variant="danger"
+      onClick={handleClearCart}
+    >
+      Vaciar Carrito
+    </Button>
+  )
 }
 
 export default ClearCart

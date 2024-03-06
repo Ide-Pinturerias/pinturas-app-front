@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
-import { Button } from '@components/Controls/Buttons'
+import { Button } from '@components/Controls/Buttons.tsx'
 
 function Detail () {
   // GLOBAL STATES:
@@ -173,33 +173,6 @@ function Detail () {
     }
   }, [idProduct])
 
-  // Remove From Cart Button
-  const removeFromCartButton = (
-    <button className="w-[80%] mb-2 p-4 box-border border text-red-600 border-red-600 rounded-[2rem] text-sm font-bold uppercase"
-      title="Ya tienes este producto en el carrito"
-      onClick={
-        () => onDeleteProductCart({
-          user: loggedUser,
-          id: idProduct
-        })
-    }
-    >
-      Eliminar del carrito
-    </button>
-  )
-
-  // Add To Cart Button
-  const addToCartButton = (
-    <button className="w-[80%] mb-2 p-4 box-border border text-orange border-orange rounded-[2rem] text-sm font-bold uppercase"
-      title="Agregar al carrito"
-      onClick={
-        () => onAddProductCart()
-      }
-    >
-      Agregar al carrito
-    </button>
-  )
-
   useEffect(() => {
     if (numberOfItems <= 0 || numberOfItems > product.stock) {
       setNumberOfItems(1)
@@ -357,13 +330,33 @@ function Detail () {
                                             product.stock !== 0
                                               ? (
                                                 <>
-                                                    <button className="p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible m-1"
-                                                    onClick={handleBuyNow}
-                                                    >¡Comprar ahora!</button>
+                                                    <Button
+                                                        variant="primary"
+                                                        onClick={handleBuyNow}
+                                                        className="w-[80%]"
+                                                    >
+                                                        ¡Comprar ahora!
+                                                    </Button>
                                                     {
-                                                        isInCart
-                                                          ? removeFromCartButton
-                                                          : addToCartButton
+                                                        isInCart ? (
+                                                            <Button 
+                                                                variant="danger"
+                                                                title="Ya tienes este producto en el carro"
+                                                                onClick={() => onDeleteProductCart({ user: loggedUser, id: idProduct})}
+                                                                className="w-[80%]"
+                                                            >
+                                                                Eliminar del carro
+                                                            </Button>
+                                                          ) : (
+                                                            <Button
+                                                                variant="secondary"
+                                                                title="Agregar al carrito"
+                                                                onClick={onAddProductCart}
+                                                                className="w-[80%]"
+                                                            >
+                                                                Agregar al carro
+                                                            </Button>
+                                                          )
                                                     }
                                                 </>
 

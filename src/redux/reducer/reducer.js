@@ -84,12 +84,25 @@ import {
 } from '../action-type'
 
 const initialState = {
+    // USER
+    user: {},
+    allUsers: [],
+    token: '',
+    userId: {},
+
     // CART
     cart: {},
+
     // ORDERS
     allOrders: [],
     ordersUser: {},
     orderDetail: {},
+
+    // FAVORITES
+    allFavorites: [],
+
+    // REVIEWS
+    userReview: {},
 
     // PRODUCTS
     allProductsPaginated: [],
@@ -100,11 +113,6 @@ const initialState = {
     // CATEGORIES
     categories: [],
 
-    // USER
-    user: {},
-    allUsers: [],
-    token: '',
-    userId: {},
 
     // FILTERS
     filterCategory: '',
@@ -127,15 +135,10 @@ const initialState = {
     // AUTH0-USERS-INFO
     userData: {},
 
-    // REVIEWS
-    userReview: {},
 
     // BLOG
     posts: [],
     post: {},
-
-    // FAVORITES
-    allFavorites: [],
 
     // PROVIDERS
     providers: [],
@@ -145,6 +148,60 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        // USER
+        case POST_REGISTER_USER:
+            return { ...state, user: payload }
+        case POST_LOGIN_USER:
+            return { ...state, user: payload }
+        case GET_ALL_USERS:
+            return { ...state, allUsers: payload }
+        case DELETE_USER:
+            return { ...state }
+        case PUT_USER:
+            return { ...state, user: payload }
+        case LOGOUT_USER:
+            return { ...state, user: payload, ordersUser: payload, allUsers: [], token: "", allFavorites: [], cart: {} }
+        case ACCESS_TOKEN:
+            return { ...state, token: payload }
+        case SET_USER:
+            return { ...state, user: payload }
+        case GET_USER_BY_ID:
+            return { ...state, userId: payload }
+
+        // CART
+        case FIND_OR_CREATE_CART:
+            return { ...state, cart: payload }
+        case ADD_PRODUCT_CART:
+            return { ...state, cart: payload }
+        case DELETE_PRODUCT_CART:
+            return { ...state, cart: payload }
+        case SET_CART:
+            return { ...state, cart: payload }
+        case CLEAR_CART:
+            return { ...state, cart: payload }
+
+        // ORDERS
+        case GET_ALL_ORDERS:
+            return { ...state, allOrders: payload }
+        case POST_ORDER_PAYMENT:
+            return { ...state }
+        case GET_ORDERS_USER:
+            return { ...state, ordersUser: payload }
+        case GET_ORDER_BY_ID:
+            return { ...state, orderDetail: payload }
+        case PUT_ORDER:
+            return { ...state, orderDetail: payload }
+        case POST_ORDER_CART:
+            return { ...state }
+
+        // FAVORITES
+        case ADD_FAVORITE:
+            return { ...state, allFavorites: payload }
+        case GET_FAVORITES:
+            return { ...state, allFavorites: payload }
+        case DELETE_FAVORITES:
+            return { ...state, allFavorites: payload }
+
         // PRODUCTS
         case GET_ALL_PRODUCTS_PAGINATED:
             return { ...state, allProductsPaginated: payload }
@@ -167,25 +224,6 @@ const reducer = (state = initialState, { type, payload }) => {
         case GET_ALL_CATEGORIES:
             return { ...state, categories: payload }
 
-        // USER
-        case POST_REGISTER_USER:
-            return { ...state, user: payload }
-        case POST_LOGIN_USER:
-            return { ...state, user: payload }
-        case GET_ALL_USERS:
-            return { ...state, allUsers: payload }
-        case DELETE_USER:
-            return { ...state }
-        case PUT_USER:
-            return { ...state, user: payload }
-        case LOGOUT_USER:
-            return { ...state, user: payload }
-        case ACCESS_TOKEN:
-            return { ...state, token: payload }
-        case SET_USER:
-            return { ...state, user: payload }
-        case GET_USER_BY_ID:
-            return { ...state, userId: payload }
 
         // FILTERS
         case GET_ALL_PRODUCTS_FILTERED:
@@ -209,17 +247,6 @@ const reducer = (state = initialState, { type, payload }) => {
         case SET_PAGE:
             return { ...state, thisPage: payload }
 
-        // CART
-        case FIND_OR_CREATE_CART:
-            return { ...state, cart: payload }
-        case ADD_PRODUCT_CART:
-            return { ...state, cart: payload }
-        case DELETE_PRODUCT_CART:
-            return { ...state, cart: payload }
-        case SET_CART:
-            return { ...state, cart: payload }
-        case CLEAR_CART:
-            return { ...state, cart: payload }
 
         // NODE MAILER
         case POST_CONTACT_EMAIL:
@@ -229,19 +256,6 @@ const reducer = (state = initialState, { type, payload }) => {
         case POST_REGISTER_EMAIL:
             return { ...state, mail: payload }
 
-        // ORDERS
-        case GET_ALL_ORDERS:
-            return { ...state, allOrders: payload }
-        case POST_ORDER_PAYMENT:
-            return { ...state }
-        case GET_ORDERS_USER:
-            return { ...state, ordersUser: payload }
-        case GET_ORDER_BY_ID:
-            return { ...state, orderDetail: payload }
-        case PUT_ORDER:
-            return { ...state, orderDetail: payload }
-        case POST_ORDER_CART:
-            return { ...state }
 
         // AUTH0-USERS-INFO
         case SET_USER_DATA:
@@ -263,13 +277,6 @@ const reducer = (state = initialState, { type, payload }) => {
         case SAVE_REVIEW:
             return { ...state, userReview: payload }
 
-        // FAVORITES
-        case ADD_FAVORITE:
-            return { ...state, allFavorites: payload }
-        case GET_FAVORITES:
-            return { ...state, allFavorites: payload }
-        case DELETE_FAVORITES:
-            return { ...state, allFavorites: payload }
 
         // PROVIDERS
         case GET_PROVIDERS:

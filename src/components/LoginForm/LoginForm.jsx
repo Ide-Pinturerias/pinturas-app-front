@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
 import { postLoginUser } from '@redux/actions/User/postLoginUser'
 import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
 
 const LoginForm = () => {
-  const { isAuthenticated, loginWithPopup, user } = useAuth0()
-
-  const [userInfo, setUserInfo] = useState()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
@@ -17,11 +13,6 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isAuthenticated && !userInfo) {
-      setUserInfo(user)
-    }
-  }, [isAuthenticated, userInfo, user])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -122,17 +113,6 @@ const LoginForm = () => {
                             </button>
                         </div>
                     </form>
-
-                    <div className="mt-7">
-                        <button
-                            onClick={() => loginWithPopup()}
-                            type="submit"
-                            className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-                        >
-                            Iniciar con Google
-                        </button>
-                    </div>
-
                     <p className="text-gray-400 pt-5 pb-10 text-m ">
                         ¿No tienes una cuenta?{' '}
                         <a
@@ -145,7 +125,6 @@ const LoginForm = () => {
                     </p>
                 </div>
                 <div className="mt-7">
-
                 </div>
             </div>
         </div>

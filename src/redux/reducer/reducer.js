@@ -19,6 +19,7 @@ import {
     PUT_USER,
     ACCESS_TOKEN,
     SET_USER,
+    GET_USER_BY_ID,
 
     // FILTERS
     GET_ALL_PRODUCTS_FILTERED,
@@ -55,10 +56,6 @@ import {
     POST_ORDER_EMAIL,
     POST_REGISTER_EMAIL,
     LOGOUT_USER,
-
-    // AUTH0-USERS-INFO
-    SET_USER_DATA,
-    GET_USER_BY_ID,
 
     // BLOG
     GET_POSTS,
@@ -131,10 +128,6 @@ const initialState = {
 
     // MAIL
     mail: {},
-
-    // AUTH0-USERS-INFO
-    userData: {},
-
 
     // BLOG
     posts: [],
@@ -256,10 +249,6 @@ const reducer = (state = initialState, { type, payload }) => {
         case POST_REGISTER_EMAIL:
             return { ...state, mail: payload }
 
-
-        // AUTH0-USERS-INFO
-        case SET_USER_DATA:
-            return { ...state, userData: payload }
 
         // BLOG
         case GET_POSTS:

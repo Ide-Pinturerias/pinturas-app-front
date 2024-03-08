@@ -1,10 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
 import Slider from './Slider'
 
 const Reviews = () => {
-  const { isAuthenticated, user } = useAuth0()
 
   return (
     <div className="w-1/2 mx-auto">
@@ -13,16 +10,14 @@ const Reviews = () => {
           <div className="overflow-hidden rounded-full w-8 h-8 bg-gray-50 border border-gray-200">
             <img
               src={
-                isAuthenticated
-                  ? user.picture
-                  : 'https://cdn-icons-png.flaticon.com/512/1053/1053244.png'
+                'https://cdn-icons-png.flaticon.com/512/1053/1053244.png'
               }
               alt=""
             />
           </div>
           <div className="flex-grow pl-2">
             <h6 className="font-bold text-sm uppercase text-gray-600">
-              {isAuthenticated ? user.name : 'Guest User'}
+              {'User Name'}
             </h6>
           </div>
         </div>

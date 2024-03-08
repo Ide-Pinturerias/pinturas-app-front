@@ -72,11 +72,6 @@ export const ADD_FAVORITE = 'ADD_FAVORITE'
 export const GET_FAVORITES = 'GET_FAVORITES'
 export const DELETE_FAVORITES = 'DELETE_FAVORITES'
 
-// AUTH0-USERS-INFO
-export const SET_USER_DATA = 'SET_USER_DATA'
-export const URL_INFO_USER_AUTH0 = '--'
-
-
 // REVIEWS
 export const SAVE_REVIEW = 'SAVE_REVIEW'
 export const URL_SAVE_REVIEW = BASE_URL

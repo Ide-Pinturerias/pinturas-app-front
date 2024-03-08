@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
 import { useDispatch } from 'react-redux'
 import { postLoginUser } from '@redux/actions/User/postLoginUser'
 import { logoutUser } from '@redux/actions/User/logoutUser'
@@ -9,9 +8,6 @@ import { Button } from '@components/Controls/Buttons'
 import { PlainNavLink } from '@components/Controls/Links'
 
 const LoginForm = () => {
-  const { isAuthenticated, loginWithPopup, user } = useAuth0()
-
-  const [userInfo, setUserInfo] = useState()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
@@ -19,11 +15,6 @@ const LoginForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isAuthenticated && !userInfo) {
-      setUserInfo(user)
-    }
-  }, [isAuthenticated, userInfo, user])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -119,18 +110,6 @@ const LoginForm = () => {
                             </Button>
                         </div>
                     </form>
-
-                    <div className="mt-7">
-                        <Button
-                            variant="secondary"
-                            onClick={loginWithPopup}
-                            type="submit"
-                            className="w-full"
-                        >
-                            Iniciar con Google
-                        </Button>
-                    </div>
-
                     <p className="text-gray-400 pt-5 pb-10 text-m ">
                         ¿No tienes una cuenta?
                         <PlainNavLink
@@ -141,7 +120,6 @@ const LoginForm = () => {
                     </p>
                 </div>
                 <div className="mt-7">
-
                 </div>
             </div>
         </div>

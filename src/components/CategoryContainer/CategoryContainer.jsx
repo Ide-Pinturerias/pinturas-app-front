@@ -56,7 +56,7 @@ const CategoryContainer = () => {
     { image: category8, searchQuery: 'Linea Esmaltes Industriales' },
     { image: category2, searchQuery: 'Linea Productos Especiales' },
     { image: category10, searchQuery: 'Linea Impermeabilizantes' },
-    { image: category11, searchQuery: 'Linea Fijadores - Aditivos' },
+    { image: category11, searchQuery: 'Linea Fijadores - Aditivos -' },
     { image: category9, searchQuery: 'Linea Latex' },
     // { image: category12, searchQuery: "Linea" },
     { image: category13, searchQuery: 'Linea Productos Auxiliares' }

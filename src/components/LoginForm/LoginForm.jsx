@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { postLoginUser } from '@redux/actions/User/postLoginUser'
 import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
+import { Button } from '@components/Controls/Buttons'
+import { PlainNavLink } from '@components/Controls/Links'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -56,10 +58,6 @@ const LoginForm = () => {
       setErrors(errors)
     }
   }
-  // BOTON REGISTRATE
-  const navigateToRegister = () => {
-    navigate('/login/register')
-  }
 
   return (
         <div className="font-sans">
@@ -81,8 +79,7 @@ const LoginForm = () => {
                                 value={email}
                                 maxLength={40}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
-                                    }`}
+                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             {errors.email && (
                                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -96,8 +93,7 @@ const LoginForm = () => {
                                 value={password}
                                 maxLength={30}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
-                                    }`}
+                                className={`mt-1 p-2 text-center block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
                             />
                             {errors.password && (
                                 <p className="text-red-500 text-sm mt-1">{errors.password}</p>
@@ -105,23 +101,22 @@ const LoginForm = () => {
                         </div>
 
                         <div className="pt-10">
-                            <button
+                            <Button
+                                variant="primary"
                                 type="submit"
-                                className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:bg-blue-600 hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                                className="w-full"
                             >
                                 Iniciar sesión
-                            </button>
+                            </Button>
                         </div>
                     </form>
                     <p className="text-gray-400 pt-5 pb-10 text-m ">
-                        ¿No tienes una cuenta?{' '}
-                        <a
-                            className="text-center text-blue-600 hover:text-blue-800"
-                            href="#"
-                            onClick={navigateToRegister}
+                        ¿No tienes una cuenta?
+                        <PlainNavLink
+                            path="/login/register"
                         >
                             Registrate
-                        </a>{' '}
+                        </PlainNavLink>
                     </p>
                 </div>
                 <div className="mt-7">

@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { postOrderByCart } from '../../redux/actions/Orders/postOrderByCart'
-import { postOrderPayment } from '../../redux/actions/Orders/postOrderPayment'
+import { postOrderByCart } from '@redux/actions/Orders/postOrderByCart'
+import { postOrderPayment } from '@redux/actions/Orders/postOrderPayment'
 import Swal from 'sweetalert2'
+import { Button } from '@components/Controls/Buttons'
 
 const PurchaseCart = ({ products }) => {
   const dispatch = useDispatch()
@@ -31,13 +32,16 @@ const PurchaseCart = ({ products }) => {
     }
   }
 
-  return (<>
-        <button className="p-4 bg-primaryClear rounded-3xl text-sm font-bold text-primaryVisible m-1"
-        onClick={handlePurchase}
-        disabled={checkStock()}
-        style={{ backgroundColor: checkStock() ? '#ccc' : null }}
-        >¡Comprar Carrito!</button>
-    </>)
+  return (
+    <Button
+      variant="primary"
+      onClick={handlePurchase}
+      disabled={checkStock()}
+      style={{ backgroundColor: checkStock() ? '#ccc' : null }}
+    >
+      ¡Comprar Carrito!
+    </Button>
+  )
 }
 
 export default PurchaseCart

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
@@ -7,8 +6,9 @@ const UserOrderDetail = () => {
   const navigate = useNavigate()
   const detail = useSelector((state) => state.orderDetail)
   const user = useSelector((state) => state.user)
-  const productsRaw = detail.products
-  const products = productsRaw.map((product) => JSON.parse(product))
+  // hacer ruta quedevueta los productos pasando un array de ids
+  // const productsRaw = detail.products
+  // const products = productsRaw.map((product) => JSON.parse(product))
 
   if (user.id === detail.userId) {
     return (
@@ -25,7 +25,7 @@ const UserOrderDetail = () => {
                     </div>
 
                     <div className="grid grid-cols-2 ">
-                        {products.map((product) => {
+                        {/* {products.map((product) => {
                           return (
                                 <div className="mb-9 flex" key={product.id}>
                                     <div className="flex p-5  w-full rounded hover:bg-gray-200 ">
@@ -51,7 +51,7 @@ const UserOrderDetail = () => {
                                     </div>
                                 </div>
                           )
-                        })}
+                        })} */}
                     </div>
                 </div>
                 <div className="flex items-center justify-evenly">

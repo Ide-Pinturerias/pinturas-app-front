@@ -91,7 +91,7 @@ const UpdateUserForm = () => {
   }
 
     return (
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 mt-20">
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <label

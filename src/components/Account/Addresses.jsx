@@ -50,43 +50,7 @@ const Addresses = () => {
   }
 
   return (
-    <div className="container mx-auto px-4">
-      <li>
-        <p className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium focus:bg-gray-200 focus:shadow-outline">
-          <span className=" text-gray-600">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 21H12"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M10 21V3"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M10 4L19 8L10 12"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Mi Dirección</span>
-        </p>
-      </li>
+    <div className="container mx-auto px-4 mt-20">
       <form onSubmit={handleSubmit} className="w-full max-w-md">
         <div className="mb-6">
           <p className="text-gray-600 text-xs mt-1">Dirección </p>
@@ -117,7 +81,6 @@ const Addresses = () => {
             maxLength={30}
           />
         </div>
-
         <div className="flex justify-between">
           <button
             type="submit"

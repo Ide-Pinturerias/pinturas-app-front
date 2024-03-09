@@ -91,18 +91,16 @@ const UpdateUserForm = () => {
   }
 
     return (
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4 mt-20">
                 <form className="w-full max-w-md" onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <label
-                            className="block uppercase tracking-wide text-violet-700 text-xs font-bold mb-2"
-                            htmlFor="grid-first-name"
+                            className="text-gray-600 text-xs mt-1"
                         >
                             Nombre
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
-                            id="grid-first-name"
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             type="text"
                             maxLength={30}
                             name="name"
@@ -119,13 +117,12 @@ const UpdateUserForm = () => {
 
                     <div className="mb-6">
                         <label
-                            className="block uppercase tracking-wide text-violet-700 text-xs font-bold mb-2"
-                            htmlFor="grid-last-name"
+                            className="text-gray-600 text-xs mt-1"
                         >
                             Apellido
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-last-name"
                             type="text"
                             maxLength={30}
@@ -143,8 +140,7 @@ const UpdateUserForm = () => {
 
                     <div className="mb-6">
                         <label
-                            className="block uppercase tracking-wide text-violet-700 text-xs font-bold mb-2"
-                            htmlFor="grid-email"
+                            className="text-gray-600 text-xs mt-1"
                         >
                             Correo de tu cuenta
                         </label>

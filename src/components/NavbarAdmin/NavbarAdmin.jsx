@@ -7,7 +7,7 @@ const NavbarAdmin = ({
   backToAccountAction
 }) => {
   return (
-        <div>
+        <div className='bg-white rounded p-3 shadow-lg mt-16'>
             <div className="flex items-center space-x-4 p-2 mb-5">
                 <img className="h-12 rounded-full" src="https://i.ibb.co/hM4qPfP/blank-profile-picture-973460-960-720.webp" alt="Profile" />
                 <div>

@@ -65,7 +65,7 @@ const UsersDash = () => {
   ]
 
   return (
-        <div className="w-full">
+        <div className="container mx-auto px-4 mt-20">
             <DataGrid
                 rows={users.map(user => ({
                   id: user.id,

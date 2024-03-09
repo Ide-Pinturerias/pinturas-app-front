@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CreateButton from '../CreateButton/CreateButton.jsx'
 import UpdateButton from '../UpdateButton/UpdateButton.jsx'
@@ -65,11 +65,9 @@ const ProductsDash = () => {
   ]
 
   return (
-        <div className="container mx-auto px-4">
-
+        <div className="container mx-auto px-4 mt-16">
                 <CreateButton />
                 <UpdatePricesButton/>
-
             <div className="flex">
                 <DataGrid
                     rows={products.map(product => ({

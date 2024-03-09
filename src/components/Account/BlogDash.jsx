@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import getPosts from '@redux/actions/Blog/getPosts'
-import EditBlogButton from './Blog/EditBlogButton'
-import DeleteBlogButton from './Blog/DeleteBlogButton'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import CreateBlogButton from './Blog/CreateBlogButton'
+import getPosts from '@redux/actions/Blog/getPosts'
+import EditBlogButton from './BlogsButtons/EditBlogButton'
+import DeleteBlogButton from './BlogsButtons/DeleteBlogButton'
+import CreateBlogButton from './BlogsButtons/CreateBlogButton'
 
 const BlogDash = () => {
   const dispatch = useDispatch()
@@ -64,7 +64,7 @@ const BlogDash = () => {
 
   ]
   return (
-    <div>
+    <div className='mx-auto px-4 mt-20'>
       <div className="justify-end">
         <CreateBlogButton />
       </div>

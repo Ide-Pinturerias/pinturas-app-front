@@ -109,7 +109,7 @@ function NavBar () {
                             </div>
                             <div
                                 className="relative flex justify-center items-center"
-                                onClick={(e) => { setCredentialsMenu(true); e.stopPropagation() }}
+                                
                             >
                                 <Link
                                     to="/account"
@@ -118,10 +118,7 @@ function NavBar () {
                                     <UserIcon size={'.75rem'} />
                                     Cuenta
                                 </Link>
-                                <div ref={credentialsMenuRef} className={`${credentialsMenu ? 'opacity-100 visible transition-all' : 'opacity-0 invisible transition-all'} absolute top-[110%] right-0 flex flex-col gap-2 items-start p-4 bg-primaryClear rounded-lg shadow-credentialsMenu`}>
-                                    <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-accentClear text-white text-start whitespace-nowrap transition-colors'}>INICIAR SESIÓN</button>
-                                    <button className={'py-[0.2rem] px-2 w-full rounded-[5px] hover:bg-accentClear text-white text-start whitespace-nowrap transition-colors'}>REGISTRARSE</button>
-                                </div>
+                                
                             </div>
                         </nav>
                     </div>

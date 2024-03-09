@@ -141,9 +141,11 @@ const Account = () => {
     )
   } else {
     return (
-            <div className="pb-36 pt-20 my-20 flex items-center justify-center lg:mt-0 mr:auto h-full">
-                <LoginForm />
-            </div>
+      <div className="relative min-h-screen flex flex-col justify-center items-center px-4">
+        <div className="w-full max-w-md">
+          <LoginForm />
+        </div>
+      </div>
     )
   }
 }

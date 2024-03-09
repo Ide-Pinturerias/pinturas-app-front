@@ -64,7 +64,7 @@ const BlogDash = () => {
 
   ]
   return (
-    <div>
+    <div className='mx-auto px-4 mt-20'>
       <div className="justify-end">
         <CreateBlogButton />
       </div>

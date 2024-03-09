@@ -60,7 +60,7 @@ const ProvidersDash = () => {
 
   ]
   return (
-    <div className='container mx-auto px-4'>
+    <div className='container mx-auto px-4 mt-20'>
       <div className="justify-end">
         <CreateProviderButton />
       </div>

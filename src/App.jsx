@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
 import Home from './views/Home/Home'
 import About from './views/About/About'
-import NavBar from './components/NavBar/NavBar'
 import Contact from './views/Contact/Contact'
 import Detail from './views/Detail/Detail'
-import Footer from './components/Footer/Footer'
 import Bookmarks from './views/Bookmarks/Bookmarks';
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
@@ -15,29 +13,29 @@ import UpdateProduct from './views/UpdateProduct/UpdateProduct'
 import CreateProduct from './views/CreateProduct/CreateProduct'
 import Developers from './views/Developers/Developers'
 import Register from './views/Register/Register'
-import Purchases from './views/Purchases/Purchases'
 import NotFound from './views/NotFound/NotFound'
 import SuccessfulPayment from './views/Payment/SuccessfulPayment'
 import FailurePayment from './views/Payment/FaillurePayment'
 import PendingPayment from './views/Payment/PendingPayment'
 import Login from './views/Login/Login'
 import ReviewsPage from './views/ReviewsPage/ReviewsPage'
-import { useDispatch } from 'react-redux'
-import { setUser } from './redux/actions/User/setUser'
-import { getAllProductsPaginated } from './redux/actions/Products/getAllProductsPaginated'
-import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
-import OrderDetail from './views/OrderDetail/OrderDetail'
 import Dashboard from './views/Dashboard/Dashboard'
 import BlogCreate from './views/Blog/BlogCreate'
 import EditBlog from './views/Blog/EditBlog'
 import BlogDetail from './views/Blog/BlogDetail'
 import UserOrderDetail from './views/UserOrderDetail/UserOrderDetail'
-// import ChatBotApp from './components/ChatBot/ChatBotApp'
 import UpdatePrices from './views/UpdatePrices/UpdatePrices'
 import CreateProvider from './views/Providers/CreateProvider'
 import EditProvider from './views/Providers/EditProvider'
 import ScrollToTop from './hooks/ScrollToTop'
+import Footer from './components/Footer/Footer'
+import NavBar from './components/NavBar/NavBar'
+import UpdateUserFormByAdmin from '@components/UpdateUserFormByAdmin/UpdateUserFormByAdmin'
+import { getAllProductsPaginated } from './redux/actions/Products/getAllProductsPaginated'
+import { useDispatch } from 'react-redux'
+import { setUser } from './redux/actions/User/setUser'
 import { findOrCreateCart } from './redux/actions/Cart/findOrCreateCart'
+// import ChatBotApp from './components/ChatBot/ChatBotApp'
 
 function App () {
   const dispatch = useDispatch()
@@ -84,8 +82,6 @@ function App () {
               <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
 
               <Route path="/cart" element={<Cart />} />
-              <Route path="/cart/buying" element={<Purchases />} />
-              <Route path="/cart/detail" element={<OrderDetail />} />
 
               <Route path="/bookmarks" element={<Bookmarks />} />
 

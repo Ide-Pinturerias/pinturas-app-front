@@ -3,7 +3,7 @@ import ProductCart from "@components/Cart/ProductCart"
 
 export default function CartList({ products }) {
     return (
-        <div>
+        <ul>
             {
                 products.map((product) => (
                     <ProductCart
@@ -18,6 +18,6 @@ export default function CartList({ products }) {
                     />
                 ))
             }
-        </div>
+        </ul>
     )
 }

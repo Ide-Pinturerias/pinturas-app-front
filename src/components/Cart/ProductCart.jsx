@@ -68,17 +68,19 @@ function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
         <>
             {
                 id && name && quantity && image && price && stock >= 0 && subtotal ? (
-                    <li className="flex h-[225px] p-[24px]">
-                        <input type="checkbox" />
-                        <img src={image} className="aspect-square object-cover size-[170px]" />
-                        <div className="flex flex-col flex-1">
-                            <span className="uppercase font-bold">{name}</span>
-                            <span>PATENT HERE</span>
-                            <div>CATEGORY HERE</div>
-                            <div><span>Tamaño del envase: </span>PACKAGE HERE</div>
-                            <div><span>Color: </span>COLOR HERE</div>
+                    <li className="flex gap-[16px] min-h-[225px] p-[24px] text-[16px]">
+                        <div className="flex flex-1 gap-[16px]">
+                            <input type="checkbox" className="w-[20px]"/>
+                            <img src={image} className="aspect-square object-cover size-[170px]" />
+                            <div className="flex flex-col flex-1 gap-[4px]">
+                                <span className="uppercase font-bold text-[18px]">{name}</span>
+                                <span>PATENT HERE</span>
+                                <div>CATEGORY HERE</div>
+                                <div><span>Tamaño del envase: </span>PACKAGE HERE</div>
+                                <div><span>Color: </span>COLOR HERE</div>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-end">
+                        <div className="flex flex-col items-end gap-[4px]">
                             <Button variant="tertiary">Seleccionar solo este producto</Button>
                             <strong className="text-[32px]">$ {formatNumberWithDots(subtotal)}</strong>
                             {
@@ -86,7 +88,7 @@ function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
                                     <span><strong>$ {formatNumberWithDots(price)}</strong> por cada unidad</span>
                                 ) : null
                             }
-                            <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
+                            <div className="flex border border-black rounded-[2rem] text-lg h-fit">
                                 <button
                                     className="p-3"
                                 >

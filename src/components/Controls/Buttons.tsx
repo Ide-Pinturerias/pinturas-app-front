@@ -21,8 +21,8 @@ export function Button({ children, variant, subVariant, className, ...props }: B
             interaction = "transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-[1.7px] active:bg-primaryDull active:scale-[.97]"
             break
         case "tertiary":
-            interaction = 'outline-offset-[1.5px] focus:outline-focus focus:outline focus-visible:outline-focus focus-visible:outline';
             buttonClass = "underline text-primaryClear cursor-pointer hover:no-underline hover:text-primaryLight active:underline active:text-primaryDark"
+            interaction = 'transition-colors ease-linear duration-100 focus:outline focus:outline-focus focus:outline-offset-[1px] focus-visible:outline-focus focus-visible:outline';
             break
         case "danger":
             buttonClass = "box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase bg-bg border border-secondaryClear text-secondaryClear"

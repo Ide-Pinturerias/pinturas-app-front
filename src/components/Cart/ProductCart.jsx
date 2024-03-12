@@ -2,6 +2,7 @@ import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { Button } from '@components/Controls/Buttons'
+import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
 
 function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
     const dispatch = useDispatch()
@@ -67,10 +68,10 @@ function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
             {
                 id && name && quantity && image && price && stock >= 0 && subtotal ? (
                     <li className="flex h-[225px] p-[24px]">
-                        <div>checkbox</div>
+                        <input type="checkbox" />
                         <img src={image} className="aspect-square object-cover size-[170px]" />
                         <div className="flex flex-col flex-1">
-                            <span>{name}</span>
+                            <span className="uppercase font-bold">{name}</span>
                             <span>PATENT HERE</span>
                             <div>CATEGORY HERE</div>
                             <div><span>Tamaño del envase: </span>PACKAGE HERE</div>
@@ -78,12 +79,16 @@ function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
                         </div>
                         <div className="flex flex-col items-end">
                             <Button variant="tertiary">Seleccionar solo este producto</Button>
-                            <strong>$ {subtotal}</strong>
-                            <span>$ {price} por cada unidad</span>
+                            <strong className="text-[32px]">$ {formatNumberWithDots(subtotal)}</strong>
+                            {
+                                quantity > 1 ? (
+                                    <span><strong>$ {formatNumberWithDots(price)}</strong> por cada unidad</span>
+                                ) : null
+                            }
                             <div>SELECTOR HERE</div>
                             {
-                                stock > 10 ? (
-                                    <span>¡Quedan solo 3 unidades! </span>
+                                stock === 10 ? (
+                                    <span>¡Quedan solo <strong>{stock}</strong> unidades! </span>
                                 ) : (
                                     stock === 1 ? (
                                         <span>Última unidad</span>

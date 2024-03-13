@@ -5,7 +5,7 @@ import { Button } from '@components/Controls/Buttons'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
 import { Plus, Minus } from "@svg"
 
-function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
+function ProductCart({ id, name, category, brand, size, color, quantity, image, price, stock, subtotal }) {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
@@ -67,17 +67,19 @@ function ProductCart({ id, name, quantity, image, price, stock, subtotal }) {
     return (
         <>
             {
-                id && name && quantity && image && price && stock >= 0 && subtotal ? (
+                id && name && category && brand && size && color && quantity && image && price && stock >= 0 && subtotal ? (
                     <li className="flex gap-[16px] min-h-[225px] p-[24px] text-[16px]">
                         <div className="flex flex-1 gap-[16px]">
-                            <input type="checkbox" className="w-[20px]"/>
+                            <input type="checkbox" className="w-[20px]" />
                             <img src={image} className="aspect-square object-cover size-[170px]" />
                             <div className="flex flex-col flex-1 gap-[4px]">
                                 <span className="uppercase font-bold text-[18px]">{name}</span>
-                                <span>PATENT HERE</span>
-                                <div>CATEGORY HERE</div>
-                                <div><span>Tamaño del envase: </span>PACKAGE HERE</div>
-                                <div><span>Color: </span>COLOR HERE</div>
+                                <span>{brand}</span>
+                                <div className="h-[24px] w-fit px-[8px] bg-black rounded-full uppercase text-bg text-[12px] leading-[24px]">
+                                    {category}
+                                </div>  
+                                <div><span>Presentación: </span>{size}</div>
+                                <div><span>Color: </span>{color}</div>
                             </div>
                         </div>
                         <div className="flex flex-col items-end gap-[4px]">

@@ -10,6 +10,10 @@ export default function CartList({ products }) {
                         key={product.idProduct}
                         id={product.idProduct}
                         name={product.name}
+                        category={product.category}
+                        brand={product.patent}
+                        size={product.package}
+                        color={product.color}
                         quantity={product.quantity}
                         image={product.image}
                         price={product.price}

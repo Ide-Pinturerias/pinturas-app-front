@@ -54,6 +54,7 @@ const BannerCarousel = () => {
                             <img
                                 src={img.src}
                                 alt={img.alt}
+                                style={{aspectRatio: '16/5'}}
                                 className="w-full h-auto object-cover select-none m-auto"
                             />
                         </Link>

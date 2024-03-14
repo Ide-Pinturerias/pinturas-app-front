@@ -38,6 +38,7 @@ export function PlainExternalLink({ children, path, styles, icon }) {
             href={path}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Link to external site"
         >
             {children}
         </a>

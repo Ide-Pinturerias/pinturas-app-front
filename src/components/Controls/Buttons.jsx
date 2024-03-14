@@ -46,6 +46,7 @@ export function Button({ children, variant, subVariant, className, ...props }) {
                 `w-fit box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase ${buttonClass} ${interaction}`,
                 className
             )}
+            aria-label={props.label ?? `${interaction}`}
         >
             {children}
         </button>

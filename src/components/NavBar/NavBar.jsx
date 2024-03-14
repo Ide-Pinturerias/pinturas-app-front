@@ -75,6 +75,7 @@ function NavBar () {
                         {/* LOGO */}
                         <Link to="/">
                             <img
+                                width={52} height={31}
                                 src={logo} alt="Logo Ide Pinturerias."
                                 className="w-[3.25rem] object-contain cursor-pointer"
                             />
@@ -109,7 +110,7 @@ function NavBar () {
                             </div>
                             <div
                                 className="relative flex justify-center items-center"
-                                
+
                             >
                                 <Link
                                     to="/account"
@@ -118,7 +119,7 @@ function NavBar () {
                                     <UserIcon size={'.75rem'} />
                                     Cuenta
                                 </Link>
-                                
+
                             </div>
                         </nav>
                     </div>

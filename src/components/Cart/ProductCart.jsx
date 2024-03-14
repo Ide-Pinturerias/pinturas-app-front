@@ -83,7 +83,7 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
                             </div>
                         </div>
                         <div className="flex flex-col items-end gap-[4px]">
-                            <Button variant="tertiary">Seleccionar solo este producto</Button>
+                            <Button variant="tertiary">Solo este producto</Button>
                             <strong className="text-[32px]">$ {formatNumberWithDots(subtotal)}</strong>
                             {
                                 quantity > 1 ? (

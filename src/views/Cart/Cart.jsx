@@ -73,7 +73,7 @@ function Cart() {
                                             </div>
                                         </div>
                                         <div className='flex flex-col w-[35%] py[32px] pl-[32px] text-[16px]'>
-                                            <span className="text-[20px] uppercase font-bold">Resumen del pedido</span>
+                                            <span className="mb-[32px] text-[20px] uppercase font-bold">Resumen del pedido</span>
                                             <div className="flex justify-between text-[20px]"><span>Cantidad de productos</span><span>{sumItems()}</span></div>
                                             <div className="flex justify-between text-[32px]"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>

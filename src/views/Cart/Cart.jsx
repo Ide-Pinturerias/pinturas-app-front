@@ -9,6 +9,7 @@ import { GetSpecificProducts } from '../../services/api'
 import { Button } from "@components/Controls/Buttons.jsx"
 import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
+import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar } from '@svg'
 
 function Cart() {
     // LOCAL STATES:
@@ -74,8 +75,22 @@ function Cart() {
                                         </div>
                                         <div className='flex flex-col w-[35%] py[32px] pl-[32px] text-[16px]'>
                                             <span className="mb-[32px] text-[20px] uppercase font-bold">Resumen del pedido</span>
-                                            <div className="flex justify-between text-[20px]"><span>Cantidad de productos</span><span>{sumItems()}</span></div>
-                                            <div className="flex justify-between text-[32px]"><span>Total</span><span>{sumPrice()}</span></div>
+                                            <div className="flex justify-between mb-[16px] text-[20px]"><span>Cantidad de productos</span><span>{sumItems()}</span></div>
+                                            <div className="mb-[16px] p-[16px] bg-bgFocus rounded-[10px]">
+                                                <div className="flex items-start gap-[8px] mb-[12px]">
+                                                    <div className="relative top-[.18em]">
+                                                        <Store size={18}/>
+                                                    </div>
+                                                    <span className="leading-normal">La entrega del pedido es en la misma tienda.</span>
+                                                </div>
+                                                <div className="flex items-start gap-[8px]">
+                                                    <div className="relative top-[.2em]">
+                                                        <EnvelopeCheck size={18} />
+                                                    </div>
+                                                    <span className="leading-normal">Al momento de la compra, recibirá un correo que deberá mostrar al momento de recoger su pedido en la tienda.</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>
                                             <div></div>
                                             <div></div>

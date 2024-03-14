@@ -9,7 +9,7 @@ import { GetSpecificProducts } from '../../services/api'
 import { Button } from "@components/Controls/Buttons.jsx"
 import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar } from '@svg'
+import { Store, EnvelopeCheck } from '@svg'
 
 function Cart() {
     // LOCAL STATES:

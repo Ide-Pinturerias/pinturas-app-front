@@ -92,50 +92,50 @@ function Cart() {
                                             </div>
                                             <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>
-                                            <ul>
-                                                <li>
-                                                    <div className="flex">
-                                                        <div className="flex">
+                                            <ul className="mt-[50px]">
+                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
+                                                    <div className="flex items-center justify-between ">
+                                                        <div className="flex items-center gap-[8px]">
                                                             <QuestionCircle />
-                                                            <span className="text-[20px] font-bold">¿Necesitas ayuda?</span>
+                                                            <span className="text-[20px] font-bold leading-none">¿Necesitas ayuda?</span>
                                                         </div>
                                                         <CaretDown />
                                                     </div>
-                                                    <div>
-                                                        <p>Estaremos encantados de atenderte para asegurar que su compra sea una experiencia satisfactoria y sin contratiempos.</p>
+                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
+                                                        <p className="mb-[16px]">Estaremos encantados de atenderte para asegurar que su compra sea una experiencia satisfactoria y sin contratiempos.</p>
                                                         <button className="flex"><Phone />Llámanos</button>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div className="flex">
-                                                        <div className="flex">
+                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center gap-[8px]">
                                                             <LocationMark />
-                                                            <span className="text-[20px] font-bold">Ubicación de la tienda</span>
+                                                            <span className="text-[20px] font-bold leading-none">Ubicación de la tienda</span>
                                                         </div>
                                                         <CaretDown />
                                                     </div>
-                                                    <div>
+                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
                                                         <span className="block">RP5, Esquina La Isla Anisacate, Córdoba.</span>
                                                         <a className="block">
                                                             Ver en Google Maps
-                                                            <div className="inline-block">
+                                                            <div className="inline-block align-middle ml-[6px]">
                                                                 <ArrowUpRightCircle />
                                                             </div>
                                                         </a>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div className="flex">
-                                                        <div className="flex">
+                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
+                                                    <div className="flex items-center justify-between">
+                                                        <div className="flex items-center gap-[8px]">
                                                             <Calendar />
-                                                            <span className="text-[20px] font-bold">Horarios de despacho</span>
+                                                            <span className="text-[20px] font-bold leading-none">Horarios de despacho</span>
                                                         </div>
                                                         <CaretDown />
                                                     </div>
-                                                    <div>
+                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
                                                         <span className="block">Lunes a sábado: 8:00 a.m. - 4:00 p.m.</span>
                                                         <span className="block">Domingo: 9:00 a.m. - 1:00 p.m.</span>
-                                                        <strong className="block text-[12px]">*Normalmente su pedido se encuentra disponible 30 minutos después de haber realizado la compra.</strong>
+                                                        <strong className="block mt-[4px] text-[12px]">*Normalmente su pedido se encuentra disponible 30 minutos después de haber realizado la compra.</strong>
                                                     </div>
                                                 </li>
                                             </ul>

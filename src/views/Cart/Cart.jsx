@@ -9,7 +9,7 @@ import { GetSpecificProducts } from '../../services/api'
 import { Button } from "@components/Controls/Buttons.jsx"
 import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import { Store, EnvelopeCheck } from '@svg'
+import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, CaretDown, Phone, ArrowUpRightCircle } from '@svg'
 
 function Cart() {
     // LOCAL STATES:
@@ -79,7 +79,7 @@ function Cart() {
                                             <div className="mb-[16px] p-[16px] bg-bgFocus rounded-[10px]">
                                                 <div className="flex items-start gap-[8px] mb-[12px]">
                                                     <div className="relative top-[.18em]">
-                                                        <Store size={18}/>
+                                                        <Store size={18} />
                                                     </div>
                                                     <span className="leading-normal">La entrega del pedido es en la misma tienda.</span>
                                                 </div>
@@ -92,9 +92,53 @@ function Cart() {
                                             </div>
                                             <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
+                                            <ul>
+                                                <li>
+                                                    <div className="flex">
+                                                        <div className="flex">
+                                                            <QuestionCircle />
+                                                            <span className="text-[20px] font-bold">¿Necesitas ayuda?</span>
+                                                        </div>
+                                                        <CaretDown />
+                                                    </div>
+                                                    <div>
+                                                        <p>Estaremos encantados de atenderte para asegurar que su compra sea una experiencia satisfactoria y sin contratiempos.</p>
+                                                        <button className="flex"><Phone />Llámanos</button>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="flex">
+                                                        <div className="flex">
+                                                            <LocationMark />
+                                                            <span className="text-[20px] font-bold">Ubicación de la tienda</span>
+                                                        </div>
+                                                        <CaretDown />
+                                                    </div>
+                                                    <div>
+                                                        <span className="block">RP5, Esquina La Isla Anisacate, Córdoba.</span>
+                                                        <a className="block">
+                                                            Ver en Google Maps
+                                                            <div className="inline-block">
+                                                                <ArrowUpRightCircle />
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="flex">
+                                                        <div className="flex">
+                                                            <Calendar />
+                                                            <span className="text-[20px] font-bold">Horarios de despacho</span>
+                                                        </div>
+                                                        <CaretDown />
+                                                    </div>
+                                                    <div>
+                                                        <span className="block">Lunes a sábado: 8:00 a.m. - 4:00 p.m.</span>
+                                                        <span className="block">Domingo: 9:00 a.m. - 1:00 p.m.</span>
+                                                        <strong className="block text-[12px]">*Normalmente su pedido se encuentra disponible 30 minutos después de haber realizado la compra.</strong>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 ) : (

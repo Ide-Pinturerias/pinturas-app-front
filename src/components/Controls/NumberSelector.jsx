@@ -36,7 +36,7 @@ export default function NumberSelector({ number, setNumber, limit }) {
                 onChange={(e) => handleNumberOfItems(e)}
                 type="text"
                 inputMode="numeric"
-                maxLength={4}
+                maxLength={3}
                 step={1}
                 min={0}
                 max={limit}

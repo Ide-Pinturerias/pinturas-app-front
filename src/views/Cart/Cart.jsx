@@ -8,6 +8,7 @@ import { LoadingSpinner } from '../../components/Cart/LoadingSpinner'
 import { GetSpecificProducts } from '../../services/api'
 import { Button } from "@components/Controls/Buttons.jsx"
 import CartList from '@components/Cart/CartList'
+import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
 
 function Cart() {
     // LOCAL STATES:
@@ -22,6 +23,24 @@ function Cart() {
             setProductsCart(products)
         }
         setIsLoading(false)
+    }
+
+    // Retorna la cantidad total de items.
+    const sumItems = () => {
+        let total = 0;
+        if (productsCart.length > 0) {
+            total = productsCart.reduce((acc, item) => acc + item.quantity, 0)
+            return total
+        }
+    }
+
+    // Retorna el precio a pagar (total).
+    const sumPrice = () => {
+        let total = 0;
+        if (productsCart.length > 0) {
+            total = productsCart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+            return formatNumberWithDots(total)
+        }
     }
 
     // LIFE CYCLES:
@@ -43,7 +62,7 @@ function Cart() {
                                 </div>
                             ) : (
                                 productsCart.length > 0 ? (
-                                    <div className="flex justify-between gap-[5%]">
+                                    <div className="flex justify-between">
                                         <div className="flex flex-col w-[65%]">
                                             <div className="flex justify-between">
                                                 <Button variant="secondary">Seleccionar todos</Button>
@@ -53,10 +72,10 @@ function Cart() {
                                                 <CartList products={productsCart} />
                                             </div>
                                         </div>
-                                        <div className='flex flex-col w-[30%] p-[32px]'>
-                                            <span>Resumen del pedido</span>
-                                            <div className="flex justify-between"><span>Cantidad de productos</span><span></span></div>
-                                            <div className="flex justify-between"><span>Total</span><span></span></div>
+                                        <div className='flex flex-col w-[35%] py[32px] pl-[32px] text-[16px]'>
+                                            <span className="text-[20px] uppercase font-bold">Resumen del pedido</span>
+                                            <div className="flex justify-between text-[20px]"><span>Cantidad de productos</span><span>{sumItems()}</span></div>
+                                            <div className="flex justify-between text-[32px]"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>
                                             <div></div>
                                             <div></div>

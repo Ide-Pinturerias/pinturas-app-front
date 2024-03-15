@@ -17,7 +17,7 @@ const ClearCart = () => {
       variant="danger"
       onClick={handleClearCart}
     >
-      Vaciar Carrito
+      Vaciar carro
     </Button>
   )
 }

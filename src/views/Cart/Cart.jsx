@@ -12,6 +12,7 @@ import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
 import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
 import { Accordion, AccordionHeader, AccordionBody } from '@components/Cart/Accordion'
 import PurchaseCart from '@components/Cart/PurchaseCart'
+import ClearCart from '@components/Cart/ClearCart'
 
 function Cart() {
     // LOCAL STATES:
@@ -69,7 +70,7 @@ function Cart() {
                                         <div className="flex flex-col w-[65%]">
                                             <div className="flex justify-between">
                                                 <Button variant="secondary">Seleccionar todos</Button>
-                                                <Button variant="danger">Vaciar carro</Button>
+                                                <ClearCart />
                                             </div>
                                             <div>
                                                 <CartList products={productsCart} />
@@ -137,7 +138,7 @@ function Cart() {
                                 ) : (
                                     <>
                                         <p className="mb-[25px]">Su carro de compras está vacío.</p>
-                                        <ButtonLink url='/products'>
+                                        <ButtonLink path='/products'>
                                             Continuar comprando
                                         </ButtonLink>
                                     </>

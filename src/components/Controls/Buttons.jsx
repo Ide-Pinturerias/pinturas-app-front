@@ -47,6 +47,7 @@ export function Button({ children, variant, subVariant, className, ...props }) {
                 `w-fit ${buttonClass} ${interaction}`,
                 className
             )}
+            aria-label={props.label ?? `${interaction}`}
         >
             {children}
         </button>

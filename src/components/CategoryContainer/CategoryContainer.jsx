@@ -34,7 +34,7 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
         >
             <img
                 src={image}
-                alt={searchQuery}
+                alt={`¡Descubre nuestra línea de ${title}!`}
                 className="overflow-hidden object-cover w-full h-auto aspect-[12/5] rounded-lg"
             />
             <h3 className='text-start font-bold'>{title}</h3>
@@ -44,7 +44,7 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
 
 const CategoryContainer = () => {
 
-  
+
 
   const CATEGORIES = [
     { image: category14, searchQuery: 'Linea Maderas' },
@@ -66,7 +66,7 @@ const CategoryContainer = () => {
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                 <div className="text-start">
-                    <p className="text-primaryClear">Arte que transforma tus paredes en obras maestras</p>
+                    <p className="text-primaryAccesibility  font-semibold w-fit px-2 py-1 rounded  shadow-black">Arte que transforma tus paredes en obras maestras</p>
                     <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
                     <p>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
                 </div>

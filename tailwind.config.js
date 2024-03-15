@@ -25,6 +25,7 @@ export default {
         bgFocus: '#F5F5F5', // '#EDE4D3'
         primaryClear: '#FF6600',
         primaryLight: '#FF8533',
+        primaryAccesibility: '#e75e02',
         primaryDark: '#D45C00',
         primaryDull: '#FFDDA6',
         primaryVisible: '#FFFFA1',
@@ -75,9 +76,9 @@ export default {
     },
     fontFamily: {
       abc: ['Urbanist', 'sans-serif'],
-      primary: 'Montserrat',
-      secondary: 'Nunito',
-      heading: 'Gill Sans'
+      primary: ['Montserrat', 'sans-serif'],
+      secondary: ['Nunito', 'sans-serif'],
+      heading: ['Gill Sans', 'sans-serif']
     }
   },
   plugins: [

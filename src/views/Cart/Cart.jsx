@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
-import { ButtonLink } from '@components/Controls/Links'
-import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
 import { GetSpecificProducts } from '@api'
-import { Button } from "@components/Controls/Buttons.jsx"
-import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
+import { Button } from "@components/Controls/Buttons.jsx"
+import { ButtonLink } from '@components/Controls/Links'
 import { Accordion, AccordionHeader, AccordionBody } from '@components/Cart/Accordion'
+import CartList from '@components/Cart/CartList'
 import PurchaseCart from '@components/Cart/PurchaseCart'
 import ClearCart from '@components/Cart/ClearCart'
+import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
 
 function Cart() {
     // LOCAL STATES:

@@ -68,10 +68,10 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
         <>
             {
                 id && name && category && brand && size && color && quantity && image && price && stock >= 0 && subtotal ? (
-                    <li className="flex gap-[16px] min-h-[225px] p-[24px] text-[16px]">
+                    <li className="flex gap-[16px] min-h-[225px] mb-[24px] p-[24px] text-[16px]">
                         <div className="flex flex-1 gap-[16px]">
                             <input type="checkbox" className="w-[20px]" />
-                            <img src={image} className="aspect-square object-cover size-[170px]" />
+                            <img src={image} className="aspect-square object-cover size-[170px] rounded-[10px]" />
                             <div className="flex flex-col flex-1 gap-[4px]">
                                 <span className="uppercase font-bold text-[18px]">{name}</span>
                                 <span>{brand}</span>

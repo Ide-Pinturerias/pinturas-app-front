@@ -1,8 +1,4 @@
 import { useEffect, useState } from 'react'
-// import ProductCart from '@components/Cart/ProductCart'
-// import TotalCart from '@components/Cart/TotalCart'
-// import PurchaseCart from '@components/Cart/PurchaseCart'
-// import ClearCart from '@components/Cart/ClearCart'
 import { ButtonLink } from '@components/Controls/Links'
 import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
 import { GetSpecificProducts } from '@api'
@@ -32,19 +28,29 @@ function Cart() {
     // Retorna la cantidad total de items.
     const sumItems = () => {
         let total = 0;
-        if (productsCart.length > 0) {
+        if (Array.isArray(productsCart) && productsCart.length > 0) {
             total = productsCart.reduce((acc, item) => acc + item.quantity, 0)
             return total
         }
+        return 0 // Fallback.
     }
 
     // Retorna el precio a pagar (total).
     const sumPrice = () => {
         let total = 0;
-        if (productsCart.length > 0) {
-            total = productsCart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-            return formatNumberWithDots(total)
+        if (Array.isArray(productsCart) && productsCart.length > 0) {
+            total = productsCart.reduce((acc, item) => {
+                if (!item || typeof item !== "object" || isNaN(item.price) || isNaN(item.quantity)) {
+                    return acc
+                }
+                return acc + (item.price * item.quantity)
+            }, 0)
+            if (!isNaN(total)) {
+                total = total.toFixed(2)
+                return formatNumberWithDots(total)
+            }
         }
+        return 0  // Fallback.
     }
 
     // LIFE CYCLES:
@@ -68,13 +74,11 @@ function Cart() {
                                 productsCart.length > 0 ? (
                                     <div className="flex justify-between">
                                         <div className="flex flex-col w-[65%]">
-                                            <div className="flex justify-between">
+                                            <div className="flex justify-between mb-[32px]">
                                                 <Button variant="secondary">Seleccionar todos</Button>
                                                 <ClearCart />
                                             </div>
-                                            <div>
-                                                <CartList products={productsCart} />
-                                            </div>
+                                            <CartList products={productsCart} />
                                         </div>
                                         <div className='flex flex-col w-[35%] py[32px] pl-[32px] text-[16px]'>
                                             <span className="mb-[32px] text-[20px] uppercase font-bold">Resumen del pedido</span>
@@ -150,55 +154,6 @@ function Cart() {
             </section>
         </main>
     )
-
-    // const renderProducts = () => (
-    //     productsCart.map((product) => (
-    //         <ProductCart
-    //             key={product.idProduct}
-    //             id={product.idProduct}
-    //             name={product.name}
-    //             quantity={product.quantity}
-    //             image={product.image}
-    //             price={product.price}
-    //             stock={product.stock}
-    //             subtotal={product.price * product.quantity}
-    //         />
-    //     ))
-    // );
-
-    // const renderEmptyCart = () => (
-    //     <main className="pt-[5rem] grid justify-center items-center h-[100dvh]">
-    //         <h1 className="text-2xl font-bold text-gray-700">No tienes productos en el carrito</h1>
-    //         <div className="flex flex-row gap-2 w-full justify-center">
-    //             <ButtonLink path="/products">Ir a productos</ButtonLink>
-    //             <ButtonLink path="/">Volver al inicio</ButtonLink>
-    //         </div>
-    //     </main>
-    // );
-
-    // const renderCart = () => (
-    //     <main className="pt-[5rem] grid justify-center items-center min-h-[100dvh]">
-    //         {renderProducts()}
-    //         <TotalCart products={productsCart} />
-    //         <section className="flex justify-center">
-    //             <PurchaseCart products={productsCart} />
-    //             <ClearCart />
-    //         </section>
-    //     </main>
-    // );
-
-    // const renderLoading = () => (
-    //     <main className="pt-[5rem] grid justify-center items-center h-[100dvh]">
-    //         <LoadingSpinner />
-    //     </main>
-    // );
-
-    // // Renderizados condicionales
-    // if (isLoading) {
-    //     return renderLoading()
-    // } else {
-    //     return productsCart.length === 0 ? renderEmptyCart() : renderCart()
-    // }
-};
+}
 
 export default Cart;

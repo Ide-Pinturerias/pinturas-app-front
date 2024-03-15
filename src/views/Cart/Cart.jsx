@@ -96,8 +96,8 @@ function Cart() {
                                             <ul className="mt-[50px]">
                                                 <Accordion>
                                                     <AccordionHeader>
-                                                        <QuestionCircle />
-                                                        <span className="text-[20px] font-bold leading-none">¿Necesitas ayuda?</span>
+                                                        <QuestionCircle size={20} />
+                                                        <span className="text-[20px] text-nowrap text-start font-bold leading-none">¿Necesitas ayuda?</span>
                                                     </AccordionHeader>
                                                     <AccordionBody>
                                                         <p className="mb-[16px]">Estaremos encantados de atenderte para asegurar que su compra sea una experiencia satisfactoria y sin contratiempos.</p>
@@ -106,8 +106,8 @@ function Cart() {
                                                 </Accordion>
                                                 <Accordion>
                                                     <AccordionHeader>
-                                                        <LocationMark />
-                                                        <span className="text-[20px] font-bold leading-none">Ubicación de la tienda</span>
+                                                        <LocationMark size={20} />
+                                                        <span className="text-[20px] text-nowrap text-start font-bold leading-none">Ubicación de la tienda</span>
                                                     </AccordionHeader>
                                                     <AccordionBody>
                                                         <span className="block">RP5, Esquina La Isla Anisacate, Córdoba.</span>
@@ -121,8 +121,8 @@ function Cart() {
                                                 </Accordion>
                                                 <Accordion>
                                                     <AccordionHeader>
-                                                        <Calendar />
-                                                        <span className="text-[20px] font-bold leading-none">Horarios de despacho</span>
+                                                        <Calendar size={20} />
+                                                        <span className="text-[20px] text-nowrap text-start font-bold leading-none">Horarios de despacho</span>
                                                     </AccordionHeader>
                                                     <AccordionBody>
                                                         <span className="block">Lunes a sábado: 8:00 a.m. - 4:00 p.m.</span>

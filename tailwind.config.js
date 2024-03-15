@@ -68,6 +68,9 @@ export default {
       },
       transitionProperty: {
         focus: 'transform, background-color, box-shadow, opacity'
+      },
+      transitionTimingFunction: {
+        ease: 'ease'
       }
     },
     fontFamily: {

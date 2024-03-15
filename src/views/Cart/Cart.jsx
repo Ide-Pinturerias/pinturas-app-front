@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react'
 // import PurchaseCart from '@components/Cart/PurchaseCart'
 // import ClearCart from '@components/Cart/ClearCart'
 import { ButtonLink } from '@components/Controls/Links'
-import { LoadingSpinner } from '../../components/Cart/LoadingSpinner'
-import { GetSpecificProducts } from '../../services/api'
+import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { GetSpecificProducts } from '@api'
 import { Button } from "@components/Controls/Buttons.jsx"
 import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, CaretDown, Phone, ArrowUpRightCircle } from '@svg'
+import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
+import { Accordion, AccordionHeader, AccordionBody } from '@components/Cart/Accordion'
 
 function Cart() {
     // LOCAL STATES:
@@ -93,28 +94,22 @@ function Cart() {
                                             <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
                                             <Button variant="primary" className="w-full">Continuar compra</Button>
                                             <ul className="mt-[50px]">
-                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
-                                                    <div className="flex items-center justify-between ">
-                                                        <div className="flex items-center gap-[8px]">
-                                                            <QuestionCircle />
-                                                            <span className="text-[20px] font-bold leading-none">¿Necesitas ayuda?</span>
-                                                        </div>
-                                                        <CaretDown />
-                                                    </div>
-                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
+                                                <Accordion>
+                                                    <AccordionHeader>
+                                                        <QuestionCircle />
+                                                        <span className="text-[20px] font-bold leading-none">¿Necesitas ayuda?</span>
+                                                    </AccordionHeader>
+                                                    <AccordionBody>
                                                         <p className="mb-[16px]">Estaremos encantados de atenderte para asegurar que su compra sea una experiencia satisfactoria y sin contratiempos.</p>
                                                         <button className="flex"><Phone />Llámanos</button>
-                                                    </div>
-                                                </li>
-                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-[8px]">
-                                                            <LocationMark />
-                                                            <span className="text-[20px] font-bold leading-none">Ubicación de la tienda</span>
-                                                        </div>
-                                                        <CaretDown />
-                                                    </div>
-                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
+                                                    </AccordionBody>
+                                                </Accordion>
+                                                <Accordion>
+                                                    <AccordionHeader>
+                                                        <LocationMark />
+                                                        <span className="text-[20px] font-bold leading-none">Ubicación de la tienda</span>
+                                                    </AccordionHeader>
+                                                    <AccordionBody>
                                                         <span className="block">RP5, Esquina La Isla Anisacate, Córdoba.</span>
                                                         <a className="block">
                                                             Ver en Google Maps
@@ -122,22 +117,19 @@ function Cart() {
                                                                 <ArrowUpRightCircle />
                                                             </div>
                                                         </a>
-                                                    </div>
-                                                </li>
-                                                <li className="bg-bgFocus p-[16px] rounded-[10px] mb-[16px]">
-                                                    <div className="flex items-center justify-between">
-                                                        <div className="flex items-center gap-[8px]">
-                                                            <Calendar />
-                                                            <span className="text-[20px] font-bold leading-none">Horarios de despacho</span>
-                                                        </div>
-                                                        <CaretDown />
-                                                    </div>
-                                                    <div className="border-t border-duller mt-[16px] pt-[16px]">
+                                                    </AccordionBody>
+                                                </Accordion>
+                                                <Accordion>
+                                                    <AccordionHeader>
+                                                        <Calendar />
+                                                        <span className="text-[20px] font-bold leading-none">Horarios de despacho</span>
+                                                    </AccordionHeader>
+                                                    <AccordionBody>
                                                         <span className="block">Lunes a sábado: 8:00 a.m. - 4:00 p.m.</span>
                                                         <span className="block">Domingo: 9:00 a.m. - 1:00 p.m.</span>
                                                         <strong className="block mt-[4px] text-[12px]">*Normalmente su pedido se encuentra disponible 30 minutos después de haber realizado la compra.</strong>
-                                                    </div>
-                                                </li>
+                                                    </AccordionBody>
+                                                </Accordion>
                                             </ul>
                                         </div>
                                     </div>

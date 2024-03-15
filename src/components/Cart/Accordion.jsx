@@ -1,7 +1,7 @@
 import { useState, Children, isValidElement, cloneElement } from "react"
 import { CaretDown } from "@svg"
 
-function AccordionButton ({ setIsOpen, isOpen, children }) {
+function AccordionHeader ({ setIsOpen, isOpen, children }) {
     // isOpen state will be used for styles.
     return (
         <button
@@ -16,7 +16,7 @@ function AccordionButton ({ setIsOpen, isOpen, children }) {
     )
 }
 
-function AccordionContent({ isOpen, children }) {
+function AccordionBody({ isOpen, children }) {
     // isOpen state will be used for styles.
     return (
         <div className="border-t border-duller mt-[16px] pt-[16px]">
@@ -25,7 +25,7 @@ function AccordionContent({ isOpen, children }) {
     )
 }
 
-function AccordionItem({ children }) {
+function Accordion({ children }) {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -38,10 +38,10 @@ function AccordionItem({ children }) {
             {
                 Children.map(children, (child) => {
                     if (isValidElement(child)) {
-                        if (child.type === AccordionButton) {
+                        if (child.type === AccordionHeader) {
                             return cloneElement(child, { setIsOpen: toggleVisibility, isOpen })
                         }
-                        if (child.type === AccordionContent) {
+                        if (child.type === AccordionBody) {
                             return cloneElement(child, { isOpen })
                         }
                     }
@@ -53,7 +53,7 @@ function AccordionItem({ children }) {
 }
 
 export {
-    AccordionItem,
-    AccordionButton,
-    AccordionContent
+    Accordion,
+    AccordionHeader,
+    AccordionBody
 }

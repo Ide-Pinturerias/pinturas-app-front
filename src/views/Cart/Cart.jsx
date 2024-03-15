@@ -11,6 +11,7 @@ import CartList from '@components/Cart/CartList'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
 import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
 import { Accordion, AccordionHeader, AccordionBody } from '@components/Cart/Accordion'
+import PurchaseCart from '@components/Cart/PurchaseCart'
 
 function Cart() {
     // LOCAL STATES:
@@ -92,7 +93,7 @@ function Cart() {
                                                 </div>
                                             </div>
                                             <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
-                                            <Button variant="primary" className="w-full">Continuar compra</Button>
+                                            <PurchaseCart products={productsCart} />
                                             <ul className="mt-[50px]">
                                                 <Accordion>
                                                     <AccordionHeader>

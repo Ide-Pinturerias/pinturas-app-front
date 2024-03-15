@@ -25,6 +25,7 @@ const PurchaseCart = ({ products }) => {
       const idOrder = await dispatch(postOrderByCart(idCart))
       const initPoint = await dispatch(postOrderPayment(idOrder))
 
+      // Usar navigate() de "react-router".
       window.location.href = initPoint
     } catch (error) {
       Swal.fire('Algo falló al intentar realizar la compra')
@@ -35,11 +36,11 @@ const PurchaseCart = ({ products }) => {
   return (
     <Button
       variant="primary"
+      className={`w-full ${checkStock() ? "bg-[#CCC]" : ""}`}
       onClick={handlePurchase}
       disabled={checkStock()}
-      style={{ backgroundColor: checkStock() ? '#ccc' : null }}
     >
-      ¡Comprar Carrito!
+      Continuar compra
     </Button>
   )
 }

@@ -76,7 +76,7 @@ function Cart() {
                                         <div className="flex flex-col w-[65%]">
                                             <div className="flex justify-between mb-[32px]">
                                                 <Button variant="secondary">Seleccionar todos</Button>
-                                                <ClearCart />
+                                                <ClearCart setIsLoading={setIsLoading}/>
                                             </div>
                                             <CartList products={productsCart} />
                                         </div>
@@ -98,7 +98,7 @@ function Cart() {
                                                 </div>
                                             </div>
                                             <div className="flex justify-between mb-[16px] text-[32px] leading-none"><span>Total</span><span>{sumPrice()}</span></div>
-                                            <PurchaseCart products={productsCart} />
+                                            <PurchaseCart products={productsCart} setIsLoading={setIsLoading} />
                                             <ul className="mt-[50px]">
                                                 <Accordion>
                                                     <AccordionHeader>

@@ -7,18 +7,19 @@ export function Button({ children, variant, subVariant, className, ...props }) {
 
     switch (variant) {
         case "primary":
-            buttonClass = "bg-primaryClear text-primaryVisible"
+            buttonClass = "box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase bg-primaryClear text-primaryVisible"
             interaction = "transition-focus ease-linear duration-100 hover:bg-primaryLight hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-[1.7px] active:bg-primaryDark active:scale-[.97]"
             break
         case "secondary":
-            buttonClass = "bg-bg border border-primaryClear text-primaryClear"
+            buttonClass = "box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase bg-bg border border-primaryClear text-primaryClear"
             interaction = "transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-[1.7px] active:bg-primaryDull active:scale-[.97]"
             break
         case "tertiary":
-            buttonClass = "underline text-accentClear"
+            buttonClass = "underline text-primaryClear cursor-pointer hover:no-underline hover:text-primaryLight active:underline active:text-primaryDark"
+            interaction = 'transition-colors ease-linear duration-100 focus:outline focus:outline-focus focus:outline-offset-[1px] focus-visible:outline-focus focus-visible:outline';
             break
         case "danger":
-            buttonClass = "bg-bg border border-secondaryClear text-secondaryClear"
+            buttonClass = "box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase bg-bg border border-secondaryClear text-secondaryClear"
             interaction = "transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-[1.7px] active:bg-secondaryDull active:scale-[.97]"
             break
         default:
@@ -43,7 +44,7 @@ export function Button({ children, variant, subVariant, className, ...props }) {
         <button
             {...props}
             className={twMerge(
-                `w-fit box-border py-[1em] px-[1.5em] rounded-[60px] font-bold uppercase ${buttonClass} ${interaction}`,
+                `w-fit ${buttonClass} ${interaction}`,
                 className
             )}
             aria-label={props.label ?? `${interaction}`}

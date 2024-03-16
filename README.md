@@ -64,6 +64,19 @@ The application is deployed on [Vercel](https://vercel.com/).
 3. FilterMenu.jsx
 4. SortMenu.jsx
 
+## Bookmarks:
+
+1. BookmarkList.jsx
+2. FeaturedContainer.jsx
+
+## Cart:
+
+1. Accordion.jsx
+2. Controls (Button, ButtonLink)
+3. CartList.jsx
+4. ClearCart.jsx
+5. PurchaseCart.jsx
+
 ## Detail:
 
 1. FeaturedContainer.jsx (CardRegular.jsx)
@@ -105,10 +118,20 @@ src
 |--|--BookmarkList
 |--|--|--BookmarkList.jsx
 
+|--|--Cart
+|--|--|--Accordion.jsx
+|--|--|--CartList.jsx
+|--|--|--ClearCart.jsx
+|--|--|--LoadingSpinner.jsx
+|--|--|--ProductCart.jsx
+|--|--|--PurchaseCart.jsx
+|--|--|--TotalCart.jsx (CAN BE REMOVED)
+
 |--|--Controls
 |--|--|--Buttons.jsx
 |--|--|--Buttons.tsx
 |--|--|--Links.jsx
+|--|--|--NumberSelector.jsx
 
 -
 |--|--Featured (CAN BE REMOVED)
@@ -213,38 +236,68 @@ services/api/getBestSellers
 
 Prod:
 ```
-Path: '@components/controls/Buttons.jsx'
+Path: '@components/Controls/Buttons.jsx'
 ```
 Dev:
 ```
-Path: '@components/controls/Buttons.tsx'
+Path: '@components/Controls/Buttons.tsx'
 ```
 ### Props:
-- ```children```: Texto del botón.
-- ```variant```: Tipo de botón. Valores posibles: `primary`, `secondary`, `tertiary`, `danger`. Puede ser para la acción principal, secundaria, terciaria o la de peligro.
-- ```subVariant```: **No reemplaza a `variant`**. Valores posibles: `icon`.
-- ```className```: Sobreescribe las clases en caso de ser necesario.
+- `children`: Texto del botón.
+- `variant`: Tipo de botón. Valores posibles: `primary`, `secondary`, `tertiary`, `danger`. Puede ser para la acción principal, secundaria, terciaria o la de peligro.
+- `subVariant`: **No reemplaza a `variant`**. Valores posibles: `icon`.
+- `className`: Sobreescribe las clases en caso de ser necesario.
 - Y el resto de propiedades disponibles para `button` de React.
 
 
 ## Controls (links)
 
 ```
-Path: '@components/controls/Links.jsx'
+Path: '@components/Controls/Links.jsx'
 ```
 
 ### 1. ButtonLink
-- ```children```: Texto del link.
-- ```path```: String que indica la URL.
-- ```styles```: Objecto con estilos adicionales.
+- `children`: Texto del link.
+- `path`: String que indica la URL.
+- `styles`: Objecto con estilos adicionales.
 
 ### 2. PlaintNavLink
-- ```children```: Texto del link.
-- ```path```: String que indica la URL.
-- ```styles```: Objecto con estilos adicionales.
+- `children`: Texto del link.
+- `path`: String que indica la URL.
+- `styles`: Objecto con estilos adicionales.
 
 ### 3. PlainExternalLink
-- ```children```: Texto del link.
-- ```path```: String que indica la URL.
-- ```styles```: Objecto con estilos adicionales.
-- ```icon```: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
+- `children`: Texto del link.
+- `path`: String que indica la URL.
+- `styles`: Objecto con estilos adicionales.
+- `icon`: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
+
+## Controls (NumberSelector)
+
+```
+Path: '@components/Controls/NumberSelector.jsx'
+```
+
+### Props
+- `number`: El valor actual del selector.
+- `setNumber`: La función que va a settear al número para aumentar o disminuir.
+- `limit`: El máximo valor que puede tomar `number`.
+
+
+## Cart (Accordion)
+
+```
+Path: '@components/Cart/Accordion.jsx'
+```
+
+### 1. AccordionHeader
+- `setIsOpen`: Función que settea el estado `isOpen`.
+- `isOpen`: Booleano que indica si el contenido se está mostrando o no.
+- `children`: Contenido del botón.
+
+### 2. AccordionBody
+- `isOpen`: Booleano que indica si el contenido se está mostrando o no.
+- `children`: Contenido del cuerpo.
+
+### 3. Accordion
+- `children`: Los subelementos SOLO deben ser `<AccordionHeader>` y `<AccordionBody>`

@@ -1,23 +1,21 @@
 import axios from "axios"
-import { BASE_URL } from "@redux/action-type"
+import { BASE_URL, SET_CART } from "@redux/action-type"
 import { GetSpecificProducts } from "@api"
 
 export const updateQuantity = (idUser, newQuantity, productToChange) => async (dispatch) => {
     try {
-
-        const data = await axios.put(GetSpecificProducts, productToChange).data
+        const data = await GetSpecificProducts([productToChange])
         // Chequear si hay disponibilidad en el backend.
         // *solo se espera recibir un producto en el array.
-        if (data && data[0] && data[0]?.stock <= newQuantity) {
-            // localStorage.setItem('productsLocal', JSON.stringify(products))
-            const productsLocal = localStorage.getItem("productsLocal");
-            if (productsLocal !== null) {
-                const { id, quantity } = productToChange
-                try {
+        if (data?.[0]?.stock >= newQuantity) {
+            try {
+                const productsLocal = localStorage.getItem("productsLocal");
+                if (productsLocal !== null) {
+                    const { id } = productToChange
                     const parsedProductsLocal = JSON.parse(productsLocal);
                     const index = parsedProductsLocal.findIndex((prod) => prod.id === id);
 
-                    // Si se encontró el ID en el carro, actualizar "quantity".
+                    // LocalStorage: Si se encontró el ID en el carro, actualizar "quantity".
                     if (index !== -1) {
                         parsedProductsLocal[index].quantity = newQuantity;
                         localStorage.setItem("productsLocal", JSON.stringify(parsedProductsLocal))
@@ -29,16 +27,16 @@ export const updateQuantity = (idUser, newQuantity, productToChange) => async (d
                             idUser,
                             products: JSON.stringify(parsedProductsLocal)
                         }).data
-                        dispatch({ type: "UPDATE_QUANTITY", payload: cart })
+                        dispatch({ type: SET_CART, payload: cart })
                     }
-                } catch (error) {
-                    console.log(`Enviar error al usuario: ${error}`)
                 }
+            } catch (error) {
+                console.log(`Error trying to access productsLocal: ${error}`)
             }
         }
 
-        // Actualizar local storage:
     } catch (error) {
-
+        console.log(`Error trying to dispatch updateQuantity: ${error}`)
+        throw Error
     }
 }

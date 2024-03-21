@@ -28,6 +28,8 @@ function Detail () {
   // LOCAL STATES:
   // Cantidad de productos que se llevan:
   const [numberOfItems, setNumberOfItems] = useState(1)
+  // Indica si se está actualizando la prop "quantity" del producto. Se usa para evitar exceso de peticiones.
+  const [isNumberOfItemsUpdating, setIsNumberOfItemsUpdating] = useState(false)
   // Número de contacto:
   const [showNumber, setShowNumber] = useState(false)
   // Estado de producto en carrito
@@ -114,24 +116,28 @@ function Detail () {
   // Controlar el <input> conectado al estado "numberOfItems".
   // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
   const handleNumberOfItems = (event) => {
-    if (product.stock !== 0) {
-      const { value } = event.target
-      if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-        setNumberOfItems(Number(value))
-      };
-    }
+    setTimeout(() => {
+      if (!isNumberOfItemsUpdating && product.stock !== 0) {
+        const { value } = event.target
+        if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
+          setNumberOfItems(Number(value))
+        };
+      }
+    }, 700)
   }
 
   // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
   // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
   const handleNumberChange = (parameter) => {
-    if (product.stock !== 0) {
-      if (parameter === 'add' && numberOfItems < product.stock) {
-        setNumberOfItems((prev) => prev + 1)
-      } else if (parameter === 'remove' && numberOfItems > 1) {
-        setNumberOfItems((prev) => prev - 1)
-      };
-    }
+    setTimeout(() => {
+      if (!isNumberOfItemsUpdating && product.stock !== 0) {
+        if (parameter === 'add' && numberOfItems < product.stock) {
+          setNumberOfItems((prev) => prev + 1)
+        } else if (parameter === 'remove' && numberOfItems > 1) {
+          setNumberOfItems((prev) => prev - 1)
+        };
+      }
+    }, 700)
   }
   // Se basa en el rating del producto para renderizar las estrellas.
   const renderStars = (value) => {
@@ -181,12 +187,17 @@ function Detail () {
   }, [numberOfItems])
 
   useEffect(() => {
-    try {
-      const productToAdd = { id: idProduct, quantity: numberOfItems }
-      dispatch(updateQuantity(loggedUser.id, numberOfItems, productToAdd))
-    } catch (error) {
-      console.log(`Error trying to dispatch uptateQuantity in component: ${error}`)
-    }
+    (async() => {
+      try {
+        setIsNumberOfItemsUpdating(true)
+        const productToAdd = { id: idProduct, quantity: numberOfItems }
+        await dispatch(updateQuantity(loggedUser.id, numberOfItems, productToAdd))
+        setIsNumberOfItemsUpdating(false)
+      } catch (error) {
+        setIsNumberOfItemsUpdating(false)
+        console.log(`Error trying to dispatch uptateQuantity in component: ${error}`)
+      }
+    })()
   }, [numberOfItems, dispatch, idProduct, loggedUser.id])
 
   // COMPONENT:

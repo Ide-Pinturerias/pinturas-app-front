@@ -7,10 +7,11 @@ import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { addProductCart } from '@redux/actions/Cart/addProductCart'
 import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { postFavorite } from '@redux/actions/Favorites/postFavorite'
+import { updateQuantity } from '@redux/actions/Cart/updateQuantity'
+import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
 import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
 import { Button } from '@components/Controls/Buttons.tsx'
 
 function Detail () {
@@ -178,6 +179,15 @@ function Detail () {
       setNumberOfItems(1)
     }
   }, [numberOfItems])
+
+  useEffect(() => {
+    try {
+      const productToAdd = { id: idProduct, quantity: numberOfItems }
+      dispatch(updateQuantity(loggedUser.id, numberOfItems, productToAdd))
+    } catch (error) {
+      console.log(`Error trying to dispatch uptateQuantity in component: ${error}`)
+    }
+  }, [numberOfItems, dispatch, idProduct, loggedUser.id])
 
   // COMPONENT:
  return (

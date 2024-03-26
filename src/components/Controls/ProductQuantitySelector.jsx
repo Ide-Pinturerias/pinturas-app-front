@@ -25,15 +25,13 @@ export default function ProductQuantitySelector({ number, setNumber, limit, isNu
     // Controlar los botones de "+" y "-" relacionados al estado "number".
     // "number" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberChange = (parameter) => {
-        setTimeout(() => {
-            if (!isNumberOfItemsUpdating && limit !== 0) {
-                if (parameter === 'add' && number < limit) {
-                    setNumber((prev) => prev + 1)
-                } else if (parameter === 'remove' && number > 1) {
-                    setNumber((prev) => prev - 1)
-                };
-            }
-        }, 700)
+        if (!isNumberOfItemsUpdating && limit !== 0) {
+            if (parameter === 'add' && number < limit) {
+                setNumber((prev) => prev + 1)
+            } else if (parameter === 'remove' && number > 1) {
+                setNumber((prev) => prev - 1)
+            };
+        }
     }
 
     // LIFE CYCLES:

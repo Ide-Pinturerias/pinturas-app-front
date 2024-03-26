@@ -216,6 +216,16 @@ services/api/getBestSellers
 
 ## 3. Actions in use
 
+### cart/addProductCart
+### cart/clearCart
+### cart/deleteProductCart
+### cart/findOrCreateCart
+### cart/setCart 🤔
+### cart/updateQuantity
+### categories/getAllCategories
+### favorites/deleteFavorite 🤔
+### favorites/getFavorites
+### favorites/postFavorite
 ### filters/getAllProductsFiltered
 ### filters/setCategory
 ### filters/setHighPrice
@@ -223,12 +233,13 @@ services/api/getBestSellers
 ### filters/sort
 ### pagination/setPage
 ### products/cleanProductDetail
+### products/getAllProductsNoFilter 🤔
 ### products/getAllProductsPaginated
 ### products/getBestSellers
+### products/postProducts 🤔
 ### products/productById
 ### products/productByName
-### favorites/getFavorites
-### favorites/postFavorite
+### products/putProducts 🤔
 
 # COMPONENTS
 
@@ -273,16 +284,18 @@ Path: '@components/Controls/Links.jsx'
 - `icon`: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
 
 ## Controls (ProductQuantitySelector)
-
 ```
 Path: '@components/Controls/ProductQuantitySelector.jsx'
 ```
 
 ### Props
-- `number`: El valor actual del selector.
-- `setNumber`: La función que va a settear al número para aumentar o disminuir.
-- `limit`: El máximo valor que puede tomar `number`.
-
+- `number`: Número actual que se muestra en el input.
+- `setNumber`: Función seteadora el estado local pasado por props `number`.
+- `limit`: Stock del producto.
+- `isNumberOfItemsUpdating`: Estado local usado como bandera.
+- `setIsNumberOfItemsUpdating`: Función seteadora del estado local pasado por props `isNumberOfItemsUpdating`.
+- `idProduct`: ID del producto.
+- `idUser`: ID del usuario.
 
 ## Cart (Accordion)
 

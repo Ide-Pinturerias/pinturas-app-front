@@ -131,7 +131,7 @@ src
 |--|--|--Buttons.jsx
 |--|--|--Buttons.tsx
 |--|--|--Links.jsx
-|--|--|--NumberSelector.jsx
+|--|--|--ProductQuantitySelector.jsx
 
 -
 |--|--Featured (CAN BE REMOVED)
@@ -272,10 +272,10 @@ Path: '@components/Controls/Links.jsx'
 - `styles`: Objecto con estilos adicionales.
 - `icon`: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
 
-## Controls (NumberSelector)
+## Controls (ProductQuantitySelector)
 
 ```
-Path: '@components/Controls/NumberSelector.jsx'
+Path: '@components/Controls/ProductQuantitySelector.jsx'
 ```
 
 ### Props
@@ -306,4 +306,4 @@ Path: '@components/Cart/Accordion.jsx'
 
 1. En el componente `<ProductQuantitySelector>`, cuando se hace click en el botón para cambiar la cantidad de productos `handleNumberChange(add)` varias veces en poco tiempo, el estado sobrepasa la cantidad máxima y vuelve a 1.
 
-2. En el componente `<ProductQuantitySelector>`, no se puede settear la cantidad de productos, a llevar, escribiendo en el `<input>`.
+2. En el componente `<ProductQuantitySelector>`, no se puede settear la cantidad de productos, a llevar, escribiendo en el `<input>`. (Fixed on commit `[FIX]: Fixed text input in <ProductQuantitySelector> by removing the setTimeout function.`).

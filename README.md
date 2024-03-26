@@ -131,7 +131,7 @@ src
 |--|--|--Buttons.jsx
 |--|--|--Buttons.tsx
 |--|--|--Links.jsx
-|--|--|--NumberSelector.jsx
+|--|--|--ProductQuantitySelector.jsx
 
 -
 |--|--Featured (CAN BE REMOVED)
@@ -216,6 +216,16 @@ services/api/getBestSellers
 
 ## 3. Actions in use
 
+### cart/addProductCart
+### cart/clearCart
+### cart/deleteProductCart
+### cart/findOrCreateCart
+### cart/setCart 🤔
+### cart/updateQuantity
+### categories/getAllCategories
+### favorites/deleteFavorite 🤔
+### favorites/getFavorites
+### favorites/postFavorite
 ### filters/getAllProductsFiltered
 ### filters/setCategory
 ### filters/setHighPrice
@@ -223,14 +233,15 @@ services/api/getBestSellers
 ### filters/sort
 ### pagination/setPage
 ### products/cleanProductDetail
+### products/getAllProductsNoFilter 🤔
 ### products/getAllProductsPaginated
 ### products/getBestSellers
+### products/postProducts 🤔
 ### products/productById
 ### products/productByName
-### favorites/getFavorites
-### favorites/postFavorite
+### products/putProducts 🤔
 
-# Components
+# COMPONENTS
 
 ## Controls (buttons)
 
@@ -272,17 +283,19 @@ Path: '@components/Controls/Links.jsx'
 - `styles`: Objecto con estilos adicionales.
 - `icon`: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
 
-## Controls (NumberSelector)
-
+## Controls (ProductQuantitySelector)
 ```
-Path: '@components/Controls/NumberSelector.jsx'
+Path: '@components/Controls/ProductQuantitySelector.jsx'
 ```
 
 ### Props
-- `number`: El valor actual del selector.
-- `setNumber`: La función que va a settear al número para aumentar o disminuir.
-- `limit`: El máximo valor que puede tomar `number`.
-
+- `number`: Número actual que se muestra en el input.
+- `setNumber`: Función seteadora el estado local pasado por props `number`.
+- `limit`: Stock del producto.
+- `isNumberOfItemsUpdating`: Estado local usado como bandera.
+- `setIsNumberOfItemsUpdating`: Función seteadora del estado local pasado por props `isNumberOfItemsUpdating`.
+- `idProduct`: ID del producto.
+- `idUser`: ID del usuario.
 
 ## Cart (Accordion)
 
@@ -301,3 +314,9 @@ Path: '@components/Cart/Accordion.jsx'
 
 ### 3. Accordion
 - `children`: Los subelementos SOLO deben ser `<AccordionHeader>` y `<AccordionBody>`
+
+# BUGS
+
+1. En el componente `<ProductQuantitySelector>`, cuando se hace click en el botón para cambiar la cantidad de productos `handleNumberChange(add)` varias veces en poco tiempo, el estado sobrepasa la cantidad máxima y vuelve a 1. (Fixed on commit `[FIX]: Fixed handleNumberChange() delayed behaviour affecting the state by removing the setTimeout function.`).
+
+2. En el componente `<ProductQuantitySelector>`, no se puede settear la cantidad de productos, a llevar, escribiendo en el `<input>`. (Fixed on commit `[FIX]: Fixed text input in <ProductQuantitySelector> by removing the setTimeout function.`).

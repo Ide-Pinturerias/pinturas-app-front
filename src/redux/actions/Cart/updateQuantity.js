@@ -13,7 +13,7 @@ export const updateQuantity = (idUser, newQuantity, productToChange) => async (d
                 if (productsLocal !== null) {
                     const { id } = productToChange
                     const parsedProductsLocal = JSON.parse(productsLocal);
-                    const index = parsedProductsLocal.findIndex((prod) => prod.id === id);
+                    const index = parsedProductsLocal.findIndex((prod) => prod.id.toString() === id.toString());
 
                     // LocalStorage: Si se encontró el ID en el carro, actualizar "quantity".
                     if (index !== -1) {

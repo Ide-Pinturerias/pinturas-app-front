@@ -14,14 +14,12 @@ export default function ProductQuantitySelector({ number, setNumber, limit, isNu
     // Controlar el <input> conectado al estado "number".
     // "number" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
     const handleNumberOfItems = (event) => {
-        setTimeout(() => {
-            if (!isNumberOfItemsUpdating && limit !== 0) {
-                const { value } = event.target
-                if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= limit)) {
-                    setNumber(Number(value))
-                };
-            }
-        }, 700)
+        if (!isNumberOfItemsUpdating && limit !== 0) {
+            const { value } = event.target
+            if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= limit)) {
+                setNumber(Number(value))
+            };
+        }
     }
 
     // Controlar los botones de "+" y "-" relacionados al estado "number".

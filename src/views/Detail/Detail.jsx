@@ -159,6 +159,18 @@ function Detail() {
         }
     }, [idProduct])
 
+    useEffect(() => {
+        try {
+            const productsLocal = JSON.parse(localStorage.getItem("productsLocal"))
+            if (Array.isArray(productsLocal)) {
+                const product = productsLocal.find(obj => obj.id.toString() === idProduct.toString());
+                setNumberOfItems(product.quantity);
+            }
+        } catch (error) {
+            setNumberOfItems(1);
+        }
+    }, [])
+
     // COMPONENT:
     return (
         <main className="flex items-center justify-center w-full p-whiteSpaceTop bg-bg">

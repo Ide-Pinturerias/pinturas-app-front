@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { Button } from '@components/Controls/Buttons'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import NumberSelector from '@components/Controls/NumberSelector'
+import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
 
 function ProductCart({ id, name, category, brand, size, color, quantity, image, price, stock, subtotal }) {
     const dispatch = useDispatch()
@@ -90,7 +90,7 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
                                     <span><strong>$ {formatNumberWithDots(price)}</strong> por cada unidad</span>
                                 ) : null
                             }
-                            <NumberSelector limit={stock}/>
+                            <ProductQuantitySelector limit={stock}/>
                             {
                                 stock === 10 ? (
                                     <span>¡Quedan solo <strong>{stock}</strong> unidades! </span>

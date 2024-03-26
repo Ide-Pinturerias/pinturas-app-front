@@ -230,7 +230,7 @@ services/api/getBestSellers
 ### favorites/getFavorites
 ### favorites/postFavorite
 
-# Components
+# COMPONENTS
 
 ## Controls (buttons)
 
@@ -301,3 +301,9 @@ Path: '@components/Cart/Accordion.jsx'
 
 ### 3. Accordion
 - `children`: Los subelementos SOLO deben ser `<AccordionHeader>` y `<AccordionBody>`
+
+# BUGS
+
+1. En el componente `<ProductQuantitySelector>`, cuando se hace click en el botón para cambiar la cantidad de productos `handleNumberChange(add)` varias veces en poco tiempo, el estado sobrepasa la cantidad máxima y vuelve a 1.
+
+2. En el componente `<ProductQuantitySelector>`, no se puede settear la cantidad de productos, a llevar, escribiendo en el `<input>`.

@@ -7,11 +7,11 @@ import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { addProductCart } from '@redux/actions/Cart/addProductCart'
 import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { postFavorite } from '@redux/actions/Favorites/postFavorite'
-import { updateQuantity } from '@redux/actions/Cart/updateQuantity'
 import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
 import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty, Plus, Minus } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
 import { Button } from '@components/Controls/Buttons.tsx'
 
 function Detail() {
@@ -115,33 +115,6 @@ function Detail() {
         })
     }
 
-    // Controlar el <input> conectado al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberOfItems = (event) => {
-        setTimeout(() => {
-            if (!isNumberOfItemsUpdating && product.stock !== 0) {
-                const { value } = event.target
-                if (value === '' || (!isNaN(value) && parseInt(value) >= 1 && parseInt(value) <= product.stock)) {
-                    setNumberOfItems(Number(value))
-                };
-            }
-        }, 700)
-    }
-
-    // Controlar los botones de "+" y "-" relacionados al estado "numberOfItems".
-    // "numberOfItems" debe ser un NÚMERO mayor a 0  y menor al stock del producto.
-    const handleNumberChange = (parameter) => {
-        setTimeout(() => {
-            if (!isNumberOfItemsUpdating && product.stock !== 0) {
-                if (parameter === 'add' && numberOfItems < product.stock) {
-                    setNumberOfItems((prev) => prev + 1)
-                } else if (parameter === 'remove' && numberOfItems > 1) {
-                    setNumberOfItems((prev) => prev - 1)
-                };
-            }
-        }, 700)
-    }
-
     // Renderizar estrellas basándose en el "rating" del producto.
     const renderStars = (value) => {
         const max = 5
@@ -185,30 +158,6 @@ function Detail() {
             document.title = 'Ide Pinturerias'
         }
     }, [idProduct])
-
-    // Fallback para evitar errores cuando el usuario settea "numberOfItems" del producto.
-    useEffect(() => {
-        if (numberOfItems <= 0 || numberOfItems > product.stock) {
-            setNumberOfItems(1)
-        } else if (product.stock === 0) {
-            setNumberOfItems(0)
-        }
-    }, [numberOfItems])
-
-    // Manejar la cantidad de productos ("numberOfItems", "quantity").
-    useEffect(() => {
-        (async () => {
-            try {
-                setIsNumberOfItemsUpdating(true)
-                const productToAdd = { id: idProduct, quantity: numberOfItems }
-                await dispatch(updateQuantity(loggedUser.id, numberOfItems, productToAdd))
-                setIsNumberOfItemsUpdating(false)
-            } catch (error) {
-                setIsNumberOfItemsUpdating(false)
-                console.log(`Error trying to dispatch uptateQuantity in Detail component: ${error}`)
-            }
-        })()
-    }, [numberOfItems, dispatch, idProduct, loggedUser.id])
 
     // COMPONENT:
     return (
@@ -357,32 +306,15 @@ function Detail() {
                                             $ {formatNumberWithDots(product.price)}
                                         </strong>
                                     </div>
-                                    <div className="flex mb-4 border border-black rounded-[2rem] text-lg h-fit">
-                                        <button
-                                            className="p-3"
-                                            onClick={() => handleNumberChange("remove")}
-                                        >
-                                            <Minus />
-                                        </button>
-                                        <input
-                                            value={numberOfItems}
-                                            onChange={(e) => handleNumberOfItems(e)}
-                                            type="text"
-                                            inputMode="numeric"
-                                            maxLength={4}
-                                            step={1}
-                                            min={0}
-                                            max={product.stock}
-                                            className="bg-transparent text-center w-14 p-3"
-                                        />
-                                        <button
-                                            className="p-3"
-                                            onClick={() => handleNumberChange("add")}
-                                        >
-                                            <Plus />
-                                        </button>
-                                    </div>
-
+                                    <ProductQuantitySelector
+                                        number={numberOfItems}
+                                        setNumber={setNumberOfItems}
+                                        limit={product.stock}
+                                        isNumberOfItemsUpdating={isNumberOfItemsUpdating}
+                                        setIsNumberOfItemsUpdating={setIsNumberOfItemsUpdating}
+                                        idProduct={idProduct}
+                                        idUser={loggedUser.id}
+                                    />
                                     {/* STOCK INFORMATION */}
                                     {product.stock < 50 && (
                                         <div

@@ -304,6 +304,6 @@ Path: '@components/Cart/Accordion.jsx'
 
 # BUGS
 
-1. En el componente `<ProductQuantitySelector>`, cuando se hace click en el botón para cambiar la cantidad de productos `handleNumberChange(add)` varias veces en poco tiempo, el estado sobrepasa la cantidad máxima y vuelve a 1.
+1. En el componente `<ProductQuantitySelector>`, cuando se hace click en el botón para cambiar la cantidad de productos `handleNumberChange(add)` varias veces en poco tiempo, el estado sobrepasa la cantidad máxima y vuelve a 1. (Fixed on commit `[FIX]: Fixed handleNumberChange() delayed behaviour affecting the state by removing the setTimeout function.`).
 
 2. En el componente `<ProductQuantitySelector>`, no se puede settear la cantidad de productos, a llevar, escribiendo en el `<input>`. (Fixed on commit `[FIX]: Fixed text input in <ProductQuantitySelector> by removing the setTimeout function.`).

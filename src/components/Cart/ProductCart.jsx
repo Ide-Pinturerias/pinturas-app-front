@@ -1,14 +1,26 @@
-import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Swal from 'sweetalert2'
-import { Button } from '@components/Controls/Buttons'
+import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
 import { formatNumberWithDots } from "@scripts/formatNumberWithDots"
-import NumberSelector from '@components/Controls/NumberSelector'
+import Swal from 'sweetalert2'
+import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
+import { Button } from '@components/Controls/Buttons'
 
 function ProductCart({ id, name, category, brand, size, color, quantity, image, price, stock, subtotal }) {
+
+    // CONST:
     const dispatch = useDispatch()
+
+    // GLOBAL STATES:
     const user = useSelector(state => state.user)
 
+    // LOCAL STATES:
+    // Cantidad de productos que se llevan:
+    const [numberOfItems, setNumberOfItems] = useState(1)
+    // Indica si se está actualizando la prop "quantity" del producto (se usa para evitar exceso de peticiones):
+    const [isNumberOfItemsUpdating, setIsNumberOfItemsUpdating] = useState(false)
+
+    // FUNCTIONS:
     const onDeleteProductCart = ({ user, id }) => {
         dispatch(deleteProductCart(user, id))
         Swal.fire({
@@ -21,49 +33,20 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
         })
     }
 
-    // const productView = (
-    //     <div className="py-3 my-5 w-full border-t">
-    //         <div className="flex flex-row">
-    //             <div className="w-fit">
-    //                 <a href={`/products/${id}`}>
-    //                     <img src={image} alt="" className="w-20" />
-    //                 </a>
-    //             </div>
-    //             <div className="flex px-5 flex-col w-11/12">
-    //                 <h1 className="text-base text-ms font-semibold">
-    //                     <a href={`/products/${id}`}>
-    //                         {name}
-    //                     </a>
-    //                 </h1>
-    //                 <div className="flex gap-5">
-    //                     <Button
-    //                         variant="danger"
-    //                         onClick={() => onDeleteProductCart({ user, id })}
-    //                     >
-    //                         Eliminar
-    //                     </Button>
-    //                 </div>
-    //                 <div className="flex justify-between ">
-    //                     <div className="flex items-center justify-center flex-col">
-    //                         <h1 className="flex justify-center items-center">Precio: ${price}</h1>
-    //                         <h1 className="flex justify-center items-center">Cantidad: {quantity}</h1>
-    //                         {
-    //                             stock > 0
-    //                                 ? <h1 className="text-gray-500"> {stock} disponibles </h1>
-    //                                 : <p className="text-red-700 font-semibold"> Producto sin stock </p>
-    //                         }
-    //                     </div>
-    //                     <div className="w-80 flex justify-end items-center">
-    //                         {stock > 0
-    //                             ? <h1 className="text-xl font-bold text-gray-700">$ {subtotal}</h1>
-    //                             : <p className="text-red-700 font-semibold"> Producto no disponible </p>}
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
+    // LIFE CYCLES:
+    useEffect(() => {
+        try {
+            const productsLocal = JSON.parse(localStorage.getItem("productsLocal"))
+            if (Array.isArray(productsLocal)) {
+                const product = productsLocal.find(obj => obj.id.toString() === id.toString());
+                setNumberOfItems(product.quantity);
+            }
+        } catch (error) {
+            setNumberOfItems(1);
+        }
+    }, [])
 
+    // COMPONENT:
     return (
         <>
             {
@@ -77,7 +60,7 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
                                 <span>{brand}</span>
                                 <div className="h-[24px] w-fit px-[8px] bg-black rounded-full uppercase text-bg text-[12px] leading-[24px]">
                                     {category}
-                                </div>  
+                                </div>
                                 <div><span>Presentación: </span>{size}</div>
                                 <div><span>Color: </span>{color}</div>
                             </div>
@@ -90,7 +73,15 @@ function ProductCart({ id, name, category, brand, size, color, quantity, image, 
                                     <span><strong>$ {formatNumberWithDots(price)}</strong> por cada unidad</span>
                                 ) : null
                             }
-                            <NumberSelector limit={stock}/>
+                            <ProductQuantitySelector
+                                number={numberOfItems}
+                                setNumber={setNumberOfItems}
+                                limit={stock}
+                                isNumberOfItemsUpdating={isNumberOfItemsUpdating}
+                                setIsNumberOfItemsUpdating={setIsNumberOfItemsUpdating}
+                                idProduct={id}
+                                idUser={user.id}
+                            />
                             {
                                 stock === 10 ? (
                                     <span>¡Quedan solo <strong>{stock}</strong> unidades! </span>

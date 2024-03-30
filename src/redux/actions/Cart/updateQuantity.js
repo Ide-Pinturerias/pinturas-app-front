@@ -23,10 +23,11 @@ export const updateQuantity = (idUser, newQuantity, productToChange) => async (d
                         if (!idUser) return;
 
                         // Si hay usuario, actualizar DB.
-                        const cart = await axios.put(`${BASE_URL}carts`, {
+                        const cart = (await axios.put(`${BASE_URL}carts`, {
                             idUser,
                             products: JSON.stringify(parsedProductsLocal)
-                        }).data
+                        })).data
+                        console.log(cart)// TODO ver re renderizado, peticion x3 al ingresar a la vista
                         dispatch({ type: SET_CART, payload: cart })
                     }
                 }

@@ -6,7 +6,7 @@ import { Button } from '@components/Controls/Buttons'
 
 const PurchaseCart = ({ products, setIsLoading }) => {
   const dispatch = useDispatch()
-  const { idCart } = useSelector(state => state.cart)
+  const  cart  = useSelector(state => state.cart)
   const user = useSelector(state => state.user)
 
   // controlar si algun producto que se quiera comprar no tiene stock
@@ -21,9 +21,8 @@ const PurchaseCart = ({ products, setIsLoading }) => {
       if (Object.keys(user).length === 0) {
         Swal.fire('Debes iniciar sesión para poder comprar')
       } else {
-        const idOrder = await dispatch(postOrderByCart(idCart))
+        const idOrder = await dispatch(postOrderByCart(cart.idCart))
         const initPoint = await dispatch(postOrderPayment(idOrder))
-        // Usar navigate() de "react-router".
         window.location.href = initPoint
       }
       setIsLoading(false)

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { welcomeMessage } from './welcomeMessage'
 import Swal from 'sweetalert2'
 import { validation } from './validation'
-import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const RegisterForm = () => {
   const dispatch = useDispatch()
@@ -73,9 +73,6 @@ const RegisterForm = () => {
                           {
                             isLoading ? <LoadingSpinner /> : null
                           }
-                          <span>
-                            Cargando...
-                          </span>
                         </div>
                         <form onSubmit={handleSubmit} className="w-60 data-[loading=true]:opacity-10 relative" data-loading={isLoading}>
                             <div>

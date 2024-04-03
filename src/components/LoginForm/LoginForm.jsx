@@ -6,7 +6,7 @@ import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
 import { Button } from '@components/Controls/Buttons'
 import { PlainNavLink } from '@components/Controls/Links'
-import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -80,9 +80,6 @@ const LoginForm = () => {
                       {
                         isLoading ? <LoadingSpinner /> : null
                       }
-                      <span>
-                        Cargando...
-                      </span>
                     </div>
                     <form onSubmit={handleSubmit} className='data-[loading=true]:opacity-10 relative' data-loading={isLoading}>
                         <div>

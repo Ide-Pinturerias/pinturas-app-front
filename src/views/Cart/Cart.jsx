@@ -7,7 +7,7 @@ import { Accordion, AccordionHeader, AccordionBody } from '@components/Cart/Acco
 import CartList from '@components/Cart/CartList'
 import PurchaseCart from '@components/Cart/PurchaseCart'
 import ClearCart from '@components/Cart/ClearCart'
-import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 import { Store, EnvelopeCheck, QuestionCircle, LocationMark, Calendar, Phone, ArrowUpRightCircle } from '@svg'
 
 function Cart() {

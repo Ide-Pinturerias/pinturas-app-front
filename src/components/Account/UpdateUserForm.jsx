@@ -6,7 +6,7 @@ import { logoutUser } from '@redux/actions/User/logoutUser'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { updateUserValidation } from './updateUserValidation'
-import { LoadingSpinner } from '@components/Cart/LoadingSpinner'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const UpdateUserForm = () => {
   const dispatch = useDispatch()
@@ -106,9 +106,6 @@ const UpdateUserForm = () => {
                   {
                     isLoading ? <LoadingSpinner /> : null
                   }
-                  <span>
-                    Cargando...
-                  </span>
                 </div>
                 <form className="w-full max-w-md data-[loading=true]:opacity-10" data-loading={isLoading}  onSubmit={handleSubmit}>
                     <div className="mb-6">

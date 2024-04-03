@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { getAllProductsFiltered } from '@redux/actions/filters/getAllProductsFiltered'
@@ -9,11 +8,7 @@ import { setPage } from '@redux/actions/pagination/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
 import { setSortClause, setSortDirection } from '@/redux/actions/filters/sort'
-
 import Paginated from '@components/Paginated/Paginated'
-
-// import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
-// import ProductsContainer from '@components/ProductsContainer/ProductsContainer'
 import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
 import SortMenu from '@components/Refiners/SortMenu'
@@ -100,16 +95,10 @@ function ProductsPage () {
   // COMPONENT:
   return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
-            <section className="flex justify-center h-screen p-whiteSpaceTop w-full text-white bg-primaryClear">
-                <div className="flex flex-col justify-between max-w-[1920px] h-full w-full pb-12 px-[3.5%]">
-                    <div>
-                        <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-bg before:rounded-[2rem] font-heading"> Todos nuestros productos </h2>
-                        <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                            Somos un distribuidor oficial de pinturas Fadepa. En nuestra tienda encontrarás barniz, aditivos, diluyentes, entre otros.
-                        </p>
-                    </div>
+            <section className="flex flex-col items-center justify-center w-full py-12 md:py-16 xl:py-20 bg-bg">
+                <div className="flex flex-col justify-between max-w-[1920px] h-full w-full px-[3.5%]">            
                     <div className="flex justify-between items-center">
-                        <button className={` ${isSortOpen ? 'z-[60]' : ''} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={` ${isSortOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsSortOpen(false)
                           setIsFilterOpen(true)
@@ -117,7 +106,7 @@ function ProductsPage () {
                             Filtrar
                         </button>
                         <Chevron size={'5rem'} />
-                        <button className={`${isFilterOpen ? 'z-[60]' : ''} p-4 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={`${isFilterOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsFilterOpen(false)
                           setIsSortOpen(true)
@@ -161,7 +150,7 @@ function ProductsPage () {
                     )
                   : null
             }
-            <section className="flex flex-col items-center justify-center w-full py-16 bg-bg">
+            <section className="flex flex-col items-center justify-center w-full bg-bg">
                 <div className="flex justify-center items-center flex-wrap gap-4 w-full">
                     {/*          CLEAR FILTERS        */}
                     {filterCategory && (

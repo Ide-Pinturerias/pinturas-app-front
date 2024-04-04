@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { welcomeMessage } from './welcomeMessage'
 import Swal from 'sweetalert2'
 import { validation } from './validation'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const RegisterForm = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,8 @@ const RegisterForm = () => {
     empty: ''
   })
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const handleInputChange = (event) => {
     const { name, value } = event.target
     setInputsForm({ ...inputsForm, [name]: value })
@@ -31,6 +34,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
     try {
       if (Object.keys(errors).length === 0) {
         const { status, user } = (await postRegisterUser(inputsForm)(dispatch)).data
@@ -48,6 +52,7 @@ const RegisterForm = () => {
         icon: 'error',
         text: 'Error al registrar usuario'
       })
+      setIsLoading(false)
     }
   }
 
@@ -64,8 +69,13 @@ const RegisterForm = () => {
                         >
                             Regístrate
                         </label>
-                        <form onSubmit={handleSubmit} className="w-60">
-                            <div >
+                        <div data-loading={isLoading} className="h-fit absolute w-fit top-[50%] left-[42%] data-[loading=true]:flex hidden flex-col items-center gap-2">
+                          {
+                            isLoading ? <LoadingSpinner /> : null
+                          }
+                        </div>
+                        <form onSubmit={handleSubmit} className="w-60 data-[loading=true]:opacity-10 relative" data-loading={isLoading}>
+                            <div>
                                 <input
                                     type="text"
                                     placeholder="Nombres"
@@ -76,7 +86,7 @@ const RegisterForm = () => {
                                     className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                <div className="flex my-0 pt-2 xl:pl-8 pl-2 justify-around">
                                   {errors.name
                                     ? <span className="text-warning text-xs py-0 m-0">{errors.name}</span>
                                     : <span className='h-4'></span>}
@@ -94,7 +104,7 @@ const RegisterForm = () => {
                                     className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.name ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                <div className="flex my-0 pt-2 xl:pl-8 pl-2 justify-around">
                                   {errors.lastName
                                     ? <span className="text-warning text-xs py-0 m-0">{errors.lastName}</span>
                                     : <span className='h-4'></span>}
@@ -112,7 +122,7 @@ const RegisterForm = () => {
                                     className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.email ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                <div className="flex my-0 pt-2 xl:pl-8 pl-2 justify-around">
                                   {errors.email
                                     ? <span className="text-warning text-xs py-0 m-0">{errors.email}</span>
                                     : <span className='h-4'></span>}
@@ -130,7 +140,7 @@ const RegisterForm = () => {
                                     className={`text-center mt-1 p-2 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0 ${errors.password ? 'border-red-500' : 'border-gray-300'
                                         }`}
                                 />
-                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                <div className="flex my-0 pt-2 xl:pl-8 pl-2 justify-around">
                                   {errors.password
                                     ? <span className="text-warning text-xs py-0 m-0">{errors.password}</span>
                                     : <span className='h-4'></span>}
@@ -150,7 +160,7 @@ const RegisterForm = () => {
                                         : 'border-gray-300'
                                         }`}
                                 />
-                                <div className="flex my-0 pt-2 pl-8 pl-2 justify-around">
+                                <div className="flex my-0 pt-2 xl:pl-8 pl-2 justify-around">
                                   {errors.confirmPassword
                                     ? <span className="text-warning text-xs py-0 m-0">{errors.confirmPassword}</span>
                                     : <span className='h-4'></span>}
@@ -165,9 +175,9 @@ const RegisterForm = () => {
                                     Registrarse
                                 </button>
                             </div>
-                            <div className="w-64">
+                            <div className="w-64 mt-4">
                               <span className='mt-2 text-xs text-justify text-gray-400'>
-                                Contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número
+                                Tu contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número
                               </span>
                             </div>
                         </form>

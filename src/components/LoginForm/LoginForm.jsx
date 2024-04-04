@@ -6,11 +6,13 @@ import { logoutUser } from '@redux/actions/User/logoutUser'
 import Swal from 'sweetalert2'
 import { Button } from '@components/Controls/Buttons'
 import { PlainNavLink } from '@components/Controls/Links'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -18,6 +20,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
     const errors = {}
 
     if (!email.trim()) {
@@ -40,6 +43,7 @@ const LoginForm = () => {
           icon: 'error',
           text: response.message
         })
+        setIsLoading(false)
       } else if (response?.acceso?.user?.active === false) {
         Swal.fire({
           icon: 'error',
@@ -56,6 +60,7 @@ const LoginForm = () => {
       }
     } else {
       setErrors(errors)
+      setIsLoading(false)
     }
   }
 
@@ -71,7 +76,12 @@ const LoginForm = () => {
                     >
                         Iniciar sesión
                     </label>
-                    <form onSubmit={handleSubmit}>
+                    <div data-loading={isLoading} className="h-fit absolute w-fit top-[50%] left-[42%] data-[loading=true]:flex hidden flex-col items-center gap-2">
+                      {
+                        isLoading ? <LoadingSpinner /> : null
+                      }
+                    </div>
+                    <form onSubmit={handleSubmit} className='data-[loading=true]:opacity-10 relative' data-loading={isLoading}>
                         <div>
                             <input
                                 type="email"
@@ -110,7 +120,7 @@ const LoginForm = () => {
                             </Button>
                         </div>
                     </form>
-                    <p className="text-gray-400 pt-5 pb-10 text-m ">
+                    <p className="text-gray-400 pt-5 pb-10 text-m data-[loading=true]:opacity-10 relative" data-loading={isLoading}>
                         ¿No tienes una cuenta?
                         <PlainNavLink
                             path="/login/register"

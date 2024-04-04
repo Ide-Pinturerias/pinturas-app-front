@@ -6,11 +6,13 @@ import { logoutUser } from '@redux/actions/User/logoutUser'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { updateUserValidation } from './updateUserValidation'
+import { LoadingSpinner } from '@components/LoadingSpinner/LoadingSpinner'
 
 const UpdateUserForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
+  const [isLoading, setIsLoading] = useState(false)
 
   const [inputsForm, setInputsForm] = useState({
     name: '',
@@ -43,7 +45,7 @@ const UpdateUserForm = () => {
   // ENVIAR FORMULARIO
   const handleSubmit = async (event) => {
     event.preventDefault()
-
+    setIsLoading(true)
     if (Object.keys(errors).length === 0) {
       const { newPassword, confirmPassword, ...data } = inputsForm
       data.password = newPassword
@@ -54,17 +56,22 @@ const UpdateUserForm = () => {
           icon: 'success',
           text: 'Cuenta actualizada'
         })
+        setIsLoading(false)
       } else {
         Swal.fire({
           icon: 'error',
           title: 'Ooops!',
           text: 'Error al actualizar su cuenta'
         })
+        setIsLoading(false)
       }
     }
   }
   // BOTON DELETE ELIMINAR CUENTA
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    event.preventDefault()
+    setIsLoading(true)
+
     const result = await Swal.fire({
       title: '¿Estás seguro?',
       text: 'Esta acción eliminará tu cuenta permanentemente.',
@@ -86,13 +93,21 @@ const UpdateUserForm = () => {
         navigate('/')
       } else {
         Swal.fire('Error al eliminar la cuenta')
+        setIsLoading(false)
       }
+    }else {
+      setIsLoading(false)
     }
   }
 
     return (
             <div className="container mx-auto px-4 mt-20">
-                <form className="w-full max-w-md" onSubmit={handleSubmit}>
+                <div data-loading={isLoading} className="h-fit absolute w-fit top-[50%] left-[42%] data-[loading=true]:flex hidden flex-col items-center gap-2">
+                  {
+                    isLoading ? <LoadingSpinner /> : null
+                  }
+                </div>
+                <form className="w-full max-w-md data-[loading=true]:opacity-10" data-loading={isLoading}  onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <label
                             className="text-gray-600 text-xs mt-1"

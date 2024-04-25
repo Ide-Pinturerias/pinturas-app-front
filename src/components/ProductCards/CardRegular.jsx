@@ -1,21 +1,13 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formatNumberWithDots } from '@/scripts/formatNumberWithDots'
 import { afterPseudo } from '@styles';
 
 
 function CardRegular ({ id, name, category, color, image, brand, price }) {
-  // LOCAL STATES:
-  const [isFav, setIsFav] = useState(false)
 
   // STYLES:
   const tag = 'w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap'
 
-  // FUNCTIONS:
-  const preventRedirection = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
-  }
 
   // COMPONENT:
   return (

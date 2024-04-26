@@ -10,41 +10,38 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
 
 
   // COMPONENT:
-  return (
-        <Link
-            to={`/products/${id}`}
-            className={`relative ${afterPseudo} flex flex-col items-center justify-between min-w-full min-h-full bg-bg rounded-lg text-clear transition-all cursor-pointer`}
-        >
-            {/* IMAGE */}
-            <img
-                src={image}
-                alt={name}
-                className="w-full aspect-square object-cover mx-auto overflow-hidden rounded-lg"
-            />
-            {/* INFO */}
-            <div className="py-4">
-                {/* TAGS: CATEGORY, COLOUR */}
-                <div className='flex flex-wrap items-center gap-2 mb-1'>
-                    <p className={`${tag}`}>{category}</p>
-                    {
-                        color !== 'No aplica'
-                          ? (
-                            <p className={`${tag}`}>{color}</p>
-                            )
-                          : null
-                    }
-                </div>
-                {/* NAME & BOOKMARK */}
-                <div className='text-xl flex justify-between gap-2'>
-                    <p className="m-0 white">{name}</p>
-                </div>
-                {/* BRAND */}
-                <p className='font-bold'>{brand}</p>
-                {/* PRICE */}
-                <strong className="text-[clamp(.5rem,calc(.75rem+1vw),3rem)]">$ {formatNumberWithDots(price)}</strong>
-            </div>
-        </Link >
-  )
+  // ...
+return (
+    <Link
+      to={`/products/${id}`}
+      className={`relative ${afterPseudo} flex flex-col items-center justify-between bg-bg rounded-lg text-clear transition-all cursor-pointer`}
+    >
+      {/* IMAGE */}
+      <div className="w-full aspect-square overflow-hidden rounded-lg">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      {/* INFO */}
+      <div className="py-2 px-4 w-full">
+        {/* TAGS: CATEGORY, COLOUR */}
+        <div className="flex flex-wrap items-center gap-2 mb-1">
+          <p className={`${tag}`}>{category}</p>
+          {color !== 'No aplica' ? <p className={`${tag}`}>{color}</p> : null}
+        </div>
+        {/* NAME & BOOKMARK */}
+        <div className="text-base md:text-lg flex justify-between gap-2">
+          <p className="m-0 whitespace-nowrap overflow-hidden text-ellipsis">{name}</p>
+        </div>
+        {/* BRAND */}
+        <p className="font-bold text-sm md:text-base">{brand}</p>
+        {/* PRICE */}
+        <strong className="text-sm md:text-base">$ {formatNumberWithDots(price)}</strong>
+      </div>
+    </Link>
+  );
 };
 
 export default CardRegular

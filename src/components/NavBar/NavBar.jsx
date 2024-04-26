@@ -25,11 +25,11 @@ function NavBar() {
   const activeLinkStl = 'bg-primaryVisible';
 
   const navLinks = [
-    { path: '/products', label: 'products' },
+    { path: '/products', label: 'productos' },
+    { path: '/about', label: 'nosotros' },
+    { path: '/contact', label: 'contacto' },
     { path: '/blog', label: 'blog' },
-    { path: '/about', label: 'about' },
-    { path: '/contact', label: 'contact' },
-    { path: '/cart', label: <><Cart size={'1rem'} /> Carrito</> },
+    { path: '/cart', label: <><Cart size={'1rem'} /> Carro</> },
     { path: '/account', label: <><UserIcon size={'0.75rem'} /> Cuenta</> }
   ];
 
@@ -47,7 +47,7 @@ function NavBar() {
         <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent z-20`}>
           <ul className="flex flex-col md:flex-row md:space-x-4 items-center text-center">
             {navLinks.map(({ path, label }, index) => {
-              const isActive = location.pathname === path;
+              const isActive = location.pathname.startsWith(path);
               return (
                 <li key={index}>
                   <Link to={path} className={`${linkStl} ${isActive ? activeLinkStl : ''}`} onClick={() => setIsMenuOpen(false)}>

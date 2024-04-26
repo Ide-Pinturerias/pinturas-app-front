@@ -17,34 +17,29 @@ function ProductBox ({ isLoading }) {
     setFilteredProducts(products)
   }, [products])
 
-  return (
-    <>
-      {
-        (Array.isArray(filteredProducts) && filteredProducts.length > 0) && !isLoading
-          ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 place-items-center w-[93%] max-w-[1920px] mx-[3.5%]">
-            {
-              filteredProducts.map((product) => (
-                <CardRegular
-                    key={product.idProduct}
-                    id={product.idProduct}
-                    name={product.name}
-                    category={product.category}
-                    color={product.color}
-                    image={product.image}
-                    brand={product.patent}
-                    price={product.price}
-                />
-              ))
-            }
-          </div>
-            )
-          : (
-          <LoadingScreen isLoading={isLoading}/>
-            )
-      }
-    </>
-  )
+ // ...
+return (
+  <>
+    {(Array.isArray(filteredProducts) && filteredProducts.length > 0) && !isLoading ? (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8 w-full max-w-[1920px] px-4 md:px-8">
+        {filteredProducts.map((product) => (
+          <CardRegular
+            key={product.idProduct}
+            id={product.idProduct}
+            name={product.name}
+            category={product.category}
+            color={product.color}
+            image={product.image}
+            brand={product.patent}
+            price={product.price}
+          />
+        ))}
+      </div>
+    ) : (
+      <LoadingScreen isLoading={isLoading} />
+    )}
+  </>
+);
 };
 
 export default ProductBox

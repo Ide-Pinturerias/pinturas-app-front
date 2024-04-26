@@ -11,8 +11,9 @@ import { setSortClause, setSortDirection } from '@/redux/actions/filters/sort'
 import Paginated from '@components/Paginated/Paginated'
 import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
-import SortMenu from '@components/Refiners/SortMenu'
+import SortMenu   from '@components/Refiners/SortMenu'
 import { Chevron, XSmall } from '@svg'
+import {SearchBar} from "@components/SearchBar/SearchBar"
 
 function ProductsPage () {
   // GLOBAL STATES:
@@ -95,7 +96,7 @@ function ProductsPage () {
   // COMPONENT:
   return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
-            <section className="flex flex-col items-center justify-center w-full py-12 md:py-16 xl:py-20 bg-bg">
+            <section className="flex flex-col items-center justify-center w-full py-20 bg-bg">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full px-[3.5%]">            
                     <div className="flex justify-between items-center">
                         <button className={` ${isSortOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
@@ -105,7 +106,7 @@ function ProductsPage () {
                         }}>
                             Filtrar
                         </button>
-                        <Chevron size={'5rem'} />
+                        <SearchBar size={"5 rem"}/>
                         <button className={`${isFilterOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsFilterOpen(false)
@@ -200,9 +201,6 @@ function ProductsPage () {
                     pageChange={changePage}
                 />
             </section>
-            {/* <div>
-                <FeaturedContainer />
-            </div> */}
         </main>
   )
 };

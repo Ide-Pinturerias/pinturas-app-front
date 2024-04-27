@@ -13,6 +13,7 @@ import { Bookmark, Star, Shop, Phone, ChatEmpty } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
 import { Button } from '@components/Controls/Buttons.tsx'
+import { LoadingSpinner } from '../../components/LoadingSpinner/LoadingSpinner'
 
 function Detail() {
     // GLOBAL STATES:
@@ -173,13 +174,9 @@ function Detail() {
 
     // COMPONENT:
     return (
-        <main className="flex items-center justify-center w-full p-whiteSpaceTop bg-bg">
+        <main className="flex justify-center w-full min-h-screen p-whiteSpaceTop bg-bg">
             {Object.keys(product).length === 0 ? (
-                <img
-                    src="https://i.pinimg.com/originals/6b/e0/89/6be0890f52e31d35d840d4fe2e10385b.gif"
-                    alt="Cargando..."
-                    className="w-94 h-94"
-                />
+                <LoadingSpinner/>
             ) : (
                 <div className="flex flex-col max-w-maxSc w-maxIn m-sides">
                     {/* BREADCRUMB */}

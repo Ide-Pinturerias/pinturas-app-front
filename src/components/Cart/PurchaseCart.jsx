@@ -4,7 +4,7 @@ import { postOrderPayment } from '@redux/actions/Orders/postOrderPayment'
 import Swal from 'sweetalert2'
 import { Button } from '@components/Controls/Buttons'
 
-const PurchaseCart = ({ products, setIsLoading }) => {
+const PurchaseCart = ({ products }) => {
   const dispatch = useDispatch()
   const  cart  = useSelector(state => state.cart)
   const user = useSelector(state => state.user)
@@ -16,18 +16,17 @@ const PurchaseCart = ({ products, setIsLoading }) => {
   // funcion para efectuar compra
   const handlePurchase = async () => {
     try {
-      setIsLoading(true)
       // Si no estoy logueado no puedo comprar
       if (Object.keys(user).length === 0) {
         Swal.fire('Debes iniciar sesión para poder comprar')
-      } else {
-        const idOrder = await dispatch(postOrderByCart(cart.idCart))
-        const initPoint = await dispatch(postOrderPayment(idOrder))
-        window.location.href = initPoint
+        return
       }
-      setIsLoading(false)
+
+      const idOrder = await dispatch(postOrderByCart(cart.idCart))
+      const initPoint = await dispatch(postOrderPayment(idOrder))
+
+      window.location.href = initPoint
     } catch (error) {
-      setIsLoading(false)
       Swal.fire('Algo falló al intentar realizar la compra')
       console.error('Error al realizar la compra:', error.message)
     }
@@ -36,11 +35,11 @@ const PurchaseCart = ({ products, setIsLoading }) => {
   return (
     <Button
       variant="primary"
-      className={`w-full ${checkStock() ? "bg-[#CCC]" : ""}`}
       onClick={handlePurchase}
       disabled={checkStock()}
+      style={{ backgroundColor: checkStock() ? '#ccc' : null }}
     >
-      Continuar compra
+      ¡Comprar Carrito!
     </Button>
   )
 }

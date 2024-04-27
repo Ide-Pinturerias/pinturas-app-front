@@ -2,15 +2,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearCart } from '@redux/actions/Cart/clearCart'
 import { Button } from '@components/Controls/Buttons'
 
-const ClearCart = ({ setIsLoading }) => {
+const ClearCart = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
 
   const handleClearCart = () => {
-    setIsLoading(true)
     dispatch(clearCart(user.id))
       .then(() => {
-        setIsLoading(false)
         window.location.reload()
       })
   }
@@ -19,7 +17,7 @@ const ClearCart = ({ setIsLoading }) => {
       variant="danger"
       onClick={handleClearCart}
     >
-      Vaciar carro
+      Vaciar Carrito
     </Button>
   )
 }

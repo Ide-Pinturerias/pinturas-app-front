@@ -38,6 +38,7 @@ const PurchaseCart = ({ products }) => {
       onClick={handlePurchase}
       disabled={checkStock()}
       style={{ backgroundColor: checkStock() ? '#ccc' : null }}
+      className="text-sm"
     >
       ¡Comprar Carrito!
     </Button>

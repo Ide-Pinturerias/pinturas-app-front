@@ -16,6 +16,7 @@ const ClearCart = () => {
     <Button
       variant="danger"
       onClick={handleClearCart}
+      className="text-sm"
     >
       Vaciar Carrito
     </Button>

@@ -50,10 +50,14 @@ const Cart = () => {
   );
 
   const renderCart = () => (
-    <main className="pt-[5rem] grid justify-center items-center min-h-[100dvh]">
-      {renderProducts()}
+    <main className="pt-[5rem] grid justify-center items-start min-h-[100dvh]">
+      <div className={`grid grid-cols-1 gap-4 mt-2 px-4 ${
+        productsCart.length > 3 ? 'lg:grid-cols-2 lg:gap-6' : ''
+      }`}>
+        {renderProducts()}
+      </div>
       <TotalCart products={productsCart} />
-      <section className="flex justify-around">
+      <section className="flex justify-around w-full my-4">
         <PurchaseCart products={productsCart} />
         <ClearCart />
       </section>

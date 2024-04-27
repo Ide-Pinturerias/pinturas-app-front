@@ -153,16 +153,6 @@ function ProductsPage () {
             }
             <section className="flex flex-col items-center justify-center w-full bg-bg">
                 <div className="flex justify-center items-center flex-wrap gap-4 w-full">
-                    {/*          CLEAR FILTERS        */}
-                    {filterCategory && (
-                        <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
-                            onClick={() => filterByCategory('')}
-                        >
-                            <span className="whitespace-nowrap">{filterCategory}</span>
-                            <XSmall size={20} />
-                        </button>
-                    )}
                     {highPrice === 0 && lowPrice !== 0 && lowPrice && (
                         <button
                             className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"

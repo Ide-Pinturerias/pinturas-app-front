@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-
+import {LoadingSpinner} from '../LoadingSpinner/LoadingSpinner'
 import CardRegular from '../ProductCards/CardRegular'
-import LoadingScreen from '../Account/LoadingScreen'
 
 function ProductBox({ isLoading }) {
   // GLOBAL STATES:
@@ -17,9 +16,9 @@ function ProductBox({ isLoading }) {
   }, [products])
 
   return (
-    <>
+    <div className="min-h-screen">
       {(Array.isArray(filteredProducts) && filteredProducts.length > 0) && !isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-8 2xl:gap-12 w-full max-w-[1920px] px-4 md:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-8 2xl:gap-12 w-full max-w-[1920px]  px-4 md:px-8">
           {filteredProducts.map((product) => (
             <CardRegular
               key={product.idProduct}
@@ -34,9 +33,9 @@ function ProductBox({ isLoading }) {
           ))}
         </div>
       ) : (
-        <LoadingScreen isLoading={isLoading} />
+          <LoadingSpinner />
       )}
-    </>
+    </div>
   );
 };
 

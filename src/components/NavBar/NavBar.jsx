@@ -22,7 +22,7 @@ function NavBar() {
   }, [isMenuOpen]);
 
   const linkStl = 'relative flex items-center gap-2 py-2 px-4 bg-transparent rounded capitalize cursor-pointer hover:bg-primaryClear';
-  const activeLinkStl = 'bg-primaryVisible';
+  const activeLinkStl = 'relative flex items-center gap-2 py-2 px-4 rounded capitalize bg-primaryClear text-white';
 
   const navLinks = [
     { path: '/products', label: 'productos' },
@@ -50,7 +50,9 @@ function NavBar() {
               const isActive = location.pathname.startsWith(path);
               return (
                 <li key={index}>
-                  <Link to={path} className={`${linkStl} ${isActive ? activeLinkStl : ''}`} onClick={() => setIsMenuOpen(false)}>
+                  <Link to={path} 
+                    className={`${isActive ? activeLinkStl : linkStl}`} 
+                    onClick={() => setIsMenuOpen(false)}>
                     {label}
                   </Link>
                 </li>

@@ -1,132 +1,68 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import logo from '@img/logo-black.png'
-import SearchBar from '@components/SearchBar/SearchBar'
-import { Magnifier, Cart, Bookmark, UserIcon } from '@svg'
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '@img/logo-black.png';
+import { Cart, UserIcon, MenuIcon } from '@svg';
 
-function NavBar () {
-  // STATES:
-  // Estado que se activa luego de clickear en el botón de buscar. Se desactiva en el componente <SearchBar/>.
-  const [searchOn, setSearchOn] = useState(false)
+function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Menu para las opciones: INICIAR SESION, REGISTRARSE
-  const [credentialsMenu, setCredentialsMenu] = useState(false)
-
-  // STYLES:
-  const linkStl = 'relative flex items-center gap-2 py-[.5rem] px-[1em] bg-transparent rounded-[8px] capitalize cursor-pointer transition-colors hover:text-primaryVisible hover:fill-primaryVisible hover:bg-primaryClear'
-
-  // FUNCTIONS:
-  // Detectar click fuera del menu.
-  const credentialsMenuRef = useRef(null)
   const handleOutsideClick = (event) => {
-    if (credentialsMenu && credentialsMenuRef.current && !credentialsMenuRef.current.contains(event.target)) {
-      setCredentialsMenu(false)
-    };
-  }
-  // Activar/desactivar modo búsqueda en la barra de navegación.
-  const toggleSearch = () => setSearchOn((prev) => !prev)
-
-  // LIFE-CYCLES:
-  useEffect(() => {
-    document.addEventListener('click', handleOutsideClick)
-    return () => {
-      document.removeEventListener('click', handleOutsideClick)
+    if (isMenuOpen && !event.target.closest('#navbar')) {
+      setIsMenuOpen(false);
     }
-  }, [credentialsMenu])
+  };
 
   useEffect(() => {
-    console.log(searchOn)
-  }, [searchOn])
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    }
+  }, [isMenuOpen]);
 
-  // COMPONENT:
+  const linkStl = 'relative flex items-center gap-2 py-2 px-4 bg-transparent rounded capitalize cursor-pointer hover:bg-primaryClear';
+  const activeLinkStl = 'relative flex items-center gap-2 py-2 px-4 rounded capitalize bg-primaryClear text-white';
+
+  const navLinks = [
+    { path: '/products', label: 'productos' },
+    { path: '/about', label: 'nosotros' },
+    { path: '/contact', label: 'contacto' },
+    { path: '/blog', label: 'blog' },
+    { path: '/cart', label: <><Cart size={'1rem'} /> Carro</> },
+    { path: '/account', label: <><UserIcon size={'0.75rem'} /> Cuenta</> }
+  ];
+
   return (
-        <header className={`z-50 fixed w-[93%] mx-[3.5%] my-4 h-[3.25rem] rounded-[16px] bg-bgFocus bg-opacity-75 border text-[clamp(0.75rem,calc(.8vw+0.3rem),3rem)] font-secondary back ${searchOn ? 'backdrop-blur-2xl' : 'backdrop-blur-md'}`}>
-            {
-                searchOn ? (
-                    <SearchBar toggleSearch={toggleSearch} />
-                ) : (
-                    <div className="flex justify-between items-center size-full">
-                        {/* NAV LINKS */}
-                        <nav className="w-[calc((95%-5rem)/2)]">
-                            <ul className="flex justify-evenly w-full">
-                                <li>
-                                    <Link to="/products" className={linkStl}>
-                                        Productos
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/contact" className={linkStl}>
-                                        Contacto
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/about" className={linkStl}>
-                                        Nosotros
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/blog" className={linkStl}>
-                                        <p>Blog</p>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        {/* LOGO */}
-                        <Link to="/">
-                            <img
-                                width={52} height={31}
-                                src={logo} alt="Logo Ide Pinturerias."
-                                className="w-[3.25rem] object-contain cursor-pointer"
-                            />
-                        </Link>
-
-                        {/* NAV LINKS */}
-                        <nav className="flex justify-around w-[calc((95%-5rem)/2)]">
-                            <button
-                                className={linkStl}
-                                onClick={toggleSearch}
-                            >
-                                <Magnifier size={'.75rem'} />
-                                Buscar
-                            </button>
-                            <div className="font-mono flex justify-center items-center cursor-pointer">
-                                <Link
-                                    to="/cart"
-                                    className={linkStl}
-                                >
-                                    <Cart size={'1rem'} />
-                                    Carrito
-                                </Link>
-                            </div>
-                            <div className="font-mono flex justify-center items-center cursor-pointer">
-                                <Link
-                                    to="/bookmarks"
-                                    className={linkStl}
-                                >
-                                    <Bookmark size={'.75rem'} />
-                                    Favoritos
-                                </Link>
-                            </div>
-                            <div
-                                className="relative flex justify-center items-center"
-
-                            >
-                                <Link
-                                    to="/account"
-                                    className={linkStl}
-                                >
-                                    <UserIcon size={'.75rem'} />
-                                    Cuenta
-                                </Link>
-
-                            </div>
-                        </nav>
-                    </div>
-                )
-            }
-        </header>
-  )
+    <header id="navbar" className="fixed w-full top-0 left-0 px-4 py-4 bg-bgFocus bg-opacity-75 backdrop-blur-md z-50">
+      <div className="container mx-auto flex justify-between items-center">
+        <button onClick={toggleMenu} className="text-2xl md:hidden mr-2">
+          <MenuIcon />
+        </button>
+        <div className="flex-grow flex justify-center md:justify-start">
+          <Link to="/" className="shrink-0">
+            <img src={logo} alt="Logo" className="w-16" />
+          </Link>
+        </div>
+        <nav className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent z-20`}>
+          <ul className="flex flex-col md:flex-row md:space-x-4 items-center text-center">
+            {navLinks.map(({ path, label }, index) => {
+              const isActive = location.pathname.startsWith(path);
+              return (
+                <li key={index}>
+                  <Link to={path} 
+                    className={`${isActive ? activeLinkStl : linkStl}`} 
+                    onClick={() => setIsMenuOpen(false)}>
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
 }
 
-export default NavBar
+export default NavBar;

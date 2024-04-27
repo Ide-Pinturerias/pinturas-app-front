@@ -4,7 +4,6 @@ import Home from './views/Home/Home'
 import About from './views/About/About'
 import Contact from './views/Contact/Contact'
 import Detail from './views/Detail/Detail'
-import Bookmarks from './views/Bookmarks/Bookmarks';
 import Cart from './views/Cart/Cart'
 import Blog from './views/Blog/Blog'
 import Products from './views/Products/Products'
@@ -82,8 +81,6 @@ function App () {
               <Route path="/admin/providers/edit/:id" element={<EditProvider />} />
 
               <Route path="/cart" element={<Cart />} />
-
-              <Route path="/bookmarks" element={<Bookmarks />} />
 
               <Route path="/orders/:idOrder" element={<UserOrderDetail />} />
 

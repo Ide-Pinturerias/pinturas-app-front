@@ -6,7 +6,7 @@ import { afterPseudo } from '@styles';
 function CardRegular ({ id, name, category, color, image, brand, price }) {
 
   // STYLES:
-  const tag = 'w-fit h-fit flex items-center justify-center box-border px-[.5em] py-[.18em] border-[1.5px] rounded-[15px] border-primaryClear text-[.65rem] text-primaryClear whitespace-nowrap'
+  const tag = 'w-fit h-fit flex items-center m-1 justify-center box-border px-[.5em] border-[1.5px] rounded-[15px] border-primaryClear text-xs text-primaryClear whitespace-nowrap'
 
 
   // COMPONENT:
@@ -25,20 +25,20 @@ return (
         />
       </div>
       {/* INFO */}
-      <div className="py-2 px-4 w-full">
+      <div className="py-2 w-full">
         {/* TAGS: CATEGORY, COLOUR */}
-        <div className="flex flex-wrap items-center gap-2 mb-1">
+        <div className="flex flex-wrap items-center -m-1 mb-1">
           <p className={`${tag}`}>{category}</p>
           {color !== 'No aplica' ? <p className={`${tag}`}>{color}</p> : null}
         </div>
         {/* NAME & BOOKMARK */}
         <div className="text-base md:text-lg flex justify-between gap-2">
-          <p className="m-0 whitespace-nowrap overflow-hidden text-ellipsis">{name}</p>
+          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-xl">{name}</p>
         </div>
         {/* BRAND */}
-        <p className="font-bold text-sm md:text-base">{brand}</p>
+        <p className="text-md font-primary font-bold">{brand}</p>
         {/* PRICE */}
-        <strong className="text-sm md:text-base">$ {formatNumberWithDots(price)}</strong>
+        <strong className="text-lg font-primary font-bold">$ {formatNumberWithDots(price)}</strong>
       </div>
     </Link>
   );

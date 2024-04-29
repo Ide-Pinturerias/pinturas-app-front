@@ -12,10 +12,10 @@ const AboutCard = () => {
                     className='self-center items-center object-cover aspect-[4/3] w-full max-h-[400px] lg:w-[calc((100%-50px)/2)] rounded-lg'
                 />
                 <div className="flex flex-col items-start lg:items-center w-full lg:w-[calc((100%-50px)/2)] mt-3">
-                    <h2 className="self-start text-clear text-[clamp(1rem,calc(0.75rem+5vw),4rem)] text-start font-heading font-bold">
+                    <h2 className="self-start text-clear text-4xl text-start font-primary font-bold">
                         Conózcanos
                     </h2>
-                    <p className="text-clear text-md mb-3 md:mb-6    text-start">
+                    <p className="mb-3 md:mb-6 text-clear text-md text-start">
                         Dedicados y comprometidos al 100% con pasión por la calidad, en idePinturerias priorizamos la excelencia y servicio personalizado. Nos esforzamos por superar tus expectativas al ofrecerte un servicio excepcional en pinturas y ferretería. Queremos ser tu socio confiable mientras nuestro equipo te brinda asesoramiento en cada proyecto, ya sea grande o pequeño.
                     </p>
                     <ButtonLink path='/about'>

@@ -37,7 +37,7 @@ const CategoryCard = ({ idx, searchQuery, image, title }) => {
                 alt={`¡Descubre nuestra línea de ${title}!`}
                 className="overflow-hidden object-cover w-full h-auto aspect-[12/5] rounded-lg"
             />
-            <h3 className='text-start font-bold'>{title}</h3>
+            <h3 className='text-start font-primary text-2xl font-bold'>{title}</h3>
         </Link>
   )
 }
@@ -56,7 +56,7 @@ const CategoryContainer = () => {
     { image: category8, searchQuery: 'Linea Esmaltes Industriales' },
     { image: category2, searchQuery: 'Linea Productos Especiales' },
     { image: category10, searchQuery: 'Linea Impermeabilizantes' },
-    { image: category11, searchQuery: 'Linea Fijadores - Aditivos -' },
+    { image: category11, searchQuery: 'Linea Fijadores - Aditivos' },
     { image: category9, searchQuery: 'Linea Latex' },
     // { image: category12, searchQuery: "Linea" },
     { image: category13, searchQuery: 'Linea Productos Auxiliares' }
@@ -65,10 +65,10 @@ const CategoryContainer = () => {
   return (
         <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
             <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
-                <div className="text-start">
-                    <p className="text-primaryAccesibility  font-semibold w-fit px-2 py-1 rounded  shadow-black">Arte que transforma tus paredes en obras maestras</p>
-                    <h2 className="w-full font-medium text-[clamp(.75rem,calc(.5rem+3vw),3.5rem)]">Descubra todas nuestras líneas</h2>
-                    <p>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
+                <div className="text-start w-full">
+                    <p className="text-primaryAccesibility font-bold w-fit md:px-[.25em] py-1 text-lg">Arte que transforma tus paredes en obras maestras</p>
+                    <h2 className="w-full font-medium font-primary text-3xl leading-[1.1] mb-2">Descubra todas nuestras líneas</h2>
+                    <p className='text-md'>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
                 </div>
                 <div className={`grid grid-cols-6 gap-6 w-full mt-6 ${stl.div__grid_container}`}>
                     {

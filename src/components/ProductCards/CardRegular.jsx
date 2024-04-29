@@ -14,7 +14,7 @@ function CardRegular ({ id, name, category, color, image, brand, price }) {
 return (
     <Link
       to={`/products/${id}`}
-      className={`relative ${afterPseudo} flex flex-col items-center justify-between bg-bg rounded-lg text-clear transition-all cursor-pointer`}
+      className={`relative ${afterPseudo} flex flex-col items-center justify-start bg-bg rounded-lg text-clear transition-all cursor-pointer`}
     >
       {/* IMAGE */}
       <div className="w-full aspect-square overflow-hidden rounded-lg">

@@ -37,6 +37,17 @@ export default {
         clear: '#1D1F21',
         overlay: 'rgba(0,0,0,.5)'
       },
+      fontSize: {
+        'xs': '.8125rem', // 13px
+        'sm': '.875rem', // 14px
+        'md': '1rem', // 16px 
+        'lg': '1.125rem', // 18px 
+        'xl': '1.25rem', // 20px
+        '2xl': '1.375rem', // 24px
+        '3xl': '2.5rem', // 40px
+        '4xl': '3.125rem',  // 50px
+        '5xl': '3.75rem' // 60px
+      },
       padding: {
         // Debe ser usado en cada component "main" para dar espacio al header principal.
         whiteSpaceTop: '7rem 0 0 0',

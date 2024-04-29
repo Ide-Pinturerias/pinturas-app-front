@@ -29,7 +29,7 @@ function Home () {
                 {/* OP2: */}
                 <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
                     <div className='flex flex-col items-center justify-between w-full p-4 pb-5 bg-primaryClear rounded-xl text-bg'>
-                        <h2 className="text-[clamp(.75rem,calc(0.5rem+2.5vw),3.5rem)] font-bold">Top ventas</h2>
+                        <h2 className="text-3xl font-primary text-center uppercase font-black">Top ventas</h2>
                         <p className="text-xl">Las mejores opciones para transformar sus espacios con estilo</p>
                     </div>
                     <FeaturedContainer bestSellersContainer={true} similarProductsContainer={false} />

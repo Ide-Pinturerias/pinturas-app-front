@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter } from '@svg';
+import { Facebook, Instagram, Linkedin } from '@svg';
 import ide from '@images/logo/ide.png';
 import { PlainNavLink, PlainExternalLink } from '@components/Controls/Links';
 
@@ -7,8 +7,7 @@ const Footer = () => {
   const SOCIAL_MEDIA = [
     { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/' },
     { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/' },
-    { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/' },
-    { icon: Twitter, link: 'https://twitter.com/ide.pintureria/' }
+    { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/' }
   ];
 
   return (
@@ -44,7 +43,7 @@ const Footer = () => {
                 <li><PlainExternalLink path='tel:+543513061350'>+54 351 306 1350</PlainExternalLink></li>
                 <li><PlainExternalLink path='mailto:idepintureria@gmail.com'>idepintureria@gmail.com</PlainExternalLink></li>
               </ul>
-              <p className="text-black text-sm mt-4">RP5, Esquina La Isla Anisacate, Córdoba, Argentina.</p>
+              <p className="text-black text-sm mt-4">RP5, Esquina La Isla - Anisacate, Córdoba, ARG.</p>
             </div>
           </div>
         </div>

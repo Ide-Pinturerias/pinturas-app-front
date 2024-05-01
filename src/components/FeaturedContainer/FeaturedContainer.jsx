@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { GetSimilarProducts } from '@api'
-
 import CardRegular from '../ProductCards/CardRegular'
-// import featuredBanner from '@img/featured-banner.png'
 
 function FeaturedContainer ({ bestSellersContainer, similarProductsContainer, similarProductsContainerOptions }) {
   // GLOBAL STATES:

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { formValidation } from './formValidation';
 import { formatAndSend } from './formatAndSend';
 import { useDispatch } from 'react-redux';
@@ -52,7 +52,6 @@ const ContactForm = () => {
     if (Object.keys(errors).length === 0) {
       formatAndSend(inputs, dispatch);
     }
-
     setInputs({
       name: '',
       email: '',
@@ -62,11 +61,11 @@ const ContactForm = () => {
 
   return (
     <div className="flex justify-center items-center px-4">
-      <div className="bg-contain rounded p-2 w-full max-w-md">
-        <div className="container mx-auto flex flex-col rounded-lg bg-formBg px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[30px] dark:shadow-black/20">
+      <div className="p-2 w-full max-w-md">
+        <div className="container mx-auto flex flex-col rounded-lg bg-hightlight px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]dark:shadow-black/20">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col mb-4">
-              <label htmlFor="name" className="bg-quaternary rounded-t-xl px-4 py-2">
+              <label htmlFor="name" className="rounded-t-xl px-4 py-2">
                 Nombre:
               </label>
               <input
@@ -82,7 +81,7 @@ const ContactForm = () => {
             </div>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="email" className="bg-quaternary rounded-t-xl px-4 py-2">
+              <label htmlFor="email" className="rounded-t-xl px-4 py-2">
                 Correo:
               </label>
               <input
@@ -98,7 +97,7 @@ const ContactForm = () => {
             </div>
 
             <div className="flex flex-col mb-4">
-              <label htmlFor="message" className="bg-quaternary rounded-t-xl px-4 py-2">
+              <label htmlFor="message" className="rounded-t-xl px-4 py-2">
                 Tu Mensaje:
               </label>
               <textarea
@@ -115,7 +114,7 @@ const ContactForm = () => {
 
             <button
               type="submit"
-              className="rounded px-4 py-2 hover:translate-y-1  bg-primaryClear text-white flex items-center justify-center mx-auto"
+              className="rounded px-4 py-2 hover:bg-accentClear  bg-fadepa text-white flex items-center justify-center mx-auto"
             >
                 Enviar
             </button>

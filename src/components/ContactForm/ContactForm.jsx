@@ -62,7 +62,7 @@ const ContactForm = () => {
   return (
     <div className="flex justify-center items-center px-4">
       <div className="p-2 w-full max-w-md">
-        <div className="container mx-auto flex flex-col rounded-lg bg-primaryClear px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]dark:shadow-black/20">
+        <div className="container mx-auto flex flex-col rounded-lg bg-hightlight px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]dark:shadow-black/20">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col mb-4">
               <label htmlFor="name" className="rounded-t-xl px-4 py-2">

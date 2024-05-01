@@ -13,7 +13,7 @@ const Blog = () => {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-tr from-accentClear to-primaryLight">
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-accentClear to-fadepa">
       <div className="py-20">
         <h1 className="text-5xl font-bold text-primary mb-5 text-center">
           BLOG

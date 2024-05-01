@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import defaultImage from "@img/blog.jpg";
 import BlogCard from "@components/BlogCard/BlogCard";
-import { useDispatch, useSelector } from "react-redux";
 import getPosts from "@redux/actions/Blog/getPosts";
 
 const Blog = () => {
@@ -19,7 +19,7 @@ const Blog = () => {
           BLOG
         </h1>
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 text-white">
             {posts.map(
               (post) =>
                 post.active && (

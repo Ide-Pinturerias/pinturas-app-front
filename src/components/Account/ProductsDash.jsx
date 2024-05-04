@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import CreateButton from '../CreateButton/CreateButton.jsx'
 import UpdateButton from '../UpdateButton/UpdateButton.jsx'
 import DeleteButton from '../DeleteButton/DeleteButton.jsx'
-import UpdatePricesButton from '../UpdatePricesButton/UpdatePricesButton.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProductsNoFilter } from '@redux/actions/Products/getAllProductsNoFilter.js'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+import { ButtonLink } from '../Controls/Links.jsx'
 
 const ProductsDash = () => {
   const dispatch = useDispatch()
@@ -66,8 +65,10 @@ const ProductsDash = () => {
 
   return (
         <div className="container mx-auto px-4 mt-16">
-                <CreateButton />
-                <UpdatePricesButton/>
+                <section className='p-8'>
+                  <ButtonLink path="/admin/create">Crear Producto</ButtonLink>
+                  <ButtonLink path="/admin/products/update/prices">Actualizar Precios</ButtonLink>
+                </section>
             <div className="flex">
                 <DataGrid
                     rows={products.map(product => ({

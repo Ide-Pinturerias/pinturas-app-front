@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import UpdateButton from "../UpdateButton/UpdateButton.jsx";
 import DeleteButton from "../DeleteButton/DeleteButton.jsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,19 +17,18 @@ const ProductsDash = () => {
   }, [dispatch]);
 
   const columnsForMobile = [
-    { field: "id", headerName: "ID", width: 40 },
     { field: "name", headerName: "Nombre", width: 200 },
     {
       field: "edit",
       headerName: "Editar",
       renderCell: (params) => <UpdateButton idProduct={params.row.id} />,
-      width: 90,
+      width: 85,
     },
     {
       field: "delete",
       headerName: "Eliminar",
       renderCell: (params) => <DeleteButton idProduct={params.row.id} />,
-      width: 90,
+      width: 85,
     },
   ];
 
@@ -76,7 +74,7 @@ const ProductsDash = () => {
             pagination: {
               paginationModel: {
                 page: 0,
-                pageSize: 15,
+                pageSize: 10,
               },
             },
             sorting: true,
@@ -95,17 +93,6 @@ const ProductsDash = () => {
           disableColumnFilter
           pageSizeOptions={[5, 10, 15, 20, 50, 100]}
         />
-      </div>
-
-      <div className="flex justify-between m-10">
-        <Link to="/products">
-          <button
-            type="submit"
-            className="bg-fadepa hover:bg-primaryClear text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Ir a buscar Productos
-          </button>
-        </Link>
       </div>
     </div>
   );

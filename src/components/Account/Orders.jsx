@@ -2,31 +2,10 @@ import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
 import DetailButton from '../DetailButton/DetailButton';
-import { useEffect, useState } from 'react';
+import { useMediaQuery } from '@mui/material';
 
 const Orders = () => {
   const orders = useSelector(state => state.ordersUser);
-  const useMediaQuery = (query) => {
-    const [matches, setMatches] = useState(false);
-  
-    useEffect(() => {
-      const mediaQuery = window.matchMedia(query);
-      setMatches(mediaQuery.matches);
-  
-      const handleMediaQueryChange = (event) => {
-        setMatches(event.matches);
-      };
-  
-      mediaQuery.addEventListener('change', handleMediaQueryChange);
-  
-      return () => {
-        mediaQuery.removeEventListener('change', handleMediaQueryChange);
-      };
-    }, [query]);
-  
-    return matches;
-  };
-
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const columnsForMobile = [

@@ -4,7 +4,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import getPosts from '@redux/actions/Blog/getPosts'
 import EditBlogButton from './BlogsButtons/EditBlogButton'
 import DeleteBlogButton from './BlogsButtons/DeleteBlogButton'
-import CreateBlogButton from './BlogsButtons/CreateBlogButton'
+import { ButtonLink } from "../Controls/Links.jsx";
 
 const BlogDash = () => {
   const dispatch = useDispatch()
@@ -64,11 +64,14 @@ const BlogDash = () => {
 
   ]
   return (
-    <div className='mx-auto px-4 mt-20'>
-      <div className="justify-end">
-        <CreateBlogButton />
+    <div className='container mx-auto px-4 mt-4 md:mt-16'>
+      <div className="p-8">
+        <ButtonLink
+        path="/blog/create">
+          Crear blog
+        </ButtonLink>
       </div>
-      <div className="w-full">
+      <div className="flex">
         <DataGrid
           rows={posts.map(post => ({
             id: post.idBlog,

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
-import DetailButton from '../DetailButton/DetailButton';
+import DetailButton from './OrdersButtons/DetailButton';
 import { useMediaQuery } from '@mui/material';
 
 const Orders = () => {

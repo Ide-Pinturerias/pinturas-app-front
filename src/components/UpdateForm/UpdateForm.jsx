@@ -95,16 +95,16 @@ const UpdateForm = () => {
       <h2 className="text-primary uppercase font-bold flex items-center justify-center">
           Actualizar Producto
       </h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div className=" flex m-8 mb-0">
+      <form className="" onSubmit={handleSubmit} encType="multipart/form-data">
+          <div className=" flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center">
               <label
                   htmlFor="name"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Nombre:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="50"
                   type="text"
                   name="name"
@@ -120,15 +120,15 @@ const UpdateForm = () => {
                   {errors.name}
               </p>
           </div>
-          <div className={`flex m-8 mb-0 ${errors.name ? 'mt-4' : 'mt-8'}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center ${errors.name ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="price"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                  Precio de lista:
+                  Precio lista:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="20"
                   type="number"
                   name="price"
@@ -140,15 +140,15 @@ const UpdateForm = () => {
               {errors.price && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.price}</p>}
           </div>
 
-          <div className={`flex m-8 mb-0 ${errors.price ? 'mt-4' : 'mt-8'}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center ${errors.price ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="code"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Código:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="25"
                   type="text"
                   name="code"
@@ -164,15 +164,15 @@ const UpdateForm = () => {
                   {errors.code}
               </p>
           </div>
-          <div className={`flex m-8 mb-0 ${errors.code ? 'mt-4' : 'mt-8'}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center ${errors.code ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="category"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Categoría:
               </label>
               <select
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   value={inputsForm.category}
                   onChange={handleInputChange}
                   name="category"
@@ -187,15 +187,15 @@ const UpdateForm = () => {
                   ))}
               </select>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center mb-0 justify-center">
               <label
                   htmlFor="category"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Proveedor:
               </label>
               <select
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   value={inputsForm.patent}
                   onChange={handleInputChange}
                   name="patent"
@@ -210,12 +210,12 @@ const UpdateForm = () => {
                   ))}
               </select>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center mb-0 justify-center">
               <label
                   htmlFor="file"
-                  className="bg-quaternary rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
+                  className="bg-primaryClear hover:bg-primaryDark text-white rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
               >
-                  Selecciona tu img:
+                  Subir imagen
                   <input
                       className="opacity-0 absolute"
                       type="file"
@@ -225,19 +225,19 @@ const UpdateForm = () => {
                       onChange={handleInputChange}
                   />
               </label>
-              <span className="bg-formBg rounded-r-lg w-72 h-8 flex items-center px-3">
+              <span className="bg-duller rounded-r-lg w-72 h-8 flex items-center px-3">
                   {inputsForm.image && 'Imagen ya seleccionada'}
               </span>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center mb-0 justify-center">
               <label
                   htmlFor="package"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Package:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="25"
                   type="text"
                   name="package"
@@ -245,15 +245,15 @@ const UpdateForm = () => {
                   onChange={handleInputChange}
               />
           </div>
-          <div className="flex m-8 mb-0">
+          <div className="flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center">
               <label
                   htmlFor="stock"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Stock:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="10"
                   type="text"
                   name="stock"
@@ -264,15 +264,15 @@ const UpdateForm = () => {
           <div className="flex mt-0 pt-0 pl-8 justify-around">
               {errors.stock && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.stock}</p>}
           </div>
-          <div className={`flex m-8 mb-0 ${errors.stock ? 'mt-4' : 'mt-8'}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center justify-center mb-0 justify-center ${errors.stock ? 'mt-4' : 'mt-8'}`}>
               <label
                   htmlFor="color"
-                  className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+                  className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
                   Color:
               </label>
               <input
-                  className="bg-formBg rounded-r-lg w-72 h-8 text-center"
+                  className="bg-duller rounded-r-lg w-72 h-8 text-center"
                   maxLength="25"
                   type="text"
                   name="color"
@@ -283,15 +283,15 @@ const UpdateForm = () => {
           <div className="flex mt-0 pt-0 pl-8 justify-around">
               {errors.color && <p className="text-warning text-xs font-extrabold py-0 m-0">{errors.color}</p>}
           </div>
-          <div className="flex mt-8 ml-8">
+          <div className="flex flex-col mt-8 justify-center">
             <label
               htmlFor="description"
-              className="bg-quaternary rounded-l-xl w-40 h-8  flex items-center justify-center"
+              className="bg-primaryClear text-white rounded-t-xl h-8 mx-6 flex items-center justify-center"
             >
               Descripción:
             </label>
             <textarea
-              className="bg-formBg rounded-r-lg w-72 h-40 resize-none p-2"
+              className="bg-duller rounded-b-lg h-40 resize-none mx-6 p-1"
               maxLength="1000"
               name="description"
               value={inputsForm.description}
@@ -304,18 +304,12 @@ const UpdateForm = () => {
             )}
           </div>
           <div className={`flex justify-center ${errors.description ? 'mt-4' : 'mt-8'}`}>
-              <button
-                  className="rounded-xl w-4/5 h-12 hover:translate-y-1.5 bg-primary text-tertiary border border-solid border-black m-5 font-bold flex items-center justify-center"
-                  type="submit"
-              >
-                  <h2
-                      className="text-primary uppercase font-bold flex items-center justify-center"
-                      style={{ color: 'white', fontWeight: 'bold' }}
-                  >
-                      ACTUALIZAR PRODUCTO
-                  </h2>
-              </button>
-
+          <button
+              type="submit"
+              className="bg-fadepa hover:bg-primaryClear text-white text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Actualizar producto
+            </button>
           </div>
       </form>
   </div>

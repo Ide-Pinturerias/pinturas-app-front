@@ -26,15 +26,14 @@ const Dashboard = () => {
     return <Account />;
   } else {
     return (
-      <div>
-        <div style={{ display: 'flex', minHeight: '100vh' }}>
+        <div className="flex flex-col md:flex-row">
           <NavbarAdmin
             activeButton={activeSection}
             handleButtonClick={handleButtonClick}
             user={user}
             backToAccountAction={backToAccountAction}
           />
-          <div className="w-9/12" style={{ flex: '1' }}>
+          <div className="w-full md:w-9/12 md:ml-auto flex flex-col flex-1 h-screen overflow-y-auto">
             {activeSection === 'products' && <ProductsDash />}
             {activeSection === 'sales' && <SalesDash />}
             {activeSection === 'users' && <UsersDash />}
@@ -42,7 +41,6 @@ const Dashboard = () => {
             {activeSection === 'providers' && <ProvidersDash />}
             <footer style={{ textAlign: 'center', padding: '10px' }}></footer>
           </div>
-        </div>
       </div>
     );
   }

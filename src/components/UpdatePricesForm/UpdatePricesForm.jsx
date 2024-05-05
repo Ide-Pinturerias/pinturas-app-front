@@ -58,7 +58,7 @@ const UpdatePricesForm = () => {
   }, []);
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <LoadingSpinner/>;
   }
 
   if (user.rol !== "admin") {

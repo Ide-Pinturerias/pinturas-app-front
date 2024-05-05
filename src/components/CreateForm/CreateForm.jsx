@@ -81,7 +81,7 @@ const CreateForm = () => {
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
-          <div className=" flex m-8 mb-0">
+          <div className="flex m-8 justify-center mb-0 justify-center">
             <label
               htmlFor="name"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -106,12 +106,12 @@ const CreateForm = () => {
               {errors.name}
             </p>
           </div>
-          <div className={`flex m-8 mb-0 ${errors.name ? "mt-4" : "mt-8"}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center ${errors.name ? "mt-4" : "mt-8"}`}>
             <label
               htmlFor="price"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
             >
-              Precio de lista:
+              Precio lista:
             </label>
             <input
               className="bg-duller rounded-r-lg w-72 h-8 text-center"
@@ -130,7 +130,7 @@ const CreateForm = () => {
             )}
           </div>
 
-          <div className={`flex m-8 mb-0 ${errors.price ? "mt-4" : "mt-8"}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center ${errors.price ? "mt-4" : "mt-8"}`}>
             <label
               htmlFor="code"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -153,7 +153,7 @@ const CreateForm = () => {
               </p>
             )}
           </div>
-          <div className={`flex m-8 mb-0 ${errors.code ? "mt-4" : "mt-8"}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center ${errors.code ? "mt-4" : "mt-8"}`}>
             <label
               htmlFor="category"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -176,7 +176,7 @@ const CreateForm = () => {
               ))}
             </select>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center">
             <label
               htmlFor="category"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -199,12 +199,12 @@ const CreateForm = () => {
               ))}
             </select>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center">
             <label
               htmlFor="file"
               className="bg-primaryClear hover:bg-primaryDark text-white rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
             >
-              Selecciona tu img:
+              Sube imagen:
               <input
                 className="opacity-0 absolute"
                 type="file"
@@ -218,7 +218,7 @@ const CreateForm = () => {
               {inputsForm.image && `Imagen seleccionada: ${inputsForm.image}`}
             </span>
           </div>
-          <div className="flex m-8">
+          <div className="flex m-8 justify-center">
             <label
               htmlFor="package"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -234,7 +234,7 @@ const CreateForm = () => {
               onChange={handleInputChange}
             />
           </div>
-          <div className="flex m-8 mb-0">
+          <div className="flex m-8 justify-center mb-0 justify-center">
             <label
               htmlFor="stock"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -257,7 +257,7 @@ const CreateForm = () => {
               </p>
             )}
           </div>
-          <div className={`flex m-8 mb-0 ${errors.stock ? "mt-4" : "mt-8"}`}>
+          <div className={`flex m-8 justify-center mb-0 justify-center ${errors.stock ? "mt-4" : "mt-8"}`}>
             <label
               htmlFor="color"
               className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
@@ -280,28 +280,28 @@ const CreateForm = () => {
               </p>
             )}
           </div>
-          <div className="flex mt-8 ml-8">
-            <label
-              htmlFor="description"
-              className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
-            >
-              Descripción:
-            </label>
-            <textarea
-              className="bg-duller rounded-r-lg w-72 h-40 resize-none p-1"
-              maxLength="1000"
-              name="description"
-              value={inputsForm.description}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="flex my-0 pt-0 pl-8 justify-around">
-            {errors.description && (
-              <p className="text-warning text-xs font-extrabold py-0 m-0">
-                {errors.description}
-              </p>
-            )}
-          </div>
+            <div className="flex flex-col mt-8 justify-center">
+              <label
+                htmlFor="description"
+                className="bg-primaryClear text-white rounded-t-xl h-8 mx-6 flex items-center justify-center"
+              >
+                Descripción:
+              </label>
+              <textarea
+                className="bg-duller rounded-b-lg h-40 resize-none mx-6 p-1"
+                maxLength="1000"
+                name="description"
+                value={inputsForm.description}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="flex my-0 pt-0 pl-8 justify-around">
+              {errors.description && (
+                <p className="text-warning text-xs font-extrabold py-0 m-0">
+                  {errors.description}
+                </p>
+              )}
+            </div>
           <div
             className={`flex justify-center ${
               errors.description ? "mt-4" : "mt-8"

@@ -14,13 +14,13 @@ export default {
                 // tertiary: 'rgba(231, 231, 231, 0.40)',
                 // quaternary: '#F0CF5D',
                 // formBg: '#D9D9D9',
-                // warning: '#ff0f0f',
                 // white: '#f1f1f1',
                 // warmWhite: '#FFFAED', // ##F7EEDD
                 // seasalt: '#FAF8F5',
                 // softWhite: '#F7F7F2',
                 // complementaryWhite: '#EAEAE6',
                 // focusedWhite: 'rgba(18,18,18,.14)',
+                warning: '#ff0f0f',
                 bg: '#FFFFFF', // '#F7EEDD'
                 bgFocus: '#F5F5F5', // '#EDE4D3'
                 primaryClear: '#FF6600',

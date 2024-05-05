@@ -53,9 +53,11 @@ const ProductsDash = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 mt-16">
+    <div className="container mx-auto px-4 mt-4 md:mt-16">
       <section className="p-8">
-        <ButtonLink path="/admin/create">Crear Producto</ButtonLink>
+        <ButtonLink 
+        path="/admin/create">
+          Crear Producto</ButtonLink>
         <ButtonLink path="/admin/products/update/prices">
           Actualizar Precios
         </ButtonLink>

@@ -9,8 +9,8 @@ const UpdateUserButton = ({ idUser }) => {
   }
 
   return (
-        <div className="flex justify-end">
-            <button onClick={handleClick} className="bg-primary rounded-xl w-28 h-12 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold">Administrar</button>
+        <div className="">
+            <button onClick={handleClick} className="bg-accentClear hover:bg-fadepa text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Administrar</button>
         </div>
   )
 }

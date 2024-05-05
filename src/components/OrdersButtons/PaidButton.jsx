@@ -23,7 +23,7 @@ const PaidButton = ({ idOrder }) => {
   }
   return (
         <div className="flex justify-end">
-            <button onClick={handleClick} className="bg-orange-500 rounded-xl w-20 h-12 m-8 text-white border-2 border-solid border-gray-300 shadow-md font-bold" > Pagado</button >
+            <button onClick={handleClick} className="bg-primaryClear hover:bg-fadepa text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" > Pagado</button >
         </div>
   )
 }

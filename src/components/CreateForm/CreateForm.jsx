@@ -204,7 +204,7 @@ const CreateForm = () => {
               htmlFor="file"
               className="bg-primaryClear hover:bg-primaryDark text-white rounded-l-xl w-40 h-8 flex items-center justify-center cursor-pointer"
             >
-              Sube imagen:
+              Sube imagen
               <input
                 className="opacity-0 absolute"
                 type="file"

@@ -14,7 +14,7 @@ const About = () => {
       <img src={imgAbout} alt="Descripción de la imagen" className="max-w-full h-auto" />
 
       <div className="flex flex-col items-center my-5 text-center max-w-4xl mx-auto">
-        <h1 className="text-xl lg:text-2xl font-bold mb-2">¡Bienvenidos a ide Pinturerias!</h1>
+        <h1 className="text-xl lg:text-2xl font-bold mb-2">¡Bienvenidos a IDE Pinturerías!</h1>
         <p className="text-base mb-2">
           {PARRAGRAPH_1}
         </p>

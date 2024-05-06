@@ -12,7 +12,7 @@ const SalesDash = () => {
   const orders = useSelector(state => state.allOrders)
   useEffect(() => {
     getAllOrders()(dispatch)
-  }, [orders])
+  }, [dispatch])
 
   const columns = [
     {

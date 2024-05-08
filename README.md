@@ -64,11 +64,6 @@ The application is deployed on [Vercel](https://vercel.com/).
 3. FilterMenu.jsx
 4. SortMenu.jsx
 
-## Bookmarks:
-
-1. BookmarkList.jsx
-2. FeaturedContainer.jsx
-
 ## Cart:
 
 1. Accordion.jsx
@@ -88,6 +83,10 @@ The application is deployed on [Vercel](https://vercel.com/).
 ## About:
 
 - No components (other than SVG components) are being used yet.
+
+## Blog:
+
+## Account:
 
 # STRUCTURE
 
@@ -114,9 +113,6 @@ src
 |--|--FeaturedContainer (TOP SELLERS)
 |--|--|--FeaturedContainer.jsx
 
-
-|--|--BookmarkList
-|--|--|--BookmarkList.jsx
 
 |--|--Cart
 |--|--|--Accordion.jsx
@@ -185,7 +181,6 @@ src
 ...
 |--views
 |--|--About
-|--|--Bookmarks
 |--|--Contact
 |--|--Home
 |--|--Detail

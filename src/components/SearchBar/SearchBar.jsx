@@ -42,6 +42,7 @@ export const SearchBar = ({ toggleSearch }) => {
             type="button"
             className={`${linkStl} absolute top-1/2 -translate-y-1/2 right-[.3em]`}
             onClick={clearSearch}
+            aria-label='Clear search'
           >
             <XLarge size={'1rem'} />
           </button>

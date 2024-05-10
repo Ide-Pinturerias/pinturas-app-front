@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@img/logo-black.png';
+import logo from '@img/webp/logo-black.webp';
 import { Cart, UserIcon, MenuIcon } from '@svg';
 
 function NavBar() {
@@ -50,8 +50,8 @@ function NavBar() {
               const isActive = location.pathname.startsWith(path);
               return (
                 <li key={index}>
-                  <Link to={path} 
-                    className={`${isActive ? activeLinkStl : linkStl}`} 
+                  <Link to={path}
+                    className={`${isActive ? activeLinkStl : linkStl}`}
                     onClick={() => setIsMenuOpen(false)}>
                     {label}
                   </Link>

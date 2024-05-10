@@ -1,12 +1,12 @@
-import Andrea from '@img/Team/Andrea.jpg'
-import Basilio from '@img/Team/Basilio.jpg'
-import Carlos from '@img/Team/Carlos.jpeg'
-import Edgar from '@img/Team/Edgar.jpeg'
-import Jamer from '@img/Team/Jamer.jpeg'
-import Juan from '@img/Team/Juan.jpg'
-import Nicole from '@img/Team/Nicole.jpg'
-import Roberto from '@img/Team/Roberto.jpeg'
-import Daniel from '@img/Team/Daniel.png'
+import Andrea from '@img/webp/Team/Andrea.webp'
+import Basilio from '@img/webp/Team/Basilio.webp'
+import Carlos from '@img/webp/Team/Carlos.webp'
+import Edgar from '@img/webp/Team/Edgar.webp'
+import Jamer from '@img/webp/Team/Jamer.webp'
+import Juan from '@img/webp/Team/Juan.webp'
+import Nicole from '@img/webp/Team/Nicole.webp'
+import Roberto from '@img/webp/Team/Roberto.webp'
+import Daniel from '@img/webp/Team/Daniel.webp'
 
 export const teamMembers = [
   {

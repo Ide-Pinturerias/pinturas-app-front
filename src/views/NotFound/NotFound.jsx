@@ -1,5 +1,5 @@
 import React from 'react'
-import img404 from '@img/404.png'
+import img404 from '@img/webp/404.webp'
 import { ButtonLink } from '@components/Controls/Links'
 
 const NotFound = () => {

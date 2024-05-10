@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import defaultImage from "@img/blog.jpg";
+import defaultImage from "@img/webp/blog.webp";
 import BlogCard from "@components/BlogCard/BlogCard";
 import getPosts from "@redux/actions/Blog/getPosts";
 

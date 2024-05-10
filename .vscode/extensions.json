@@ -2,6 +2,8 @@
   "recommendations": [
     "aaron-bond.better-comments",
     "usernamehw.errorlens",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker-spanish",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

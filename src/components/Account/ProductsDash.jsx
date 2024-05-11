@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import UpdateButton from "../UpdateButton/UpdateButton.jsx";
+import UpdateButton from "./UpdateButtons/UpdateButton.jsx"
 import DeleteButton from "../DeleteButton/DeleteButton.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductsNoFilter } from "@redux/actions/Products/getAllProductsNoFilter.js";

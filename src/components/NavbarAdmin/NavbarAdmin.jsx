@@ -1,4 +1,3 @@
-import React from 'react'
 
 const NavbarAdmin = ({
   activeButton,
@@ -32,10 +31,10 @@ const NavbarAdmin = ({
                     </span>
                 </div>
             </div>
-            <ul className="space-y-2 text-sm ml-2">
+            <ul className="space-y-2 text-sm">
                 <li>
                     <a
-                        href="#"
+                        href="#products"
                         className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'products'
                             ? 'bg-gray-200 focus:shadow-outline'
                             : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
@@ -61,7 +60,7 @@ const NavbarAdmin = ({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="#sales"
                         className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'sales'
                             ? 'bg-gray-200 focus:shadow-outline'
                             : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
@@ -82,12 +81,12 @@ const NavbarAdmin = ({
                                 />
                             </svg>
                         </span>
-                        <span>Compras</span>
+                        <span>Ventas</span>
                     </a>
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="#users"
                         className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'users'
                             ? 'bg-gray-200 focus:shadow-outline'
                             : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
@@ -113,7 +112,7 @@ const NavbarAdmin = ({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="#blogs"
                         className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'blog'
                             ? 'bg-gray-200 focus:shadow-outline'
                             : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
@@ -139,7 +138,7 @@ const NavbarAdmin = ({
                 </li>
                 <li>
                     <a
-                        href="#"
+                        href="#providers"
                         className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'providers'
                             ? 'bg-gray-200 focus:shadow-outline'
                             : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'

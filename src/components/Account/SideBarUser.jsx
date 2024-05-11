@@ -12,7 +12,7 @@ const SideBarUser = ({
   const isAdmin = loggedUser.rol === 'admin'
 
   return (
-    <div className={`${isAdmin ? 'w-1/5' : 'w-3/12'} bg-white rounded p-3 shadow-lg mt-16`}>
+    <div className={`${isAdmin ? 'w-1/5' : 'w-3/12'} bg-white rounded p-3 shadow-lg mt-16 w-full sm:w-auto`}>
       <div className="flex items-center space-x-4 p-2 mb-5">
         <img className="h-12 rounded-full" src="https://i.ibb.co/hM4qPfP/blank-profile-picture-973460-960-720.webp" alt="Profile" />
         <div>

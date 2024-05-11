@@ -6,7 +6,7 @@ const validateName = (value) => {
 export const steps = [
   {
     id: 'Greet',
-    message: '¡Hola! ¡Bienvenidos a ide Pinturerias! ¿En qué puedo ayudarte?',
+    message: '¡Hola! ¡Bienvenidos a IDE Pinturerías! ¿En qué puedo ayudarte?',
     trigger: 'Ask Name'
   },
   {
@@ -40,9 +40,9 @@ export const steps = [
     id: 'issues',
     options: [
       { value: 'Comprar', label: 'Comprar', trigger: 'Shop' },
-      { value: 'Contatc', label: 'Contacto', trigger: 'Contatc' },
+      { value: 'Contact', label: 'Contacto', trigger: 'Contact' },
       { value: 'account', label: 'Cuenta', trigger: 'account' },
-      { value: 'Location', label: 'Ubicacion', trigger: 'Location' }
+      { value: 'Location', label: 'Ubicación', trigger: 'Location' }
     ],
     validator: (value) => {
       if (value) {
@@ -59,7 +59,7 @@ export const steps = [
     trigger: 'more_help'
   },
   {
-    id: 'Contatc',
+    id: 'Contact',
     message:
       'Puedes contactarnos llamando al +54 351 306 1350. Estamos aquí para ayudarte.',
     trigger: 'more_help'
@@ -73,7 +73,7 @@ export const steps = [
   {
     id: 'Location',
     message:
-      'La ubicacion de nuestro Local fisico es en la Ruta 5 - Esquina La Isla Anisacate, Córdoba.',
+      'La ubicación de nuestro Local físico es en la Ruta 5 - Esquina La Isla Anísacate, Córdoba.',
     trigger: 'more_help'
   },
   {

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProviders } from '@redux/actions/Providers/getProviders'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import CreateProviderButton from './ProvidersButtons/CreateProviderButton'
 import DeleteProviderButton from './ProvidersButtons/DeleteProviderButton'
 import EditProviderButton from './ProvidersButtons/EditProviderButton'
+import { ButtonLink } from "../Controls/Links.jsx";
 
 const ProvidersDash = () => {
   const dispatch = useDispatch()
@@ -60,9 +60,11 @@ const ProvidersDash = () => {
 
   ]
   return (
-    <div className='container mx-auto px-4 mt-20'>
-      <div className="justify-end">
-        <CreateProviderButton />
+    <div className='container mx-auto px-4 mt-4 md:mt-16'>
+      <div className="p-8">
+      <ButtonLink path="/admin/providers/create">
+          Crear Proveedor
+        </ButtonLink>
       </div>
       <div className="w-full">
         <DataGrid

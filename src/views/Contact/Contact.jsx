@@ -1,171 +1,105 @@
-// import ContactForm from '../../components/ContactForm/ContactForm'
-import { Facebook, Instagram, Linkedin, Twitter } from '@svg'
-
-import Banner5 from '@img/pet.png'
-import Local from '@img/location.png'
-import Map from '@img/map.png'
-import Paws from '@img/paws.png'
-import { Phone, Email } from '@mui/icons-material'
-
-const SOCIAL_MEDIA = [
-  { icon: Facebook, link: 'https://www.facebook.com/ide.pintureria/', rotate: '-rotate-3' },
-  { icon: Instagram, link: 'https://www.instagram.com/ide.pintureria.ok/', rotate: 'rotate-5' },
-  { icon: Linkedin, link: 'https://www.linkedin.com/ide.pintureria/', rotate: '-rotate-2' },
-  { icon: Twitter, link: 'https://twitter.com/ide.pintureria/', rotate: 'rotate-2' }
-]
+import ContactForm from "../../components/ContactForm/ContactForm";
+import Banner5 from "@img/webp/pet.webp";
+import Local from "@img/webp/location.webp";
+import Paws from "@img/webp/paws.webp";
 
 const Contact = () => {
   return (
-        <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-accentClear">
-            <section className="flex justify-center mb-[8rem] text-white w-full">
-                <div className="max-w-[1920px] w-full px-[3.5%]">
-                    <h2 className="relative mt-[5rem] w-fit text-[clamp(.75vw,calc(7vw+.5rem),6rem)] font-bold before:content-none before:absolute before:-z-10 before:top-1/2 before:-translate-y-1/2 before:left-0 before:h-[125%] before:w-full before:bg-bg before:rounded-[2rem] font-heading">Nuestra tienda</h2>
-                    <p className="mb-[5rem] text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                        En nuestra tienda encontrarás todos los productos que necesitas.
-                    </p>
-                    <div className="w-full flex justify-center items-center">
-                        <img src={Local} alt="Local" className="w-full rounded-[2rem]" />
-                    </div>
-                </div>
-            </section>
+    <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-fadepa">
+      <section className="flex justify-center mb-16 text-white w-full">
+        <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+          <img src={Local} alt="Local" className="shadow-lg w-full rounded-2xl" />
+        </div>
+      </section>
 
-            <section className="relative flex justify-center w-full before:content-[''] before:absolute before:-z-50 before:bottom-0 before:left-0 before:h-[25%] before:w-full before:bg-primaryClear">
-                <div className="px-[3.5%] box-border w-full max-w-[1920px]">
-                    <div className="flex mb-[8rem]">
-                        <img
-                            src={Paws} alt="huellas"
-                            className="w-1/2 h-auto"
-                        />
-                        <div className="flex flex-col justify-between">
-                            <h3 className="text-[clamp(.75vw,calc(3vw+.5rem),4rem)] uppercase font-bold">Amigables con tu pequeño compañero</h3>
-                            <p className="text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">Nos enorgullece ser un lugar amigable para todos. Invitamos a explorar nuestras instalaciones con sus queridos compañeros peludos. Explora nuestra amplia selección de pinturas y suministros con la comodidad de saber que tus amigos peludos son bienvenidos.</p>
-                        </div>
-                    </div>
-                    <img
-                        src={Banner5} alt="somos pet friendly banner"
-                        className="w-full rounded-[2rem]"
-                    />
-                </div>
-            </section>
+      <section className="flex justify-center py-16 w-full bg-accentClear text-white">
+        <div className="px-4 sm:px-6 lg:px-8 w-full max-w-7xl">
+          <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
+            <img
+              src={Paws}
+              alt="huellas"
+              className="w-full lg:w-1/2 h-auto mb-6 lg:mb-0"
+            />
+            <div>
+              <h3 className="text-lg lg:text-3xl xl:text-4xl uppercase font-bold">
+                Amigables con tu pequeño compañero
+              </h3>
+              <p className="text-sm lg:text-lg xl:text-xl">
+                Nos enorgullece ser un lugar amigable para todos. Invitamos a
+                explorar nuestras instalaciones con sus queridos compañeros
+                peludos.
+              </p>
+            </div>
+          </div>
+          <img
+            src={Banner5}
+            alt="somos pet friendly banner"
+            className="w-full rounded-2xl shadow-lg"
+          />
+        </div>
+      </section>
 
-            <section className="flex justify-center py-[8rem] w-full bg-primaryClear text-white ">
-                <div className="px-[3.5%] max-w-[1920px] w-full">
-                    <h3 className="text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase mb-12"><strong>Encuéntranos</strong></h3>
-                    <div className="w-full flex justify-between items-center">
-                        <div className="flex flex-col gap-8">
-                            <div>
-                                <h4 className="text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">Direcciones:</h4>
-                                <div className="w-1/2 h-full text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                                    RP5 - Esquina La Isla
+      <section className="flex justify-center py-16 w-full bg-accentClear text-white">
+        <div className="px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
+          <h3 className="text-lg lg:text-3xl xl:text-4xl uppercase mb-12">
+            <strong>Te esperamos</strong>
+          </h3>
+          <div className="flex flex-col lg:flex-row justify-between items-start">
+            <div className="flex flex-col gap-8 mb-6 lg:mb-0">
+              <div>
+                <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
+                  Dirección:
+                </h4>
+                <p className="text-sm lg:text-lg xl:text-xl mx-2">
+                  RP5 - Esquina La Isla, Anisacate - Córdoba
+                </p>
+              </div>
+              <div>
+                <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
+                  Horarios
+                </h4>
+                <span>Lunes a viernes</span>
+                <p className="text-sm lg:text-lg xl:text-xl">
+                  9:00 a.m. - 1:00 p.m.
+                </p>
+                <p className="text-sm lg:text-lg xl:text-xl">
+                  3:00 p.m. - 6:30 p.m.
+                </p>
+                <span>Sabados</span>
+                <p className="text-sm lg:text-lg xl:text-xl">
+                  9:00 a.m. - 1:00 p.m.
+                </p>
+              </div>
+            </div>
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13573.988253225049!2d-64.4100103!3d-31.7296308!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d54233a91322b%3A0x171ba1f406068069!2sPintureria%20Fadepa!5e0!3m2!1ses-419!2sar!4v1714579291527!5m2!1ses-419!2sar"
+            className="w-full rounded-2xl h-96 shadow-lg"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+          </div>
+        </div>
+      </section>
 
-                                    Anisacate - Córdoba
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">Horarios</h4>
-                                <div className="text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">
-                                    <div>
-                                        L-S: 8:00 a.m. - 4:00 p.m.
-                                    </div>
-                                    <div>
-                                        D: 9:00 a.m. - 1:00 p.m.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <a
-                            href="https://www.google.com/maps/place/Pintureria+Fadepa/@-31.727083,-64.407546,14z/data=!4m6!3m5!1s0x942d54233a91322b:0x171ba1f406068069!8m2!3d-31.7294921!4d-64.4100351!16s%2Fg%2F11h75pz_n7?hl=es-419&entry=ttu"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex-initial w-full lg:w-[60%]"
-                        >
-                            <img src={Map} alt="Mapa" className="rounded-[2rem]" />
-                        </a>
-                    </div>
-                </div>
-            </section>
+      <section className="flex justify-center items-center px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
+        <div className="w-full lg:flex lg:justify-between lg:items-center">
+          <div className="mb-8 lg:mb-0 lg:w-1/2 lg:pr-8">
+            <h2 className="text-2xl lg:text-6xl my-2">
+              <strong className="font-heading">Contáctanos</strong>
+            </h2>
+            <p className="text-sm lg:text-lg xl:text-xl">
+              ¡Nos encanta recibir tus mensajes! Envíanos tus consultas,
+              sugerencias y más.
+            </p>
+          </div>
+          <div className="w-full lg:w-1/2">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
 
-            <section>
-                <div className="flex flex-row-reverse items-center px-[3.5%] max-w-[1920px] h-screen">
-                    <div className="w-1/2">
-                        <h2 className="text-[clamp(.75vw,calc(7vw+.5rem),6rem)]"><strong className="font-heading">Contáctanos</strong></h2>
-                        <p className="text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]">¡Nos encanta recibir tus mensajes! Envíanos tus consultas, sugerencias y más. Estamos aquí para escucharte y mejorar tu experiencia.</p>
-                    </div>
-                    <div className="mx-10 mb-5 mt-8 ">
-                        <div className="flex flex-wrap items-start justify-center lg:items-stretch">
-                            <div className="flex-initial lg:w-1/2 mb-6 md:mb-0 lg:-ml-12 max-w-200">
-                                {/* <ContactForm /> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-[8rem] bg-primaryClear">
-                <div className="flex flex-col items-center max-w-[1920px] text-white">
-                    <h3 className="mb-16 text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase font-bold">Atención al cliente</h3>
-                    <div className="p-8 mx-[20%] mb-16 rounded-[2rem] bg-bgFocus">
-                        <p className="text-center text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-clear">
-                            <strong className="block">Tú eres el centro.</strong>
-                            Nuestro equipo de atención al cliente está aquí para responder a tus preguntas, proporcionar asesoramiento experto y garantizar tu completa satisfacción. Ya sea que necesites ayuda para elegir el color perfecto o tengas consultas sobre nuestros productos, estamos comprometidos a hacer de tu experiencia de compra algo extraordinario.
-                        </p>
-                    </div>
-                    <div className="flex justify-between w-1/2">
-                        <div className="flex flex-col items-center">
-                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-bgFocus before:rounded-full">
-                                <Phone style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
-                            </div>
-                            <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
-                                Teléfono
-                            </p>
-                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-white">
-                                +54 351 306 1350
-                            </p>
-
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <div className="relative mb-8 before:content-[''] before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-[150%] before:h-[150%] before:bg-bgFocus before:rounded-full">
-                                <Email style={{ width: '70px', height: 'auto', fill: '#000', position: 'relative' }} />
-                            </div>
-                            <p className="mb-2 text-[clamp(.6vw,calc(2vw+.5rem),2.8rem)] uppercase font-bold">
-                                Correo
-                            </p>
-                            <p className="mb-2 text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)] text-white">
-                                idepintureria@gmail.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-[8rem]">
-                <div className="px-[3.5%] max-w-[1920px]">
-                    <h3 className="mb-16 text-[clamp(.75vw,calc(4vw+.5rem),4rem)] uppercase"><strong>Nuestras redes oficiales</strong></h3>
-                    <div>
-                        <ul className="flex justify-between">
-                            {
-                                SOCIAL_MEDIA.map((item, idx) => (
-                                    <li
-                                        key={idx}
-                                        className={`grid items-center ${item.rotate} w-[20%] h-auto p-[5.5%] aspect-square rounded-[2rem] bg-bgFocus fill-black shadow-md`}
-                                    >
-                                        <a
-                                            href={item.link}
-                                            className=" mx-2 flex items-center justify-center fill-black rounded-md cursor-pointer"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <item.icon/>
-                                        </a>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </main>
-  )
-}
-
-export default Contact
+export default Contact;

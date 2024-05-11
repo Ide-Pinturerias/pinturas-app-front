@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 import { Bookmark, Star, Shop, Phone, ChatEmpty } from '@svg'
 import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
 import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
-import { Button } from '@components/Controls/Buttons.tsx'
+import { Button } from '@components/Controls/Buttons.jsx'
 import { LoadingSpinner } from '../../components/LoadingSpinner/LoadingSpinner'
 
 function Detail() {
@@ -176,7 +176,7 @@ function Detail() {
     return (
         <main className="flex justify-center w-full min-h-screen p-whiteSpaceTop bg-bg">
             {Object.keys(product).length === 0 ? (
-                <LoadingSpinner/>
+                <LoadingSpinner />
             ) : (
                 <div className="flex flex-col max-w-maxSc w-maxIn m-sides">
                     {/* BREADCRUMB */}
@@ -202,24 +202,24 @@ function Detail() {
                     {/* END OF BREADCRUMB */}
 
                     {/* PRODUCT DETAILS */}
-                    <div className="flex justify-between gap-8 w-full mb-[50px]">
+                    <div className="flex flex-col sm:flex-row justify-between gap-8 w-full mb-[50px]">
                         {/* PRODUCT IMAGE */}
-                        <section>
+                        <section className='w-full sm:w-[250px] xl:w-[300px]'>
                             <img
                                 src={product.image}
-                                className="w-[300px] rounded-[1rem] font-black select-none"
+                                className="w-full rounded-[1rem] font-black select-none"
                             />
                         </section>
 
                         {/* PRODUCT INFORMATION */}
-                        <section className="flex flex-col border-black w-[calc(100%-300px)]">
+                        <section className="flex flex-col border-black flex-1">
                             {/* CATEGORY AND FAVORITE BUTTON */}
                             <div className="flex justify-between mb-4">
                                 <div className="flex flex-col">
                                     <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]">
                                         {product.category}
                                     </a>
-                                    <h1 className="mt-2 text-3xl font-bold uppercase">
+                                    <h1 className="mt-2 text-2xl font-bold uppercase font-primary">
                                         {product.name}
                                     </h1>
                                     <p className="text-lg">
@@ -228,6 +228,15 @@ function Detail() {
                                             {product.patent}
                                         </a>
                                     </p>
+                                    <div className="flex items-center mt-2">
+                                        {renderStars(product.rating)}
+                                        <span className="mr-4 leading-none font-bold">
+                                            {product.rating}
+                                        </span>
+                                        <span className="text-accentClear underline cursor-pointer">
+                                            {product.nroReviews > 0 && product.nroReviews}
+                                        </span>
+                                    </div>
                                 </div>
                                 <button
                                     className="flex outline-0 border-none bg-transparent h-fit"
@@ -238,10 +247,10 @@ function Detail() {
                             </div>
 
                             {/* RATING, REVIEWS, AND FEATURES */}
-                            <div className="flex justify-between">
-                                <div className="w-[60%]">
+                            <div className="flex flex-col-reverse lg:flex-row justify-between">
+                                <div className="w-full lg:w-[60%]">
                                     {/* RATING AND REVIEWS */}
-                                    <div className="flex items-center">
+                                    {/* <div className="flex items-center">
                                         {renderStars(product.rating)}
                                         <span className="mr-4 leading-none font-bold">
                                             {product.rating}
@@ -249,24 +258,24 @@ function Detail() {
                                         <span className="text-accentClear underline cursor-pointer">
                                             {product.nroReviews > 0 && product.nroReviews}
                                         </span>
-                                    </div>
-                                    <hr className="my-4 mt-5 border-duller" />
+                                    </div> */}
+                                    <hr className="hidden lg:block mb-4 border-duller" />
 
                                     {/* PRODUCT FEATURES */}
-                                    <h2 className="text-lg font-bold uppercase mb-2">
+                                    <h2 className="text-lg font-bold uppercase mb-2 font-primary">
                                         Características
                                     </h2>
-                                    <div className="p-4 bg-bgFocus text-clear rounded-[1rem]">
+                                    <div className="p-4 bg-bgFocus text-clear rounded-[.5rem]">
                                         <ul className="text-lg">
                                             <li>
                                                 Tamaño del envase: {product.package}
                                             </li>
                                             <li>Color: {product.color}</li>
-                                            <li>
+                                            {/* <li>
                                                 <u className="text-accentClear cursor-pointer">
                                                     Ver más
                                                 </u>
-                                            </li>
+                                            </li> */}
                                         </ul>
                                     </div>
                                     <div className="flex flex-col justify-between mt-2">
@@ -279,11 +288,11 @@ function Detail() {
                                     <hr className="my-4 border-duller" />
 
                                     {/* CONTACT INFORMATION */}
-                                    <h2 className="text-lg font-bold uppercase mb-2">
+                                    <h2 className="text-lg font-bold uppercase mb-2 font-primary">
                                         ¿Tienes alguna duda?
                                     </h2>
                                     <div className="my-2">Estamos para ayudar</div>
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-wrap gap-2">
                                         <Button
                                             variant="secondary"
                                             subVariant="icon"
@@ -309,70 +318,73 @@ function Detail() {
                                 </div>
 
                                 {/* PRODUCT PRICE, QUANTITY CONTROLS, AND BUY BUTTONS */}
-                                <div className="flex flex-col items-center w-[40%]">
-                                    <div className="mb-8">
-                                        <strong className="text-5xl">
-                                            $ {formatNumberWithDots(product.price)}
-                                        </strong>
-                                    </div>
-                                    <ProductQuantitySelector
-                                        number={numberOfItems}
-                                        setNumber={setNumberOfItems}
-                                        limit={product.stock}
-                                        isNumberOfItemsUpdating={isNumberOfItemsUpdating}
-                                        setIsNumberOfItemsUpdating={setIsNumberOfItemsUpdating}
-                                        idProduct={idProduct}
-                                        idUser={loggedUser.id}
-                                    />
-                                    {/* STOCK INFORMATION */}
-                                    {product.stock < 50 && (
-                                        <div
-                                            className={
-                                                "mb-4 text-sm " +
-                                                (product.stock === 0 && "text-red-600")
-                                            }
-                                        >
-                                            {product.stock === 0
-                                                ? "No quedan unidades de este producto"
-                                                : product.stock === 1
-                                                    ? "¡Queda solo 1 unidad!"
-                                                    : `¡Quedan solo ${product.stock} unidades!`}
+                                <div className="flex flex-col md:flex-row md:justify-between items-center w-full lg:flex-col lg:w-[40%] lg:items-start lg:justify-start min-w-[290px]">
+                                    <div className="flex flex-col items-center w-full md:items-start md:w-fit lg:items-center lg:w-full">
+                                        <div className="mb-4">
+                                            <strong className="text-3xl font-primary">
+                                                $ {formatNumberWithDots(product.price)}
+                                            </strong>
                                         </div>
-                                    )}
-
-                                    {/* BUY BUTTONS */}
-                                    {product.stock !== 0 ? (
-                                        <>
-                                            <Button
-                                                variant="primary"
-                                                onClick={handleBuyNow}
-                                                className="w-[80%]"
+                                        <ProductQuantitySelector
+                                            number={numberOfItems}
+                                            setNumber={setNumberOfItems}
+                                            limit={product.stock}
+                                            isNumberOfItemsUpdating={isNumberOfItemsUpdating}
+                                            setIsNumberOfItemsUpdating={setIsNumberOfItemsUpdating}
+                                            idProduct={idProduct}
+                                            idUser={loggedUser.id}
+                                        />
+                                        {/* STOCK INFORMATION */}
+                                        {product.stock < 50 && (
+                                            <div
+                                                className={
+                                                    "mb-4 mt-2 text-sm " +
+                                                    (product.stock === 0 && "text-red-600")
+                                                }
                                             >
-                                                ¡Comprar ahora!
-                                            </Button>
-                                            {isInCart ? (
+                                                {product.stock === 0
+                                                    ? "No quedan unidades de este producto"
+                                                    : product.stock === 1
+                                                        ? "¡Queda solo 1 unidad!"
+                                                        : `¡Quedan solo ${product.stock} unidades!`}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="w-full md:w-1/2 lg:flex lg:flex-col lg:items-center lg:w-full">
+                                        {/* BUY BUTTONS */}
+                                        {product.stock !== 0 ? (
+                                            <>
                                                 <Button
-                                                    variant="danger"
-                                                    title="Ya tienes este producto en el carro"
-                                                    onClick={() =>
-                                                        onDeleteProductCart({ user: loggedUser, id: idProduct })
-                                                    }
-                                                    className="w-[80%]"
+                                                    variant="primary"
+                                                    onClick={handleBuyNow}
+                                                    className="w-full lg:w-[80%]"
                                                 >
-                                                    Eliminar del carro
+                                                    ¡Comprar ahora!
                                                 </Button>
-                                            ) : (
-                                                <Button
-                                                    variant="secondary"
-                                                    title="Agregar al carrito"
-                                                    onClick={onAddProductCart}
-                                                    className="w-[80%]"
-                                                >
-                                                    Agregar al carro
-                                                </Button>
-                                            )}
-                                        </>
-                                    ) : null}
+                                                {isInCart ? (
+                                                    <Button
+                                                        variant="danger"
+                                                        title="Ya tienes este producto en el carro"
+                                                        onClick={() =>
+                                                            onDeleteProductCart({ user: loggedUser, id: idProduct })
+                                                        }
+                                                        className="w-full lg:w-[80%] my-4"
+                                                    >
+                                                        Eliminar del carro
+                                                    </Button>
+                                                ) : (
+                                                    <Button
+                                                        variant="secondary"
+                                                        title="Agregar al carrito"
+                                                        onClick={onAddProductCart}
+                                                        className="w-full lg:w-[80%] my-4"
+                                                    >
+                                                        Agregar al carro
+                                                    </Button>
+                                                )}
+                                            </>
+                                        ) : null}
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -381,12 +393,12 @@ function Detail() {
 
                     {/* PRODUCT DESCRIPTION AND SIMILAR PRODUCTS */}
                     <div className="mb-[100px]">
-                        <section className="mb-[50px]">
-                            <h2 className="text-lg font-bold uppercase mb-2">Descripción</h2>
+                        <section id="description" className="mb-[50px]">
+                            <h2 className="text-lg font-primary font-bold uppercase mb-2">Descripción</h2>
                             <p className="first-letter:capitalize">{product.description}</p>
                         </section>
                         <section>
-                            <h2 className="text-lg font-bold uppercase mb-2">
+                            <h2 className="text-lg font-primary font-bold uppercase mb-2">
                                 Productos similares
                             </h2>
                             <FeaturedContainer

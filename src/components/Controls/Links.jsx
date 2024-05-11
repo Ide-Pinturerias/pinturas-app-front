@@ -4,7 +4,7 @@ export function ButtonLink({ children, path, styles }) {
     const interaction = 'transition-focus ease-linear duration-100 hover:bg-bgFocus hover:shadow-main focus:outline focus:outline-focus focus:outline-offset-focus active:bg-primaryDull active:scale-[.97]';
     return (
         <Link
-            className={`w-fit p-4 box-border bg-transparent border border-primaryClear rounded-[60px] font-bold text-primaryClear ${interaction}`}
+            className={`w-fit p-4 box-border bg-transparent border border-primaryClear rounded-[60px] font-bold font-primary text-primaryClear ${interaction}`}
             style={styles}
             to={path}
         >

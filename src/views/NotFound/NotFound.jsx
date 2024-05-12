@@ -1,4 +1,3 @@
-import React from 'react'
 import img404 from '@img/webp/404.webp'
 import { ButtonLink } from '@components/Controls/Links'
 
@@ -9,7 +8,7 @@ const NotFound = () => {
         La página que estás buscando no parece existir.
       </h2>
       <img src={img404} alt="404" className="w-90" />
-      <ButtonLink to="/">
+      <ButtonLink path="/">
         Volver a inicio
       </ButtonLink>
     </div>

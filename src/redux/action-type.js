@@ -66,6 +66,7 @@ export const GET_POST_BY_ID = 'GET_POST_BY_ID'
 export const DELETE_POST = 'DELETE_POST'
 export const PUT_POST = 'PUT_POST'
 export const POST_POST = 'POST_POST'
+export const CLEAR_POST = "CLEAR_POST"
 
 // FAVORITE
 export const ADD_FAVORITE = 'ADD_FAVORITE'

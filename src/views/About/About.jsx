@@ -45,7 +45,7 @@ const About = () => {
       <div className="flex flex-col lg:flex-row justify-between items-center gap-7 w-full max-w-4xl mx-auto mb-11 p-5 rounded shadow-sm">
         <img src={imgAbout2} alt="img2" className="h-32 w-32 rounded-full" />
         <div className="flex-1">
-          <p className="text-blue-600 font-bold">Cómo trabajamos en ide Pinturerías</p>
+          <p className="text-blue-600 font-bold">Cómo trabajamos en IDE Pinturerías</p>
           <p className="text-gray-600 text-sm mb-2">
             <strong>Unión:</strong> Fomentamos un ambiente de trabajo basado en el respeto y apoyo mutuo, creando una familia empresarial que se preocupa por el bienestar de cada miembro.
           </p>

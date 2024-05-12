@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import defaultImage from "@img/webp/blog.webp";
 import BlogCard from "@components/BlogCard/BlogCard";
 import getPosts from "@redux/actions/Blog/getPosts";
+import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Blog = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,14 @@ const Blog = () => {
   useEffect(() => {
     getPosts()(dispatch);
   }, [dispatch]);
+
+  if (posts.length===0) { 
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-accentClear to-fadepa">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-accentClear to-fadepa">

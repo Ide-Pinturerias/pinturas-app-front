@@ -5,14 +5,14 @@ import Paws from "@img/webp/paws.webp";
 
 const Contact = () => {
   return (
-    <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-fadepa">
+    <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full bg-gradient-to-r from-accentClear to-fadepa">
       <section className="flex justify-center mb-16 text-white w-full">
         <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
           <img src={Local} alt="Local" className="shadow-lg w-full rounded-2xl" />
         </div>
       </section>
 
-      <section className="flex justify-center py-16 w-full bg-accentClear text-white">
+      <section className="flex justify-center py-16 w-full text-white">
         <div className="px-4 sm:px-6 lg:px-8 w-full max-w-7xl">
           <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
             <img
@@ -39,7 +39,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="flex justify-center py-16 w-full bg-accentClear text-white">
+      <section className="flex justify-center py-16 w-full text-white">
         <div className="px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
           <h3 className="text-lg lg:text-3xl xl:text-4xl uppercase mb-12">
             <strong>Te esperamos</strong>
@@ -82,7 +82,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="flex justify-center items-center px-4 sm:px-6 lg:px-8 max-w-7xl w-full">
+      <section className="flex justify-center items-center px-4 sm:px-6 lg:px-8 max-w-7xl w-full text-white">
         <div className="w-full lg:flex lg:justify-between lg:items-center">
           <div className="mb-8 lg:mb-0 lg:w-1/2 lg:pr-8">
             <h2 className="text-2xl lg:text-6xl my-2">

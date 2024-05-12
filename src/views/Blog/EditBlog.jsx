@@ -73,13 +73,13 @@ const EditBlog = () => {
     navigate('/')
   } else {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="flex flex-col items-center justify-center min-h-screen px-4">
         <form
-          className="max-w-md w-full p-8 border border-primaryClear rounded-xl bg-hightlight shadow-2xl"
+          className="max-w-md w-full p-8 border-2 border-solid border-primary rounded-xl bg-bgFocus"
           onSubmit={handleSubmit}
           encType="multipart/form-data"
         >
-          <h1 className="text-3xl font-extrabold text-primary mb-8 text-center">
+          <h1 className="text-primary uppercase font-bold text-center mb-6">
             Modifica el posteo
           </h1>
           <div className="mb-4">
@@ -134,7 +134,7 @@ const EditBlog = () => {
           </div>
           <div className="flex justify-center">
             <button
-              className="bg-primaryClear hover:bg-fadepa text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-fadepa hover:bg-primaryClear text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Modificar Post
             </button>

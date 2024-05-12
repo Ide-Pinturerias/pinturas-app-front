@@ -5,16 +5,47 @@ import getPosts from '@redux/actions/Blog/getPosts'
 import EditBlogButton from './BlogsButtons/EditBlogButton'
 import DeleteBlogButton from './BlogsButtons/DeleteBlogButton'
 import { ButtonLink } from "../Controls/Links.jsx";
+import { useMediaQuery } from "@mui/material";
 
 const BlogDash = () => {
   const dispatch = useDispatch()
   const posts = useSelector(state => state.posts)
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     getPosts()(dispatch)
   }, [dispatch])
 
-  const columns = [
+  const columnsForMobile=[
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 100
+    },
+    {
+      field: 'title',
+      headerName: 'Titulo',
+      width: 200
+    },
+    {
+      field: 'edit',
+      headerName: 'Editar',
+      width: 100,
+      renderCell: (params) => (
+        <EditBlogButton idBlog={params.row.id} />
+      )
+    },
+    {
+      field: 'delete',
+      headerName: 'Eliminar',
+      width: 100,
+      renderCell: (params) => (
+        <DeleteBlogButton idBlog={params.row.id} />
+      )
+    }
+  ]
+
+  const columnsForDesktop = [
     {
       field: 'id',
       headerName: 'ID',
@@ -27,7 +58,7 @@ const BlogDash = () => {
     },
     {
       field: 'description',
-      headerName: 'Descripcion',
+      headerName: 'Descripción',
       width: 200
     },
     {
@@ -42,7 +73,7 @@ const BlogDash = () => {
     },
     {
       field: 'date',
-      headerName: 'Fecha de publicacion',
+      headerName: 'Fecha de publicación',
       width: 150
     },
     {
@@ -61,7 +92,6 @@ const BlogDash = () => {
         <DeleteBlogButton idBlog={params.row.id} />
       )
     }
-
   ]
   return (
     <div className='container mx-auto px-4 mt-4 md:mt-16'>
@@ -81,7 +111,7 @@ const BlogDash = () => {
             date: post.createdAt,
             status: post.active ? 'Activo' : 'Inactivo'
           }))}
-          columns={columns}
+          columns={isMobile?columnsForMobile:columnsForDesktop}
           initialState={{
             pagination: {
               paginationModel: {

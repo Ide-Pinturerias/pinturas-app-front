@@ -6,15 +6,36 @@ import PendingButton from '../OrdersButtons/PendingButton'
 import PaidButton from '../OrdersButtons/PaidButton'
 import CompletedButton from '../OrdersButtons/CompletedButton'
 import CancelledButton from '../OrdersButtons/CancelledButton'
+import { useMediaQuery } from "@mui/material";
 
 const SalesDash = () => {
   const dispatch = useDispatch()
   const orders = useSelector(state => state.allOrders)
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   useEffect(() => {
     getAllOrders()(dispatch)
   }, [dispatch])
 
-  const columns = [
+  const columnsForMobile=[
+    {
+      field: 'date',
+      headerName: 'Fecha',
+      width: 120
+    },
+    {
+      field: 'total',
+      headerName: 'Total',
+      width: 100
+    },
+    {
+      field: 'state',
+      headerName: 'Estado',
+      width: 120
+    }
+  ]
+
+  const columnsForDesktop = [
     {
       field: 'id',
       headerName: 'ID',
@@ -85,7 +106,7 @@ const SalesDash = () => {
                   total: order.total,
                   state: order.state
                 }))}
-                columns={columns}
+                columns={isMobile?columnsForMobile:columnsForDesktop}
                 initialState={{
                   pagination: {
                     paginationModel: {

@@ -5,16 +5,43 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import DeleteProviderButton from './ProvidersButtons/DeleteProviderButton'
 import EditProviderButton from './ProvidersButtons/EditProviderButton'
 import { ButtonLink } from "../Controls/Links.jsx";
+import { useMediaQuery } from "@mui/material";
 
 const ProvidersDash = () => {
   const dispatch = useDispatch()
   const providers = useSelector(state => state.providers)
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   useEffect(() => {
     dispatch(getProviders())
   }, [dispatch])
 
-  const columns = [
+  const columnsForMobile=[
+    {
+      field: 'name',
+      headerName: 'Nombre',
+      width: 150
+    },
+    {
+      field: 'discount',
+      headerName: 'Descuento',
+      width: 50
+    },
+    {
+      field: 'markup',
+      headerName: 'Ganancia',
+      width: 50
+    },
+    {
+      field: 'edit',
+      headerName: 'Editar',
+      width: 100,
+      renderCell: (params) => (
+        <EditProviderButton providerId={params.row.id} />
+      )
+    }
+  ]
+  const columnsForDesktop = [
     {
       field: 'id',
       headerName: 'ID',
@@ -61,11 +88,11 @@ const ProvidersDash = () => {
   ]
   return (
     <div className='container mx-auto px-4 mt-4 md:mt-16'>
-      <div className="p-8">
+      <section className="p-8 ">
       <ButtonLink path="/admin/providers/create">
           Crear Proveedor
         </ButtonLink>
-      </div>
+      </section>
       <div className="w-full">
         <DataGrid
           rows={providers.map(provider => ({
@@ -75,7 +102,7 @@ const ProvidersDash = () => {
             markup: provider.markup,
             status: provider.active ? 'Activo' : 'Inactivo'
           }))}
-          columns={columns}
+          columns={isMobile?columnsForMobile:columnsForDesktop}
           initialState={{
             pagination: {
               paginationModel: {

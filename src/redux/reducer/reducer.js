@@ -63,6 +63,7 @@ import {
     DELETE_POST,
     PUT_POST,
     POST_POST,
+    CLEAR_POST,
 
     // FAVORITES
     ADD_FAVORITE,
@@ -109,7 +110,6 @@ const initialState = {
 
     // CATEGORIES
     categories: [],
-
 
     // FILTERS
     filterCategory: '',
@@ -261,6 +261,8 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state }
         case POST_POST:
             return { ...state }
+        case CLEAR_POST:
+            return { ...state, post: payload }
 
         // REVIEWS
         case SAVE_REVIEW:

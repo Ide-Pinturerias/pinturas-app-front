@@ -15,6 +15,8 @@ import { getFavorites } from "@redux/actions/Favorites/getFavorites";
 import getOrdersUser from "@redux/actions/Orders/getOrdersUser";
 
 const Account = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState("dashboard");
   const [updateUserForm, setUpdateUserForm] = useState(false);
   const [addresses, setAddresses] = useState(true);
@@ -23,11 +25,9 @@ const Account = () => {
   const [products, setProducts] = useState(false);
   const [users, setUsers] = useState(false);
   const [sales, setSales] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const loggedUser = useSelector((state) => state.user);
-  // const orderUser = useSelector((state) => state.ordersUser)
+
 
   const logoutUserAction = () => {
     localStorage.clear();

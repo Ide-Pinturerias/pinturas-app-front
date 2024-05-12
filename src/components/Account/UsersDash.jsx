@@ -3,16 +3,45 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers } from '@redux/actions/User/getAllUsers'
 import UpdateUserButton from './UpdateButtons/UpdateUserButton'
+import { useMediaQuery } from '@mui/material'
 
 const UsersDash = () => {
   const dispatch = useDispatch()
+  const isMobile=useMediaQuery("(max-width: 768px)")
 
   useEffect(() => {
     getAllUsers()(dispatch)
   }, [dispatch])
 
   const users = useSelector(state => state.allUsers)
-  const columns = [
+
+  const columnsForMobile=[
+    {
+      field: 'name',
+      headerName: 'Nombre',
+      width: 110
+    },
+    {
+      field: 'lastName',
+      headerName: 'Apellido',
+      width: 110
+    },
+    {
+      field: 'rol',
+      headerName: 'Rol',
+      width: 60
+    },
+    {
+      field: 'edit',
+      headerName: 'Admin',
+      width: 50,
+      sorteable: false,
+      renderCell: (params) => (
+                <UpdateUserButton idUser={params.row.id} />
+      )
+    }
+  ]
+  const columnsForDesktop = [
     {
       field: 'id',
       headerName: 'ID',
@@ -77,7 +106,7 @@ const UsersDash = () => {
                   locality: user.locality,
                   province: user.province
                 }))}
-                columns={columns}
+                columns={isMobile?columnsForMobile:columnsForDesktop}
                 initialState={{
                   pagination: {
                     paginationModel: {

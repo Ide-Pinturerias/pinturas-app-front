@@ -283,12 +283,12 @@ const CreateForm = () => {
             <div className="flex flex-col mt-8 justify-center">
               <label
                 htmlFor="description"
-                className="bg-primaryClear text-white rounded-t-xl h-8 mx-6 flex items-center justify-center"
+                className="bg-primaryClear text-white rounded-t-xl h-8 mx-8 flex items-center justify-center"
               >
                 Descripción:
               </label>
               <textarea
-                className="bg-duller rounded-b-lg h-40 resize-none mx-6 p-1"
+                className="bg-duller rounded-b-lg h-40 resize-none mx-8 p-1"
                 maxLength="1000"
                 name="description"
                 value={inputsForm.description}

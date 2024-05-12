@@ -1,26 +1,28 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { deleteFavorites } from '@redux/actions/Favorites/deleteFavorite'
-import Swal from 'sweetalert2'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteFavorites } from '@redux/actions/Favorites/deleteFavorite';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FavoriteCard = ({ id, image, name, stock, active, price }) => {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
-  const idUser = user.id
-  const idProduct = id
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const idUser = user.id;
+  const idProduct = id;
 
-  const deleteProductCart = () => {
+  const deleteProductCart = (event) => {
+    event.preventDefault() // Evitar que navegue al Detail
     deleteFavorites(idUser, idProduct)(dispatch)
       .then((response) => {
         if (response) {
           Swal.fire({
             icon: 'success',
             text: 'Favorito eliminado'
-          })
+          });
         }
       })
-      .catch((error) => console.log('error', error))
-  }
+      .catch((error) => console.log('error', error));
+  };
 
   return (
     <Link to={`/products/${id}`} className="block">
@@ -32,8 +34,9 @@ const FavoriteCard = ({ id, image, name, stock, active, price }) => {
             className="w-full h-48 object-cover"
           />
           <button
+            type="button"
             className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-600 px-2 py-1 rounded-md"
-            onClick={() => deleteProductCart()}
+            onClick={deleteProductCart}  // Llamada a la función con stopPropagation
           >
             Eliminar
           </button>
@@ -52,7 +55,7 @@ const FavoriteCard = ({ id, image, name, stock, active, price }) => {
         </div>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default FavoriteCard
+export default FavoriteCard;

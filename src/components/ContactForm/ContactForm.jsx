@@ -69,10 +69,11 @@ const ContactForm = () => {
                 Nombre:
               </label>
               <input
-                className="rounded-b-lg px-4 py-2 placeholder:italic"
+                className="rounded-b-lg px-4 py-2 placeholder:italic text-black"
                 id="name"
                 name="name"
                 type="text"
+                maxLength={35}
                 value={inputs.name}
                 onChange={handleChange}
                 placeholder="Nombre"
@@ -85,10 +86,11 @@ const ContactForm = () => {
                 Correo:
               </label>
               <input
-                className="rounded-b-lg px-4 py-2 placeholder:italic"
+                className="rounded-b-lg px-4 py-2 placeholder:italic text-black"
                 id="email"
                 name="email"
                 type="email"
+                maxLength={35}
                 value={inputs.email}
                 onChange={handleChange}
                 placeholder="Correo electrónico"
@@ -101,10 +103,11 @@ const ContactForm = () => {
                 Tu Mensaje:
               </label>
               <textarea
-                className="rounded-b-lg px-4 py-2 placeholder:italic resize-none"
+                className="rounded-b-lg px-4 py-2 placeholder:italic resize-none text-black"
                 id="message"
                 name="message"
                 rows="4"
+                maxLength={500}
                 value={inputs.message}
                 onChange={handleChange}
                 placeholder="escribe tu mensaje aquí..."

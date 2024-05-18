@@ -45,7 +45,7 @@ const Orders = () => {
             />
           </div>
         ) : (
-          <p className="flex items-center justify-center text-gray-500 p-2">
+          <p className="flex items-center justify-center text-gray-500">
             No tienes pedidos activos
           </p>
         )}

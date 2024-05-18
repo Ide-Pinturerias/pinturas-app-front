@@ -7,7 +7,7 @@ const Favorities = () => {
   const favorites = useSelector((state) => state.allFavorites)
 
   return (
-    <div className="container mx-auto px-4 mt-16">
+    <div className="container mx-auto px-4 mt-20">
       <div className="content flex-1 min-h-[500px] overflow-y-auto p-4 rounded bg-tertiary grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {favorites.length > 0 ? (
           favorites.map((favorite) => (

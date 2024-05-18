@@ -55,7 +55,7 @@ const Addresses = () => {
         <div className="mb-6">
           <p className="text-gray-600 text-xs mt-1">Dirección </p>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Mariano Moreno 206"
             onChange={handleChange}
             name="address"
@@ -64,7 +64,7 @@ const Addresses = () => {
           />
           <p className="text-gray-600 text-xs mt-1">Localidad </p>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Villa Maria"
             onChange={handleChange}
             name="locality"
@@ -73,7 +73,7 @@ const Addresses = () => {
           />
           <p className="text-gray-600 text-xs mt-1">Provincia </p>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Cordoba"
             onChange={handleChange}
             name="province"

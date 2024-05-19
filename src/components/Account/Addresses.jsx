@@ -56,7 +56,6 @@ const Addresses = () => {
           <label className="text-gray-600 text-xs mt-1">Dirección </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            placeholder="Mariano Moreno 206"
             onChange={handleChange}
             name="address"
             value={inputs.address}
@@ -67,7 +66,6 @@ const Addresses = () => {
           <label className="text-gray-600 text-xs mt-1">Localidad </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            placeholder="Villa Maria"
             onChange={handleChange}
             name="locality"
             value={inputs.locality}
@@ -78,7 +76,6 @@ const Addresses = () => {
           <label className="text-gray-600 text-xs mt-1">Provincia </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            placeholder="Cordoba"
             onChange={handleChange}
             name="province"
             value={inputs.province}

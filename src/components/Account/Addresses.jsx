@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { putUser } from '@redux/actions/User/putUser'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
@@ -53,7 +53,7 @@ const Addresses = () => {
     <div className="container mx-auto px-4 mt-20">
       <form onSubmit={handleSubmit} className="w-full max-w-md">
         <div className="mb-6">
-          <p className="text-gray-600 text-xs mt-1">Dirección </p>
+          <label className="text-gray-600 text-xs mt-1">Dirección </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Mariano Moreno 206"
@@ -61,8 +61,10 @@ const Addresses = () => {
             name="address"
             value={inputs.address}
             maxLength={45}
-          />
-          <p className="text-gray-600 text-xs mt-1">Localidad </p>
+            />
+        </div>
+        <div className='mb-6'>
+          <label className="text-gray-600 text-xs mt-1">Localidad </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Villa Maria"
@@ -70,8 +72,10 @@ const Addresses = () => {
             name="locality"
             value={inputs.locality}
             maxLength={30}
-          />
-          <p className="text-gray-600 text-xs mt-1">Provincia </p>
+            />
+            </div>
+          <div className='mb-6'>
+          <label className="text-gray-600 text-xs mt-1">Provincia </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             placeholder="Cordoba"
@@ -79,8 +83,8 @@ const Addresses = () => {
             name="province"
             value={inputs.province}
             maxLength={30}
-          />
-        </div>
+            />
+            </div>          
         <div className="flex justify-between">
           <button
             type="submit"

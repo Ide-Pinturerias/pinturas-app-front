@@ -15,7 +15,7 @@ export function ButtonLink({ children, path, styles }) {
 
 export function PlainNavLink({ children, path, styles }) {
     const interaction = 'outline-offset-[1.5px] focus:outline-focus focus:outline focus-visible:outline-focus focus-visible:outline';
-    const link = 'cursor-pointer hover:underline hover:text-primaryVisible active:no-underline';
+    const link = 'cursor-pointer hover:underline hover:text-fadepa active:no-underline';
     return (
         <Link
             className={`${link} ${interaction}`}

@@ -5,7 +5,7 @@ import Paws from "@img/webp/paws.webp";
 
 const Contact = () => {
   return (
-    <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full bg-gradient-to-r from-accentClear to-fadepa">
+    <main className="relative z-10 flex flex-col items-center p-whiteSpaceTop w-full before:content-[''] before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full bg-gradient-to-r from-fadepa to-accentClear">
       <section className="flex justify-center mb-16 text-white w-full">
         <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-8">
           <img src={Local} alt="Local" className="shadow-lg w-full rounded-2xl" />

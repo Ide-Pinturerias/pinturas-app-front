@@ -1,4 +1,3 @@
-import React from 'react';
 import { Facebook, Instagram, Linkedin } from '@svg';
 import ide from '@images/logo/ide.png';
 import { PlainNavLink, PlainExternalLink } from '@components/Controls/Links';
@@ -29,7 +28,7 @@ const Footer = () => {
               <ul className="flex justify-start gap-4 w-full mt-[10px]">
                 {SOCIAL_MEDIA.map((item, idx) => (
                   <li key={idx}>
-                    <PlainExternalLink path={item.link} icon>
+                    <PlainExternalLink class="text-white" path={item.link} icon>
                       <item.icon />
                     </PlainExternalLink>
                   </li>
@@ -39,7 +38,7 @@ const Footer = () => {
             {/* CONTACT */}
             <div className="w-full mt-[30px]">
               <div className="font-bold uppercase text-black">Soporte</div>
-              <ul className="mt-[10px]">
+              <ul className="mt-[10px] text-black">
                 <li><PlainExternalLink path='tel:+543513061350'>+54 351 306 1350</PlainExternalLink></li>
                 <li><PlainExternalLink path='mailto:idepintureria@gmail.com'>idepintureria@gmail.com</PlainExternalLink></li>
               </ul>
@@ -57,6 +56,7 @@ const Footer = () => {
             </p>
             <p className="ml-4">
               Diseñado por <PlainNavLink
+              path="https://github.com/Squiffles"
                 styles={{ 'fontWeight': 'bold' }}
               >Sebastian M.</PlainNavLink>
             </p>

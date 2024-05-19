@@ -115,7 +115,7 @@ const UpdateUserForm = () => {
                             Nombre
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             type="text"
                             maxLength={30}
                             name="name"
@@ -137,7 +137,7 @@ const UpdateUserForm = () => {
                             Apellido
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-last-name"
                             type="text"
                             maxLength={30}
@@ -160,7 +160,7 @@ const UpdateUserForm = () => {
                             Correo de tu cuenta
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 border violeter-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            className="appearaappearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             id="grid-email"
                             type="email"
                             maxLength={30}
@@ -188,9 +188,8 @@ const UpdateUserForm = () => {
                             Nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
-                            id="grid-new-password"
-                            type="password"
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                          type="password"
                             maxLength={30}
                             name="newPassword"
                             placeholder="Contraseña Nueva"
@@ -212,8 +211,7 @@ const UpdateUserForm = () => {
                             Confirmar nueva contraseña (déjalo en blanco para no cambiarla)
                         </label>
                         <input
-                            className="appearance-none block w-full bg-gray-200 text-gray-700 roundedviolet3 px-4 leading-tight focus:outline-none focus:bg-white"
-                            id="grid-confirm-password"
+                            className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                             type="password"
                             maxLength={30}
                             name="confirmPassword"

@@ -5,7 +5,7 @@ import { teamMembers } from './profiles'
 
 const Developers = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-white">
+    <div className="min-h-screen flex justify-center items-center bg-white mt-20">
       <div className="w-85vw max-w-15/100 rounded-lg p-4 flex flex-col space-y-4">
         {/* Contenedor Card Team */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

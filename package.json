@@ -16,7 +16,7 @@
     "sass": "1.69.5",
     "serve": "14.2.1",
     "sweetalert2": "11.10.1",
-    "tailwind-merge": "2.2.1"
+    "tailwind-merge": "2.3.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",

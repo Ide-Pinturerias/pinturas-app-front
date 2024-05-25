@@ -58,7 +58,9 @@ const Cart = () => {
       </div>
       <TotalCart products={productsCart} />
       <section className="flex justify-around w-full my-4">
-        <PurchaseCart products={productsCart} />
+        <PurchaseCart 
+          products={productsCart}
+          setIsLoading={setIsLoading}/>
         <ClearCart />
       </section>
     </main>

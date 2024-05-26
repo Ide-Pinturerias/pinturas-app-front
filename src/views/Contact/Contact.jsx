@@ -70,6 +70,14 @@ const Contact = () => {
                   9:00 a.m. - 1:00 p.m.
                 </p>
               </div>
+              <div>
+                <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
+                  Teléfono:
+                </h4>
+                <p className="text-sm lg:text-lg xl:text-xl mx-2">
+                +54 3547 32-2264
+                </p>
+              </div>
             </div>
             <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13573.988253225049!2d-64.4100103!3d-31.7296308!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942d54233a91322b%3A0x171ba1f406068069!2sPintureria%20Fadepa!5e0!3m2!1ses-419!2sar!4v1714579291527!5m2!1ses-419!2sar"

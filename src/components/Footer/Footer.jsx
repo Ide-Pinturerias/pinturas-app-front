@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <footer className="flex items-center justify-center w-full bg-primaryClear">
-      <div className="flex flex-col justify-between items-center gap-[50px] m-sides max-w-maxSc w-maxIn mt-[50px] mb-[25px]">
+      <div className="flex flex-col justify-between items-center gap-[25px] m-sides max-w-maxSc w-maxIn mt-[50px] mb-[25px]">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 w-full">
           <div className="flex flex-col items-start text-clear">
             {/* LOGO */}
@@ -39,7 +39,7 @@ const Footer = () => {
             <div className="w-full mt-[30px]">
               <div className="font-bold uppercase text-black">Soporte</div>
               <ul className="mt-[10px] text-black">
-                <li><PlainExternalLink path='tel:+543513061350'>+54 351 306 1350</PlainExternalLink></li>
+                <li><PlainExternalLink path='https://wa.me/5493547322264'>+54 3547 32-2264</PlainExternalLink></li>
                 <li><PlainExternalLink path='mailto:idepintureria@gmail.com'>idepintureria@gmail.com</PlainExternalLink></li>
               </ul>
               <p className="text-black text-sm mt-4">RP5, Esquina La Isla - Anisacate, Córdoba, ARG.</p>

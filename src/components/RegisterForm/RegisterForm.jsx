@@ -35,9 +35,9 @@ const RegisterForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
     try {
       if (Object.keys(errors).length === 0) {
+        setIsLoading(true);
         const { status, user } = (await postRegisterUser(inputsForm)(dispatch))
           .data;
         if (status === "success") {

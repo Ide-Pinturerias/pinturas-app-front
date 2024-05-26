@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pinturas App Client App
+# Aplicación Cliente de Pinturas App
 
 ![home](./lib/snaps/home-mockup.png)
 
@@ -11,66 +11,64 @@
 ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-333333?style=flat&logo=tailwind-css)
 ![GitHub stars](https://img.shields.io/github/stars/Ide-Pinturerias/pinturas-app-front)
 ![GitHub PRs](https://img.shields.io/github/issues-pr/Ide-Pinturerias/pinturas-app-front)
-![GitHub
-issues](https://img.shields.io/github/issues/Ide-Pinturerias/pinturas-app-front)
+![GitHub issues](https://img.shields.io/github/issues/Ide-Pinturerias/pinturas-app-front)
 
 </div>
 
-## Description
+## Descripción
 
-This is the client-side component of the Pinturas App project, a web application designed for a paint store. The application provides a user-friendly interface for customers to:
+Este es el componente del lado del cliente del proyecto Pinturas App, una aplicación web diseñada para una tienda de pinturas. La aplicación proporciona una interfaz fácil de usar para los clientes para:
 
-- **Browse Products**: Search for and explore a wide range of paint products.
-- **Shopping Cart**: Add desired items to a shopping cart for easy purchase.
-- **Order Placement**: Place orders seamlessly through the app.
-- **Order History**: View the history of past orders, including detailed information.
-- **Order Status**: Track the status of each order in real-time.
+- **Buscar Productos**: Buscar y explorar una amplia gama de productos de pintura.
+- **Carrito de Compras**: Añadir artículos deseados a un carrito de compras para una compra fácil.
+- **Realizar Pedido**: Realizar pedidos sin problemas a través de la aplicación.
+- **Historial de Pedidos**: Ver el historial de pedidos anteriores, incluyendo información detallada.
+- **Estado del Pedido**: Rastrear el estado de cada pedido en tiempo real.
 
-The Pinturas App aims to enhance the shopping experience for paint store customers by offering a comprehensive and intuitive online shopping platform.
+Pinturas App tiene como objetivo mejorar la experiencia de compra para los clientes de la tienda de pinturas al ofrecer una plataforma de compras en línea completa e intuitiva.
 
-## Tech Stack
+## Tecnologías Utilizadas
 
 ![React](https://img.shields.io/badge/-React-000000?style=flat&logo=react)
 ![Redux](https://img.shields.io/badge/-Redux-000000?style=flat&logo=redux)
-![Tailwind
-CSS](https://img.shields.io/badge/-Tailwind%20CSS-000000?style=flat&logo=tailwind-css)
+![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-000000?style=flat&logo=tailwind-css)
 ![Vite](https://img.shields.io/badge/-Vite-000000?style=flat&logo=vite)
 ![ESLint](https://img.shields.io/badge/-ESLint-000000?style=flat&logo=eslint)
 
-## Deployment
+## Despliegue
 
-The application was continuously deployed during development using the
-[![Vercel](https://img.shields.io/badge/-Vercel-333333?style=flat&logo=vercel)](https://vercel.com/)
-services. Now, we moved on to
+La aplicación se desplegó continuamente durante el desarrollo utilizando los servicios de
+[![Vercel](https://img.shields.io/badge/-Vercel-333333?style=flat&logo=vercel)](https://vercel.com/).
+Ahora, hemos pasado a
 [![Railway](https://img.shields.io/badge/-Railway-333333?style=flat&logo=railway)](https://railway.app/)
-during the final stages of development.
+durante las etapas finales del desarrollo.
 
-## Testing Status
+## Estado de las Pruebas
 
 [![Clean Install and Lint](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/ci-eslint.yml)
 [![CodeQL](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/Ide-Pinturerias/pinturas-app-front/actions/workflows/github-code-scanning/codeql)
 
-## Documentation
+## Documentación
 
-The documentation for this project is available in the file
+La documentación para este proyecto está disponible en el archivo
 [DOCS.md](./DOCS.md).
 
-## Contributors
+## Colaboradores
 
-This project could not have been possible without the help of the following amazing people
+Este proyecto no habría sido posible sin la ayuda de las siguientes personas increíbles
 
 <a href="https://github.com/Ide-Pinturerias/pinturas-app-front/contributors">
-  <img src="https://contrib.rocks/image?repo=Ide-Pinturerias/pinturas-app-front"
-/> </a>
+  <img src="https://contrib.rocks/image?repo=Ide-Pinturerias/pinturas-app-front"/>
+</a>
 
-## Backend Repository
+## Repositorio del Backend
 
-The backend repository for this project can be found at
+El repositorio del backend para este proyecto se puede encontrar en
 [![Pinturas App Backend](https://img.shields.io/badge/-Pinturas%20App%20Backend-333333?style=flat&logo=github)](https://github.com/Ide-Pinturerias/pinturas-app-back).
 
-## Some Views
+## Algunas vistas
 
-### Home Page
+### Página de Inicio
 
 ![home-1](./lib/snaps/home-1.png)
 
@@ -80,7 +78,7 @@ The backend repository for this project can be found at
 
 ![home-4](./lib/snaps/home-4.png)
 
-### Products Page
+### Página de Productos
 
 ![products-1](./lib/snaps/productos-1.png)
 
@@ -88,10 +86,10 @@ The backend repository for this project can be found at
 
 ![products-3](./lib/snaps/productos-3.png)
 
-### Product Details
+### Detalles del Producto
 
 ![product-detail-1](./lib/snaps/producto-detalles.png)
 
-### Contact
+### Contacto
 
 ![contact](./lib/snaps/contacto-1.png)

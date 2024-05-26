@@ -204,7 +204,7 @@ const RegisterForm = () => {
 
               <div className=" pt-8">
                 <Button variant="primary" type="submit" className="w-full">
-                  Iniciar sesión
+                  Registrarse
                 </Button>
               </div>
               <div className="w-64 mt-4">

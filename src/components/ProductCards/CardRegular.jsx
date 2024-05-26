@@ -33,7 +33,7 @@ return (
         </div>
         {/* NAME & BOOKMARK */}
         <div className="text-base md:text-lg flex justify-between gap-2">
-          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-xl">{name}</p>
+          <p className="whitespace-nowrap overflow-hidden text-ellipsis text-md">{name}</p>
         </div>
         {/* BRAND */}
         <p className="text-md font-primary font-bold">{brand}</p>

@@ -190,7 +190,7 @@ function Detail() {
                             </li>
                             <li>
                                 <Link to="/products" className="mx-4">
-                                    productos
+                                    Productos
                                 </Link>
                                 /
                             </li>

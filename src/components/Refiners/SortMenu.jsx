@@ -17,13 +17,13 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
         return () => {
             document.removeEventListener('click', handleOutsideClick1)
         }
-    }, [])
+    }, [isSortOpen])
 
     // COMPONENT:
     return (
         <aside
             ref={sortMenuRef}
-            className="flex flex-col ml-auto w-[30%] h-full p-6 bg-bgFocus rounded-l-[2rem]"
+            className={`absolute right-0 bottom-0 flex flex-col w-full xs:w-[30%] xs:min-w-[400px] h-[90%] xs:h-full ml-auto p-6 bg-bgFocus rounded-t-[2rem] xs:rounded-tr-none xs:rounded-l-[2rem] transition-all ease-linear duration-200 ${isSortOpen ? "translate-y-0 xs:translate-x-0 opacity-100 visible" : "translate-y-6 xs:translate-x-6 opacity-0 invisible"} xs:translate-y-0`}
         >
             <div className="flex justify-between items-center font-bold uppercase">
                 <h2>Organizamiento</h2>
@@ -60,13 +60,13 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === 'name' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'name' && orderBy === 'ASC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('name', 'ASC')}
                         >
                             Ascendente (A-Z)
                         </span>
                         <span
-                            className={`text-sm ${sortBy === 'name' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'name' && orderBy === 'DESC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('name', 'DESC')}
                         >
                             Descendente (Z-A)
@@ -80,13 +80,13 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === 'price' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'price' && orderBy === 'ASC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('price', 'ASC')}
                         >
                             Menor a mayor
                         </span>
                         <span
-                            className={`text-sm ${sortBy === 'price' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'price' && orderBy === 'DESC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('price', 'DESC')}
                         >
                             Mayor a menor
@@ -100,13 +100,13 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${sortBy === 'stock' && orderBy === 'ASC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'stock' && orderBy === 'ASC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('stock', 'ASC')}
                         >
                             Menor a mayor
                         </span>
                         <span
-                            className={`text-sm ${sortBy === 'stock' && orderBy === 'DESC' ? 'text-primaryClear' : ''} hover:text-primaryClear cursor-pointer`}
+                            className={`text-sm ${sortBy === 'stock' && orderBy === 'DESC' ? 'text-primaryClear underline' : ''} hover:text-primaryClear cursor-pointer`}
                             onClick={() => sortByClauseAndDirection('stock', 'DESC')}
                         >
                             Mayor a menor

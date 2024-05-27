@@ -13,7 +13,7 @@ import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
 import SortMenu   from '@components/Refiners/SortMenu'
 import { XSmall } from '@svg'
-import {SearchBar} from "@components/SearchBar/SearchBar"
+import { SearchBar } from "@components/SearchBar/SearchBar"
 
 function ProductsPage () {
   // GLOBAL STATES:
@@ -99,7 +99,7 @@ function ProductsPage () {
             <section className="flex flex-col items-center justify-center w-full py-20 bg-bg">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full px-[3.5%]">            
                     <div className="flex justify-between items-center">
-                        <button className={` ${isSortOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={` ${isSortOpen ? 'xs:z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsSortOpen(false)
                           setIsFilterOpen(true)
@@ -107,7 +107,7 @@ function ProductsPage () {
                             Filtrar
                         </button>
                         <SearchBar size={"5 rem"}/>
-                        <button className={`${isFilterOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={`${isFilterOpen ? 'xs:z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsFilterOpen(false)
                           setIsSortOpen(true)
@@ -117,42 +117,28 @@ function ProductsPage () {
                     </div>
                 </div>
             </section>
-            {
-                isFilterOpen
-                  ? (
-                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 w-full bg-overlay" >
-                        <FilterMenu
-                            isFilterOpen={isFilterOpen}
-                            setIsFilterOpen={setIsFilterOpen}
-                            categories={categories}
-                            highPrice={highPrice}
-                            lowPrice={lowPrice}
-                            filterCategory={filterCategory}
-                            filterByCategory={filterByCategory}
-                            filterByPrice={filterByPrice}
-                            clearFilters={clearFilters}
-                        />
-                    </div>
-                    )
-                  : null
-            }
-            {
-                isSortOpen
-                  ? (
-                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 flex w-full bg-overlay">
-                        <SortMenu
-                            isSortOpen={isSortOpen}
-                            setIsSortOpen={setIsSortOpen}
-                            sortBy={sortBy}
-                            orderBy={orderBy}
-                            sortByClauseAndDirection={sortByClauseAndDirection}
-                        />
-                    </div>
-                    )
-                  : null
-            }
+            <div className={`fixed z-50 top-0 bottom-0 left-0 right-0 flex items-end w-full bg-overlay ${isFilterOpen || isSortOpen ? "opacity-100 visible" : "opacity-0 invisible"} transition-all`}>
+                <FilterMenu
+                    isFilterOpen={isFilterOpen}
+                    setIsFilterOpen={setIsFilterOpen}
+                    categories={categories}
+                    highPrice={highPrice}
+                    lowPrice={lowPrice}
+                    filterCategory={filterCategory}
+                    filterByCategory={filterByCategory}
+                    filterByPrice={filterByPrice}
+                    clearFilters={clearFilters}
+                />
+                <SortMenu
+                    isSortOpen={isSortOpen}
+                    setIsSortOpen={setIsSortOpen}
+                    sortBy={sortBy}
+                    orderBy={orderBy}
+                    sortByClauseAndDirection={sortByClauseAndDirection}
+                />
+            </div>
             <section className="flex flex-col items-center justify-center w-full bg-bg">
-                <div className="flex justify-center items-center flex-wrap gap-4 w-full">
+                <div className="flex justify-center items-center flex-wrap gap-4 mb-8 w-full">
                     {highPrice === 0 && lowPrice !== 0 && lowPrice && (
                         <button
                             className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"

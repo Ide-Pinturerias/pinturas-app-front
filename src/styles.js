@@ -11,5 +11,7 @@ export const afterPseudo = `
     focus:after:bg-duller focus:after:border-clear focus:after:shadow-main
     after:mix-blend-multiply
 
+    focus-visible:outline-none
+
     after:pointer-events-none
 `

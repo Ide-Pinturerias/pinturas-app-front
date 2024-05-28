@@ -121,10 +121,10 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-[80%]'>
+                <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-full max-w-[400px] xs:w-[80%]'>
                     Mostrar resultados
                 </Button>
-                <Button variant='secondary' onClick={cleanSorts} className='w-[80%]'>
+                <Button variant='secondary' onClick={cleanSorts} className='w-full max-w-[400px] xs:w-[80%]'>
                     Mostrar los más vendidos
                 </Button>
             </div>

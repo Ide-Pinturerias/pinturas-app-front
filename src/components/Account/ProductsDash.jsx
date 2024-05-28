@@ -34,6 +34,7 @@ const ProductsDash = () => {
     { field: "category", headerName: "Categoría", width: 200 },
     { field: "package", headerName: "Formato", width: 120 },
     { field: "stock", headerName: "Stock", width: 60 },
+    { field: "status", headerName: "Estado", width: 90 },
     {
       field: "edit",
       headerName: "Editar",
@@ -67,6 +68,7 @@ const ProductsDash = () => {
             category: product.category,
             package: product.package,
             stock: product.stock,
+            status: product.active ? 'Activo' : 'Inactivo'
           }))}
           columns={isMobile ? columnsForMobile : columnsForDesktop}
           initialState={{

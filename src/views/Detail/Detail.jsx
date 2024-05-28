@@ -175,7 +175,7 @@ function Detail() {
     // COMPONENT:
     return (
         <main className="flex justify-center w-full min-h-screen p-whiteSpaceTop bg-bg">
-            {Object.keys(product).length === 0 ? (
+            {(Object.keys(product).length === 0 ||!product.active)? (
                 <LoadingSpinner />
             ) : (
                 <div className="flex flex-col max-w-maxSc w-maxIn m-sides">

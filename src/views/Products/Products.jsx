@@ -7,7 +7,7 @@ import { setCategory } from '@redux/actions/filters/setCategory'
 import { setPage } from '@redux/actions/pagination/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
-import { setSortClause, setSortDirection } from '@/redux/actions/filters/sort'
+import { setSortClause, setSortDirection } from '@redux/actions/filters/sort'
 import Paginated from '@components/Paginated/Paginated'
 import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
@@ -35,8 +35,8 @@ function ProductsPage () {
 
   // FUNCTIONS:
   const sortByClauseAndDirection = (clause, direction) => {
-    if (clause) dispatch(setSortClause(clause))
-    if (direction) dispatch(setSortDirection(direction))
+    dispatch(setSortClause(clause))
+    dispatch(setSortDirection(direction))
   }
 
   const filterByCategory = (category) => {

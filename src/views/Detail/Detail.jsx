@@ -181,21 +181,17 @@ function Detail() {
                 <div className="flex flex-col max-w-maxSc w-maxIn m-sides">
                     {/* BREADCRUMB */}
                     <div className="text-xs font-secondary mb-[50px]">
-                        <ul className="flex items-center">
+                        <ul className="flex flex-wrap items-center">
                             <li>
-                                <Link to="/" className="mr-4">
-                                    Home
-                                </Link>
-                                /
+                                <Link to="/">Home</Link>
+                                <span className="mx-4">/</span>
                             </li>
                             <li>
-                                <Link to="/products" className="mx-4">
-                                    Productos
-                                </Link>
-                                /
+                                <Link to="/products">Productos</Link>
+                                <span className="mx-4">/</span>
                             </li>
                             <li>
-                                <span className="mx-4">{product.name}</span>
+                                <span>{product.name}</span>
                             </li>
                         </ul>
                     </div>

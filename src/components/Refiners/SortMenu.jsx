@@ -11,6 +11,11 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
         };
     }
 
+    const cleanSorts = () => {
+        sortByClauseAndDirection(null, null);
+        setIsSortOpen(false);
+    }
+
     // LIFE CYCLES:
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick1)
@@ -119,7 +124,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                 <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-[80%]'>
                     Mostrar resultados
                 </Button>
-                <Button variant='secondary' className='w-[80%]'>
+                <Button variant='secondary' onClick={cleanSorts} className='w-[80%]'>
                     Mostrar los más vendidos
                 </Button>
             </div>

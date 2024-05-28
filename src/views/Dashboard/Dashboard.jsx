@@ -12,7 +12,7 @@ import Account from '../Account/Account';
 const Dashboard = () => {
   const navigate = useNavigate();
   const user = useSelector(state => state.user);
-  const [activeSection, setActiveSection] = useState('providers');
+  const [activeSection, setActiveSection] = useState('products');
 
   const backToAccountAction = () => {
     navigate('/account');

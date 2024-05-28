@@ -17,38 +17,34 @@ const ProductsDash = () => {
   }, [dispatch]);
 
   const columnsForMobile = [
+    { field: "id", headerName: "ID", width: 10 },
     { field: "name", headerName: "Nombre", width: 200 },
     {
       field: "edit",
       headerName: "Editar",
       renderCell: (params) => <UpdateButton idProduct={params.row.id} />,
       width: 85,
-    },
-    {
-      field: "delete",
-      headerName: "Eliminar",
-      renderCell: (params) => <DeleteButton idProduct={params.row.id} />,
-      width: 85,
-    },
+    }
   ];
 
   const columnsForDesktop = [
     { field: "id", headerName: "ID", width: 40 },
     { field: "name", headerName: "Nombre", width: 300 },
+    { field: "price", headerName: "Precio", width: 80 },
     { field: "category", headerName: "Categoría", width: 200 },
-    { field: "package", headerName: "Formato", width: 80 },
+    { field: "package", headerName: "Formato", width: 120 },
     { field: "stock", headerName: "Stock", width: 60 },
     {
       field: "edit",
       headerName: "Editar",
       renderCell: (params) => <UpdateButton idProduct={params.row.id} />,
-      width: 200,
+      width: 150,
     },
     {
       field: "delete",
       headerName: "Eliminar",
       renderCell: (params) => <DeleteButton idProduct={params.row.id} />,
-      width: 200,
+      width: 150,
     },
   ];
 
@@ -67,6 +63,7 @@ const ProductsDash = () => {
           rows={products.map((product) => ({
             id: product.idProduct,
             name: product.name,
+            price:  `$ ${product.price}`,
             category: product.category,
             package: product.package,
             stock: product.stock,

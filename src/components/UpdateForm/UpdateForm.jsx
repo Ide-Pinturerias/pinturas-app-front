@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllCategories } from '@redux/actions/Categories/getAllCategories'
 import { productById } from '@redux/actions/Products/productById'
@@ -125,7 +125,7 @@ const UpdateForm = () => {
                   htmlFor="price"
                   className="bg-primaryClear text-white rounded-l-xl w-40 h-8  flex items-center justify-center"
               >
-                  Precio lista:
+                  Precio:
               </label>
               <input
                   className="bg-duller rounded-r-lg w-72 h-8 text-center"

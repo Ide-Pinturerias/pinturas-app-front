@@ -1,5 +1,5 @@
 const reShort = /^.{0,20}$/ // no permitir mas de 20 caracteres
-const reLong = /^.{0,1000}$/ // no permitir mas de 1000 caracteres
+const reLong = /^(?:.|\n){0,1000}$/ // no permitir mas de 1000 caracteres
 const reNums = /^(\d{1,20}(\.\d{0,2})?)$/ // permite el ingreso de numeros hasta 20 cifras
 const reCant = /^[1-9]\d*(\.\d+)?$/ // Evalúa que la cantidad ingresada sea mayor a 0
 

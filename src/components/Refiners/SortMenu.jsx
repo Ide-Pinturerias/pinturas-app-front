@@ -117,7 +117,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     Mostrar resultados
                 </Button>
                 <Button variant='secondary' onClick={cleanSorts} className='w-full max-w-[60%]'>
-                    Mostrar los más vendidos
+                    Limpiar filtros
                 </Button>
             </div>
         </aside>

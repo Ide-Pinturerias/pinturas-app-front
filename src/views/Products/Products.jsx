@@ -7,13 +7,13 @@ import { setCategory } from '@redux/actions/filters/setCategory'
 import { setPage } from '@redux/actions/pagination/setPage'
 import { setLowPrice } from '@redux/actions/filters/setLowPrice'
 import { setHighPrice } from '@redux/actions/filters/setHighPrice'
-import { setSortClause, setSortDirection } from '@/redux/actions/filters/sort'
+import { setSortClause, setSortDirection } from '@redux/actions/filters/sort'
 import Paginated from '@components/Paginated/Paginated'
 import ProductBox from '@components/ProductBox/ProductBox'
 import FilterMenu from '@components/Refiners/FilterMenu'
 import SortMenu   from '@components/Refiners/SortMenu'
 import { XSmall } from '@svg'
-import {SearchBar} from "@components/SearchBar/SearchBar"
+import { SearchBar } from "@components/SearchBar/SearchBar"
 
 function ProductsPage () {
   // GLOBAL STATES:
@@ -35,8 +35,8 @@ function ProductsPage () {
 
   // FUNCTIONS:
   const sortByClauseAndDirection = (clause, direction) => {
-    if (clause) dispatch(setSortClause(clause))
-    if (direction) dispatch(setSortDirection(direction))
+    dispatch(setSortClause(clause))
+    dispatch(setSortDirection(direction))
   }
 
   const filterByCategory = (category) => {
@@ -96,10 +96,10 @@ function ProductsPage () {
   // COMPONENT:
   return (
         <main className="relative flex flex-col items-center w-full before:content-none before:absolute before:-z-50 before:top-0 before:left-0 before:h-[100vh] before:min-w-full before:bg-primary">
-            <section className="flex flex-col items-center justify-center w-full py-20 bg-bg">
+            <section className="flex flex-col items-center justify-center w-full pt-20 pb-12 bg-bg">
                 <div className="flex flex-col justify-between max-w-[1920px] h-full w-full px-[3.5%]">            
-                    <div className="flex justify-between items-center">
-                        <button className={` ${isSortOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                    <div className="flex flex-wrap justify-between items-center xs:flex-nowrap">
+                        <button className={` ${isSortOpen ? 'xs:z-[60]' : ''} order-2 xs:order-1 p-1 px-3 bg-white hover:bg-primaryClear hover:text-bg rounded-[12px] text-clear text-[clamp(16px,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsSortOpen(false)
                           setIsFilterOpen(true)
@@ -107,7 +107,7 @@ function ProductsPage () {
                             Filtrar
                         </button>
                         <SearchBar size={"5 rem"}/>
-                        <button className={`${isFilterOpen ? 'z-[60]' : ''} p-1 bg-white rounded-[1rem] text-clear text-[clamp(.5vw,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
+                        <button className={`${isFilterOpen ? 'xs:z-[60]' : ''} order-3 p-1 px-3 bg-white hover:bg-primaryClear hover:text-bg rounded-[12px] text-clear text-[clamp(16px,calc(1.5vw+.3rem),2.5rem)]`} onClick={(e) => {
                           e.stopPropagation()
                           setIsFilterOpen(false)
                           setIsSortOpen(true)
@@ -117,45 +117,40 @@ function ProductsPage () {
                     </div>
                 </div>
             </section>
-            {
-                isFilterOpen
-                  ? (
-                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 w-full bg-overlay" >
-                        <FilterMenu
-                            isFilterOpen={isFilterOpen}
-                            setIsFilterOpen={setIsFilterOpen}
-                            categories={categories}
-                            highPrice={highPrice}
-                            lowPrice={lowPrice}
-                            filterCategory={filterCategory}
-                            filterByCategory={filterByCategory}
-                            filterByPrice={filterByPrice}
-                            clearFilters={clearFilters}
-                        />
-                    </div>
-                    )
-                  : null
-            }
-            {
-                isSortOpen
-                  ? (
-                    <div className="fixed z-50 top-0 bottom-0 left-0 right-0 flex w-full bg-overlay">
-                        <SortMenu
-                            isSortOpen={isSortOpen}
-                            setIsSortOpen={setIsSortOpen}
-                            sortBy={sortBy}
-                            orderBy={orderBy}
-                            sortByClauseAndDirection={sortByClauseAndDirection}
-                        />
-                    </div>
-                    )
-                  : null
-            }
+            <div className={`fixed z-50 top-0 bottom-0 left-0 right-0 flex items-end w-full bg-overlay ${isFilterOpen || isSortOpen ? "opacity-100 visible" : "opacity-0 invisible"} transition-all`}>
+                <FilterMenu
+                    isFilterOpen={isFilterOpen}
+                    setIsFilterOpen={setIsFilterOpen}
+                    categories={categories}
+                    highPrice={highPrice}
+                    lowPrice={lowPrice}
+                    filterCategory={filterCategory}
+                    filterByCategory={filterByCategory}
+                    filterByPrice={filterByPrice}
+                    clearFilters={clearFilters}
+                />
+                <SortMenu
+                    isSortOpen={isSortOpen}
+                    setIsSortOpen={setIsSortOpen}
+                    sortBy={sortBy}
+                    orderBy={orderBy}
+                    sortByClauseAndDirection={sortByClauseAndDirection}
+                />
+            </div>
             <section className="flex flex-col items-center justify-center w-full bg-bg">
-                <div className="flex justify-center items-center flex-wrap gap-4 w-full">
+                <div className="flex justify-center items-center flex-wrap gap-4 mb-8 w-full">
+                    {filterCategory && (
+                        <button
+                          className="w-fit flex items-center justify-center box-border px-[.6rem] pr-[.3rem] py-[.25rem] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
+                            onClick={() => filterByCategory('')}
+                        >
+                            <span className="whitespace-nowrap">{filterCategory}</span>
+                            <XSmall size={20} />
+                        </button>
+                    )}
                     {highPrice === 0 && lowPrice !== 0 && lowPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.6rem] pr-[.3rem] py-[.25rem] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Desde ${lowPrice}</span>
@@ -164,7 +159,7 @@ function ProductsPage () {
                     )}
                     {lowPrice === 0 && highPrice !== 0 && highPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.6rem] pr-[.3rem] py-[.25rem] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">Hasta ${highPrice}</span>
@@ -173,7 +168,7 @@ function ProductsPage () {
                     )}
                     {lowPrice !== 0 && highPrice !== 0 && highPrice && lowPrice && (
                         <button
-                            className="w-fit flex items-center justify-center box-border px-[.75%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
+                            className="w-fit flex items-center justify-center box-border px-[.6rem] pr-[.3rem] py-[.25rem] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]"
                             onClick={() => filterByPrice('no price')}
                         >
                             <span className="whitespace-nowrap">${lowPrice} hasta ${highPrice}</span>

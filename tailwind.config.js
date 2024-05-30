@@ -4,6 +4,9 @@ export default {
 
     theme: {
         extend: {
+            screens: {
+                'xs': '576px'
+            },
             colors: {
                 // primary: '#662c7b',
                 // turquoise: '#00A491',

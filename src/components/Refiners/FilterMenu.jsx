@@ -17,13 +17,13 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
         return () => {
             document.removeEventListener('click', handleOutsideClick1)
         }
-    }, [])
+    }, [isFilterOpen])
 
     // COMPONENT:
     return (
         <aside
             ref={filterMenuRef}
-            className="flex flex-col w-[30%] h-full mr-auto p-6 bg-bgFocus rounded-r-[2rem]"
+            className={`absolute left-0 bottom-0 flex flex-col w-full xs:w-[30%] xs:min-w-[400px] h-[90%] xs:h-full mr-auto p-6 bg-bgFocus rounded-t-[2rem] xs:rounded-tl-none xs:rounded-r-[2rem] transition-all ease-linear duration-200 ${isFilterOpen ? "translate-y-0 xs:-translate-x-0 opacity-100 visible" : "translate-y-6 xs:-translate-x-6 opacity-0 invisible"} xs:translate-y-0 `}
         >
             <div className="flex justify-between items-center font-bold uppercase">
                 <h2>Filtros</h2>
@@ -47,7 +47,7 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
                                 <span
                                     key={index}
                                     onClick={() => filterByCategory(category)}
-                                    className={`text-sm ${filterCategory === category ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
+                                    className={`text-sm ${filterCategory === category ? 'text-primaryClear underline cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                                 >
                                     {category}
                                 </span>
@@ -62,19 +62,19 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
                     </h3>
                     <div className="flex flex-col gap-1">
                         <span
-                            className={`text-sm ${!lowPrice && highPrice === 10000 ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
+                            className={`text-sm ${!lowPrice && highPrice === 10000 ? 'text-primaryClear underline cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('Hasta $10000')}
                         >
                             Hasta $10.000
                         </span>
                         <span
-                            className={`text-sm ${lowPrice === 10000 && highPrice === 20000 ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 10000 && highPrice === 20000 ? 'text-primaryClear underline cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('$10000 a $20000')}
                         >
                             $10.000 a $20.000
                         </span>
                         <span
-                            className={`text-sm ${lowPrice === 20000 && highPrice === '' ? 'text-primaryClear cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
+                            className={`text-sm ${lowPrice === 20000 && highPrice === '' ? 'text-primaryClear underline cursor-default' : 'hover:text-primaryClear cursor-pointer'}`}
                             onClick={() => filterByPrice('Mas de $20000')}
                         >
                             Más de $20.000
@@ -84,10 +84,10 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <Button variant="primary" onClick={() => setIsFilterOpen(false)} className="w-[80%]">
+                <Button variant="primary" onClick={() => setIsFilterOpen(false)} className="w-full max-w-[60%]">
                     Mostrar resultados
                 </Button>
-                <Button variant="secondary" onClick={() => clearFilters()} className="w-[80%]">
+                <Button variant="secondary" onClick={() => clearFilters()} className="w-full max-w-[60%]">
                     Limpiar filtros
                 </Button>
             </div>

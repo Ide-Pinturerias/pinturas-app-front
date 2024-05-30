@@ -31,7 +31,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
             className={`absolute right-0 bottom-0 flex flex-col w-full xs:w-[30%] xs:min-w-[400px] h-[90%] xs:h-full ml-auto p-6 bg-bgFocus rounded-t-[2rem] xs:rounded-tr-none xs:rounded-l-[2rem] transition-all ease-linear duration-200 ${isSortOpen ? "translate-y-0 xs:translate-x-0 opacity-100 visible" : "translate-y-6 xs:translate-x-6 opacity-0 invisible"} xs:translate-y-0`}
         >
             <div className="flex justify-between items-center font-bold uppercase">
-                <h2>Organizamiento</h2>
+                <h2>Ordenamientos</h2>
                 <div
                     className="cursor-pointer"
                     onClick={() => setIsSortOpen(false)}
@@ -44,19 +44,11 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                 <div className="mb-4">
                     {/*       SORT RATING       */}
                     <h3
-                        className="font-semibold uppercase mb-2"
+                        className="font-semibold uppercase mb-2 hover:text-primaryClear"
                         onClick={() => sortByClauseAndDirection('rating', 'ASC')}
                     >
                         Los más puntuados
                     </h3>
-                    <div className="flex flex-col gap-1">
-                        {/* <span
-                            className={`text-sm hover:text-primaryClear cursor-pointer`}
-                            onClick={() => sortByClauseAndDirection("rating", "ASC")}
-                        >
-                            Los más puntuados
-                        </span> */}
-                    </div>
                 </div>
                 <div className="mb-4">
                     {/*       SORT NAME       */}
@@ -121,10 +113,10 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-full max-w-[400px] xs:w-[80%]'>
+                <Button variant='primary' onClick={() => setIsSortOpen(false)} className='w-full max-w-[60%]'>
                     Mostrar resultados
                 </Button>
-                <Button variant='secondary' onClick={cleanSorts} className='w-full max-w-[400px] xs:w-[80%]'>
+                <Button variant='secondary' onClick={cleanSorts} className='w-full max-w-[60%]'>
                     Mostrar los más vendidos
                 </Button>
             </div>

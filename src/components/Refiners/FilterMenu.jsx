@@ -84,10 +84,10 @@ function FilterMenu({ isFilterOpen, setIsFilterOpen, categories, highPrice, lowP
             </div>
             {/*       BUTTONS       */}
             <div className="flex flex-col items-center gap-2">
-                <Button variant="primary" onClick={() => setIsFilterOpen(false)} className="w-full max-w-[400px] xs:w-[80%]">
+                <Button variant="primary" onClick={() => setIsFilterOpen(false)} className="w-full max-w-[60%]">
                     Mostrar resultados
                 </Button>
-                <Button variant="secondary" onClick={() => clearFilters()} className="w-full max-w-[400px] xs:w-[80%]">
+                <Button variant="secondary" onClick={() => clearFilters()} className="w-full max-w-[60%]">
                     Limpiar filtros
                 </Button>
             </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
+import producNotFound from "@/img/webp/ProductoNo.webp"
 import CardRegular from '../ProductCards/CardRegular'
 
 function ProductBox({ isLoading }) {
@@ -36,7 +37,7 @@ function ProductBox({ isLoading }) {
         </div>
       ) : (
         <div className="flex justify-center items-center">
-          <img src='src\img\webp\ProductoNo.webp'></img>
+          <img src={producNotFound}></img>
         </div>
       )}
     </div>

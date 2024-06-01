@@ -74,7 +74,7 @@ const Contact = () => {
                 <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
                   Teléfono:
                 </h4>
-                <a target="_blank" rel="noreferrer" href="https://wa.me/5493547322264" className="text-sm lg:text-lg xl:text-xl mx-2">
+                <a target="_blank" rel="noreferrer" href="https://wa.me/5493547322264" className="text-sm lg:text-lg xl:text-xl mx-2 hover:text-black">
                 +54 3547 32-2264
                 </a>
               </div>

@@ -40,7 +40,7 @@ const Footer = () => {
               <div className="font-bold uppercase text-black">Soporte</div>
               <ul className="mt-[10px] text-black">
                 <li><PlainExternalLink path='https://wa.me/5493547322264'>+54 3547 32-2264</PlainExternalLink></li>
-                <li><PlainExternalLink path='mailto:idepintureria@gmail.com'>idepintureria@gmail.com</PlainExternalLink></li>
+                <li><PlainExternalLink path='mailto:pintureriaide@gmail.com'>pintureriaide@gmail.com</PlainExternalLink></li>
               </ul>
               <p className="text-black text-sm mt-4">RP5, Esquina La Isla - Anisacate, Córdoba, ARG.</p>
             </div>

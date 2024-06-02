@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { getBestSellers } from '@redux/actions/Products/getBestSellers'
-import { GetSimilarProducts } from '@api'
+import { useDispatch } from 'react-redux'
+import { GetSimilarProducts,GetSpecificProducts } from '@api'
+import { bestSellersIds } from './bestSellersIds'
 import CardRegular from '../ProductCards/CardRegular'
 
 function FeaturedContainer ({ bestSellersContainer, similarProductsContainer, similarProductsContainerOptions }) {
-  // GLOBAL STATES:
-  const bestSellers = useSelector((state) => state.bestSellers)
 
   // LOCAL STATES:
   const [products, setProducts] = useState([])
@@ -18,19 +16,14 @@ function FeaturedContainer ({ bestSellersContainer, similarProductsContainer, si
   useEffect(() => {
     (async () => {
       if (bestSellersContainer) {
-        dispatch(getBestSellers(4))
+        const bestSellers= await GetSpecificProducts(bestSellersIds)
+        setProducts(bestSellers)
       } else if (similarProductsContainer) {
         const similarProducts = await GetSimilarProducts(similarProductsContainerOptions)
         setProducts(similarProducts)
       }
     })()
   }, [bestSellersContainer, similarProductsContainer, dispatch])
-
-  useEffect(() => {
-    if (bestSellersContainer) {
-      setProducts(bestSellers)
-    }
-  }, [bestSellersContainer, similarProductsContainer, bestSellers, dispatch])
 
   // COMPONENT:
   return (

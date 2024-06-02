@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import postPost from '@redux/actions/Blog/postPost';
 import Swal from 'sweetalert2';
-import img from '@img/webp/blog.webp';
+import img from '@assets/images/blog.webp';
 import { validationBlog } from './validationBlog';
 import { Navigate, useNavigate } from 'react-router-dom';
 

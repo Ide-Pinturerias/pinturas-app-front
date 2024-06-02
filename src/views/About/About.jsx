@@ -1,5 +1,5 @@
-import imgAbout2 from '@img/webp/about2.webp'
-import imgAbout from '@img/webp/about.webp'
+import imgAbout2 from '@assets/images/about2.webp'
+import imgAbout from '@assets/images/about.webp'
 import React from 'react'
 import { LightBulb, Rocket } from '@svg'
 

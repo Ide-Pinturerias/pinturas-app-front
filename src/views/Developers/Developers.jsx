@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner from '@img/webp/workTeam.webp'
+import Banner from '@assets/images/workTeam.webp'
 import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa'
 import { teamMembers } from './profiles'
 

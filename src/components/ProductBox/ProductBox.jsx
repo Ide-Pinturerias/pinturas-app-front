@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner'
-import producNotFound from "@/img/webp/ProductoNo.webp"
+import producNotFound from "@assets/images/ProductoNo.webp"
 import CardRegular from '../ProductCards/CardRegular'
 
 function ProductBox({ isLoading }) {

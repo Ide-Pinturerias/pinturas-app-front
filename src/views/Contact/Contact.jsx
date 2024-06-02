@@ -1,7 +1,7 @@
 import ContactForm from "../../components/ContactForm/ContactForm";
-import Banner5 from "@img/webp/pet.webp";
-import Local from "@img/webp/location.webp";
-import Paws from "@img/webp/paws.webp";
+import Banner5 from "@assets/images/pet.webp";
+import Local from "@assets/images/store/location.webp";
+import Paws from "@assets/images/paws.webp";
 
 const Contact = () => {
   return (

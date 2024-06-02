@@ -23,7 +23,6 @@ import {
 
     // FILTERS
     GET_ALL_PRODUCTS_FILTERED,
-    GET_BEST_SELL,
     SET_CATEGORY,
     SET_LOW_PRICE,
     SET_HIGH_PRICE,
@@ -106,7 +105,6 @@ const initialState = {
     allProductsPaginated: [],
     detail: {},
     allProducts: [],
-    bestSellers: [],
 
     // CATEGORIES
     categories: [],
@@ -204,8 +202,6 @@ const reducer = (state = initialState, { type, payload }) => {
             return { ...state, allProductsPaginated: payload }
         case GET_PRODUCT_BY_ID:
             return { ...state, detail: payload }
-        case GET_BEST_SELL:
-            return { ...state, bestSellers: payload }
         case GET_PRODUCT_BY_NAME:
             return { ...state, allProductsPaginated: payload }
         case GET_ALL_PRODUCTS_NO_FILTER:

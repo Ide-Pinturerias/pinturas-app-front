@@ -1,7 +1,7 @@
 import ContactForm from "../../components/ContactForm/ContactForm";
-import Banner5 from "@img/webp/pet.webp";
-import Local from "@img/webp/location.webp";
-import Paws from "@img/webp/paws.webp";
+import Banner5 from "@assets/images/pet.webp";
+import Local from "@assets/images/store/location.webp";
+import Paws from "@assets/images/paws.webp";
 
 const Contact = () => {
   return (
@@ -56,7 +56,7 @@ const Contact = () => {
               </div>
               <div>
                 <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
-                  Horarios
+                  Horarios:
                 </h4>
                 <span>Lunes a viernes</span>
                 <p className="text-sm lg:text-lg xl:text-xl">
@@ -74,9 +74,9 @@ const Contact = () => {
                 <h4 className="text-md lg:text-2xl xl:text-2.8xl uppercase font-bold">
                   Teléfono:
                 </h4>
-                <p className="text-sm lg:text-lg xl:text-xl mx-2">
+                <a target="_blank" rel="noreferrer" href="https://wa.me/5493547322264" className="text-sm lg:text-lg xl:text-xl mx-2 hover:text-black">
                 +54 3547 32-2264
-                </p>
+                </a>
               </div>
             </div>
             <iframe

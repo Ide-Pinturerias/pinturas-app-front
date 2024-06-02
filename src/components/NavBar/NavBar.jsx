@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '@img/webp/logo-black.webp';
+import logo from '@assets/images/logo/logo-black.webp';
 import { Cart, UserIcon, MenuIcon } from '@svg';
 
 function NavBar() {

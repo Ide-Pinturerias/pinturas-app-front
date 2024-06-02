@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { productById } from '@redux/actions/Products/productById'
-import { getBestSellers } from '@redux/actions/Products/getBestSellers'
 import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
 import { addProductCart } from '@redux/actions/Cart/addProductCart'
 import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
@@ -138,7 +137,6 @@ function Detail() {
         dispatch(cleanProductDetail())
         // Envía la ID para recibir los detalles del producto en redux y .
         dispatch(productById(idProduct))
-        dispatch(getBestSellers())
         // 
         isProductInCart(productsLocal, idProduct)
         if (product.stock === 0) {

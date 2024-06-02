@@ -1,4 +1,4 @@
-import img404 from '@img/webp/404.webp'
+import img404 from '@assets/images/404.webp'
 import { ButtonLink } from '@components/Controls/Links'
 
 const NotFound = () => {

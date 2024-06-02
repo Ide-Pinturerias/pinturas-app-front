@@ -159,39 +159,52 @@ redux/actions/filters/setCategory
   categoría pasada por parámetro no se encuentre en este array, lanzar un error
   para evitar problemas en producción.
 
-## 2. get_best_sellers_request
-
-```
-services/api/getBestSellers
-```
-
-- El controlador para el endpoint <u>**products?limit=${limit}&minRating=5**</u> debe realizar la manipulación de datos, y retornar solo la respuesta necesaria, en lugar de realizarla en la misma petición.
-
 ## 3. Actions in use
 
 ### cart/addProductCart
+
 ### cart/clearCart
+
 ### cart/deleteProductCart
+
 ### cart/findOrCreateCart
+
 ### cart/setCart 🤔
+
 ### cart/updateQuantity
+
 ### categories/getAllCategories
+
 ### favorites/deleteFavorite 🤔
+
 ### favorites/getFavorites
+
 ### favorites/postFavorite
+
 ### filters/getAllProductsFiltered
+
 ### filters/setCategory
+
 ### filters/setHighPrice
+
 ### filters/setLowPrice
+
 ### filters/sort
+
 ### pagination/setPage
+
 ### products/cleanProductDetail
+
 ### products/getAllProductsNoFilter 🤔
+
 ### products/getAllProductsPaginated
-### products/getBestSellers
+
 ### products/postProducts 🤔
+
 ### products/productById
+
 ### products/productByName
+
 ### products/putProducts 🤔
 
 # COMPONENTS
@@ -199,20 +212,24 @@ services/api/getBestSellers
 ## Controls (buttons)
 
 Prod:
+
 ```
 Path: '@components/Controls/Buttons.jsx'
 ```
+
 Dev:
+
 ```
 Path: '@components/Controls/Buttons.tsx'
 ```
+
 ### Props:
+
 - `children`: Texto del botón.
 - `variant`: Tipo de botón. Valores posibles: `primary`, `secondary`, `tertiary`, `danger`. Puede ser para la acción principal, secundaria, terciaria o la de peligro.
 - `subVariant`: **No reemplaza a `variant`**. Valores posibles: `icon`.
 - `className`: Sobreescribe las clases en caso de ser necesario.
 - Y el resto de propiedades disponibles para `button` de React.
-
 
 ## Controls (links)
 
@@ -221,27 +238,32 @@ Path: '@components/Controls/Links.jsx'
 ```
 
 ### 1. ButtonLink
+
 - `children`: Texto del link.
 - `path`: String que indica la URL.
 - `styles`: Objecto con estilos adicionales.
 
 ### 2. PlaintNavLink
+
 - `children`: Texto del link.
 - `path`: String que indica la URL.
 - `styles`: Objecto con estilos adicionales.
 
 ### 3. PlainExternalLink
+
 - `children`: Texto del link.
 - `path`: String que indica la URL.
 - `styles`: Objecto con estilos adicionales.
 - `icon`: Booleano. En caso de ser ícono se aplicarán diferentes estilos.
 
 ## Controls (ProductQuantitySelector)
+
 ```
 Path: '@components/Controls/ProductQuantitySelector.jsx'
 ```
 
 ### Props
+
 - `number`: Número actual que se muestra en el input.
 - `setNumber`: Función seteadora el estado local pasado por props `number`.
 - `limit`: Stock del producto.
@@ -257,15 +279,18 @@ Path: '@components/Cart/Accordion.jsx'
 ```
 
 ### 1. AccordionHeader
+
 - `setIsOpen`: Función que settea el estado `isOpen`.
 - `isOpen`: Booleano que indica si el contenido se está mostrando o no.
 - `children`: Contenido del botón.
 
 ### 2. AccordionBody
+
 - `isOpen`: Booleano que indica si el contenido se está mostrando o no.
 - `children`: Contenido del cuerpo.
 
 ### 3. Accordion
+
 - `children`: Los subelementos SOLO deben ser `<AccordionHeader>` y `<AccordionBody>`
 
 # BUGS

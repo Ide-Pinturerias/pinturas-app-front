@@ -19,28 +19,52 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
     setEndPage(newEndPage)
   }, [thisPage, totalPagesToShow, totalPages])
 
-  const renderPageNumbers = () => {
-    const pageNumbers = []
+    const renderPageNumbers = () => {
+        const pageNumbers = []
 
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(
-        <li key={i}>
-          <button
-            className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${
-              thisPage === i
-                ? 'bg-gray-900'
-                : 'bg-gray-700 hover:bg-purple-700 transform transition-transform hover:scale-110'
-            }`}
-            onClick={() => pageChange(i)}
-            disabled={thisPage === i}
-          >
-            {i}
-          </button>
-        </li>
-      )
+        let spacesToShow = 3
+        if (thisPage >= 3 && thisPage <= totalPages - 3) {
+            spacesToShow = 7
+        } else if (thisPage === 2 || thisPage === totalPages - 2) {
+            spacesToShow = 6
+        }
+
+        let startPageNumber = Math.max(1, thisPage - Math.floor((spacesToShow - 1) / 2))
+        let endPageNumber = Math.min(totalPages, startPageNumber + spacesToShow - 1)
+
+        if (startPageNumber > 1) {
+            pageNumbers.push(<li key={1}><span className="px-3">1</span></li>)
+            if (startPageNumber > 2) {
+                pageNumbers.push(<li key="ellipsis-start"><span className="px-3">...</span></li>)
+            }
+        }
+
+        for (let i = startPageNumber; i <= endPageNumber; i++) {
+            pageNumbers.push(
+                <li key={i}>
+                    <button
+                        className={`px-6 py-2 mx-0 font-bold text-white bg-gray-700 ${thisPage === i
+                                ? 'bg-gray-900'
+                                : 'bg-gray-700 hover:bg-purple-700 transform transition-transform hover:scale-110'
+                            }`}
+                        onClick={() => pageChange(i)}
+                        disabled={thisPage === i}
+                    >
+                        {i}
+                    </button>
+                </li>
+            )
+        }
+
+        if (endPageNumber < totalPages) {
+            if (endPageNumber < totalPages - 1) {
+                pageNumbers.push(<li key="ellipsis-end"><span className="px-3">...</span></li>)
+            }
+            pageNumbers.push(<li key={totalPages}><span className="px-3">{totalPages}</span></li>)
+        }
+
+        return pageNumbers
     }
-    return pageNumbers
-  }
 
   const pageNumbers = renderPageNumbers()
 
@@ -58,8 +82,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
               onClick={() => pageChange(1)}
               disabled={thisPage === 1}
             >
-              First Page
-            </button>
+              Primera página</button>
           </li>
           <li>
             <button
@@ -96,7 +119,7 @@ const Paginated = ({ thisPage, totalPages, pageChange }) => {
               onClick={() => pageChange(totalPages)}
               disabled={thisPage === totalPages}
             >
-              Last Page
+              Última página
             </button>
           </li>
         </ul>

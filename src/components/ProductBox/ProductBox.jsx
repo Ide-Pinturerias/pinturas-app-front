@@ -22,9 +22,9 @@ function ProductBox({ isLoading }) {
         <LoadingSpinner />
       ) : (Array.isArray(filteredProducts) && filteredProducts.length > 0) ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-8 2xl:gap-12 w-full max-w-[1920px]  px-4 md:px-8">
-          {filteredProducts.map((product) => (
+          {filteredProducts.map((product, idx) => (
             <CardRegular
-              key={product.idProduct}
+              key={product.idProduct + idx}
               id={product.idProduct}
               name={product.name}
               category={product.category}

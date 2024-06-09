@@ -179,7 +179,7 @@ function ProductsPage () {
                 <ProductBox isLoading={isLoading} />
             </section>
 
-            <section>
+            <section className='overflow-hidden w-full'>
                 <Paginated
                     totalPages={totalPages}
                     thisPage={thisPage}

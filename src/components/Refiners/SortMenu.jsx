@@ -42,15 +42,6 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
             {/*       SORT BOX       */}
             <div className="overflow-y-auto overflow-x-hidden mt-5 mb-7">
                 <div className="mb-4">
-                    {/*       SORT RATING       */}
-                    <h3
-                        className="font-semibold uppercase mb-2 hover:text-primaryClear"
-                        onClick={() => sortByClauseAndDirection('rating', 'ASC')}
-                    >
-                        Los más puntuados
-                    </h3>
-                </div>
-                <div className="mb-4">
                     {/*       SORT NAME       */}
                     <h3 className="font-bold uppercase mb-2">
                         Nombre
@@ -117,7 +108,7 @@ function SortMenu({ isSortOpen, setIsSortOpen, sortBy, orderBy, sortByClauseAndD
                     Mostrar resultados
                 </Button>
                 <Button variant='secondary' onClick={cleanSorts} className='w-full max-w-[60%]'>
-                    Limpiar filtros
+                    Sin Ordenamiento
                 </Button>
             </div>
         </aside>

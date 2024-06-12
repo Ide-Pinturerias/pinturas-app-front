@@ -1,13 +1,39 @@
-import { defineConfig } from "vite";
-import dotenv from "dotenv";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dotenv from 'dotenv'
+import path from 'path'
 
 export default defineConfig(({ mode }) => {
-  const env = dotenv.config({ path: `./.env.${mode}` }).parsed;
+  const env = dotenv.config({ path: `./.env.${mode}` }).parsed
 
   return {
-    base: "/",
+    base: '/',
     define: {
-      "process.env": env,
+      'process.env': env
     },
-  };
-});
+    plugins: [
+      // Plugin para habilitar HMR update y no cargar toda* la pagina cada vez que se actualice un solo componente.
+      react()
+      // eslint({
+      //   include: ['src/**/*.js', 'src/**/*.jsx'],
+      //   exclude: ['node_modules/**', 'dist/**']
+      // })
+    ],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@components': path.resolve(__dirname, './src/components'),
+        '@views': path.resolve(__dirname, './src/views'),
+        '@redux': path.resolve(__dirname, './src/redux'),
+        '@scripts': path.resolve(__dirname, './src/scripts'),
+        '@svg': path.resolve(__dirname, './src/components/SVG.jsx'),
+        '@img': path.resolve(__dirname, './src/img'),
+        '@assets': path.resolve(__dirname, './src/assets'),
+        '@hooks': path.resolve(__dirname, './src/hooks'),
+        '@api': path.resolve(__dirname, './src/services/api.js'),
+        '@images': path.resolve(__dirname, './src/assets/images'),
+        '@styles': path.resolve(__dirname, './src/styles.js')
+      }
+    }
+  }
+})

@@ -1,36 +1,49 @@
-import Featured from "../Featured/Featured";
-import featuredBanner from "../../img/featured-banner.png";
-import React from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { GetSimilarProducts,GetSpecificProducts } from '@api'
+import { bestSellersIds } from './bestSellersIds'
+import CardRegular from '../ProductCards/CardRegular'
 
-const FeaturedContainer = () => {
-  const bestSellers = useSelector((state) => state.bestSell);
+function FeaturedContainer ({ bestSellersContainer, similarProductsContainer, similarProductsContainerOptions }) {
 
+  // LOCAL STATES:
+  const [products, setProducts] = useState([])
+
+  // CONST:
+  const dispatch = useDispatch()
+
+  // LIFE CYCLES:
+  useEffect(() => {
+    (async () => {
+      if (bestSellersContainer) {
+        const bestSellers= await GetSpecificProducts(bestSellersIds)
+        setProducts(bestSellers)
+      } else if (similarProductsContainer) {
+        const similarProducts = await GetSimilarProducts(similarProductsContainerOptions)
+        setProducts(similarProducts)
+      }
+    })()
+  }, [bestSellersContainer, similarProductsContainer, dispatch])
+
+  // COMPONENT:
   return (
-    <div className="flex  justify-center w-full m-auto">
-      <div className="flex flex-col m-0 w-full">
-        <img
-          src={featuredBanner}
-          alt="banner"
-          className="w-full h-[120px] min-h-[100px] md:w-full object-cover mt-20"
-        />
-        <div className="container mt-10 mx-auto justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center">
-            {bestSellers.map((bestSeller) => (
-              <Featured
-                key={bestSeller.idProduct}
-                id={bestSeller.idProduct}
-                image={bestSeller.image}
-                name={bestSeller.name}
-                price={bestSeller.price}
-                prodpackage={bestSeller.prodpackage}
-              />
-            ))}
-          </div>
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 items-start w-full mt-6">
+            {
+                Array.isArray(products) && products.map((bestSeller) => (
+                    <CardRegular
+                        key={bestSeller.idProduct}
+                        id={bestSeller.idProduct}
+                        name={bestSeller.name}
+                        category={bestSeller.category}
+                        color={bestSeller.color}
+                        image={bestSeller.image}
+                        brand={bestSeller.patent}
+                        price={bestSeller.price}
+                    />
+                ))
+            }
         </div>
-      </div>
-    </div>
-  );
-};
+  )
+}
 
-export default FeaturedContainer;
+export default FeaturedContainer

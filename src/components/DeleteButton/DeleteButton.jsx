@@ -1,23 +1,21 @@
-import React from "react";
-import { deleteProduct } from "../../redux/actions/Products/deleteProduct";
-import { allProducts } from "../../redux/actions/Products/allProducts"
-import { useDispatch } from "react-redux";
-import Swal from 'sweetalert2';
-
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated'
+import { deleteProduct } from './deleteProduct'
 
 const DeleteButton = ({ idProduct }) => {
-    const dispatch = useDispatch()
-    const handleClick = async () => {
-        dispatch(deleteProduct(idProduct));
-        Swal.fire('Borrado de producto:' + idProduct)
-        dispatch(allProducts())
-    }
+  const dispatch = useDispatch()
 
-    return (
+  const handleClick = async () => {
+    await deleteProduct(idProduct)
+    dispatch(getAllProductsPaginated())
+  }
+
+  return (
         <div className="flex justify-end">
-            <button onClick={handleClick} className="bg-warning rounded-xl w-20 h-12 m-8 text-yellow-300 border-2 border-solid border-gray-300 shadow-md font-bold">Borrar</button>
+            <button onClick={handleClick} className="bg-red-500 hover:bg-fadepa text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Borrar</button>
         </div>
-    );
+  )
 }
 
-export default DeleteButton;
+export default DeleteButton

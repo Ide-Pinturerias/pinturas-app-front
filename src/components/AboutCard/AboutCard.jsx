@@ -1,31 +1,30 @@
-import { Link } from "react-router-dom";
-import React from "react";
+import React from 'react'
+import image1 from '@images/store/store1.webp'
+import { ButtonLink } from '@components/Controls/Links'
 
 const AboutCard = () => {
-  return (
-    <div className="cursor-pointer my-10 transition-transform duration-300 ease-in-out hover:scale-105">
-      <Link to="/about">
-        <div className="mt-15 mb-15">
-          <div className="flex w-full justify-center mt-3 md:mt-16">
-            <div className="w-4/5">
-              <h1 className="text-primary text-3xl text-center uppercase font-bold cursor-pointer my-10 transition-transform duration-300 ease-in-out hover:scale-125">
-                Sobre Nosotros
-              </h1>
-              <p className="text-secondary text-sm md:text-md lg:text-lg mb-3 md:mb-11 text-justify">
-                En ide Pinturerias, creemos en la excelencia y el servicio
-                personalizado. Nuestro equipo dedicado está aquí para asesorarte
-                en cada paso de tu proyecto, desde grandes obras hasta pequeños
-                proyectos de decoración. Nuestra pasión por la calidad y la
-                satisfacción del cliente nos impulsa a superar las expectativas
-                y a ser tu socio confiable en todas tus necesidades relacionadas
-                con pinturas y ferretería.
-              </p>
+    return (
+        <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
+            <div className='flex flex-col-reverse lg:flex-row justify-center items-center gap-[25px] md:gap-[50px] m-sides max-w-maxSc w-maxIn'>
+                <img
+                    src={image1}
+                    alt="Vista exterior de la tienda IDE Pinturerías mostrando productos de pintura y herramientas."
+                    className='self-center items-center object-cover aspect-[4/3] w-full max-h-[400px] lg:w-[calc((100%-50px)/2)] rounded-lg'
+                />
+                <div className="flex flex-col items-start lg:items-center w-full lg:w-[calc((100%-50px)/2)] mt-3">
+                    <h2 className="self-start text-clear text-4xl text-start font-primary font-bold">
+                        Conócenos
+                    </h2>
+                    <p className="mb-3 md:mb-6 text-clear text-md text-start">
+                        Dedicados y comprometidos al 100% con pasión por la calidad, en IDE Pinturerías priorizamos la excelencia y servicio personalizado. Nos esforzamos por superar tus expectativas al ofrecerte un servicio excepcional en pinturas y ferretería. Queremos ser tu socio confiable mientras nuestro equipo te brinda asesoramiento en cada proyecto, ya sea grande o pequeño.
+                    </p>
+                    <ButtonLink path='/about'>
+                        Nuestra historia
+                    </ButtonLink>
+                </div>
             </div>
-          </div>
-        </div>
-      </Link>
-    </div>
-  );
-};
+        </section>
+    )
+}
 
-export default AboutCard;
+export default AboutCard

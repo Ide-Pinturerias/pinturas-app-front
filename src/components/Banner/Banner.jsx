@@ -1,81 +1,78 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import banner1 from "../../img/banner1.png";
-import banner2 from "../../img/banner2.png";
-import banner3 from "../../img/banner3.png";
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import banner1 from '@images/banners/banner1.webp'
+import banner2 from '@images/banners/banner2.webp'
+import banner3 from '@images/banners/banner3.webp'
+import { ChevronRightRounded, ChevronLeftRounded } from '@mui/icons-material'
+import { Button } from '@components/Controls/Buttons'
 
 const BannerCarousel = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const images = [
-    {
-      src: banner1,
-      link: "/products",
-    },
-    {
-      src: banner2,
-      link: "/products",
-    },
-    {
-      src: banner3,
-      link: "/products",
-    },
-  ];
+  // LOCA STATES:
+  const [currentImage, setCurrentImage] = useState(0)
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-    }, 5000);
+  // CONST:
+  const images = [{
+    src: banner1,
+    alt: 'Juntos por un mundo mejor. Por cada balde de 20L lleno de tapitas, FADEPA te da 4 litros de pintura.'
+  }, {
+    src: banner2,
+    alt: '¡Ponle color a los Black Days! 15% OFF *En referencias seleccionadas.'
+  }, {
+    src: banner3,
+    alt: 'Dale color a tu vida. idePinturerías.'
+  }]
 
-    return () => clearInterval(interval);
-  }, []);
-
+  // FUNCTIONS:
   const goToPrevImage = () => {
-    setCurrentImage(
-      (prevImage) => (prevImage - 1 + images.length) % images.length
-    );
-  };
+    setCurrentImage((prevImage) => (prevImage - 1 + images.length) % images.length)
+  }
 
   const goToNextImage = () => {
-    setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-  };
+    setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+  }
 
+  // LIFE CYCLES:
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  // COMPONENTS:
   return (
-    <div className="hidden sm:block">
-      <div className="relative w-full h-80 sm:h-96 md:h-120">
-        {images.map((image, index) => (
-          <Link
-            key={index}
-            to={image.link}
-            className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-              index === currentImage ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <img
-              src={image.src}
-              alt={`Image ${index + 1}`}
-              className="absolute w-full h-full object-cover"
-            />
-          </Link>
-        ))}
-        <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-          <button
-            className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-            onClick={goToPrevImage}
-          >
-            &lt;
-          </button>
-        </div>
-        <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-          <button
-            className="w-8 h-8 p-1 bg-gray-800 bg-opacity-20 text-white rounded-full focus:outline-none"
-            onClick={goToNextImage}
-          >
-            &gt;
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+        <section className="flex justify-center items-center w-full">
+            <div className="overflow-hidden relative flex justify-center items-center m-sides aspect-[16/5] max-w-maxSc w-maxIn rounded-[2rem]">
+                {
+                    images.map((img, index) => (
+                        <Link
+                            key={index}
+                            to='/products'
+                            className={`top-0 left-0 absolute size-full transition-opacity duration-1000 ease-in-out ${index === currentImage ? 'opacity-100' : '-z-10 pointer-events-none opacity-20'}`}
+                        >
+                            <img
+                                src={img.src}
+                                alt={img.alt}
+                                style={{aspectRatio: '16/5'}}
+                                className="w-full h-auto object-cover select-none m-auto"
+                            />
+                        </Link>
+                    ))
+                }
+                <div className="absolute top-1/2 -translate-y-1/2 left-[3%]">
+                  <Button variant="secondary" subVariant="icon" onClick={goToPrevImage} className="size-[45px] active:scale-90">
+                      <ChevronLeftRounded style={{ width: '70%', height: '70%' }} />
+                  </Button>
+                </div>
+                <div className="absolute top-1/2 -translate-y-1/2 right-[3%]">
+                  <Button variant="secondary" subVariant="icon" onClick={goToNextImage} className="size-[45px] active:scale-90">
+                      <ChevronRightRounded style={{ width: '70%', height: '70%' }} />
+                  </Button>
+                </div>
+            </div>
+        </section>
+  )
+}
 
-export default BannerCarousel;
+export default BannerCarousel

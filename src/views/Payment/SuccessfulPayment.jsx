@@ -1,7 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearCart } from '../../redux/actions/Cart/clearCart'
 
 const SuccessfulPayment = () => {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+
+  useEffect(() => {
+    user.id && dispatch(clearCart(user.id))
+  }, [user])
+
   return (
     <div className="flex items-center justify-center min-h-screen mt-5">
       <div className="bg-white shadow-lg rounded-lg p-6 w-96">
@@ -26,7 +35,7 @@ const SuccessfulPayment = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SuccessfulPayment;
+export default SuccessfulPayment

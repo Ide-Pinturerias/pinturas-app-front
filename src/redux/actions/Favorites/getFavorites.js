@@ -1,20 +1,12 @@
-import axios from "axios";
-import { BASE_URL, GET_FAVORITES } from "../../action-type";
+import { GET_FAVORITES } from '@redux/action-type'
+import { GetFavorites } from '@api'
 
-export const getFavorites = (id) => {
-    return async (dispatch) => {
-
-        try {
-
-            let user = {
-                "idUser": id
-            };
-
-            const response = (await axios.post(`${BASE_URL}favorites/user`, user)).data;
-            dispatch({ type: GET_FAVORITES, payload: response });
-
-        } catch (error) {
-            console.log('error getFavorites', error);
-        }
-    };
-};
+export const getFavorites = (id) => async (dispatch) => {
+    try {
+        const user = { idUser: id };
+        const response = await GetFavorites(user);
+        dispatch({ type: GET_FAVORITES, payload: response });
+    } catch (error) {
+        console.log('Error trying to dispatch getFavorites: ' + error);
+    }
+}

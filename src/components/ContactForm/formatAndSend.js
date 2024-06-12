@@ -1,4 +1,4 @@
-import { postContactEmail } from "../../redux/actions/Mail/postContactEmail";
+import { postContactEmail } from '@redux/actions/Mail/postContactEmail'
 import Swal from 'sweetalert2'
 
 export const formatAndSend = async ({ name, email, message }, dispatch) => {
@@ -7,7 +7,7 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
         <html lang="en" >
             <head>
                 <meta charset="UTF-8">
-                    <title>Contacto desde Ide Pinturerias</title>
+                    <title>Contacto desde Ide Pinturerías</title>
             </head>
             <body>
                 <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
@@ -22,10 +22,10 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
                         <p>Puedes responder este mensaje para comunicarte con ${name}</p>
                         <p>Mensaje: <br/>
                         ${message}<br/></p>
-                        <p style="font-size:0.9em;">Saludos,<br />Ide Pintureria</p>
+                        <p style="font-size:0.9em;">Saludos,<br />Ide Pinturerías</p>
                         <hr style="border:none;border-top:1px solid #eee" />
                         <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
-                            <p>Ide Pintureria</p>
+                            <p>Ide Pinturerías</p>
                             <p>Ruta 5 - Esquina La Isla
                             Anisacate, Córdoba</p>
                             <p>Argentina</p>
@@ -36,30 +36,27 @@ export const formatAndSend = async ({ name, email, message }, dispatch) => {
         </html>`
 
         const emailToBeSend = {
-            name: name,
+            name,
             message: formatedEmail,
             replyTo: email
-        };
+        }
 
         await postContactEmail(emailToBeSend)(dispatch).then((res) => {
             if (res.status === 200) {
                 Swal.fire({
                     icon: 'success',
-                    text: "Correo enviado correctamente"
-                });
+                    text: 'Correo enviado correctamente'
+                })
             } else {
                 Swal.fire({
                     icon: 'error',
                     text: 'El mensaje no ha sido enviado'
                 })
             }
-        }).then(() => {
-            true;
         }).catch((err) => {
-            console.error(err);
-        });
+            console.error(err)
+        })
     } catch (error) {
-        console.error(error);
+        console.error(error)
     }
-
 }

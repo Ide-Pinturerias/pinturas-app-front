@@ -1,11 +1,11 @@
-import React from "react";
-import Banner from "../../img/workTeam.png";
-import { FaGithub, FaEnvelope, FaLinkedin } from "react-icons/fa";
-import { teamMembers } from "./profiles";
+import React from 'react'
+import Banner from '@assets/images/workTeam.webp'
+import { FaGithub, FaEnvelope, FaLinkedin } from 'react-icons/fa'
+import { teamMembers } from './profiles'
 
 const Developers = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center bg-white">
+    <div className="min-h-screen flex justify-center items-center bg-white mt-20">
       <div className="w-85vw max-w-15/100 rounded-lg p-4 flex flex-col space-y-4">
         {/* Contenedor Card Team */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -34,21 +34,21 @@ const Developers = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaGithub style={{ fontSize: "1.5rem" }} />
+                    <FaGithub style={{ fontSize: '1.5rem' }} />
                   </a>
                   <a
                     href={member.gmail}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaEnvelope style={{ fontSize: "1.5rem" }} />
+                    <FaEnvelope style={{ fontSize: '1.5rem' }} />
                   </a>
                   <a
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-primary hover:text-black transition-colors duration-300 mx-4 hover:scale-150">
-                    <FaLinkedin style={{ fontSize: "1.5rem" }} />
+                    <FaLinkedin style={{ fontSize: '1.5rem' }} />
                   </a>
                 </div>
               </div>
@@ -62,7 +62,7 @@ const Developers = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Developers;
+export default Developers

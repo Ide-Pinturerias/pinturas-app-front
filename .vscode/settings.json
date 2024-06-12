@@ -1,0 +1,17 @@
+{
+  "eslint.format.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
+  "cSpell.words": [
+    "Anísacate",
+    "Pinturerías"
+  ],
+  "cSpell.enableFiletypes": [
+    "!json"
+  ]
+}

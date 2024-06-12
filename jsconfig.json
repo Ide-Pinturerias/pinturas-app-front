@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@components/*": [
+                "src/components/*"
+            ],
+            "@views/*": [
+                "src/views/*"
+            ],
+            "@redux/*": [
+                "src/redux/*"
+            ],
+            "@scripts/*": [
+                "src/scripts/*"
+            ],
+            "@svg": [
+                "src/components/SVG.jsx"
+            ],
+            "@images/*": [
+                "src/assets/images/*"                
+            ],
+            "@img/*": [
+                "src/img/*"
+            ],
+            "@assets/*": [
+                "src/assets/*"
+            ],
+            "@hooks/*": [
+                "src/hooks/*"
+            ],
+            "@api": [
+                "src/services/api.js"
+            ],
+            "@styles": [
+                "src/styles.js"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

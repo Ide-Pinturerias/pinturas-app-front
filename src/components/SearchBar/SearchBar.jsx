@@ -1,73 +1,55 @@
-import React, { useState } from "react";
-import {useDispatch} from 'react-redux';
-import { productByName } from '../../redux/actions/Products/productByName'
-import { allProducts } from '../../redux/actions/Products/allProducts';
-import { setPage } from "../../redux/actions/Page/setPage";
-import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { productByName } from '@redux/actions/Products/productByName';
+import { getAllProductsPaginated } from '@redux/actions/Products/getAllProductsPaginated';
+import { setPage } from '@redux/actions/pagination/setPage';
+import { XLarge } from '@svg';
 
-const SearchBar = () => {
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+export const SearchBar = ({ toggleSearch }) => {
   const thisPage = useSelector((state) => state.thisPage);
   const filterCategory = useSelector((state) => state.filterCategory);
-  const { high, low } = useSelector((state) => state.price);
+  const { highPrice, lowPrice } = useSelector((state) => state.price);
+  const [search, setSearch] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     dispatch(setPage(1));
     setSearch(event.target.value);
-      event.target.value.length
-      ? dispatch(productByName(event.target.value, thisPage, filterCategory, low, high))
-      : dispatch(allProducts())
+    event.target.value.length
+      ? dispatch(productByName(event.target.value, thisPage, filterCategory, lowPrice, highPrice))
+      : dispatch(getAllProductsPaginated());
   };
-  
+
+  const clearSearch = () => {
+    dispatch(setPage(1));
+    setSearch('');
+    dispatch(getAllProductsPaginated());
+  };
+
+  const linkStl =
+    'flex items-center gap-2 py-[.3rem] px-[1em] bg-bg rounded-[8px] capitalize cursor-pointer transition-colors hover:text-primaryVisible hover:fill-primaryVisible hover:bg-primaryClear';
+
   return (
-    <div className="h-32 bg-white flex flex-col justify-center items-center mb-10">
-      <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
-        <div className="overflow-hidden z-0 rounded-full relative p-3">
-          <div
-            className="relative flex z-50 bg-white rounded-full border-2 border-purple-600"
+    <div className="flex justify-center items-center order-1 xs:order-2 w-full max-w-[600px] mx-auto">
+      <form className="flex justify-center items-center w-full">
+        <div className="relative flex w-full h-[80%] ml-[.4m] mb-4 xs:mb-0">
+          <input
+            type="search"
+            placeholder="Buscar en la tienda"
+            className="relative flex-1 w-full py-[0.2em] px-[1em] box-border border-[1.75px] border-duller rounded-[12px] bg-inherit transition-all text-[clamp(16px,calc(.8vw+0.25rem),1.2rem)] lg:border-transparent hover:border-duller outline-0 focus:border-primaryClear"
+            value={search}
+            onChange={handleChange}
+          />
+          <button
+            type="button"
+            className={`${linkStl} absolute top-1/2 -translate-y-1/2 right-[.3em]`}
+            onClick={clearSearch}
+            aria-label='Limpiar búsqueda'
           >
-            <input
-              type="search"
-              placeholder="Busca tu producto"
-              className=" cursor-text rounded-full flex-1 px-6 py-4 text-white-700 focus:outline-none"
-              value={search}
-              onChange={handleChange}
-              style={{ border: "none" }}
-            />
-            <button
-              className="bg-purple-600 text-white rounded-full font-semibold px-8 py-4 hover:bg-purple-900 focus:bg-purple-600 focus:outline-none"
-              type="submit"
-              style={{ border: "none" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="17"
-                height="16"
-                viewBox="0 0 17 16"
-                fill="none"
-              >
-                <path
-                  d="M11.5171 6.36835C11.5171 9.8855 8.93889 12.7367 5.75854 12.7367C2.57819 12.7367 0 9.8855 0 6.36835C0 2.85121 2.57819 0 5.75854 0C8.93889 0 11.5171 2.85121 11.5171 6.36835ZM1.72756 6.36835C1.72756 8.83035 3.53229 10.8262 5.75854 10.8262C7.98478 10.8262 9.78951 8.83035 9.78951 6.36835C9.78951 3.90635 7.98478 1.91051 5.75854 1.91051C3.53229 1.91051 1.72756 3.90635 1.72756 6.36835Z"
-                  fill="#C4C4C4"
-                />
-                <line
-                  x1="2"
-                  y1="-2"
-                  x2="7.02699"
-                  y2="-2"
-                  transform="matrix(0.733018 0.68021 -0.604452 0.796642 8.38281 9.85938)"
-                  stroke="#C4C4C4"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
-          </div>
+            <XLarge size={'1rem'} />
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
-
-export default SearchBar;

@@ -1,593 +1,416 @@
-import React, { useEffect, useState } from "react";
-import DeleteButton from "../../components/DeleteButton/DeleteButton";
-import UpdateButton from "../../components/UpdateButton/UpdateButton";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { productById } from "../../redux/actions/Products/productById";
-import FeaturedContainer from "../../components/FeaturedContainer/FeaturedContainer";
-import { bestSellers } from "../../redux/actions/Products/bestSellers";
-import "./Detail.Module.css";
-import { useCart } from "../../hooks/useCart";
-import { setCart } from "../../redux/actions/Cart/setCart";
-import Swal from "sweetalert2";
-import { postFavorites } from "../../redux/actions/Favorites/postFavorites";
+import { useEffect, useState } from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { productById } from '@redux/actions/Products/productById'
+import { cleanProductDetail } from '@redux/actions/Products/cleanProductDetail'
+import { addProductCart } from '@redux/actions/Cart/addProductCart'
+import { deleteProductCart } from '@redux/actions/Cart/deleteProductCart'
+import { postFavorite } from '@redux/actions/Favorites/postFavorite'
+import { formatNumberWithDots } from '@scripts/formatNumberWithDots'
+import Swal from 'sweetalert2'
+import { Bookmark, Star, Shop, Phone, ChatEmpty } from '@svg'
+import FeaturedContainer from '@components/FeaturedContainer/FeaturedContainer'
+import ProductQuantitySelector from '@components/Controls/ProductQuantitySelector'
+import { Button } from '@components/Controls/Buttons.jsx'
+import { LoadingSpinner } from '../../components/LoadingSpinner/LoadingSpinner'
 
-const Detail = () => {
+function Detail() {
+    // GLOBAL STATES:
+    const loggedUser = useSelector((state) => state.user)
+    const product = useSelector((state) => state.detail)
 
-    const loggedUser = useSelector((state) => state.user);
-    const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { idProduct } = useParams();
-    const product = useSelector((state) => state.detail);
-    const { cartState, addToCart, removeFromCart, clearCart } = useCart();
+    // CONSTANTS:
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { idProduct } = useParams()
+    const productsLocal = JSON.parse(window.localStorage.getItem('productsLocal')) || []
 
-    const [isValidQuantity, setIsValidQuantity] = useState(true);
-    const [error, setError] = useState("");
-    const [added, setAdded] = useState(false);
-    const [addedBuy, setAddedBuy] = useState(false);
-    const [addProduct, setAddProduct] = useState({
-        id: idProduct,
-        quantity: 1,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        stock: product.stock
-    });
+    // LOCAL STATES:
+    // Cantidad de productos que se llevan:
+    const [numberOfItems, setNumberOfItems] = useState(1)
+    // Indica si se está actualizando la prop "quantity" del producto (se usa para evitar exceso de peticiones):
+    const [isNumberOfItemsUpdating, setIsNumberOfItemsUpdating] = useState(false)
+    // Indica si el producto está en "cart" del localStorage:
+    const [isInCart, setIsInCart] = useState(false)
+    // Número de contacto:
+    const [showNumber, setShowNumber] = useState(false)
 
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-        const parsedValue = Number(value);
+    // FUNCTIONS:
+    // Saber si el producto ya está en el carrito.
+    const isProductInCart = (productsLocal, id) => {
+        const found = productsLocal.some(product => product.id === id)
+        setIsInCart(found)
+    }
 
-        if (value === "" || isNaN(parsedValue) || parsedValue < 1) {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: "",
-            }));
-            setError("Ingrese una cantidad válida");
-            setIsValidQuantity(false);
-        } else if (parsedValue > product.stock) {
-            setError("Stock no disponible");
-            setIsValidQuantity(false);
+    // Agregar producto a favoritos.
+    const addFavorite = () => {
+        if (Object.keys(loggedUser).length !== 0) {
+            const data = {
+                idUser: loggedUser.id,
+                idProduct
+            }
+            dispatch(postFavorite(data))
+                .then((response) => {
+                    if (response === 'existe') {
+                        Swal.fire('Ya exite este producto en favoritos')
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Producto agregado a favoritos',
+                            timer: 2000,
+                            showConfirmButton: false
+                        })
+                    };
+                })
+                .catch((error) => {
+                    console.log('error productCart', error)
+                })
         } else {
-            setAddProduct((prevProduct) => ({
-                ...prevProduct,
-                quantity: parsedValue,
-            }));
-            setError("");
-            setIsValidQuantity(true);
-        }
-    };
-
-  const addFavorite = () => {
-    if (loggedUser) {
-      let data = {
-        loggedUser: loggedUser.id,
-        idProduct: idProduct,
-      };
-      dispatch(postFavorites(data))
-        .then((response) => {
-          if (response === "existe") {
-            Swal.fire("Ya exite este producto en favoritos");
-          } else {
             Swal.fire({
-              icon: "success",
-              title: "Producto agregado a favoritos",
-              timer: 2000,
-              showConfirmButton: false,
-            });
-          }
+                icon: 'info',
+                title: 'Debes estar logueado para agregar favoritos'
+            })
+        }
+    }
+
+    // Agregar producto al carro.
+    const onAddProductCart = () => {
+        const productToAdd = { id: idProduct, quantity: numberOfItems }
+        dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+        isProductInCart(productsLocal, idProduct)
+        Swal.fire({
+            title: 'EXITO!',
+            text: 'Producto agregado al carrito. ¿Deseas revisar tu carrito?',
+            icon: 'success',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Ir a carrito',
+            denyButtonText: 'Seguir comprando'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/cart'
+            }
         })
-        .catch((error) => {
-          console.log("error productCart", error);
-        });
-    } else {
-      Swal.fire("Debes estar logeado para agregar favoritos");
     }
-  };
 
-  const renderStars = (rating) => {
-    const MAX_STARS = 5;
-    const stars = [];
-
-    // Generar estrellas llenas
-    for (let i = 1; i <= rating; i++) {
-      stars.push(
-        <svg
-          key={`star-${i}`}
-          className="star"
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path d="M12 2l2.899 8.919h9.273l-7.491 5.45 2.899 8.92-7.395-5.439-7.394 5.438 2.899-8.919-7.492-5.45h9.274z" />
-        </svg>
-      );
+    // Agregar e ir al carro.
+    const handleBuyNow = () => {
+        if (!isInCart) {
+            const productToAdd = { id: idProduct, quantity: numberOfItems }
+            dispatch(addProductCart(loggedUser.id, productsLocal, productToAdd))
+            isProductInCart(productsLocal, idProduct)
+        }
+        navigate('/cart')
     }
-    return <div className="stars-container">{stars}</div>;
-  };
 
-    const shopCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity,
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            setAddedBuy(true);
-        }
-    };
+    // Eliminar producto del carro.
+    const onDeleteProductCart = ({ user, id }) => {
+        dispatch(deleteProductCart(user, id))
+        setIsInCart(false)
+        Swal.fire({
+            title: 'EXITO!',
+            text: 'Producto eliminado del carrito',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+        })
+    }
 
-    const handleAddToCart = () => {
-        if (isValidQuantity) {
-            addToCart({
-                product: {
-                    id: addProduct.id,
-                    name: product.name,
-                    image: product.image,
-                    price: product.price,
-                    stock: product.stock
-                },
-                quantity: addProduct.quantity,
-            });
-            setAddProduct({
-                id: idProduct,
-                quantity: 1,
-                name: product.name,
-                image: product.image,
-                price: product.price,
-                stock: product.stock
-            });
-            
-            setAdded(true)
-        } else {
-            Swal.fire("Ingrese una cantidad válida");
-        }
-    };
+    // Renderizar estrellas basándose en el "rating" del producto.
+    const renderStars = (value) => {
+        const max = 5
+        const percentage = Math.round((value / max) * 100)
 
-    useEffect(() => {
-        if(added){
-
-                dispatch(setCart(addProduct));
-                Swal.fire("Producto agregado al carrito");
-                console.log('addProduct', addProduct)
-                setAdded(false);
-
-        }
-        if(addedBuy){
-            dispatch(setCart(addProduct));
-            setAddedBuy(false);
-            navigate("/cart");
-        }
-    },[added, addedBuy])
-
-    useEffect(() => {
-        dispatch(productById(idProduct));
-        dispatch(bestSellers());
-    }, [dispatch, idProduct]);
-
-  if (loggedUser.rol === "admin") {
-    return (
-      <section className="py-4 sm:py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex">
-            <ol role="list" className="flex items-center">
-              <li className="text-left">
-                <div className="-m-1">
-                  <a
-                    href="/"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                  >
-                    {" "}
-                    Inicio{" "}
-                  </a>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                    >
-                      {" "}
-                      Productos{" "}
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                      aria-current="page"
-                    >
-                      {product?.category}
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <div className="lg:col-gap-12 mt-8 grid grid-cols-1 gap-12 md:grid-cols-2 lg:mt-12 lg:grid-cols-2 lg:gap-10 xl:col-gap-16">
-            <div className="lg:col-span-3 lg:row-end-1">
-              <div className="lg:flex lg:items-start">
-                <div className="lg:order-2 lg:ml-5">
-                  <div className="max-w-xl overflow-hidden rounded-lg">
-                    <img
-                      className="w-full h-80 max-w-full object-cover"
-                      src={product?.image}
-                      alt={product?.name}
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0"></div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2 ">
-              <p
-                className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110"
-                onClick={addFavorite}
-              >
-                {" "}
-                Agregar a Favoritos 🤍
-              </p>
-              <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-                {product?.name}
-              </h1>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Marca: {"  "}
-                {product?.patent}
-              </p>
-              <div className="mt-5 flex items-center">
-                <div className="flex items-center mt-2">
-                  <div className="rating-stars flex mr-3">
-                    {renderStars(product?.rating)}
-                  </div>
-                </div>
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
-                  {product?.rating}
-                </span>
-              </div>
-              {/* <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                3 Reviews
-              </p> */}
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Presentación: {"  "}
-                {product?.package}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Color: {"  "}
-                {product?.color}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Stock disponible: {"  "}
-                {product?.stock}
-              </p>
-              <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="quantity"
-                    className=" mt-2 ml-2 text-sm font-medium text-gray-500"
-                  >
-                    Cantidad
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="cantidad"
-                    name="quantity"
-                    value={addProduct.quantity}
-                    onChange={handleInputChange}
-                    className=" flex items-center justify-center p-2 my-2 h-11 w-24 rounded border-indigo-800 border-solid border-2"
-                  />
-                </div>
-                <div className="w-20 h-14 flex items-center justify-center">
-                  {error && (
-                    <p className="text-sm font-semibold text-red-800">
-                      {" "}
-                      {error}{" "}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="mt-10 flex flex-col grid-cols-2 gap-2 items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
-                <div className="flex items-end">
-                  <h1 className="text-3xl font-bold">$ {product?.price}</h1>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-
-                  {product.stock > 0
-                    ?(<div className="grid grid-cols-2 gap-4">
-                      {console.log('product.stock', product.stock)}
-                      <button
-                        type="button"
-                        disabled={!isValidQuantity}
-                        className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow ${
-                          isValidQuantity
-                            ? "hover:bg-purple-200"
-                            : "cursor-not-allowed"
-                        }`}
-                        onClick={handleAddToCart}
-                        >
-                        Agregar al carrito
-                      </button>
-                      <button
-                        type="button"
-                        className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow ${
-                          isValidQuantity
-                            ? "hover:bg-gray-800"
-                            : "cursor-not-allowed"
-                        }`}
-                        onClick={shopCart}
-                        disabled={!isValidQuantity}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="shrink-0 mr-3 h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                          />
-                        </svg>
-                        Comprar
-                      </button>
-                    </div>
-                  )
-                  :( <p> Producto sin Stock </p>)}
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-3">
-            <div className="border-b border-gray-300">
-              <a
-                title=""
-                className=" py-4 text-sm font-medium text-gray-900 hover:text-gray-800"
-              >
-                Descripcion del Producto
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 flow-root sm:mt-12">
-            <p className="mt-4">{product?.description}</p>
-          </div>
-          <div className="flex justify-end">
-            <DeleteButton idProduct={idProduct} />
-            <UpdateButton idProduct={idProduct} />
-          </div>
-        </div>
-        <div>
-          <FeaturedContainer />
-        </div>
-      </section>
-    );
-  } else {
-    return (
-      <section className="py-4 sm:py-4">
-        <div className="container mx-auto px-4">
-          <div className="flex">
-            <ol role="list" className="flex items-center">
-              <li className="text-left">
-                <div className="-m-1">
-                  <a
-                    href="/"
-                    className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                  >
-                    Inicio
-                  </a>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                    >
-                      Productos
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li className="text-left">
-                <div className="flex items-center">
-                  <span className="mx-2 text-gray-400">/</span>
-                  <div className="-m-1">
-                    <a
-                      href="/products"
-                      className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
-                      aria-current="page"
-                    >
-                      {product?.category}
-                    </a>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </div>
-          <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
-            <div className="lg:col-span-3 lg:row-end-1">
-              <div className="lg:flex lg:items-start">
-                <div className="lg:order-2 lg:ml-5">
-                  <div className="max-w-xl overflow-hidden rounded-lg">
-                    <img
-                      className="w-full h-80 max-w-full object-cover"
-                      src={product?.image}
-                      alt={product?.name}
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0"></div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-              <p
-                className=" mt-2 ml-auto text-sm font-medium text-right text-blue-500 cursor-pointer m-5 hover:scale-110"
-                onClick={addFavorite}
-              >
-                {" "}
-                Agregar a Favoritos 🤍
-              </p>
-              <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-                {product?.name}
-              </h1>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Marca: {"  "}
-                {product?.patent}
-              </p>
-              <div className="mt-5 flex items-center">
-                <div className="flex items-center mt-2">
-                  <div className="rating-stars flex mr-3">
-                    {renderStars(product?.rating)}
-                  </div>
-                </div>
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-auto ">
-                  {product?.rating}
-                </span>
-              </div>
-              {/* <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                                3 Reviews
-                            </p> */}
-              <p className=" mt-7 ml-2 text-sm font-medium text-gray-500">
-                Presentación: {"  "}
-                {product?.package}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Color: {"  "}
-                {product?.color}
-              </p>
-              <p className=" mt-2 ml-2 text-sm font-medium text-gray-500">
-                Stock disponible: {"  "}
-                {product?.stock || 0}
-              </p>
-              <div className=" flex items-end justify-start gap-2 sm:flex-row sm:space-y-0">
-                <div className="flex flex-col">
-                  <label
-                    htmlFor="quantity"
-                    className=" mt-2 ml-2 text-sm font-medium text-gray-500"
-                  >
-                    Cantidad
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="cantidad"
-                    name="quantity"
-                    value={addProduct.quantity}
-                    onChange={handleInputChange}
-                    className=" flex items-center justify-center p-2 my-2 h-11 w-24 rounded border-indigo-800 border-solid border-2"
-                  />
-                </div>
-                <div className="w-20 h-14 flex items-center justify-center">
-                  {error && (
-                    <p className="text-sm font-semibold text-red-800">
-                      {" "}
-                      {error}{" "}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="mt-10 flex flex-col items-center justify-between space-y-3 border-t border-b py-4 sm:flex-row sm:space-y-0">
-                <div className="flex items-end">
-                  <h1 className="text-3xl font-bold">$ {product?.price}</h1>
-                </div>
-                {product.stock > 0
-                ? (<div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    disabled={!isValidQuantity}
-                    className={`flex items-center justify-center rounded-md border-2 border-transparent bg-purple-100 bg-none hover:scale-110 text-center text-base font-bold text-purple-800 transition-all duration-200 ease-in-out focus:shadow
-                    ${
-                      isValidQuantity
-                        ? "hover:bg-purple-200 "
-                        : "cursor-not-allowed"
-                    }`}
-                    onClick={handleAddToCart}
-                  >
-                    Agregar al carrito
-                  </button>
-                  <button
-                    type="button"
-                    className={`inline-flex items-center justify-center rounded-md border-2 border-transparent bg-purple-800 bg-none px-12 py-3 hover:scale-110 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow
-                                                ${
-                                                  isValidQuantity
-                                                    ? "hover:bg-gray-800"
-                                                    : "cursor-not-allowed"
-                                                }`}
-                    onClick={shopCart}
-                    disabled={!isValidQuantity}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="shrink-0 mr-3 h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-                    Comprar
-                  </button>
-                </div>)
-                : <p className="text-red-700 font-semibold">Stock no disponible</p>
+        return (
+            <div className="relative flex items-center gap-1 mr-2 fill-primaryClear">
+                {
+                    Array.from(Array(max).keys()).map((_, idx) => <Star key={idx} />)
                 }
-              </div>
+                <div className="absolute top-0 right-0 bottom-0 z-10 bg-black mix-blend-color" style={{ width: `${100 - percentage}%` }} />
             </div>
-          </div>
-          <div className="lg:col-span-3">
-            <div className="border-b border-gray-300">
-              <a
-                title=""
-                className=" py-4 text-sm font-medium text-gray-900 hover:text-gray-800"
-              >
-                Descripcion del Producto
-              </a>
-            </div>
-          </div>
-          <div className="mt-8 flow-root sm:mt-12">
-            <p className="mt-4">{product?.description}</p>
-          </div>
-        </div>
-        <div>
-          <FeaturedContainer />
-        </div>
-      </section>
+        )
+    }
+
+    // LIFE CYCLES:
+    // Al cargar el componente.
+    useEffect(() => {
+        // Limpia el estado "detail" al cargar la página.
+        dispatch(cleanProductDetail())
+        // Envía la ID para recibir los detalles del producto en redux y .
+        dispatch(productById(idProduct))
+        // 
+        isProductInCart(productsLocal, idProduct)
+        if (product.stock === 0) {
+            setNumberOfItems(0)
+        }
+        return () => {
+            // Limpia el estado "detail" en redux al clickear e ir a otro producto, por ejemplo.
+            dispatch(cleanProductDetail())
+        }
+    }, [dispatch, idProduct])
+
+    // Setea el elemento <title> del <head> del documento HTML.
+    useEffect(() => {
+        product.name
+            ? document.title = `${product.name}`
+            : document.title = 'Ide Pinturerias'
+        return () => {
+            document.title = 'Ide Pinturerias'
+        }
+    }, [idProduct])
+
+    useEffect(() => {
+        try {
+            const productsLocal = JSON.parse(localStorage.getItem("productsLocal"))
+            if (Array.isArray(productsLocal)) {
+                const product = productsLocal.find(obj => obj.id.toString() === idProduct.toString());
+                setNumberOfItems(product.quantity);
+            }
+        } catch (error) {
+            setNumberOfItems(1);
+        }
+    }, [])
+
+    // COMPONENT:
+    return (
+        <main className="flex justify-center w-full min-h-screen p-whiteSpaceTop bg-bg">
+            {(Object.keys(product).length === 0 ||!product.active)? (
+                <LoadingSpinner />
+            ) : (
+                <div className="flex flex-col max-w-maxSc w-maxIn m-sides">
+                    {/* BREADCRUMB */}
+                    <div className="text-xs font-secondary mb-[50px]">
+                        <ul className="flex flex-wrap items-center">
+                            <li>
+                                <Link to="/">Home</Link>
+                                <span className="mx-4">/</span>
+                            </li>
+                            <li>
+                                <Link to="/products">Productos</Link>
+                                <span className="mx-4">/</span>
+                            </li>
+                            <li>
+                                <span>{product.name}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* END OF BREADCRUMB */}
+
+                    {/* PRODUCT DETAILS */}
+                    <div className="flex flex-col sm:flex-row justify-between gap-8 w-full mb-[50px]">
+                        {/* PRODUCT IMAGE */}
+                        <section className='w-full sm:w-[250px] xl:w-[300px]'>
+                            <img
+                                src={product.image}
+                                className="w-full rounded-[1rem] font-black select-none"
+                            />
+                        </section>
+
+                        {/* PRODUCT INFORMATION */}
+                        <section className="flex flex-col border-black flex-1">
+                            {/* CATEGORY AND FAVORITE BUTTON */}
+                            <div className="flex justify-between mb-4">
+                                <div className="flex flex-col">
+                                    <a className="w-fit box-border px-[2%] py-[.25%] border-[1.5px] rounded-[15px] border-primaryClear text-sm text-primaryClear tracking-[.25px]">
+                                        {product.category}
+                                    </a>
+                                    <h1 className="mt-2 text-2xl font-bold uppercase font-primary">
+                                        {product.name}
+                                    </h1>
+                                    <p className="text-lg">
+                                        Ver más productos de{" "}
+                                        <a className="text-accentClear underline uppercase cursor-pointer">
+                                            {product.patent}
+                                        </a>
+                                    </p>
+                                    <div className="flex items-center mt-2">
+                                        {renderStars(product.rating)}
+                                        <span className="mr-4 leading-none font-bold">
+                                            {product.rating}
+                                        </span>
+                                        <span className="text-accentClear underline cursor-pointer">
+                                            {product.nroReviews > 0 && product.nroReviews}
+                                        </span>
+                                    </div>
+                                </div>
+                                <button
+                                    className="flex outline-0 border-none bg-transparent h-fit"
+                                    onClick={addFavorite}
+                                >
+                                    <Bookmark size={"1rem"} />
+                                </button>
+                            </div>
+
+                            {/* RATING, REVIEWS, AND FEATURES */}
+                            <div className="flex flex-col-reverse lg:flex-row justify-between">
+                                <div className="w-full lg:w-[60%]">
+                                    {/* RATING AND REVIEWS */}
+                                    {/* <div className="flex items-center">
+                                        {renderStars(product.rating)}
+                                        <span className="mr-4 leading-none font-bold">
+                                            {product.rating}
+                                        </span>
+                                        <span className="text-accentClear underline cursor-pointer">
+                                            {product.nroReviews > 0 && product.nroReviews}
+                                        </span>
+                                    </div> */}
+                                    <hr className="hidden lg:block mb-4 border-duller" />
+
+                                    {/* PRODUCT FEATURES */}
+                                    <h2 className="text-lg font-bold uppercase mb-2 font-primary">
+                                        Características
+                                    </h2>
+                                    <div className="p-4 bg-bgFocus text-clear rounded-[.5rem]">
+                                        <ul className="text-lg">
+                                            <li>
+                                                Tamaño del envase: {product.package}
+                                            </li>
+                                            <li>Color: {product.color}</li>
+                                            {/* <li>
+                                                <u className="text-accentClear cursor-pointer">
+                                                    Ver más
+                                                </u>
+                                            </li> */}
+                                        </ul>
+                                    </div>
+                                    <div className="flex flex-col justify-between mt-2">
+                                        <div className="flex items-center gap-2 w-fit mb-2 p-4 rounded-[1rem] bg-bgFocus">
+                                            <Shop />
+                                            Disponible en tienda
+                                        </div>
+                                    </div>
+
+                                    <hr className="my-4 border-duller" />
+
+                                    {/* CONTACT INFORMATION */}
+                                    <h2 className="text-lg font-bold uppercase mb-2 font-primary">
+                                        ¿Tienes alguna duda?
+                                    </h2>
+                                    <div className="my-2">Estamos para ayudar</div>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Button
+                                            variant="secondary"
+                                            subVariant="icon"
+                                            className={
+                                                "gap-2 text-sm " +
+                                                (showNumber &&
+                                                    "cursor-default select-text transition-none active:bg-bg active:scale-100")
+                                            }
+                                            onClick={() => showNumber === false && setShowNumber(true)}
+                                        >
+                                            <Phone />
+                                            {!showNumber ? "Llámanos" : "+54 351 306 135"}
+                                        </Button>
+                                        <Button
+                                            variant="secondary"
+                                            subVariant="icon"
+                                            className="gap-2 text-sm"
+                                        >
+                                            <ChatEmpty />
+                                            Chatea
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* PRODUCT PRICE, QUANTITY CONTROLS, AND BUY BUTTONS */}
+                                <div className="flex flex-col md:flex-row md:justify-between items-center w-full lg:flex-col lg:w-[40%] lg:items-start lg:justify-start min-w-[290px]">
+                                    <div className="flex flex-col items-center w-full md:items-start md:w-fit lg:items-center lg:w-full">
+                                        <div className="mb-4">
+                                            <strong className="text-3xl font-primary">
+                                                $ {formatNumberWithDots(product.price)}
+                                            </strong>
+                                        </div>
+                                        <ProductQuantitySelector
+                                            number={numberOfItems}
+                                            setNumber={setNumberOfItems}
+                                            limit={product.stock}
+                                            isNumberOfItemsUpdating={isNumberOfItemsUpdating}
+                                            setIsNumberOfItemsUpdating={setIsNumberOfItemsUpdating}
+                                            idProduct={idProduct}
+                                            idUser={loggedUser.id}
+                                        />
+                                        {/* STOCK INFORMATION */}
+                                        {product.stock < 50 && (
+                                            <div
+                                                className={
+                                                    "mb-4 mt-2 text-sm " +
+                                                    (product.stock === 0 && "text-red-600")
+                                                }
+                                            >
+                                                {product.stock === 0
+                                                    ? "No quedan unidades de este producto"
+                                                    : product.stock === 1
+                                                        ? "¡Queda solo 1 unidad!"
+                                                        : `¡Quedan solo ${product.stock} unidades!`}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="w-full md:w-1/2 lg:flex lg:flex-col lg:items-center lg:w-full">
+                                        {/* BUY BUTTONS */}
+                                        {product.stock !== 0 ? (
+                                            <>
+                                                <Button
+                                                    variant="primary"
+                                                    onClick={handleBuyNow}
+                                                    className="w-full lg:w-[80%]"
+                                                >
+                                                    ¡Comprar ahora!
+                                                </Button>
+                                                {isInCart ? (
+                                                    <Button
+                                                        variant="danger"
+                                                        title="Ya tienes este producto en el carro"
+                                                        onClick={() =>
+                                                            onDeleteProductCart({ user: loggedUser, id: idProduct })
+                                                        }
+                                                        className="w-full lg:w-[80%] my-4"
+                                                    >
+                                                        Eliminar del carro
+                                                    </Button>
+                                                ) : (
+                                                    <Button
+                                                        variant="secondary"
+                                                        title="Agregar al carrito"
+                                                        onClick={onAddProductCart}
+                                                        className="w-full lg:w-[80%] my-4"
+                                                    >
+                                                        Agregar al carro
+                                                    </Button>
+                                                )}
+                                            </>
+                                        ) : null}
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    {/* END OF PRODUCT DETAILS */}
+
+                    {/* PRODUCT DESCRIPTION AND SIMILAR PRODUCTS */}
+                    <div className="mb-[100px]">
+                        <section id="description" className="mb-[50px]">
+                            <h2 className="text-lg font-primary font-bold uppercase mb-2">Descripción</h2>
+                            <p className="first-letter:capitalize">{product.description}</p>
+                        </section>
+                        <section>
+                            <h2 className="text-lg font-primary font-bold uppercase mb-2">
+                                Productos similares
+                            </h2>
+                            <FeaturedContainer
+                                bestSellersContainer={false}
+                                similarProductsContainer={true}
+                                similarProductsContainerOptions={{
+                                    currentId: product.idProduct,
+                                    limit: 4,
+                                    category: product.category,
+                                    color: product.color,
+                                }}
+                            />
+                        </section>
+                    </div>
+                </div>
+            )}
+        </main>
     );
-  }
 };
 
-export default Detail;
+export default Detail

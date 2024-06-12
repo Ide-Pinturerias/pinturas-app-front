@@ -1,254 +1,91 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
-import { setPage } from "../../redux/actions/Page/setPage";
-import { setCategory } from "../../redux/actions/filters/setCategory";
+import { Link } from 'react-router-dom'
+import { setPage } from '@redux/actions/pagination/setPage'
+import { setCategory } from '@redux/actions/filters/setCategory'
+import stl from './CategoryContainer.module.css'
+import { afterPseudo } from '../../styles.js'
+import { useDispatch } from 'react-redux'
+
 // Banners
-import category1 from "../../img/category1.png";
-import category2 from "../../img/especiales.png";
-import category3 from "../../img/esmalte.png";
-import category4 from "../../img/cal.png";
-import category5 from "../../img/fondos.png";
-import category6 from "../../img/tintas.png";
-import category7 from "../../img/ecologico.png";
-import category8 from "../../img/industriales.png";
-//import category9 from "../../img/latex.png";
-import category10 from "../../img/impermeabilizante.png";
-import category11 from "../../img/fijadores.png";
-import category12 from "../../img/bases.png";
-import category13 from "../../img/auxiliares.png";
-import category14 from "../../img/madera.png";
+import category2 from '@images/categories/especiales.webp'
+import category3 from '@images/categories/esmalte.webp'
+import category4 from '@images/categories/cal.webp'
+import category5 from '@images/categories/fondos.webp'
+import category6 from '@images/categories/tintas.webp'
+import category7 from '@images/categories/ecologico.webp'
+import category8 from '@images/categories/industriales.webp'
+import category9 from '@images/categories/latex.webp'
+import category10 from '@images/categories/impermeabilizante.webp'
+import category11 from '@images/categories/fijadores.webp'
+import category13 from '@images/categories/auxiliares.webp'
+import category14 from '@images/categories/madera.webp'
+
+const CategoryCard = ({ idx, searchQuery, image, title }) => {
+    const dispatch = useDispatch()
+    const handleCategory = (category) => {
+        dispatch(setPage(1))
+        dispatch(setCategory(category))
+    }
+  return (
+        <Link
+            to={`/products?category=${encodeURIComponent(searchQuery)}`}
+            onClick={() => handleCategory(searchQuery)}
+            className={`relative rounded-lg ${afterPseudo}`}
+            style={{ gridArea: `item${idx + 1}` }}
+        >
+            <img
+                src={image}
+                alt={`¡Descubre nuestra línea de ${title}!`}
+                className="overflow-hidden object-cover w-full h-auto aspect-[12/5] rounded-lg"
+            />
+            <h3 className='text-start font-primary text-2xl font-bold'>{title}</h3>
+        </Link>
+  )
+}
 
 const CategoryContainer = () => {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const filterCategory = useSelector((state) => state.filterCategory);
 
-  const categories = [
-    "Linea Latex",
-    "Linea Maderas",
-    "Linea Esmaltes",
-    "Linea Pinturas a la Cal",
-    "Linea Fondos",
-    "Linea Entonadores y Tintas",
-    "Linea Ecologica",
-    "Linea Esmaltes Industriales",
-    "Linea Productos Especiales",
-    "Linea Impermeabilizantes",
-    "Linea Fijadores - Aditivos -",
-    "Linea Bases Tintometricas",
-    "Linea Productos Auxiliares",
-  ];
 
-  const handleCategory = (category) => {
-    dispatch(setPage(1));
-    dispatch(setCategory(category));
-  };
+
+  const CATEGORIES = [
+    { image: category14, searchQuery: 'Linea Maderas' },
+    { image: category3, searchQuery: 'Linea Esmaltes' },
+    { image: category4, searchQuery: 'Linea Pinturas a la Cal' },
+    { image: category5, searchQuery: 'Linea Fondos' },
+    { image: category6, searchQuery: 'Linea Entonadores y Tintas' },
+    { image: category7, searchQuery: 'Linea Ecologica' },
+    { image: category8, searchQuery: 'Linea Esmaltes Industriales' },
+    { image: category2, searchQuery: 'Linea Productos Especiales' },
+    { image: category10, searchQuery: 'Linea Impermeabilizantes' },
+    { image: category11, searchQuery: 'Linea Fijadores - Aditivos' },
+    { image: category9, searchQuery: 'Linea Latex' },
+    // { image: category12, searchQuery: "Linea" },
+    { image: category13, searchQuery: 'Linea Productos Auxiliares' }
+  ]
 
   return (
-    <div>
-      <div className="flex flex-col w-full my-10">
-        <div className="w-full">
-          <Link
-            to={`/products?category=${encodeURIComponent("Linea Latex")}`}
-            onClick={() => handleCategory("Linea Latex")}
-          >
-            <img
-              src={category1}
-              alt="category1"
-              className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-            />
-          </Link>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent("Linea Maderas")}`}
-              onClick={() => handleCategory("Linea Maderas")}
-            >
-              <img
-                src={category14}
-                alt="category14"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent("Linea Esmaltes")}`}
-              onClick={() => handleCategory("Linea Esmaltes")}
-            >
-              <img
-                src={category3}
-                alt="category3"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Pinturas a la Cal"
-              )}`}
-              onClick={() => handleCategory("Linea Pinturas a la Cal")}
-            >
-              <img
-                src={category4}
-                alt="category4"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent("Linea Fondos")}`}
-              onClick={() => handleCategory("Linea Fondos")}
-            >
-              <img
-                src={category5}
-                alt="category5"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Entonadores y Tintas"
-              )}`}
-              onClick={() => handleCategory("Linea Entonadores y Tintas")}
-            >
-              <img
-                src={category6}
-                alt="category6"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent("Linea Ecologica")}`}
-              onClick={() => handleCategory("Linea Ecologica")}
-            >
-              <img
-                src={category7}
-                alt="category7"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Esmaltes Industriales"
-              )}`}
-              onClick={() => handleCategory("Linea Esmaltes Industriales")}
-            >
-              <img
-                src={category8}
-                alt="category8"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Productos Especiales"
-              )}`}
-              onClick={() => handleCategory("Linea Productos Especiales")}
-            >
-              <img
-                src={category2}
-                alt="category2"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Impermeabilizantes"
-              )}`}
-              onClick={() => handleCategory("Linea Impermeabilizantes")}
-            >
-              <img
-                src={category10}
-                alt="category10"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Fijadores - Aditivos -"
-              )}`}
-              onClick={() => handleCategory("Linea Fijadores - Aditivos -")}
-            >
-              <img
-                src={category11}
-                alt="category11"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row w-fulll">
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Bases Tintometricas"
-              )}`}
-              onClick={() => handleCategory("Linea Bases Tintometricas")}
-            >
-              <img
-                src={category12}
-                alt="category12"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/2">
-            <Link
-              to={`/products?category=${encodeURIComponent(
-                "Linea Productos Auxiliares"
-              )}`}
-              onClick={() => handleCategory("Linea Productos Auxiliares")}
-            >
-              <img
-                src={category13}
-                alt="category13"
-                className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
-              />
-            </Link>
-          </div>
-        </div>
-        {/* <div className="w-1/2 mx-auto">
-        <Link
-            to={`/products?category=${encodeURIComponent(
-              "Line"
-            )}`}
-            onClick={() => handleCategory("Line")}>
-          <img
-            src={category14}
-            alt="category14"
-            className="w-full h-auto object-cover cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95 "
-          />
-        </Link>
-      </div> */}
-      </div>
-    </div>
-  );
-};
+        <section className="flex items-center justify-center w-full mt-[50px] bg-bg">
+            <div className="flex flex-col justify-center items-center m-sides max-w-maxSc w-maxIn">
+                <div className="text-start w-full">
+                    <p className="text-primaryAccesibility font-bold w-fit md:px-[.25em] py-1 text-lg">Arte que transforma tus paredes en obras maestras</p>
+                    <h2 className="w-full font-medium font-primary text-3xl leading-[1.1] mb-2">Descubra todas nuestras líneas</h2>
+                    <p className='text-md'>Nos especializamos en ofrecer soluciones de pintura excepcionales y de alta calidad para una variedad de aplicaciones, desde paredes interiores hasta proyectos exteriores, madera y techos.</p>
+                </div>
+                <div className={`grid grid-cols-6 gap-6 w-full mt-6 ${stl.div__grid_container}`}>
+                    {
+                        CATEGORIES.map((category, idx) => (
+                            <CategoryCard
+                                key={idx}
+                                idx={idx}
+                                searchQuery={category.searchQuery}
+                                image={category.image}
+                                title={category.searchQuery}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+  )
+}
 
-export default CategoryContainer;
+export default CategoryContainer

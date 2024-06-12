@@ -1,13 +1,12 @@
-import React from "react";
 
 const NavbarAdmin = ({
-    activeButton,
-    handleButtonClick,
-    user,
-    backToAccountAction
+  activeButton,
+  handleButtonClick,
+  user,
+  backToAccountAction
 }) => {
-    return (
-        <div>
+  return (
+        <div className='bg-white rounded p-3 shadow-lg mt-16'>
             <div className="flex items-center space-x-4 p-2 mb-5">
                 <img className="h-12 rounded-full" src="https://i.ibb.co/hM4qPfP/blank-profile-picture-973460-960-720.webp" alt="Profile" />
                 <div>
@@ -35,12 +34,12 @@ const NavbarAdmin = ({
             <ul className="space-y-2 text-sm">
                 <li>
                     <a
-                        href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "products"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        href="#products"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'products'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
-                        onClick={() => handleButtonClick("products")}>
+                        onClick={() => handleButtonClick('products')}>
                         <span className="text-gray-600">
                             <svg
                                 className="h-5"
@@ -61,12 +60,12 @@ const NavbarAdmin = ({
                 </li>
                 <li>
                     <a
-                        href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "sales"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        href="#sales"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'sales'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
-                        onClick={() => handleButtonClick("sales")}>
+                        onClick={() => handleButtonClick('sales')}>
                         <span className="text-gray-600">
                             <svg
                                 className="h-5"
@@ -82,17 +81,17 @@ const NavbarAdmin = ({
                                 />
                             </svg>
                         </span>
-                        <span>Compras</span>
+                        <span>Ventas</span>
                     </a>
                 </li>
                 <li>
                     <a
-                        href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "users"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        href="#users"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'users'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
-                        onClick={() => handleButtonClick("users")}>
+                        onClick={() => handleButtonClick('users')}>
                         <span className="text-gray-600">
                             <svg
                                 className="h-5"
@@ -113,12 +112,12 @@ const NavbarAdmin = ({
                 </li>
                 <li>
                     <a
-                        href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "blog"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        href="#blogs"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'blog'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
-                        onClick={() => handleButtonClick("blog")}>
+                        onClick={() => handleButtonClick('blog')}>
                         <span className="text-gray-600">
                             <svg
                                 className="h-5"
@@ -134,15 +133,41 @@ const NavbarAdmin = ({
                                 />
                             </svg>
                         </span>
-                        <span>Blog</span>
+                        <span>Blogs</span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#providers"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'providers'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
+                            }`}
+                        onClick={() => handleButtonClick('providers')}>
+                        <span className="text-gray-600">
+                            <svg
+                                className="h-5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                />
+                            </svg>
+                        </span>
+                        <span>Proveedores</span>
                     </a>
                 </li>
                 <li>
                     <a
                         href="#"
-                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === "backToAccount"
-                            ? "bg-gray-200 focus:shadow-outline"
-                            : "hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+                        className={`flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium ${activeButton === 'backToAccount'
+                            ? 'bg-gray-200 focus:shadow-outline'
+                            : 'hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline'
                             }`}
                         onClick={() => backToAccountAction()}>
                         <span className="text-red-600">
@@ -164,6 +189,6 @@ const NavbarAdmin = ({
                     </a>
                 </li>
             </ul>
-        </div>);
-};
-export default NavbarAdmin;
+        </div>)
+}
+export default NavbarAdmin

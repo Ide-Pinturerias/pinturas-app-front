@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Linkedin } from '@svg';
-import ide from '@images/logo/ide.png';
+import ide from '@images/logo/ide.webp';
 import { PlainNavLink, PlainExternalLink } from '@components/Controls/Links';
 
 const Footer = () => {
